@@ -20,14 +20,24 @@ class ExpedientesController extends Controller
      * @Route("/", name="expedientes_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+        $dql = $em->createQueryBuilder();
+        $dql->select('a')
+             ->from('AppBundle:Expedientes','a');
+        $query = $em->createQuery($dql);
 
-        $expedientes = $em->getRepository('AppBundle:Expedientes')->findAll();
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            20
+        );
+
 
         return $this->render('expedientes/index.html.twig', array(
-            'expedientes' => $expedientes,
+            'expedientes' => $pagination,
         ));
     }
 
