@@ -37,18 +37,23 @@ class Expedientes
     private $segundoTitularId;
 
     /**
-     * @var integer
+     * @var \Titulares
      *
-     * @ORM\Column(name="representante_legal_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Titulares")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="representante_legal_id", referencedColumnName="id")
+     * })
      */
-    private $representanteLegalId;
-
+    private $representanteLegal;
     /**
-     * @var integer
+     * @var \Titulares
      *
-     * @ORM\Column(name="profesional_cargo_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Profesionales")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="profesional_cargo_id", referencedColumnName="id")
+     * })
      */
-    private $profesionalCargoId;
+    private $profesionalCargo;
 
     /**
      * @var integer
@@ -261,51 +266,51 @@ class Expedientes
     }
 
     /**
-     * Set representanteLegalId
+     * Set representanteLegal
      *
-     * @param integer $representanteLegalId
+     * @param integer $representanteLegal
      *
      * @return Expedientes
      */
-    public function setRepresentanteLegalId($representanteLegalId)
+    public function setRepresentanteLegal($representanteLegal)
     {
-        $this->representanteLegalId = $representanteLegalId;
+        $this->representanteLegal = $representanteLegal;
 
         return $this;
     }
 
     /**
-     * Get representanteLegalId
+     * Get representanteLegal
      *
      * @return integer
      */
-    public function getRepresentanteLegalId()
+    public function getRepresentanteLegal()
     {
-        return $this->representanteLegalId;
+        return $this->representanteLegal;
     }
 
     /**
-     * Set profesionalCargoId
+     * Set profesionalCargo
      *
-     * @param integer $profesionalCargoId
+     * @param integer $profesionalCargo
      *
      * @return Expedientes
      */
-    public function setProfesionalCargoId($profesionalCargoId)
+    public function setProfesionalCargo($profesionalCargo)
     {
-        $this->profesionalCargoId = $profesionalCargoId;
+        $this->profesionalCargo = $profesionalCargo;
 
         return $this;
     }
 
     /**
-     * Get profesionalCargoId
+     * Get profesionalCargo
      *
      * @return integer
      */
-    public function getProfesionalCargoId()
+    public function getProfesionalCargo()
     {
-        return $this->profesionalCargoId;
+        return $this->profesionalCargo;
     }
 
     /**

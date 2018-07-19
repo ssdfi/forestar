@@ -715,4 +715,8 @@ class Profesionales
     {
         return $this->eliminado;
     }
+
+    public function __toString() {
+      return $this->apellidoNombre;
+    }
 }
