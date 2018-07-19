@@ -24,6 +24,7 @@
         "components/jquery": "3.2.1",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.5",
+        "fortawesome/font-awesome": "^4.7",
         "incenteev/composer-parameter-handler": "^2.0",
         "knplabs/knp-paginator-bundle": "^2.8",
         "sensio/distribution-bundle": "^5.0.19",

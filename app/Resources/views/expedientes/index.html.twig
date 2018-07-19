@@ -1,87 +1,39 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="row">
-      <div class="col-md-12">
-        <table>
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-9">
+        <h4>Listado de Expedientes</h4>
+        <table class="table">
           <thead>
             <tr>
-              <th>Id</th>
-              <th>Numerointerno</th>
-              <th>Segundotitularid</th>
-              <th>Representantelegalid</th>
-              <th>Profesionalcargoid</th>
-              <th>Cobrobeneficiosid</th>
-              <th>Entidadagrupadoraid</th>
-              <th>Numeroexpediente</th>
-              <th>Fechapresentacion</th>
-              <th>Fechaingreso</th>
-              <th>Fechafin</th>
-              <th>Estadoid</th>
-              <th>Estadoareacontableid</th>
-              <th>Estadoarealegalesid</th>
-              <th>Estadoareapromocionid</th>
-              <th>Estadoareasigid</th>
-              <th>Areaencuentraexpedienteid</th>
-              <th>Departamentoid</th>
-              <th>Budafid</th>
-              <th>Anio</th>
-              <th>Expcar</th>
-              <th>Estadoforestoindustrialesid</th>
-              <th>Estadoviverosid</th>
-              <th>Usuarioid</th>
-              <th>Actions</th>
+              <th scope="col">Id</th>
+              <th scope="col">Numero Interno</th>
+              <th scope="col">Numero Expediente</th>
+              <th scope="col">Titular</th>
+              <th scope="col">Representante Legal</th>
+              <th scope="col">Profesional a Cargo</th>
+              <th scope="col">Fecha Presentacion</th>
+              <th scope="col">Fecha Ingreso</th>
+              <th scope="col">Fecha Fin</th>
             </tr>
           </thead>
           <tbody>
             {% for expediente in expedientes %}
-            <tr>
+            <tr data-link="{{ path('expedientes_show', { 'id': expediente.id }) }}">
               <td><a href="{{ path('expedientes_show', { 'id': expediente.id }) }}">{{ expediente.id }}</a></td>
               <td>{{ expediente.numeroInterno }}</td>
-              <td>{{ expediente.segundoTitularId }}</td>
-              <td>{{ expediente.representanteLegalId }}</td>
-              <td>{{ expediente.profesionalCargoId }}</td>
-              <td>{{ expediente.cobroBeneficiosId }}</td>
-              <td>{{ expediente.entidadAgrupadoraId }}</td>
               <td>{{ expediente.numeroExpediente }}</td>
+              <td><abbr title="{{ expediente.titular.apellidoNombre }}" data-length="10">{{ expediente.titular.apellidoNombre }}</abbr></td>
+              <td>{{ expediente.representanteLegal }}</td>
+              <td><abbr title="{{ expediente.profesionalCargo }}" data-length="10">{{ expediente.profesionalCargo }}</abbr></td>
               <td>{% if expediente.fechaPresentacion %}{{ expediente.fechaPresentacion|date('Y-m-d') }}{% endif %}</td>
               <td>{% if expediente.fechaIngreso %}{{ expediente.fechaIngreso|date('Y-m-d') }}{% endif %}</td>
               <td>{% if expediente.fechaFin %}{{ expediente.fechaFin|date('Y-m-d') }}{% endif %}</td>
-              <td>{{ expediente.estadoId }}</td>
-              <td>{{ expediente.estadoAreaContableId }}</td>
-              <td>{{ expediente.estadoAreaLegalesId }}</td>
-              <td>{{ expediente.estadoAreaPromocionId }}</td>
-              <td>{{ expediente.estadoAreaSigId }}</td>
-              <td>{{ expediente.areaEncuentraExpedienteId }}</td>
-              <td>{{ expediente.departamentoId }}</td>
-              <td>{{ expediente.budafId }}</td>
-              <td>{{ expediente.anio }}</td>
-              <td>{% if expediente.expCar %}{{ expediente.expCar|date('Y-m-d') }}{% endif %}</td>
-              <td>{{ expediente.estadoForestoIndustrialesId }}</td>
-              <td>{{ expediente.estadoViverosId }}</td>
-              <td>{{ expediente.usuarioId }}</td>
-              <td>
-                <ul>
-                  <li>
-                    <a href="{{ path('expedientes_show', { 'id': expediente.id }) }}">show</a>
-                  </li>
-                  <li>
-                    <a href="{{ path('expedientes_edit', { 'id': expediente.id }) }}">edit</a>
-                  </li>
-                </ul>
-              </td>
             </tr>
             {% endfor %}
           </tbody>
         </table>
-
       </div>
-    </div>
-    <h2>Listado de Expedientes</h2>
-
-    <ul>
-        <li>
-            <a href="{{ path('expedientes_new') }}">Create a new expediente</a>
-        </li>
-    </ul>
 {% endblock %}
