@@ -23,9 +23,9 @@ class TelefonosTitulares
     private $id;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="titular_id", type="integer", nullable=true)
+     * Many Emails have One Titular.
+     * @ORM\ManyToOne(targetEntity="Titulares", inversedBy="telefonos")
+     * @ORM\JoinColumn(name="titular_id", referencedColumnName="id")
      */
     private $titularId;
 
@@ -249,5 +249,9 @@ class TelefonosTitulares
     public function getActivado()
     {
         return $this->activado;
+    }
+
+    public function __toString() {
+      return (string)$this->numero;
     }
 }

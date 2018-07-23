@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="col-md-12">
+      <div class="row">
+
+      <div class="col-md-4">
+        <div class="card border-info">
+          <div class="card-header bg-info text-white">
+            Titular
+          </div>
+          <div class="card-body">
+            <dl class="row">
+              <dt class="col-4">Id</dt>
+              <dd class="col-8">{{ titulare.id }}</dd>
+              <dt class="col-4">Numero de Registro</dt>
+              <dd class="col-8">{{ titulare.numeroRegistro }}</dd>
+              <dt class="col-4">Apellido y Nombre</dt>
+              <dd class="col-8">{{ titulare.apellidoNombre }}</dd>
+              <dt class="col-4">Agrupador</dt>
+              <dd class="col-8">{% if titulare.agrupador %}Yes{% else %}No{% endif %}</dd>
+              <dt class="col-4">CUIT</dt>
+              <dd class="col-8">{{ titulare.cuit }}</dd>
+              <dt class="col-4">Tipo Documento</dt>
+              <dd class="col-8">{{ titulare.tipoDocumento }}</dd>
+              <dt class="col-4">Documento</dt>
+              <dd class="col-8">{{ titulare.documento }}</dd>
+              <dt class="col-4">Fecha de Nacimiento</dt>
+              <dd class="col-8">{% if titulare.fechaNacimiento %}{{ titulare.fechaNacimiento|date('d-m-Y') }}{% endif %}</dd>
+              <dt class="col-4">Sexo</dt>
+              <dd class="col-8">{{ titulare.sexo }}</dd>
+              <dt class="col-4">Email/s</dt>
+              <dd class="col-8">{{ titulare.emails|join(' | ')|lower }}</dd>
+              <dt class="col-4">Teléfono/s</dt>
+              <dd class="col-8">{{ titulare.telefonos|join(' | ') }}</dd>
+              <dt class="col-4">Domicilio/s</dt>
+              <dd class="col-8">{{ titulare.domicilios|join(' | ') }}</dd>
+              <dt class="col-4">Aprobado</dt>
+              <dd class="col-8">{% if titulare.aprobado %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <h5>Expedientes asociados al titular</h5>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Numero Interno</th>
+              <th scope="col">Numero Expediente</th>
+              <th scope="col">Representante Legal</th>
+              <th scope="col">Profesional a Cargo</th>
+              <th scope="col">Fecha Presentacion</th>
+              <th scope="col">Fecha Ingreso</th>
+              <th scope="col">Fecha Fin</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for expediente in titulare.expedientes %}
+            <tr data-link="{{ path('expedientes_show', { 'id': expediente.id }) }}">
+              <td><a href="{{ path('expedientes_show', { 'id': expediente.id }) }}">{{ expediente.id }}</a></td>
+              <td>{{ expediente.numeroInterno }}</td>
+              <td>{{ expediente.numeroExpediente }}</td>
+              <td>{{ expediente.representanteLegal }}</td>
+              <td><abbr title="{{ expediente.profesionalCargo }}" data-length="10">{{ expediente.profesionalCargo }}</abbr></td>
+              <td>{% if expediente.fechaPresentacion %}{{ expediente.fechaPresentacion|date('Y-m-d') }}{% endif %}</td>
+              <td>{% if expediente.fechaIngreso %}{{ expediente.fechaIngreso|date('Y-m-d') }}{% endif %}</td>
+              <td>{% if expediente.fechaFin %}{{ expediente.fechaFin|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+      </div>
+    </div>
+{% endblock %}

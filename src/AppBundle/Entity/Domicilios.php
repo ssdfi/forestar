@@ -23,9 +23,9 @@ class Domicilios
     private $id;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="titular_id", type="integer", nullable=true)
+     * Many domicilios have One Titular.
+     * @ORM\ManyToOne(targetEntity="Titulares", inversedBy="domicilios")
+     * @ORM\JoinColumn(name="titular_id", referencedColumnName="id")
      */
     private $titularId;
 
@@ -156,5 +156,9 @@ class Domicilios
     public function getLocalidadId()
     {
         return $this->localidadId;
+    }
+
+    public function __toString() {
+      return $this->domicilio;
     }
 }

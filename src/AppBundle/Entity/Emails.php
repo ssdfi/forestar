@@ -22,10 +22,11 @@ class Emails
      */
     private $id;
 
+
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="titular_id", type="integer", nullable=true)
+     * Many Emails have One Titular.
+     * @ORM\ManyToOne(targetEntity="Titulares", inversedBy="emails")
+     * @ORM\JoinColumn(name="titular_id", referencedColumnName="id")
      */
     private $titularId;
 
@@ -94,5 +95,9 @@ class Emails
     public function getMail()
     {
         return $this->mail;
+    }
+
+    public function __toString(){
+      return $this->mail;
     }
 }

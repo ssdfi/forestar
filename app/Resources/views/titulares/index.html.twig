@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <h4>Listado de Titulares</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Apellido y Nombre</th>
+            <th scope="col">Agrupador</th>
+            <th scope="col">Cuit</th>
+            <th scope="col">Documento</th>
+            <th scope="col">Sexo</th>
+            <th scope="col">Tipo de documento</th>
+            <th scope="col">Eliminado</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for titulare in titulares %}
+              <tr data-link="{{ path('titulares_show', { 'id': titulare.id }) }}">
+                  <td><a href="{{ path('titulares_show', { 'id': titulare.id }) }}">{{ titulare.id }}</a></td>
+                  <td>{{ titulare.apellidoNombre }}</td>
+                  <td>{% if titulare.agrupador %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</td>
+                  <td>{{ titulare.cuit }}</td>
+                  <td>{{ titulare.documento }}</td>
+                  <td>{{ titulare.sexo }}</td>
+                  <td>{{ titulare.tipoDocumento }}</td>
+                  <td>{% if titulare.eliminado %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</td>
+              </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+{% endblock %}

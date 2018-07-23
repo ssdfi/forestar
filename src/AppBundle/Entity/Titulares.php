@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Titulares
@@ -113,7 +114,33 @@ class Titulares
      */
     private $idok;
 
+    /**
+    * @ORM\OneToMany(targetEntity="Emails", mappedBy="titularId")
+    */
+    private $emails;
 
+    /**
+    * @ORM\OneToMany(targetEntity="TelefonosTitulares", mappedBy="titularId")
+    */
+    private $telefonos;
+
+    /**
+    * @ORM\OneToMany(targetEntity="Domicilios", mappedBy="titularId")
+    */
+    private $domicilios;
+
+    /**
+    * One Titular has Many Expedientes.
+    * @ORM\OneToMany(targetEntity="Expedientes", mappedBy="titular")
+    */
+    private $expedientes;
+
+
+    public function __construct(){
+      $this->emails = new ArrayCollection();
+      $this->telefonos = new ArrayCollection();
+      $this->expedientes = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -435,6 +462,22 @@ class Titulares
     public function getIdok()
     {
         return $this->idok;
+    }
+
+    public function getEmails (){
+      return $this->emails;
+    }
+
+    public function getTelefonos (){
+      return $this->telefonos;
+    }
+
+    public function getDomicilios (){
+      return $this->domicilios;
+    }
+
+    public function getExpedientes(){
+      return $this->expedientes;
     }
 
     public function __toString(){

@@ -231,7 +231,7 @@ class Expedientes
     /**
      * @var \Titulares
      *
-     * @ORM\ManyToOne(targetEntity="Titulares")
+     * @ORM\ManyToOne(targetEntity="Titulares", inversedBy="expedientes")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="titular_id", referencedColumnName="id")
      * })

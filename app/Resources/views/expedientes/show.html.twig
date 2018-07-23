@@ -16,7 +16,7 @@
               <dt class="col-6">Numero Expediente</dt>
               <dd class="col-6">{{ expediente.numeroExpediente }}</dd>
               <dt class="col-6">Titular</dt>
-              <dd class="col-6"><a href="#">{{ expediente.titular }}</a></dd>
+              <dd class="col-6"><a href="{{path('titulares_show', { 'id': expediente.titular.id })}}">{{ expediente.titular }}</a></dd>
               <dt class="col-6">Segundo Titular</dt>
               <dd class="col-6">{{ expediente.segundoTitularId }}</dd>
               <dt class="col-6">Entidad Agrupadora</dt>
