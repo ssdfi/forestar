@@ -13,7 +13,32 @@ class ExpedientesType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('numeroInterno')->add('segundoTitularId')->add('representanteLegal')->add('profesionalCargo')->add('cobroBeneficiosId')->add('entidadAgrupadoraId')->add('numeroExpediente')->add('fechaPresentacion')->add('fechaIngreso')->add('fechaFin')->add('estadoId')->add('estadoAreaContableId')->add('estadoAreaLegalesId')->add('estadoAreaPromocionId')->add('estadoAreaSigId')->add('areaEncuentraExpedienteId')->add('departamentoId')->add('informacionBudaf')->add('budafId')->add('anio')->add('expCar')->add('estadoForestoIndustrialesId')->add('estadoViverosId')->add('usuarioId')->add('titular');
+        $builder
+          ->add('numeroInterno')
+          ->add('segundoTitularId')
+          ->add('representanteLegal')
+          ->add('profesionalCargo')
+          ->add('cobroBeneficiosId')
+          ->add('entidadAgrupadoraId')
+          ->add('numeroExpediente')
+          ->add('fechaPresentacion')
+          ->add('fechaIngreso')
+          ->add('fechaFin')
+          ->add('estado')
+          ->add('estadoAreaContableId')
+          ->add('estadoAreaLegalesId')
+          ->add('estadoAreaPromocionId')
+          ->add('estadoAreaSigId')
+          ->add('areaEncuentraExpedienteId')
+          ->add('departamentoId')
+          ->add('informacionBudaf')
+          ->add('budafId')
+          ->add('anio')
+          ->add('expCar')
+          ->add('estadoForestoIndustrialesId')
+          ->add('estadoViverosId')
+          ->add('usuarioId')
+          ->add('titular');
     }/**
      * {@inheritdoc}
      */

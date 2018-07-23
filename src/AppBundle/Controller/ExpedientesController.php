@@ -32,7 +32,8 @@ class ExpedientesController extends Controller
         $pagination = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            20
+            20,
+            array('distinct' => true, 'defaultSortFieldName' => 'a.id', 'defaultSortDirection' => 'desc')
         );
 
 

@@ -95,4 +95,8 @@ class TiposEstadosLegales
     {
         return $this->estadoGeneral;
     }
+
+    public function __toString() {
+      return $this->nombre;
+    }
 }

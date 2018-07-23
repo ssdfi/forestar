@@ -45,6 +45,7 @@ class Expedientes
      * })
      */
     private $representanteLegal;
+
     /**
      * @var \Titulares
      *
@@ -67,6 +68,14 @@ class Expedientes
      *
      * @ORM\Column(name="entidad_agrupadora_id", type="integer", nullable=true)
      */
+     /**
+      * @var \Titulares
+      *
+      * @ORM\ManyToOne(targetEntity="Titulares")
+      * @ORM\JoinColumns({
+      *   @ORM\JoinColumn(name="entidad_agrupadora_id", referencedColumnName="id")
+      * })
+      */
     private $entidadAgrupadoraId;
 
     /**
@@ -98,53 +107,74 @@ class Expedientes
     private $fechaFin;
 
     /**
-     * @var integer
+     * @var \Estado
      *
-     * @ORM\Column(name="estado_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposEstadosPrincipales")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="estado_id", referencedColumnName="id")
+     * })
      */
-    private $estadoId;
+    private $estado;
 
     /**
-     * @var integer
+     * @var \Contable
      *
-     * @ORM\Column(name="estado_area_contable_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposEstadosContables")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="estado_area_contable_id", referencedColumnName="id")
+     * })
      */
-    private $estadoAreaContableId;
+    private $estadoAreaContable;
+
+     /**
+      * @var \Legales
+      *
+      * @ORM\ManyToOne(targetEntity="TiposEstadosLegales")
+      * @ORM\JoinColumns({
+      *   @ORM\JoinColumn(name="estado_area_legales_id", referencedColumnName="id")
+      * })
+      */
+    private $estadoAreaLegales;
+
+     /**
+      * @var \Promocion
+      *
+      * @ORM\ManyToOne(targetEntity="TiposEstadosPromocion")
+      * @ORM\JoinColumns({
+      *   @ORM\JoinColumn(name="estado_area_promocion_id", referencedColumnName="id")
+      * })
+      */
+    private $estadoAreaPromocion;
+
+     /**
+      * @var \SIG
+      *
+      * @ORM\ManyToOne(targetEntity="TiposEstadosSig")
+      * @ORM\JoinColumns({
+      *   @ORM\JoinColumn(name="estado_area_sig_id", referencedColumnName="id")
+      * })
+      */
+    private $estadoAreaSig;
+
+     /**
+      * @var \SIG
+      *
+      * @ORM\ManyToOne(targetEntity="Areas")
+      * @ORM\JoinColumns({
+      *   @ORM\JoinColumn(name="area_encuentra_expediente_id", referencedColumnName="id")
+      * })
+      */
+    private $areaEncuentraExpediente;
 
     /**
-     * @var integer
+     * @var \Contable
      *
-     * @ORM\Column(name="estado_area_legales_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Departamentos")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="departamento_id", referencedColumnName="id")
+     * })
      */
-    private $estadoAreaLegalesId;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="estado_area_promocion_id", type="smallint", nullable=true)
-     */
-    private $estadoAreaPromocionId;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="estado_area_sig_id", type="smallint", nullable=true)
-     */
-    private $estadoAreaSigId;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="area_encuentra_expediente_id", type="smallint", nullable=true)
-     */
-    private $areaEncuentraExpedienteId;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="departamento_id", type="integer", nullable=true)
-     */
-    private $departamentoId;
+    private $departamento;
 
     /**
      * @var string
@@ -174,12 +204,15 @@ class Expedientes
      */
     private $expCar;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="estado_foresto_industriales_id", type="smallint", nullable=true)
-     */
-    private $estadoForestoIndustrialesId;
+     /**
+      * @var \TiposEstadosForestoIndustrial
+      *
+      * @ORM\ManyToOne(targetEntity="TiposEstadosForestoIndustrial")
+      * @ORM\JoinColumns({
+      *   @ORM\JoinColumn(name="estado_foresto_industriales_id", referencedColumnName="id")
+      * })
+      */
+    private $estadoForestoIndustriales;
 
     /**
      * @var integer
@@ -458,171 +491,171 @@ class Expedientes
     }
 
     /**
-     * Set estadoId
+     * Set estado
      *
-     * @param integer $estadoId
+     * @param integer $estado
      *
      * @return Expedientes
      */
-    public function setEstadoId($estadoId)
+    public function setEstado($estado)
     {
-        $this->estadoId = $estadoId;
+        $this->estado = $estado;
 
         return $this;
     }
 
     /**
-     * Get estadoId
+     * Get estado
      *
      * @return integer
      */
-    public function getEstadoId()
+    public function getEstado()
     {
-        return $this->estadoId;
+        return $this->estado;
     }
 
     /**
-     * Set estadoAreaContableId
+     * Set estadoAreaContable
      *
-     * @param integer $estadoAreaContableId
+     * @param integer $estadoAreaContable
      *
      * @return Expedientes
      */
-    public function setEstadoAreaContableId($estadoAreaContableId)
+    public function setEstadoAreaContable($estadoAreaContable)
     {
-        $this->estadoAreaContableId = $estadoAreaContableId;
+        $this->estadoAreaContable = $estadoAreaContable;
 
         return $this;
     }
 
     /**
-     * Get estadoAreaContableId
+     * Get estadoAreaContable
      *
      * @return integer
      */
-    public function getEstadoAreaContableId()
+    public function getEstadoAreaContable()
     {
-        return $this->estadoAreaContableId;
+        return $this->estadoAreaContable;
     }
 
     /**
-     * Set estadoAreaLegalesId
+     * Set estadoAreaLegales
      *
-     * @param integer $estadoAreaLegalesId
+     * @param integer $estadoAreaLegales
      *
      * @return Expedientes
      */
-    public function setEstadoAreaLegalesId($estadoAreaLegalesId)
+    public function setEstadoAreaLegales($estadoAreaLegales)
     {
-        $this->estadoAreaLegalesId = $estadoAreaLegalesId;
+        $this->estadoAreaLegales = $estadoAreaLegales;
 
         return $this;
     }
 
     /**
-     * Get estadoAreaLegalesId
+     * Get estadoAreaLegales
      *
      * @return integer
      */
-    public function getEstadoAreaLegalesId()
+    public function getEstadoAreaLegales()
     {
-        return $this->estadoAreaLegalesId;
+        return $this->estadoAreaLegales;
     }
 
     /**
-     * Set estadoAreaPromocionId
+     * Set estadoAreaPromocion
      *
-     * @param integer $estadoAreaPromocionId
+     * @param integer $estadoAreaPromocion
      *
      * @return Expedientes
      */
-    public function setEstadoAreaPromocionId($estadoAreaPromocionId)
+    public function setEstadoAreaPromocion($estadoAreaPromocion)
     {
-        $this->estadoAreaPromocionId = $estadoAreaPromocionId;
+        $this->estadoAreaPromocion = $estadoAreaPromocion;
 
         return $this;
     }
 
     /**
-     * Get estadoAreaPromocionId
+     * Get estadoAreaPromocion
      *
      * @return integer
      */
-    public function getEstadoAreaPromocionId()
+    public function getEstadoAreaPromocion()
     {
-        return $this->estadoAreaPromocionId;
+        return $this->estadoAreaPromocion;
     }
 
     /**
-     * Set estadoAreaSigId
+     * Set estadoAreaSig
      *
-     * @param integer $estadoAreaSigId
+     * @param integer $estadoAreaSig
      *
      * @return Expedientes
      */
-    public function setEstadoAreaSigId($estadoAreaSigId)
+    public function setEstadoAreaSig($estadoAreaSig)
     {
-        $this->estadoAreaSigId = $estadoAreaSigId;
+        $this->estadoAreaSig = $estadoAreaSig;
 
         return $this;
     }
 
     /**
-     * Get estadoAreaSigId
+     * Get estadoAreaSig
      *
      * @return integer
      */
-    public function getEstadoAreaSigId()
+    public function getEstadoAreaSig()
     {
-        return $this->estadoAreaSigId;
+        return $this->estadoAreaSig;
     }
 
     /**
-     * Set areaEncuentraExpedienteId
+     * Set areaEncuentraExpediente
      *
-     * @param integer $areaEncuentraExpedienteId
+     * @param integer $areaEncuentraExpediente
      *
      * @return Expedientes
      */
-    public function setAreaEncuentraExpedienteId($areaEncuentraExpedienteId)
+    public function setAreaEncuentraExpediente($areaEncuentraExpediente)
     {
-        $this->areaEncuentraExpedienteId = $areaEncuentraExpedienteId;
+        $this->areaEncuentraExpediente = $areaEncuentraExpediente;
 
         return $this;
     }
 
     /**
-     * Get areaEncuentraExpedienteId
+     * Get areaEncuentraExpediente
      *
      * @return integer
      */
-    public function getAreaEncuentraExpedienteId()
+    public function getAreaEncuentraExpediente()
     {
-        return $this->areaEncuentraExpedienteId;
+        return $this->areaEncuentraExpediente;
     }
 
     /**
-     * Set departamentoId
+     * Set departamento
      *
-     * @param integer $departamentoId
+     * @param integer $departamento
      *
      * @return Expedientes
      */
-    public function setDepartamentoId($departamentoId)
+    public function setDepartamento($departamento)
     {
-        $this->departamentoId = $departamentoId;
+        $this->departamento = $departamento;
 
         return $this;
     }
 
     /**
-     * Get departamentoId
+     * Get departamento
      *
      * @return integer
      */
-    public function getDepartamentoId()
+    public function getDepartamento()
     {
-        return $this->departamentoId;
+        return $this->departamento;
     }
 
     /**
@@ -722,27 +755,27 @@ class Expedientes
     }
 
     /**
-     * Set estadoForestoIndustrialesId
+     * Set estadoForestoIndustriales
      *
-     * @param integer $estadoForestoIndustrialesId
+     * @param integer $estadoForestoIndustriales
      *
      * @return Expedientes
      */
-    public function setEstadoForestoIndustrialesId($estadoForestoIndustrialesId)
+    public function setEstadoForestoIndustriales($estadoForestoIndustriales)
     {
-        $this->estadoForestoIndustrialesId = $estadoForestoIndustrialesId;
+        $this->estadoForestoIndustriales = $estadoForestoIndustriales;
 
         return $this;
     }
 
     /**
-     * Get estadoForestoIndustrialesId
+     * Get estadoForestoIndustriales
      *
      * @return integer
      */
-    public function getEstadoForestoIndustrialesId()
+    public function getEstadoForestoIndustriales()
     {
-        return $this->estadoForestoIndustrialesId;
+        return $this->estadoForestoIndustriales;
     }
 
     /**

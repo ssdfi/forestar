@@ -1,124 +1,63 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Expediente</h1>
-
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ expediente.id }}</td>
-            </tr>
-            <tr>
-                <th>Numerointerno</th>
-                <td>{{ expediente.numeroInterno }}</td>
-            </tr>
-            <tr>
-                <th>Segundotitularid</th>
-                <td>{{ expediente.segundoTitularId }}</td>
-            </tr>
-            <tr>
-                <th>Representantelegalid</th>
-                <td>{{ expediente.representanteLegal }}</td>
-            </tr>
-            <tr>
-                <th>Profesionalcargoid</th>
-                <td>{{ expediente.profesionalCargo }}</td>
-            </tr>
-            <tr>
-                <th>Cobrobeneficiosid</th>
-                <td>{{ expediente.cobroBeneficiosId }}</td>
-            </tr>
-            <tr>
-                <th>Entidadagrupadoraid</th>
-                <td>{{ expediente.entidadAgrupadoraId }}</td>
-            </tr>
-            <tr>
-                <th>Numeroexpediente</th>
-                <td>{{ expediente.numeroExpediente }}</td>
-            </tr>
-            <tr>
-                <th>Fechapresentacion</th>
-                <td>{% if expediente.fechaPresentacion %}{{ expediente.fechaPresentacion|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Fechaingreso</th>
-                <td>{% if expediente.fechaIngreso %}{{ expediente.fechaIngreso|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Fechafin</th>
-                <td>{% if expediente.fechaFin %}{{ expediente.fechaFin|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Estadoid</th>
-                <td>{{ expediente.estadoId }}</td>
-            </tr>
-            <tr>
-                <th>Estadoareacontableid</th>
-                <td>{{ expediente.estadoAreaContableId }}</td>
-            </tr>
-            <tr>
-                <th>Estadoarealegalesid</th>
-                <td>{{ expediente.estadoAreaLegalesId }}</td>
-            </tr>
-            <tr>
-                <th>Estadoareapromocionid</th>
-                <td>{{ expediente.estadoAreaPromocionId }}</td>
-            </tr>
-            <tr>
-                <th>Estadoareasigid</th>
-                <td>{{ expediente.estadoAreaSigId }}</td>
-            </tr>
-            <tr>
-                <th>Areaencuentraexpedienteid</th>
-                <td>{{ expediente.areaEncuentraExpedienteId }}</td>
-            </tr>
-            <tr>
-                <th>Departamentoid</th>
-                <td>{{ expediente.departamentoId }}</td>
-            </tr>
-            <tr>
-                <th>Informacionbudaf</th>
-                <td>{{ expediente.informacionBudaf }}</td>
-            </tr>
-            <tr>
-                <th>Budafid</th>
-                <td>{{ expediente.budafId }}</td>
-            </tr>
-            <tr>
-                <th>Anio</th>
-                <td>{{ expediente.anio }}</td>
-            </tr>
-            <tr>
-                <th>Expcar</th>
-                <td>{% if expediente.expCar %}{{ expediente.expCar|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Estadoforestoindustrialesid</th>
-                <td>{{ expediente.estadoForestoIndustrialesId }}</td>
-            </tr>
-            <tr>
-                <th>Estadoviverosid</th>
-                <td>{{ expediente.estadoViverosId }}</td>
-            </tr>
-            <tr>
-                <th>Usuarioid</th>
-                <td>{{ expediente.usuarioId }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('expedientes_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('expedientes_edit', { 'id': expediente.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <div class="col-md-12">
+      <div class="col-md-5">
+        <div class="card border-info">
+          <div class="card-header bg-info text-white">
+            Expediente
+          </div>
+          <div class="card-body">
+            <dl class="row">
+              <dt class="col-6">Id</dt>
+              <dd class="col-6">{{ expediente.id }}</dd>
+              <dt class="col-6">Numero Interno</dt>
+              <dd class="col-6">{{ expediente.numeroInterno }}</dd>
+              <dt class="col-6">Numero Expediente</dt>
+              <dd class="col-6">{{ expediente.numeroExpediente }}</dd>
+              <dt class="col-6">Titular</dt>
+              <dd class="col-6"><a href="#">{{ expediente.titular }}</a></dd>
+              <dt class="col-6">Segundo Titular</dt>
+              <dd class="col-6">{{ expediente.segundoTitularId }}</dd>
+              <dt class="col-6">Entidad Agrupadora</dt>
+              <dd class="col-6"><a href="#">{{ expediente.entidadAgrupadoraId }}</a></dd>
+              <dt class="col-6">Representante Legal</dt>
+              <dd class="col-6">{{ expediente.representanteLegal }}</dd>
+              <dt class="col-6">Profesional Cargo</dt>
+              <dd class="col-6">{{ expediente.profesionalCargo }}</dd>
+              <dt class="col-6">Fecha Presentacion</dt>
+              <dd class="col-6">{% if expediente.fechaPresentacion %}{{ expediente.fechaPresentacion|date('d-m-Y') }}{% endif %}</dd>
+              <dt class="col-6">Fecha Ingreso</dt>
+              <dd class="col-6">{% if expediente.fechaIngreso %}{{ expediente.fechaIngreso|date('d-m-Y') }}{% endif %}</dd>
+              <dt class="col-6">Fecha Fin</dt>
+              <dd class="col-6">{% if expediente.fechaFin %}{{ expediente.fechaFin|date('d-m-Y') }}{% endif %}</dd>
+              <dt class="col-6">Estado</dt>
+              <dd class="col-6">{{ expediente.estado }}</dd>
+              <dt class="col-6">Estado Área Contable</dt>
+              <dd class="col-6">{{ expediente.estadoAreaContable }}</dd>
+              <dt class="col-6">Estado Área Legales</dt>
+              <dd class="col-6">{{ expediente.estadoAreaLegales }}</dd>
+              <dt class="col-6">Estado Área Promocion</dt>
+              <dd class="col-6">{{ expediente.estadoAreaPromocion }}</dd>
+              <dt class="col-6">Estado Área SIG</dt>
+              <dd class="col-6">{{ expediente.estadoAreaSig }}</dd>
+              <dt class="col-6">Estado Foresto Industrial</dt>
+              <dd class="col-6">{{ expediente.estadoForestoIndustriales }}</dd>
+              <dt class="col-6">Área donde se encuentra Expediente</dt>
+              <dd class="col-6">{{ expediente.areaEncuentraExpediente }}</dd>
+              <dt class="col-6">Departamento</dt>
+              <dd class="col-6">{{ expediente.departamento }}</dd>
+              <dt class="col-6">Año del expediente</dt>
+              <dd class="col-6">{{ expediente.anio }}</dd>
+              <dt class="col-6">ExpCar</dt>
+              <dd class="col-6">{% if expediente.expCar %}{{ expediente.expCar|date('d-m-Y') }}{% endif %}</dd>
+              <dt class="col-6">Información BUDAF</dt>
+              <dd class="col-6">{{ expediente.informacionBudaf }}</dd>
+              <dt class="col-6">ID Budaf</dt>
+              <dd class="col-6">{{ expediente.budafId }}</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
 {% endblock %}

@@ -126,4 +126,8 @@ class Departamentos
     {
         return $this->provinciaExpedienteId;
     }
+
+    public function __toString(){
+      return $this->nombre;
+    }
 }
