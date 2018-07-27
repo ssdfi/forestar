@@ -157,4 +157,8 @@ class Especies
     {
         return $this->tipoEspecieId;
     }
+
+    public function __toString(){
+      return $this->nombreCientifico;
+    }
 }

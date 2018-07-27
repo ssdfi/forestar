@@ -1,15 +1,18 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}{{parent()}} - {{expediente.numeroExpediente}}{% endblock %}
+
 {% block body %}
     <div class="col-md-12">
-      <div class="col-md-5">
+      <div class="row">
+      <div class="col-md-3">
         <div class="card border-info">
           <div class="card-header bg-info text-white">
             Expediente
           </div>
           <div class="card-body">
             <dl class="row">
-              <dt class="col-6">Id</dt>
+              <dt class="col-6">ID</dt>
               <dd class="col-6">{{ expediente.id }}</dd>
               <dt class="col-6">Numero Interno</dt>
               <dd class="col-6">{{ expediente.numeroInterno }}</dd>
@@ -18,7 +21,11 @@
               <dt class="col-6">Titular</dt>
               <dd class="col-6"><a href="{{path('titulares_show', { 'id': expediente.titular.id })}}">{{ expediente.titular }}</a></dd>
               <dt class="col-6">Segundo Titular</dt>
-              <dd class="col-6">{{ expediente.segundoTitularId }}</dd>
+              <dd class="col-6">
+                {% if expediente.segundoTitular %}
+                  <a href="{{path('titulares_show', { 'id': expediente.segundoTitular.id })}}">{{ expediente.segundoTitular }}</a>
+                {% endif %}
+              </dd>
               <dt class="col-6">Entidad Agrupadora</dt>
               <dd class="col-6"><a href="#">{{ expediente.entidadAgrupadoraId }}</a></dd>
               <dt class="col-6">Representante Legal</dt>
@@ -49,15 +56,165 @@
               <dd class="col-6">{{ expediente.departamento }}</dd>
               <dt class="col-6">Año del expediente</dt>
               <dd class="col-6">{{ expediente.anio }}</dd>
-              <dt class="col-6">ExpCar</dt>
-              <dd class="col-6">{% if expediente.expCar %}{{ expediente.expCar|date('d-m-Y') }}{% endif %}</dd>
-              <dt class="col-6">Información BUDAF</dt>
-              <dd class="col-6">{{ expediente.informacionBudaf }}</dd>
-              <dt class="col-6">ID Budaf</dt>
-              <dd class="col-6">{{ expediente.budafId }}</dd>
+              <dt class="col-6">Creado</dt>
+              <dd class="col-6">{% if expediente.createdAt %}{{ expediente.createdAt|date('d-m-Y') }}{% endif %}</dd>
+              {% if expediente.informacionBudaf %}
+                <dt class="col-6">Información BUDAF</dt>
+                <dd class="col-6">{{ expediente.informacionBudaf }}</dd>
+              {% endif %}
+              {% if expediente.budafId %}
+                <dt class="col-6">ID Budaf</dt>
+                <dd class="col-6">{{ expediente.budafId }}</dd>
+              {% endif %}
             </dl>
           </div>
         </div>
       </div>
+      <div class="col-md-9">
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-presentacion" role="tab" aria-controls="nav-home" aria-selected="true">Presentación</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-certificacion" role="tab" aria-controls="nav-profile" aria-selected="false">Certificación</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-inspeccion" role="tab" aria-controls="nav-contact" aria-selected="false">Inspección</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-documentacion" role="tab" aria-controls="nav-contact" aria-selected="false">Documentación</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-situacion" role="tab" aria-controls="nav-contact" aria-selected="false">Estado Situación</a>
+          </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-presentacion" role="tabpanel" aria-labelledby="nav-home-tab">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Actividad</th>
+                  <th scope="col">Especie</th>
+                  <th scope="col">Superfice Ha.</th>
+                  <th scope="col">Densidad</th>
+                  <th scope="col">Fecha de Inicio</th>
+                  <th scope="col">Fecha Fin de Actividad</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for actividad in expediente.actividades %}
+                <tr data-link="{{ path('expedientes_show', { 'id': actividad.id }) }}">
+                  <td><a href="{{ path('expedientes_show', { 'id': actividad.id }) }}">{{ actividad.id }}</a></td>
+                  <td>{{ actividad.tipoActividad }}</td>
+                  <td>{{ actividad.especie }}</td>
+                  <td>{{ actividad.superficieHa }}</td>
+                  <td>{{ actividad.densidad }}</td>
+                  <td>{% if actividad.fechaInicio %}{{ actividad.fechaInicio|date('d-m-Y') }}{% endif %}</td>
+                  <td>{% if actividad.fechaFinActividad %}{{ actividad.fechaFinActividad|date('d-m-Y') }}{% endif %}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane fade" id="nav-certificacion" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Actividad</th>
+                  <th scope="col">Especie</th>
+                  <th scope="col">Superfice Ha.</th>
+                  <th scope="col">Densidad</th>
+                  <th scope="col">Fecha de Inicio</th>
+                  <th scope="col">Fecha Fin de Actividad</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for actividad in expediente.actividadesCertificadas %}
+                <tr data-link="{{ path('expedientes_show', { 'id': actividad.id }) }}">
+                  <td><a href="{{ path('expedientes_show', { 'id': actividad.id }) }}">{{ actividad.id }}</a></td>
+                  <td>{{ actividad.tipoActividad }}</td>
+                  <td>{{ actividad.especie }}</td>
+                  <td>{{ actividad.superficieHa }}</td>
+                  <td>{{ actividad.densidad }}</td>
+                  <td>{% if actividad.fechaInicio %}{{ actividad.fechaInicio|date('d-m-Y') }}{% endif %}</td>
+                  <td>{% if actividad.fechaFinActividad %}{{ actividad.fechaFinActividad|date('d-m-Y') }}{% endif %}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane fade" id="nav-inspeccion" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Actividad</th>
+                  <th scope="col">Especie</th>
+                  <th scope="col">Superfice Ha.</th>
+                  <th scope="col">Densidad</th>
+                  <th scope="col">Tipo Inspeccion</th>
+                  <th scope="col">Fecha de Inicio</th>
+                  <th scope="col">Fecha Fin</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for actividad in expediente.actividadesInspeccionadas %}
+                <tr data-link="{{ path('expedientes_show', { 'id': actividad.id }) }}">
+                  <td><a href="{{ path('expedientes_show', { 'id': actividad.id }) }}">{{ actividad.id }}</a></td>
+                  <td><abbr title="{{ actividad.tipoActividad }}" data-length="10">{{ actividad.tipoActividad }}</abbr></td>
+                  <td>{{ actividad.especie }}</td>
+                  <td>{{ actividad.superficieHa }}</td>
+                  <td>{{ actividad.densidad }}</td>
+                  <td>{{ actividad.tipoInspeccion }}</td>
+                  <td>{% if actividad.fechaInicio %}{{ actividad.fechaInicio|date('d-m-Y') }}{% endif %}</td>
+                  <td>{% if actividad.fechaFin %}{{ actividad.fechaFin|date('d-m-Y') }}{% endif %}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane fade" id="nav-documentacion" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Tipo Documentacion</th>
+                  <th scope="col">Observacion</th>
+                  <th scope="col">Fecha Presentacion</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in expediente.documentacion %}
+                 <tr>
+                   <td>{{item.id}}</td>
+                   <td>{{item.tipoDocumentacion}}</td>
+                   <td>{{item.observacion}}</td>
+                   <td>{{item.fechaPresentacion|date('d-m-Y')}}</td>
+                   <td>{% if item.archivo %}<span class="fa fa-download">{% endif %}</td>
+                 </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane fade" id="nav-situacion" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Observacion</th>
+                  <th scope="col">Especificación</th>
+                  <th scope="col">Fecha</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in expediente.EstadoSituacion %}
+                  <tr>
+                    <td>{{item.id}}</td>
+                    <td>{{item.observacion}}</td>
+                    <td>{{item.especificacionPlantaciones}}</td>
+                    <td>{{item.fecha|date('d-m-Y')}}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 {% endblock %}

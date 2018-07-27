@@ -78,7 +78,7 @@ class TitularesController extends Controller
     public function showAction(Titulares $titulare)
     {
         $deleteForm = $this->createDeleteForm($titulare);
-        dump($titulare);
+
         return $this->render('titulares/show.html.twig', array(
             'titulare' => $titulare,
             'delete_form' => $deleteForm->createView(),

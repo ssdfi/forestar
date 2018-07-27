@@ -135,6 +135,13 @@ class Titulares
     */
     private $expedientes;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="pequenio_productor", type="boolean", nullable=true)
+     */
+    private $pequenioProductor;
+
 
     public function __construct(){
       $this->emails = new ArrayCollection();
@@ -480,6 +487,22 @@ class Titulares
       return $this->expedientes;
     }
 
+    public function setPequenioProductor($pequenioProductor)
+    {
+        $this->pequenioProductor = $pequenioProductor;
+
+        return $this;
+    }
+
+    /**
+     * Get activo
+     *
+     * @return boolean
+     */
+    public function getPequenioProductor()
+    {
+        return $this->pequenioProductor;
+    }
     public function __toString(){
       return $this->apellidoNombre;
     }

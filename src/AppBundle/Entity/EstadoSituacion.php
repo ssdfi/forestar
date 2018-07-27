@@ -23,11 +23,14 @@ class EstadoSituacion
     private $id;
 
     /**
-     * @var integer
+     * @var \ActividadesExpedientes
      *
-     * @ORM\Column(name="expediente_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="estadoSituacion")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="expediente_id", referencedColumnName="id")
+     * })
      */
-    private $expedienteId;
+    private $expediente;
 
     /**
      * @var string
@@ -91,27 +94,27 @@ class EstadoSituacion
     }
 
     /**
-     * Set expedienteId
+     * Set expediente
      *
-     * @param integer $expedienteId
+     * @param integer $expediente
      *
      * @return EstadoSituacion
      */
-    public function setExpedienteId($expedienteId)
+    public function setExpediente($expediente)
     {
-        $this->expedienteId = $expedienteId;
+        $this->expediente = $expediente;
 
         return $this;
     }
 
     /**
-     * Get expedienteId
+     * Get expediente
      *
      * @return integer
      */
-    public function getExpedienteId()
+    public function getExpediente()
     {
-        return $this->expedienteId;
+        return $this->expediente;
     }
 
     /**

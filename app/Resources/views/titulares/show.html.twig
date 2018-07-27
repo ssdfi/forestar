@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}{{parent()}} - Titulares{% endblock %}
 {% block body %}
     <div class="col-md-12">
       <div class="row">
@@ -13,8 +13,6 @@
             <dl class="row">
               <dt class="col-4">Id</dt>
               <dd class="col-8">{{ titulare.id }}</dd>
-              <dt class="col-4">Numero de Registro</dt>
-              <dd class="col-8">{{ titulare.numeroRegistro }}</dd>
               <dt class="col-4">Apellido y Nombre</dt>
               <dd class="col-8">{{ titulare.apellidoNombre }}</dd>
               <dt class="col-4">Agrupador</dt>
@@ -35,6 +33,8 @@
               <dd class="col-8">{{ titulare.telefonos|join(' | ') }}</dd>
               <dt class="col-4">Domicilio/s</dt>
               <dd class="col-8">{{ titulare.domicilios|join(' | ') }}</dd>
+              <dt class="col-4">Pequeño Productor</dt>
+              <dd class="col-8">{% if titulare.pequenioProductor %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</dd>
               <dt class="col-4">Aprobado</dt>
               <dd class="col-8">{% if titulare.aprobado %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</dd>
             </dl>

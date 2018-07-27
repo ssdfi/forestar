@@ -64,4 +64,8 @@ class TiposInspeccion
     {
         return $this->tipoInspeccion;
     }
+
+    public function __toString() {
+      return $this->tipoInspeccion;
+    }
 }

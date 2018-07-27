@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Expedientes
@@ -30,11 +31,14 @@ class Expedientes
     private $numeroInterno;
 
     /**
-     * @var integer
+     * @var \Titulares
      *
-     * @ORM\Column(name="segundo_titular_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Titulares")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="segundo_titular_id", referencedColumnName="id")
+     * })
      */
-    private $segundoTitularId;
+    private $segundoTitular;
 
     /**
      * @var \Titulares
@@ -63,11 +67,6 @@ class Expedientes
      */
     private $cobroBeneficiosId;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="entidad_agrupadora_id", type="integer", nullable=true)
-     */
      /**
       * @var \Titulares
       *
@@ -167,7 +166,7 @@ class Expedientes
     private $areaEncuentraExpediente;
 
     /**
-     * @var \Contable
+     * @var \Departamento
      *
      * @ORM\ManyToOne(targetEntity="Departamentos")
      * @ORM\JoinColumns({
@@ -200,9 +199,9 @@ class Expedientes
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="exp_car", type="date", nullable=true)
+     * @ORM\Column(name="created_at", type="date", nullable=true)
      */
-    private $expCar;
+    private $createdAt;
 
      /**
       * @var \TiposEstadosForestoIndustrial
@@ -238,7 +237,51 @@ class Expedientes
      */
     private $titular;
 
+     /**
+     * One Expediente has Many Actividades.
+     * @ORM\OneToMany(targetEntity="ActividadesExpedientes", mappedBy="expediente")
+     */
+    private $actividades;
 
+    /**
+    * One Expediente has Many Actividades cert.
+    * @ORM\OneToMany(targetEntity="ActividadesCertificadasExpedientes", mappedBy="expediente")
+    */
+   private $actividadesCertificadas;
+
+   /**
+   * One Expediente has Many Actividades insp.
+   * @ORM\OneToMany(targetEntity="Inspeccion", mappedBy="expediente")
+   */
+  private $actividadesInspeccionadas;
+
+    /**
+    * One Expediente has Many ActividadesSig.
+    * @ORM\OneToMany(targetEntity="ActividadesSig", mappedBy="expediente")
+    */
+   private $actividadesSig;
+
+   /**
+   * One Expediente has Many Documentacion.
+   * @ORM\OneToMany(targetEntity="Documentacion", mappedBy="expediente")
+   * @ORM\OrderBy({"fechaPresentacion" = "ASC"})
+   */
+  private $documentacion;
+
+  /**
+  * One Expediente has Many EstadoSituacion.
+  * @ORM\OneToMany(targetEntity="EstadoSituacion", mappedBy="expediente")
+  */
+ private $estadoSituacion;
+
+    public function __construct(){
+      $this->actividades = new ArrayCollection();
+      $this->actividadesSig = new ArrayCollection();
+      $this->actividadesCertificadas = new ArrayCollection();
+      $this->actividadesInspeccion = new ArrayCollection();
+      $this->documentacion = new ArrayCollection();
+      $this->estadoSituacion = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -275,27 +318,27 @@ class Expedientes
     }
 
     /**
-     * Set segundoTitularId
+     * Set segundoTitular
      *
-     * @param integer $segundoTitularId
+     * @param integer $segundoTitular
      *
      * @return Expedientes
      */
-    public function setSegundoTitularId($segundoTitularId)
+    public function setSegundoTitular($segundoTitular)
     {
-        $this->segundoTitularId = $segundoTitularId;
+        $this->segundoTitular = $segundoTitular;
 
         return $this;
     }
 
     /**
-     * Get segundoTitularId
+     * Get segundoTitular
      *
      * @return integer
      */
-    public function getSegundoTitularId()
+    public function getSegundoTitular()
     {
-        return $this->segundoTitularId;
+        return $this->segundoTitular;
     }
 
     /**
@@ -731,27 +774,27 @@ class Expedientes
     }
 
     /**
-     * Set expCar
+     * Set createdAt
      *
-     * @param \DateTime $expCar
+     * @param \DateTime $createdAt
      *
      * @return Expedientes
      */
-    public function setExpCar($expCar)
+    public function setCreatedAt($createdAt)
     {
-        $this->expCar = $expCar;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
     /**
-     * Get expCar
+     * Get createdAt
      *
      * @return \DateTime
      */
-    public function getExpCar()
+    public function getCreatedAt()
     {
-        return $this->expCar;
+        return $this->createdAt;
     }
 
     /**
@@ -848,5 +891,45 @@ class Expedientes
     public function getTitular()
     {
         return $this->titular;
+    }
+
+    /**
+     * Get Actividad
+     *
+     * @return \AppBundle\Entity\Activdaides
+     */
+    public function getActividades()
+    {
+        return $this->actividades;
+    }
+
+    /**
+     * Get Actividad
+     *
+     * @return \AppBundle\Entity\ActivdiadesSig
+     */
+    public function getActividadesSig()
+    {
+        return $this->actividadesSig;
+    }
+
+    public function getActividadesCertificadas()
+    {
+        return $this->actividadesCertificadas;
+    }
+
+    public function getActividadesInspeccionadas()
+    {
+        return $this->actividadesInspeccionadas;
+    }
+
+    public function getDocumentacion()
+    {
+        return $this->documentacion;
+    }
+
+    public function getEstadoSituacion()
+    {
+        return $this->estadoSituacion;
     }
 }

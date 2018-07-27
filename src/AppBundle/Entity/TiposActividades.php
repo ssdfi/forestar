@@ -622,4 +622,8 @@ class TiposActividades
     {
         return $this->grupoActividadesId;
     }
+
+    public function __toString() {
+      return $this->nombreActividad;
+    }
 }

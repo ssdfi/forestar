@@ -15,7 +15,7 @@ class ExpedientesType extends AbstractType
     {
         $builder
           ->add('numeroInterno')
-          ->add('segundoTitularId')
+          ->add('segundoTitular')
           ->add('representanteLegal')
           ->add('profesionalCargo')
           ->add('cobroBeneficiosId')
@@ -34,7 +34,7 @@ class ExpedientesType extends AbstractType
           ->add('informacionBudaf')
           ->add('budafId')
           ->add('anio')
-          ->add('expCar')
+          ->add('createdAt')
           ->add('estadoForestoIndustrialesId')
           ->add('estadoViverosId')
           ->add('usuarioId')

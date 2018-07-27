@@ -23,25 +23,34 @@ class ActividadesSig
     private $id;
 
     /**
-     * @var integer
+     * @var \Departamento
      *
-     * @ORM\Column(name="actividad_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposActividades")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="actividad_id", referencedColumnName="id")
+     * })
      */
-    private $actividadId;
+    private $tipoActividad;
 
     /**
-     * @var integer
+     * @var \ActividadesExpedientes
      *
-     * @ORM\Column(name="expediente_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="actividadesSig")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="expediente_id", referencedColumnName="id")
+     * })
      */
-    private $expedienteId;
+    private $expediente;
 
     /**
-     * @var integer
+     * @var \Especie
      *
-     * @ORM\Column(name="especie_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Especies")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="especie_id", referencedColumnName="id")
+     * })
      */
-    private $especieId;
+    private $especie;
 
     /**
      * @var integer
@@ -105,75 +114,75 @@ class ActividadesSig
     }
 
     /**
-     * Set actividadId
+     * Set tipoActividad
      *
-     * @param integer $actividadId
+     * @param integer $tipoActividad
      *
      * @return ActividadesSig
      */
-    public function setActividadId($actividadId)
+    public function setTipoActividad($tipoActividad)
     {
-        $this->actividadId = $actividadId;
+        $this->tipoActividad = $tipoActividad;
 
         return $this;
     }
 
     /**
-     * Get actividadId
+     * Get tipoActividad
      *
      * @return integer
      */
-    public function getActividadId()
+    public function getTipoActividad()
     {
-        return $this->actividadId;
+        return $this->tipoActividad;
     }
 
     /**
-     * Set expedienteId
+     * Set expediente
      *
-     * @param integer $expedienteId
+     * @param integer $expediente
      *
      * @return ActividadesSig
      */
-    public function setExpedienteId($expedienteId)
+    public function setExpediente($expediente)
     {
-        $this->expedienteId = $expedienteId;
+        $this->expediente = $expediente;
 
         return $this;
     }
 
     /**
-     * Get expedienteId
+     * Get expediente
      *
      * @return integer
      */
-    public function getExpedienteId()
+    public function getExpediente()
     {
-        return $this->expedienteId;
+        return $this->expediente;
     }
 
     /**
-     * Set especieId
+     * Set especie
      *
-     * @param integer $especieId
+     * @param integer $especie
      *
      * @return ActividadesSig
      */
-    public function setEspecieId($especieId)
+    public function setEspecie($especie)
     {
-        $this->especieId = $especieId;
+        $this->especie = $especie;
 
         return $this;
     }
 
     /**
-     * Get especieId
+     * Get especie
      *
      * @return integer
      */
-    public function getEspecieId()
+    public function getEspecie()
     {
-        return $this->especieId;
+        return $this->especie;
     }
 
     /**

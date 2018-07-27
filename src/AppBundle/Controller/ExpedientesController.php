@@ -33,7 +33,7 @@ class ExpedientesController extends Controller
         $pagination = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            20,
+            15,
             array('distinct' => true, 'defaultSortFieldName' => 'a.id', 'defaultSortDirection' => 'desc')
         );
 
@@ -78,7 +78,7 @@ class ExpedientesController extends Controller
     public function showAction(Expedientes $expediente)
     {
         $deleteForm = $this->createDeleteForm($expediente);
-
+        dump($expediente);
         return $this->render('expedientes/show.html.twig', array(
             'expediente' => $expediente,
             'delete_form' => $deleteForm->createView(),
