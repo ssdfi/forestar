@@ -33,7 +33,7 @@ class ActividadesSig
     private $tipoActividad;
 
     /**
-     * @var \ActividadesExpedientes
+     * @var \ActividadesPresentadas
      *
      * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="actividadesSig")
      * @ORM\JoinColumns({

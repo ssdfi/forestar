@@ -44,7 +44,7 @@ class Documentacion
     private $archivo;
 
     /**
-     * @var \ActividadesExpedientes
+     * @var \ActividadesPresentadas
      *
      * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="documentacion")
      * @ORM\JoinColumns({

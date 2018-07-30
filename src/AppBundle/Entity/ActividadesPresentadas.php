@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ActividadesCertificadasExpedientes
+ * ActividadesPresentadas
  *
- * @ORM\Table(name="actividades_certificadas_expedientes")
+ * @ORM\Table(name="actividades_presentadas")
  * @ORM\Entity
  */
-class ActividadesCertificadasExpedientes
+class ActividadesPresentadas
 {
     /**
      * @var integer
@@ -18,12 +18,12 @@ class ActividadesCertificadasExpedientes
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="actividades_certificadas_expedientes_id_seq", allocationSize=1, initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="actividades_presentadas_id_seq", allocationSize=1, initialValue=1)
      */
     private $id;
 
     /**
-     * @var \tipoActividad
+     * @var \Departamento
      *
      * @ORM\ManyToOne(targetEntity="TiposActividades")
      * @ORM\JoinColumns({
@@ -33,9 +33,9 @@ class ActividadesCertificadasExpedientes
     private $tipoActividad;
 
     /**
-     * @var \ActividadesExpedientes
+     * @var \ActividadesPresentadas
      *
-     * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="actividadesCertificadas")
+     * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="actividadesPresentadas")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="expediente_id", referencedColumnName="id")
      * })
@@ -88,32 +88,21 @@ class ActividadesCertificadasExpedientes
     private $observaciones;
 
     /**
-     * @var integer
+     * @var \Departamento
      *
-     * @ORM\Column(name="departamento_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Departamentos")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="departamento_id", referencedColumnName="id")
+     * })
      */
     private $departamentoId;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fecha_registro", type="date", nullable=true)
+     * @ORM\Column(name="avi_fec_rea", type="date", nullable=true)
      */
-    private $fechaRegistro;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="fecha_ingreso_provincia", type="date", nullable=true)
-     */
-    private $fechaIngresoProvincia;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="usuario_id", type="smallint", nullable=true)
-     */
-    private $usuarioId;
+    private $aviFecRea;
 
 
 
@@ -128,11 +117,11 @@ class ActividadesCertificadasExpedientes
     }
 
     /**
-     * Set tipoActividad
+     * Set actividad
      *
-     * @param integer $tipoActividad
+     * @param integer $actividad
      *
-     * @return ActividadesCertificadasExpedientes
+     * @return ActividadesPresentadas
      */
     public function setTipoActividad($tipoActividad)
     {
@@ -152,27 +141,27 @@ class ActividadesCertificadasExpedientes
     }
 
     /**
-     * Set expediente
+     * Set expedienteId
      *
-     * @param integer $expediente
+     * @param integer $expedienteId
      *
-     * @return ActividadesCertificadasExpedientes
+     * @return ActividadesPresentadas
      */
-    public function setExpediente($expediente)
+    public function setExpedienteId($expedienteId)
     {
-        $this->expediente = $expediente;
+        $this->expedienteId = $expedienteId;
 
         return $this;
     }
 
     /**
-     * Get expediente
+     * Get expedienteId
      *
      * @return integer
      */
-    public function getExpediente()
+    public function getExpedienteId()
     {
-        return $this->expediente;
+        return $this->expedienteId;
     }
 
     /**
@@ -180,7 +169,7 @@ class ActividadesCertificadasExpedientes
      *
      * @param integer $especie
      *
-     * @return ActividadesCertificadasExpedientes
+     * @return ActividadesPresentadas
      */
     public function setEspecie($especie)
     {
@@ -204,7 +193,7 @@ class ActividadesCertificadasExpedientes
      *
      * @param integer $superficieHa
      *
-     * @return ActividadesCertificadasExpedientes
+     * @return ActividadesPresentadas
      */
     public function setSuperficieHa($superficieHa)
     {
@@ -228,7 +217,7 @@ class ActividadesCertificadasExpedientes
      *
      * @param integer $densidad
      *
-     * @return ActividadesCertificadasExpedientes
+     * @return ActividadesPresentadas
      */
     public function setDensidad($densidad)
     {
@@ -252,7 +241,7 @@ class ActividadesCertificadasExpedientes
      *
      * @param \DateTime $fechaInicio
      *
-     * @return ActividadesCertificadasExpedientes
+     * @return ActividadesPresentadas
      */
     public function setFechaInicio($fechaInicio)
     {
@@ -276,7 +265,7 @@ class ActividadesCertificadasExpedientes
      *
      * @param \DateTime $fechaFinActividad
      *
-     * @return ActividadesCertificadasExpedientes
+     * @return ActividadesPresentadas
      */
     public function setFechaFinActividad($fechaFinActividad)
     {
@@ -300,7 +289,7 @@ class ActividadesCertificadasExpedientes
      *
      * @param string $observaciones
      *
-     * @return ActividadesCertificadasExpedientes
+     * @return ActividadesPresentadas
      */
     public function setObservaciones($observaciones)
     {
@@ -324,7 +313,7 @@ class ActividadesCertificadasExpedientes
      *
      * @param integer $departamentoId
      *
-     * @return ActividadesCertificadasExpedientes
+     * @return ActividadesPresentadas
      */
     public function setDepartamentoId($departamentoId)
     {
@@ -344,74 +333,26 @@ class ActividadesCertificadasExpedientes
     }
 
     /**
-     * Set fechaRegistro
+     * Set aviFecRea
      *
-     * @param \DateTime $fechaRegistro
+     * @param \DateTime $aviFecRea
      *
-     * @return ActividadesCertificadasExpedientes
+     * @return ActividadesPresentadas
      */
-    public function setFechaRegistro($fechaRegistro)
+    public function setAviFecRea($aviFecRea)
     {
-        $this->fechaRegistro = $fechaRegistro;
+        $this->aviFecRea = $aviFecRea;
 
         return $this;
     }
 
     /**
-     * Get fechaRegistro
+     * Get aviFecRea
      *
      * @return \DateTime
      */
-    public function getFechaRegistro()
+    public function getAviFecRea()
     {
-        return $this->fechaRegistro;
-    }
-
-    /**
-     * Set fechaIngresoProvincia
-     *
-     * @param \DateTime $fechaIngresoProvincia
-     *
-     * @return ActividadesCertificadasExpedientes
-     */
-    public function setFechaIngresoProvincia($fechaIngresoProvincia)
-    {
-        $this->fechaIngresoProvincia = $fechaIngresoProvincia;
-
-        return $this;
-    }
-
-    /**
-     * Get fechaIngresoProvincia
-     *
-     * @return \DateTime
-     */
-    public function getFechaIngresoProvincia()
-    {
-        return $this->fechaIngresoProvincia;
-    }
-
-    /**
-     * Set usuarioId
-     *
-     * @param integer $usuarioId
-     *
-     * @return ActividadesCertificadasExpedientes
-     */
-    public function setUsuarioId($usuarioId)
-    {
-        $this->usuarioId = $usuarioId;
-
-        return $this;
-    }
-
-    /**
-     * Get usuarioId
-     *
-     * @return integer
-     */
-    public function getUsuarioId()
-    {
-        return $this->usuarioId;
+        return $this->aviFecRea;
     }
 }

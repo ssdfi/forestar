@@ -60,7 +60,7 @@
               <dd class="col-6">{% if expediente.createdAt %}{{ expediente.createdAt|date('d-m-Y') }}{% endif %}</dd>
               {% if expediente.informacionBudaf %}
                 <dt class="col-6">Información BUDAF</dt>
-                <dd class="col-6">{{ expediente.informacionBudaf }}</dd>
+                <dd class="col-6">{{ expediente.informacionBudaf|nl2br }}</dd>
               {% endif %}
               {% if expediente.budafId %}
                 <dt class="col-6">ID Budaf</dt>
@@ -76,6 +76,7 @@
             <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-presentacion" role="tab" aria-controls="nav-home" aria-selected="true">Presentación</a>
             <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-certificacion" role="tab" aria-controls="nav-profile" aria-selected="false">Certificación</a>
             <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-inspeccion" role="tab" aria-controls="nav-contact" aria-selected="false">Inspección</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-sig" role="tab" aria-controls="nav-sig" aria-selected="false">SIG</a>
             <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-documentacion" role="tab" aria-controls="nav-contact" aria-selected="false">Documentación</a>
             <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-situacion" role="tab" aria-controls="nav-contact" aria-selected="false">Estado Situación</a>
           </div>
@@ -95,15 +96,15 @@
                 </tr>
               </thead>
               <tbody>
-                {% for actividad in expediente.actividades %}
-                <tr data-link="{{ path('expedientes_show', { 'id': actividad.id }) }}">
-                  <td><a href="{{ path('expedientes_show', { 'id': actividad.id }) }}">{{ actividad.id }}</a></td>
-                  <td>{{ actividad.tipoActividad }}</td>
-                  <td>{{ actividad.especie }}</td>
-                  <td>{{ actividad.superficieHa }}</td>
-                  <td>{{ actividad.densidad }}</td>
-                  <td>{% if actividad.fechaInicio %}{{ actividad.fechaInicio|date('d-m-Y') }}{% endif %}</td>
-                  <td>{% if actividad.fechaFinActividad %}{{ actividad.fechaFinActividad|date('d-m-Y') }}{% endif %}</td>
+                {% for actividadPresentada in expediente.actividadesPresentadas %}
+                <tr data-link="{{ path('expedientes_show', { 'id': actividadPresentada.id }) }}">
+                  <td><a href="{{ path('expedientes_show', { 'id': actividadPresentada.id }) }}">{{ actividadPresentada.id }}</a></td>
+                  <td>{{ actividadPresentada.tipoActividad }}</td>
+                  <td>{{ actividadPresentada.especie }}</td>
+                  <td>{{ actividadPresentada.superficieHa }}</td>
+                  <td>{{ actividadPresentada.densidad }}</td>
+                  <td>{% if actividadPresentada.fechaInicio %}{{ actividadPresentada.fechaInicio|date('d-m-Y') }}{% endif %}</td>
+                  <td>{% if actividadPresentada.fechaFinActividad %}{{ actividadPresentada.fechaFinActividad|date('d-m-Y') }}{% endif %}</td>
                 </tr>
                 {% endfor %}
               </tbody>
@@ -123,15 +124,15 @@
                 </tr>
               </thead>
               <tbody>
-                {% for actividad in expediente.actividadesCertificadas %}
-                <tr data-link="{{ path('expedientes_show', { 'id': actividad.id }) }}">
-                  <td><a href="{{ path('expedientes_show', { 'id': actividad.id }) }}">{{ actividad.id }}</a></td>
-                  <td>{{ actividad.tipoActividad }}</td>
-                  <td>{{ actividad.especie }}</td>
-                  <td>{{ actividad.superficieHa }}</td>
-                  <td>{{ actividad.densidad }}</td>
-                  <td>{% if actividad.fechaInicio %}{{ actividad.fechaInicio|date('d-m-Y') }}{% endif %}</td>
-                  <td>{% if actividad.fechaFinActividad %}{{ actividad.fechaFinActividad|date('d-m-Y') }}{% endif %}</td>
+                {% for actividadCertificada in expediente.actividadesCertificadas %}
+                <tr data-link="{{ path('expedientes_show', { 'id': actividadCertificada.id }) }}">
+                  <td><a href="{{ path('expedientes_show', { 'id': actividadCertificada.id }) }}">{{ actividadCertificada.id }}</a></td>
+                  <td>{{ actividadCertificada.tipoActividad }}</td>
+                  <td>{{ actividadCertificada.especie }}</td>
+                  <td>{{ actividadCertificada.superficieHa }}</td>
+                  <td>{{ actividadCertificada.densidad }}</td>
+                  <td>{% if actividadCertificada.fechaInicio %}{{ actividadCertificada.fechaInicio|date('d-m-Y') }}{% endif %}</td>
+                  <td>{% if actividadCertificada.fechaFinActividad %}{{ actividadCertificada.fechaFinActividad|date('d-m-Y') }}{% endif %}</td>
                 </tr>
                 {% endfor %}
               </tbody>
@@ -146,23 +147,47 @@
                   <th scope="col">Especie</th>
                   <th scope="col">Superfice Ha.</th>
                   <th scope="col">Densidad</th>
-                  <th scope="col">Tipo Inspeccion</th>
+                  <th scope="col">Tipo ActividadesInspeccionadas</th>
                   <th scope="col">Fecha de Inicio</th>
                   <th scope="col">Fecha Fin</th>
                 </tr>
               </thead>
               <tbody>
-                {% for actividad in expediente.actividadesInspeccionadas %}
-                <tr data-link="{{ path('expedientes_show', { 'id': actividad.id }) }}">
-                  <td><a href="{{ path('expedientes_show', { 'id': actividad.id }) }}">{{ actividad.id }}</a></td>
-                  <td><abbr title="{{ actividad.tipoActividad }}" data-length="10">{{ actividad.tipoActividad }}</abbr></td>
-                  <td>{{ actividad.especie }}</td>
-                  <td>{{ actividad.superficieHa }}</td>
-                  <td>{{ actividad.densidad }}</td>
-                  <td>{{ actividad.tipoInspeccion }}</td>
-                  <td>{% if actividad.fechaInicio %}{{ actividad.fechaInicio|date('d-m-Y') }}{% endif %}</td>
-                  <td>{% if actividad.fechaFin %}{{ actividad.fechaFin|date('d-m-Y') }}{% endif %}</td>
+                {% for actividadInspeccionada in expediente.actividadesInspeccionadas %}
+                <tr data-link="{{ path('expedientes_show', { 'id': actividadInspeccionada.id }) }}">
+                  <td><a href="{{ path('expedientes_show', { 'id': actividadInspeccionada.id }) }}">{{ actividadInspeccionada.id }}</a></td>
+                  <td><abbr title="{{ actividadInspeccionada.tipoActividad }}" data-length="10">{{ actividadInspeccionada.tipoActividad }}</abbr></td>
+                  <td>{{ actividadInspeccionada.especie }}</td>
+                  <td>{{ actividadInspeccionada.superficieHa }}</td>
+                  <td>{{ actividadInspeccionada.densidad }}</td>
+                  <td>{{ actividadInspeccionada.tipoActividadesInspeccionadas }}</td>
+                  <td>{% if actividadInspeccionada.fechaInicio %}{{ actividadInspeccionada.fechaInicio|date('d-m-Y') }}{% endif %}</td>
+                  <td>{% if actividadInspeccionada.fechaFin %}{{ actividadInspeccionada.fechaFin|date('d-m-Y') }}{% endif %}</td>
                 </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane fade" id="nav-sig" role="tabpanel" aria-labelledby="nav-sig-tab">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Tipo Actividad</th>
+                  <th scope="col">Superficie Ha.</th>
+                  <th scope="col">Observaciones</th>
+                  <th scope="col">Fecha Registro</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in expediente.actividadesSig %}
+                  <tr>
+                    <td>{{item.id}}</td>
+                    <td>{{item.tipoActividad}}</td>
+                    <td>{{item.superficieHa}}</td>
+                    <td>{{item.observaciones}}</td>
+                    <td>{{item.fechaRegistro|date('d-m-Y')}}</td>
+                  </tr>
                 {% endfor %}
               </tbody>
             </table>
@@ -202,7 +227,7 @@
                 </tr>
               </thead>
               <tbody>
-                {% for item in expediente.EstadoSituacion %}
+                {% for item in expediente.estadoSituacion %}
                   <tr>
                     <td>{{item.id}}</td>
                     <td>{{item.observacion}}</td>

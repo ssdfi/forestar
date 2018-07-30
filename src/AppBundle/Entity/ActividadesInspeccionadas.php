@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Inspeccion
+ * ActividadesInspeccionadas
  *
- * @ORM\Table(name="inspeccion")
+ * @ORM\Table(name="actividades_inspeccionadas")
  * @ORM\Entity
  */
-class Inspeccion
+class ActividadesInspeccionadas
 {
     /**
      * @var integer
@@ -33,7 +33,7 @@ class Inspeccion
     private $tipoActividad;
 
     /**
-     * @var \ActividadesExpedientes
+     * @var \ActividadesPresentadas
      *
      * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="actividadesInspeccionadas")
      * @ORM\JoinColumns({
@@ -149,7 +149,7 @@ class Inspeccion
      *
      * @param integer $tipoActividad
      *
-     * @return Inspeccion
+     * @return ActividadesInspeccionadas
      */
     public function setTipoActividad($tipoActividad)
     {
@@ -173,7 +173,7 @@ class Inspeccion
      *
      * @param integer $expediente
      *
-     * @return Inspeccion
+     * @return ActividadesInspeccionadas
      */
     public function setExpediente($expediente)
     {
@@ -197,7 +197,7 @@ class Inspeccion
      *
      * @param integer $especie
      *
-     * @return Inspeccion
+     * @return ActividadesInspeccionadas
      */
     public function setEspecie($especie)
     {
@@ -221,7 +221,7 @@ class Inspeccion
      *
      * @param integer $superficieHa
      *
-     * @return Inspeccion
+     * @return ActividadesInspeccionadas
      */
     public function setSuperficieHa($superficieHa)
     {
@@ -245,7 +245,7 @@ class Inspeccion
      *
      * @param integer $densidad
      *
-     * @return Inspeccion
+     * @return ActividadesInspeccionadas
      */
     public function setDensidad($densidad)
     {
@@ -269,7 +269,7 @@ class Inspeccion
      *
      * @param \DateTime $fechaInicio
      *
-     * @return Inspeccion
+     * @return ActividadesInspeccionadas
      */
     public function setFechaInicio($fechaInicio)
     {
@@ -293,7 +293,7 @@ class Inspeccion
      *
      * @param \DateTime $fechaFin
      *
-     * @return Inspeccion
+     * @return ActividadesInspeccionadas
      */
     public function setFechaFin($fechaFin)
     {
@@ -317,7 +317,7 @@ class Inspeccion
      *
      * @param string $observacion
      *
-     * @return Inspeccion
+     * @return ActividadesInspeccionadas
      */
     public function setObservacion($observacion)
     {
@@ -341,7 +341,7 @@ class Inspeccion
      *
      * @param integer $departamentoId
      *
-     * @return Inspeccion
+     * @return ActividadesInspeccionadas
      */
     public function setDepartamentoId($departamentoId)
     {
@@ -365,7 +365,7 @@ class Inspeccion
      *
      * @param integer $responsableId
      *
-     * @return Inspeccion
+     * @return ActividadesInspeccionadas
      */
     public function setResponsableId($responsableId)
     {
@@ -399,7 +399,7 @@ class Inspeccion
     }
 
     /**
-     * Get fechaInspeccion
+     * Get fechaActividadesInspeccionadas
      *
      * @return \DateTime
      */
@@ -423,7 +423,7 @@ class Inspeccion
     }
 
     /**
-     * Get tipoInspeccion
+     * Get tipoActividadesInspeccionadas
      *
      * @return integer
      */

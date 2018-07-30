@@ -239,19 +239,19 @@ class Expedientes
 
      /**
      * One Expediente has Many Actividades.
-     * @ORM\OneToMany(targetEntity="ActividadesExpedientes", mappedBy="expediente")
+     * @ORM\OneToMany(targetEntity="ActividadesPresentadas", mappedBy="expediente")
      */
-    private $actividades;
+    private $actividadesPresentadas;
 
     /**
     * One Expediente has Many Actividades cert.
-    * @ORM\OneToMany(targetEntity="ActividadesCertificadasExpedientes", mappedBy="expediente")
+    * @ORM\OneToMany(targetEntity="ActividadesCertificadas", mappedBy="expediente")
     */
    private $actividadesCertificadas;
 
    /**
    * One Expediente has Many Actividades insp.
-   * @ORM\OneToMany(targetEntity="Inspeccion", mappedBy="expediente")
+   * @ORM\OneToMany(targetEntity="ActividadesInspeccionadas", mappedBy="expediente")
    */
   private $actividadesInspeccionadas;
 
@@ -275,10 +275,10 @@ class Expedientes
  private $estadoSituacion;
 
     public function __construct(){
-      $this->actividades = new ArrayCollection();
-      $this->actividadesSig = new ArrayCollection();
+      $this->actividadesPresentadas = new ArrayCollection();
       $this->actividadesCertificadas = new ArrayCollection();
-      $this->actividadesInspeccion = new ArrayCollection();
+      $this->actividadesInspeccionadas = new ArrayCollection();
+      $this->actividadesSig = new ArrayCollection();
       $this->documentacion = new ArrayCollection();
       $this->estadoSituacion = new ArrayCollection();
     }
@@ -898,9 +898,9 @@ class Expedientes
      *
      * @return \AppBundle\Entity\Activdaides
      */
-    public function getActividades()
+    public function getActividadesPresentadas()
     {
-        return $this->actividades;
+        return $this->actividadesPresentadas;
     }
 
     /**

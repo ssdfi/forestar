@@ -23,7 +23,7 @@ class EstadoSituacion
     private $id;
 
     /**
-     * @var \ActividadesExpedientes
+     * @var \ActividadesPresentadas
      *
      * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="estadoSituacion")
      * @ORM\JoinColumns({
