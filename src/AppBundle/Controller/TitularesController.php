@@ -51,7 +51,7 @@ class TitularesController extends Controller
      */
     public function newAction(Request $request)
     {
-        $titulare = new Titulare();
+        $titulare = new Titulares();
         $form = $this->createForm('AppBundle\Form\TitularesType', $titulare);
         $form->handleRequest($request);
 
