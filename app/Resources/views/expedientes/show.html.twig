@@ -18,14 +18,11 @@
               <dd class="col-6">{{ expediente.numeroInterno }}</dd>
               <dt class="col-6">Numero Expediente</dt>
               <dd class="col-6">{{ expediente.numeroExpediente }}</dd>
-              <dt class="col-6">Titular</dt>
-              <dd class="col-6"><a href="{{path('titulares_show', { 'id': expediente.titular.id })}}">{{ expediente.titular }}</a></dd>
-              <dt class="col-6">Segundo Titular</dt>
+              <dt class="col-6">Titulares</dt>
               <dd class="col-6">
-                {% if expediente.segundoTitular %}
-                  <a href="{{path('titulares_show', { 'id': expediente.segundoTitular.id })}}">{{ expediente.segundoTitular }}</a>
-                {% endif %}
-              </dd>
+                {% for titular in expediente.titulares %}
+                    <a href="{{path('titulares_show', { 'id': expediente.titular.id })}}">{{titular}}</a>{% if loop.last == false %} | {% endif %}
+                {% endfor %}</dd>
               <dt class="col-6">Entidad Agrupadora</dt>
               <dd class="col-6"><a href="#">{{ expediente.entidadAgrupadoraId }}</a></dd>
               <dt class="col-6">Representante Legal</dt>

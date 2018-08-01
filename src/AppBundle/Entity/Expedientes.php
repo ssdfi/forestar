@@ -328,6 +328,17 @@ class Expedientes
   */
   private $historialSig;
 
+    /**
+    * @var ArrayCollection $titulares
+    * @ORM\ManyToMany(targetEntity="Titulares", inversedBy="expediente" ,cascade={"all","persist"}, fetch="LAZY")
+    * @ORM\JoinTable(
+    *      name="expedientes_titulares",
+    *      joinColumns={@ORM\JoinColumn(name="expediente_id", referencedColumnName="id")},
+    *      inverseJoinColumns={@ORM\JoinColumn(name="titular_id", referencedColumnName="id")}
+    * )
+    */
+     private $titulares;
+
 
     public function __construct(){
       $this->actividadesPresentadas = new ArrayCollection();
@@ -345,6 +356,7 @@ class Expedientes
       // $this->historialViveros = new ArrayCollection();
       $this->historialPromocion = new ArrayCollection();
       $this->historialSig = new ArrayCollection();
+      $this->titulares = new ArrayCollection();
     }
 
     /**
@@ -1030,5 +1042,10 @@ class Expedientes
     public function getHistorialSig()
     {
       return $this->historialSig;
+    }
+
+    public function getTitulares()
+    {
+      return $this->titulares;
     }
 }

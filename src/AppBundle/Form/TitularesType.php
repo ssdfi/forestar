@@ -13,7 +13,18 @@ class TitularesType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('apellidoNombre')->add('agrupador')->add('cuit')->add('documento')->add('fechaNacimiento')->add('foto')->add('sexo')->add('idExterno')->add('tipoDocumento')->add('aprobado')->add('numeroRegistro')->add('eliminado')->add('idok');
+        $builder
+          ->add('apellidoNombre')
+          ->add('agrupador')
+          ->add('tipoDocumento')
+          ->add('cuit')
+          ->add('documento')
+          ->add('fechaNacimiento')
+          ->add('foto')
+          ->add('sexo')
+          ->add('idExterno')
+          ->add('aprobado')
+          ->add('numeroRegistro');
     }/**
      * {@inheritdoc}
      */

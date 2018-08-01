@@ -5,6 +5,9 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class ExpedientesType extends AbstractType
 {
@@ -13,9 +16,32 @@ class ExpedientesType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $expediente = $builder->getData() ? $builder->getData()->getId() : '';
         $builder
           ->add('numeroInterno')
-          ->add('segundoTitular')
+          ->add
+              (
+                $builder->create(
+                                'titulares', EntityType::class, array(
+                                'class' =>  \AppBundle\Entity\Titulares::class,
+                                'multiple'=>true,
+                                'required'=>false,
+                                'compound'=>false,
+                                'query_builder' => function (EntityRepository $er) use ($expediente) {
+                                                                dump($er);
+                                                                return $er->createQueryBuilder('p')
+                                                                // ->leftJoin('u.plantacion', 'p')
+                                                                ->where('p.expediente = :expediente_id')
+                                                                ->setParameter('expediente_id', $expediente);;
+                                                      },
+                                'choice_value'=>function ($data) {
+                                      return $data->getId();
+                                 },
+                                )
+                              )
+              )
+          // ->add('titular')
+          // ->add('segundoTitular')
           ->add('representanteLegal')
           ->add('profesionalCargo')
           ->add('cobroBeneficiosId')
@@ -29,16 +55,13 @@ class ExpedientesType extends AbstractType
           ->add('estadoAreaLegales')
           ->add('estadoAreaPromocion')
           ->add('estadoAreaSig')
+          ->add('estadoForestoIndustriales')
           ->add('areaEncuentraExpediente')
           ->add('departamento')
-          ->add('informacionBudaf')
-          ->add('budafId')
-          ->add('anio')
+          ->add('anio');
           // ->add('createdAt')
-          ->add('estadoForestoIndustriales')
           // ->add('estadoViveros')
           // ->add('usuarioId')
-          ->add('titular');
     }/**
      * {@inheritdoc}
      */
