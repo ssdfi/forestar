@@ -73,15 +73,18 @@
       <div class="col-md-9">
         <nav>
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-presentacion" role="tab" aria-controls="nav-home" aria-selected="true">Presentación</a>
-            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-certificacion" role="tab" aria-controls="nav-profile" aria-selected="false">Certificación</a>
-            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-inspeccion" role="tab" aria-controls="nav-contact" aria-selected="false">Inspección</a>
-            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-sig" role="tab" aria-controls="nav-sig" aria-selected="false">SIG</a>
-            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-documentacion" role="tab" aria-controls="nav-contact" aria-selected="false">Documentación</a>
-            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-situacion" role="tab" aria-controls="nav-contact" aria-selected="false">Estado Situación</a>
+            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-presentacion" role="tab" aria-controls="nav-home" aria-selected="true">Presentación ({{expediente.actividadesPresentadas|length}})</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-certificacion" role="tab" aria-controls="nav-profile" aria-selected="false">Certificación ({{expediente.ActividadesCertificadas|length}})</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-inspeccion" role="tab" aria-controls="nav-contact" aria-selected="false">Inspección ({{expediente.actividadesInspeccionadas|length}})</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-sig" role="tab" aria-controls="nav-sig" aria-selected="false">SIG ({{expediente.actividadesSig|length}})</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-documentacion" role="tab" aria-controls="nav-contact" aria-selected="false">Documentación ({{expediente.documentacion|length}})</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-situacion" role="tab" aria-controls="nav-contact" aria-selected="false">Estado Situación ({{expediente.estadoSituacion|length}})</a>
             {% if expediente.ActividadesTitulares|length %}
-              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-titulares" role="tab" aria-controls="nav-contact" aria-selected="false">Productores Asociados</a>
+              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-titulares" role="tab" aria-controls="nav-contact" aria-selected="false">Productores Asociados ({{expediente.actividadesTitulares|length}})</a>
             {% endif %}
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-beneficios-fiscales" role="tab" aria-controls="nav-contact" aria-selected="false">Beneficios Fiscales ({{expediente.beneficiosFiscales|length}})</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-impacto-ambiental" role="tab" aria-controls="nav-contact" aria-selected="false">Impactos Ambientales ({{expediente.impactosAmbientales|length}})</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-observaciones" role="tab" aria-controls="nav-contact" aria-selected="false">Observaciones</a>
           </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
@@ -277,6 +280,156 @@
               </table>
             </div>
           {% endif %}
+          <div class="tab-pane fade" id="nav-beneficios-fiscales" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Tipo</th>
+                  <th scope="col">Valor Plantación</th>
+                  <th scope="col">Inicio Plantación</th>
+                  <th scope="col">Fin Plantación</th>
+                  <th scope="col">Impuesto</th>
+                  <th scope="col">Inicio Período Fiscal</th>
+                  <th scope="col">Fin Período Fiscal</th>
+                  <th scope="col">Valor Beneficio</th>
+                  <th scope="col">Observaciones</th>
+                  <th scope="col">Moneda</th>
+                  <th scope="col">Certificado</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in expediente.beneficiosFiscales %}
+                  <tr>
+                    <td>{{item.beneficioFiscal}}</td>
+                    <td>{{item.valorPlantacion}}</td>
+                    <td>{{item.inicioPeriodoPlantacion|date('d-m-Y')}}</td>
+                    <td>{{item.finPeriodoPlantacion|date('d-m-Y')}}</td>
+                    <td>{{item.impuesto}}</td>
+                    <td>{{item.inicioPeriodoFiscal|date('d-m-Y')}}</td>
+                    <td>{{item.finPeriodoFiscal|date('d-m-Y')}}</td>
+                    <td>{{item.valorBeneficio}}</td>
+                    <td>{{item.observaciones}}</td>
+                    <td>{{item.moneda}}</td>
+                    <td>{% if item.contieneCertificado %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane fade" id="nav-impacto-ambiental" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Resolución</th>
+                  <th scope="col">Fecha Entrada</th>
+                  <th scope="col">Fecha Salida</th>
+                  <th scope="col">Fecha Carga</th>
+                  <th scope="col">Observación</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in expediente.impactosAmbientales %}
+                  <tr>
+                    <td>{{item.resolucionNumero}}</td>
+                    <td>{{item.fechaEntrada|date('d-m-Y')}}</td>
+                    <td>{{item.fechaSalida|date('d-m-Y')}}</td>
+                    <td>{{item.fechaRealCarga|date('d-m-Y')}}</td>
+                    <td>{{item.observacion}}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane fade" id="nav-observaciones" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="card">
+                    <div class="card-header">
+                      Contable
+                    </div>
+                    <div class="card-body">
+                      <ul>
+                        {% for item in expediente.historialContable %}
+                          <li>{{item.observacion}}</li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card">
+                    <div class="card-header">
+                      Legales
+                    </div>
+                    <div class="card-body">
+                      <ul>
+                        {% for item in expediente.historialLegales %}
+                          <li>{{item.observacion}}</li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card">
+                    <div class="card-header">
+                      Foresto Industriales
+                    </div>
+                    <div class="card-body">
+                      <ul>
+                        {% for item in expediente.historialForestoIndustriales %}
+                          <li>{{item.observacion}}</li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="card">
+                    <div class="card-header">
+                      Viveros
+                    </div>
+                    <div class="card-body">
+                      <ul>
+
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card">
+                    <div class="card-header">
+                      Promoción
+                    </div>
+                    <div class="card-body">
+                      <ul>
+                        {% for item in expediente.historialPromocion %}
+                          <li>{{item.observacion}}</li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card">
+                    <div class="card-header">
+                      SIG
+                    </div>
+                    <div class="card-body">
+                      <ul>
+                        {% for item in expediente.historialSig %}
+                          <li>{{item.observacion}}</li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          </div>
         </div>
       </div>
     </div>
