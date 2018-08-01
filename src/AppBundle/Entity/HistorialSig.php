@@ -23,18 +23,21 @@ class HistorialSig
     private $id;
 
     /**
-     * @var integer
+     * @var \Expedientes
      *
-     * @ORM\Column(name="expediente_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="historialSig")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="expediente_id", referencedColumnName="id")
+     * })
      */
-    private $expedienteId;
+    private $expediente;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="area_enviado_expediente_id", type="smallint", nullable=true)
      */
-    private $areaEnviadoExpedienteId;
+    private $areaEnviadoExpediente;
 
     /**
      * @var \DateTime
@@ -140,51 +143,51 @@ class HistorialSig
     }
 
     /**
-     * Set expedienteId
+     * Set expediente
      *
-     * @param integer $expedienteId
+     * @param integer $expediente
      *
      * @return Historialsig
      */
-    public function setExpedienteId($expedienteId)
+    public function setExpediente($expediente)
     {
-        $this->expedienteId = $expedienteId;
+        $this->expediente = $expediente;
 
         return $this;
     }
 
     /**
-     * Get expedienteId
+     * Get expediente
      *
      * @return integer
      */
-    public function getExpedienteId()
+    public function getExpediente()
     {
-        return $this->expedienteId;
+        return $this->expediente;
     }
 
     /**
-     * Set areaEnviadoExpedienteId
+     * Set areaEnviadoExpediente
      *
-     * @param integer $areaEnviadoExpedienteId
+     * @param integer $areaEnviadoExpediente
      *
      * @return Historialsig
      */
-    public function setAreaEnviadoExpedienteId($areaEnviadoExpedienteId)
+    public function setAreaEnviadoExpediente($areaEnviadoExpediente)
     {
-        $this->areaEnviadoExpedienteId = $areaEnviadoExpedienteId;
+        $this->areaEnviadoExpediente = $areaEnviadoExpediente;
 
         return $this;
     }
 
     /**
-     * Get areaEnviadoExpedienteId
+     * Get areaEnviadoExpediente
      *
      * @return integer
      */
-    public function getAreaEnviadoExpedienteId()
+    public function getAreaEnviadoExpediente()
     {
-        return $this->areaEnviadoExpedienteId;
+        return $this->areaEnviadoExpediente;
     }
 
     /**

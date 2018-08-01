@@ -95,4 +95,8 @@ class TiposMonedas
     {
         return $this->factorMultiplicacion;
     }
+
+    public function __toString(){
+      return $this->nombre;
+    }
 }

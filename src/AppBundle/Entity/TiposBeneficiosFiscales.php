@@ -343,4 +343,8 @@ class TiposBeneficiosFiscales
     {
         return $this->contieneVolumen;
     }
+
+    public function __toString(){
+      return $this->descripcion;
+    }
 }

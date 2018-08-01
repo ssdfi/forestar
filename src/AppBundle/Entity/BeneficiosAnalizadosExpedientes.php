@@ -23,18 +23,24 @@ class BeneficiosAnalizadosExpedientes
     private $id;
 
     /**
-     * @var integer
+     * @var \tipoActividad
      *
-     * @ORM\Column(name="beneficio_fiscal_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposBeneficiosFiscales")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="beneficio_fiscal_id", referencedColumnName="id")
+     * })
      */
-    private $beneficioFiscalId;
+    private $beneficioFiscal;
 
     /**
-     * @var integer
+     * @var \Expedientes
      *
-     * @ORM\Column(name="expediente_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="beneficiosFiscales")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="expediente_id", referencedColumnName="id")
+     * })
      */
-    private $expedienteId;
+    private $expediente;
 
     /**
      * @var string
@@ -65,11 +71,14 @@ class BeneficiosAnalizadosExpedientes
     private $numeroCertificado;
 
     /**
-     * @var integer
+     * @var \tipoActividad
      *
-     * @ORM\Column(name="impuesto_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposBeneficiosFiscales")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="impuesto_id", referencedColumnName="id")
+     * })
      */
-    private $impuestoId;
+    private $impuesto;
 
     /**
      * @var \DateTime
@@ -121,9 +130,12 @@ class BeneficiosAnalizadosExpedientes
     private $observaciones;
 
     /**
-     * @var integer
+     * @var \tipoActividad
      *
-     * @ORM\Column(name="moneda", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposMonedas")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="moneda", referencedColumnName="id")
+     * })
      */
     private $moneda;
 
@@ -140,51 +152,51 @@ class BeneficiosAnalizadosExpedientes
     }
 
     /**
-     * Set beneficioFiscalId
+     * Set beneficioFiscal
      *
-     * @param integer $beneficioFiscalId
+     * @param integer $beneficioFiscal
      *
      * @return BeneficiosAnalizadosExpedientes
      */
-    public function setBeneficioFiscalId($beneficioFiscalId)
+    public function setBeneficioFiscal($beneficioFiscal)
     {
-        $this->beneficioFiscalId = $beneficioFiscalId;
+        $this->beneficioFiscal = $beneficioFiscal;
 
         return $this;
     }
 
     /**
-     * Get beneficioFiscalId
+     * Get beneficioFiscal
      *
      * @return integer
      */
-    public function getBeneficioFiscalId()
+    public function getBeneficioFiscal()
     {
-        return $this->beneficioFiscalId;
+        return $this->beneficioFiscal;
     }
 
     /**
-     * Set expedienteId
+     * Set expediente
      *
-     * @param integer $expedienteId
+     * @param integer $expediente
      *
      * @return BeneficiosAnalizadosExpedientes
      */
-    public function setExpedienteId($expedienteId)
+    public function setExpediente($expediente)
     {
-        $this->expedienteId = $expedienteId;
+        $this->expediente = $expediente;
 
         return $this;
     }
 
     /**
-     * Get expedienteId
+     * Get expediente
      *
      * @return integer
      */
-    public function getExpedienteId()
+    public function getExpediente()
     {
-        return $this->expedienteId;
+        return $this->expediente;
     }
 
     /**
@@ -284,27 +296,27 @@ class BeneficiosAnalizadosExpedientes
     }
 
     /**
-     * Set impuestoId
+     * Set impuesto
      *
-     * @param integer $impuestoId
+     * @param integer $impuesto
      *
      * @return BeneficiosAnalizadosExpedientes
      */
-    public function setImpuestoId($impuestoId)
+    public function setImpuesto($impuesto)
     {
-        $this->impuestoId = $impuestoId;
+        $this->impuesto = $impuesto;
 
         return $this;
     }
 
     /**
-     * Get impuestoId
+     * Get impuesto
      *
      * @return integer
      */
-    public function getImpuestoId()
+    public function getImpuesto()
     {
-        return $this->impuestoId;
+        return $this->impuesto;
     }
 
     /**

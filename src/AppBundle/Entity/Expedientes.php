@@ -280,6 +280,55 @@ class Expedientes
   */
  private $estadoSituacion;
 
+  /**
+  * One Expediente has Many EstadoSituacion.
+  * @ORM\OneToMany(targetEntity="BeneficiosAnalizadosExpedientes", mappedBy="expediente")
+  */
+  private $beneficiosFiscales;
+
+  /**
+  * One Expediente has Many EstadoSituacion.
+  * @ORM\OneToMany(targetEntity="ImpactoAmbiental", mappedBy="expediente")
+  */
+  private $impactosAmbientales;
+
+  /**
+  * One Expediente has Many HistorialContable.
+  * @ORM\OneToMany(targetEntity="HistorialContable", mappedBy="expediente")
+  */
+  private $historialContable;
+
+  /**
+  * One Expediente has Many HistorialLegales.
+  * @ORM\OneToMany(targetEntity="HistorialLegales", mappedBy="expediente")
+  */
+  private $historialLegales;
+
+  /**
+  * One Expediente has Many HistorialForestoIndustriales.
+  * @ORM\OneToMany(targetEntity="HistorialForestoIndustriales", mappedBy="expediente")
+  */
+  private $historialForestoIndustriales;
+
+  // /**
+  // * One Expediente has Many HistorialViveros.
+  // * @ORM\OneToMany(targetEntity="HistorialViveros", mappedBy="expediente")
+  // */
+  // private $historialViveros;
+
+  /**
+  * One Expediente has Many HistorialPromocion.
+  * @ORM\OneToMany(targetEntity="HistorialPromocion", mappedBy="expediente")
+  */
+  private $historialPromocion;
+
+  /**
+  * One Expediente has Many HistorialSig.
+  * @ORM\OneToMany(targetEntity="HistorialSig", mappedBy="expediente")
+  */
+  private $historialSig;
+
+
     public function __construct(){
       $this->actividadesPresentadas = new ArrayCollection();
       $this->actividadesCertificadas = new ArrayCollection();
@@ -288,6 +337,14 @@ class Expedientes
       $this->actividadesSig = new ArrayCollection();
       $this->documentacion = new ArrayCollection();
       $this->estadoSituacion = new ArrayCollection();
+      $this->beneficiosFiscales = new ArrayCollection();
+      $this->impactosAmbientales = new ArrayCollection();
+      $this->historialContable = new ArrayCollection();
+      $this->historialLegales = new ArrayCollection();
+      $this->historialForestoIndustriales = new ArrayCollection();
+      // $this->historialViveros = new ArrayCollection();
+      $this->historialPromocion = new ArrayCollection();
+      $this->historialSig = new ArrayCollection();
     }
 
     /**
@@ -943,5 +1000,35 @@ class Expedientes
     public function getActividadesTitulares()
     {
         return $this->actividadesTitulares;
+    }
+
+    public function getBeneficiosFiscales()
+    {
+        return $this->beneficiosFiscales;
+    }
+
+    public function getImpactosAmbientales()
+    {
+        return $this->impactosAmbientales;
+    }
+    public function getHistorialContable()
+    {
+      return $this->historialContable;
+    }
+    public function getHistorialLegales()
+    {
+      return $this->historialLegales;
+    }
+    public function getHistorialForestoIndustriales()
+    {
+      return $this->historialForestoIndustriales;
+    }
+    public function getHistorialPromocion()
+    {
+      return $this->historialPromocion;
+    }
+    public function getHistorialSig()
+    {
+      return $this->historialSig;
     }
 }
