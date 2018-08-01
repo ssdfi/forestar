@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Historialsig
  *
- * @ORM\Table(name="historialsig")
+ * @ORM\Table(name="historial_sig")
  * @ORM\Entity
  */
-class Historialsig
+class HistorialSig
 {
     /**
      * @var integer

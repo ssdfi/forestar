@@ -72,6 +72,37 @@
             {% endfor %}
           </tbody>
         </table>
+        {% if titulare.actividadesTitulares|length %}
+           <h5>Expedientes agrupados al titular</h5>
+           <table class="table">
+             <thead>
+               <tr>
+                 <th scope="col">Id</th>
+                 <th scope="col">Numero Interno</th>
+                 <th scope="col">Numero Expediente</th>
+                 <th scope="col">Representante Legal</th>
+                 <th scope="col">Profesional a Cargo</th>
+                 <th scope="col">Fecha Presentacion</th>
+                 <th scope="col">Fecha Ingreso</th>
+                 <th scope="col">Fecha Fin</th>
+               </tr>
+             </thead>
+             <tbody>
+               {% for item in titulare.actividadesTitulares %}
+               <tr data-link="{{ path('expedientes_show', { 'id': item.expediente.id }) }}">
+                 <td><a href="{{ path('expedientes_show', { 'id': item.expediente.id }) }}">{{ item.expediente.id }}</a></td>
+                 <td>{{ item.expediente.numeroInterno }}</td>
+                 <td>{{ item.expediente.numeroExpediente }}</td>
+                 <td>{{ item.expediente.representanteLegal }}</td>
+                 <td><abbr title="{{ item.expediente.profesionalCargo }}" data-length="10">{{ item.expediente.profesionalCargo }}</abbr></td>
+                 <td>{% if item.expediente.fechaPresentacion %}{{ item.expediente.fechaPresentacion|date('Y-m-d') }}{% endif %}</td>
+                 <td>{% if item.expediente.fechaIngreso %}{{ item.expediente.fechaIngreso|date('Y-m-d') }}{% endif %}</td>
+                 <td>{% if item.expediente.fechaFin %}{{ item.expediente.fechaFin|date('Y-m-d') }}{% endif %}</td>
+               </tr>
+               {% endfor %}
+             </tbody>
+           </table>
+        {% endif %}
       </div>
     </div>
       </div>

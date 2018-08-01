@@ -136,6 +136,12 @@ class Titulares
     private $expedientes;
 
     /**
+    * One Titular has Many Expedientes.
+    * @ORM\OneToMany(targetEntity="ActividadesTitulares", mappedBy="titular")
+    */
+    private $actividadesTitulares;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="pequenio_productor", type="boolean", nullable=true)
@@ -147,6 +153,7 @@ class Titulares
       $this->emails = new ArrayCollection();
       $this->telefonos = new ArrayCollection();
       $this->expedientes = new ArrayCollection();
+      $this->actividadesTitulares = new ArrayCollection();
     }
 
     /**
@@ -503,6 +510,11 @@ class Titulares
     {
         return $this->pequenioProductor;
     }
+
+    public function getActividadesTitulares(){
+      return $this->actividadesTitulares;
+    }
+
     public function __toString(){
       return $this->apellidoNombre;
     }

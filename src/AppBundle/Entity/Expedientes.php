@@ -269,6 +269,12 @@ class Expedientes
   private $documentacion;
 
   /**
+  * One Expediente has Many Actividades insp.
+  * @ORM\OneToMany(targetEntity="ActividadesTitulares", mappedBy="expediente")
+  */
+  private $actividadesTitulares;
+
+  /**
   * One Expediente has Many EstadoSituacion.
   * @ORM\OneToMany(targetEntity="EstadoSituacion", mappedBy="expediente")
   */
@@ -278,6 +284,7 @@ class Expedientes
       $this->actividadesPresentadas = new ArrayCollection();
       $this->actividadesCertificadas = new ArrayCollection();
       $this->actividadesInspeccionadas = new ArrayCollection();
+      $this->actividadesTitulares = new ArrayCollection();
       $this->actividadesSig = new ArrayCollection();
       $this->documentacion = new ArrayCollection();
       $this->estadoSituacion = new ArrayCollection();
@@ -931,5 +938,10 @@ class Expedientes
     public function getEstadoSituacion()
     {
         return $this->estadoSituacion;
+    }
+
+    public function getActividadesTitulares()
+    {
+        return $this->actividadesTitulares;
     }
 }

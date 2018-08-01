@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * AprobacionesExpedientes
+ * ActividadesAprobadas
  *
- * @ORM\Table(name="aprobaciones_expedientes")
+ * @ORM\Table(name="actividades_aprobadas")
  * @ORM\Entity
  */
-class AprobacionesExpedientes
+class ActividadesAprobadas
 {
     /**
      * @var integer
@@ -18,16 +18,19 @@ class AprobacionesExpedientes
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="aprobaciones_expedientes_id_seq", allocationSize=1, initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="actividades_aprobadas_id_seq", allocationSize=1, initialValue=1)
      */
     private $id;
 
     /**
-     * @var integer
+     * @var \tipoActividad
      *
-     * @ORM\Column(name="actividad_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposActividades")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="actividad_id", referencedColumnName="id")
+     * })
      */
-    private $actividadId;
+    private $tipoActividad;
 
     /**
      * @var integer
@@ -98,27 +101,27 @@ class AprobacionesExpedientes
     }
 
     /**
-     * Set actividadId
+     * Set tipoActividad
      *
-     * @param integer $actividadId
+     * @param integer $tipoActividad
      *
-     * @return AprobacionesExpedientes
+     * @return ActividadesAprobadas
      */
-    public function setActividadId($actividadId)
+    public function setTipoActividad($tipoActividad)
     {
-        $this->actividadId = $actividadId;
+        $this->tipoActividad = $tipoActividad;
 
         return $this;
     }
 
     /**
-     * Get actividadId
+     * Get tipoActividad
      *
      * @return integer
      */
-    public function getActividadId()
+    public function getTipoActividad()
     {
-        return $this->actividadId;
+        return $this->tipoActividad;
     }
 
     /**
@@ -126,7 +129,7 @@ class AprobacionesExpedientes
      *
      * @param integer $expedienteId
      *
-     * @return AprobacionesExpedientes
+     * @return ActividadesAprobadas
      */
     public function setExpedienteId($expedienteId)
     {
@@ -150,7 +153,7 @@ class AprobacionesExpedientes
      *
      * @param integer $especieId
      *
-     * @return AprobacionesExpedientes
+     * @return ActividadesAprobadas
      */
     public function setEspecieId($especieId)
     {
@@ -174,7 +177,7 @@ class AprobacionesExpedientes
      *
      * @param integer $superficieHa
      *
-     * @return AprobacionesExpedientes
+     * @return ActividadesAprobadas
      */
     public function setSuperficieHa($superficieHa)
     {
@@ -198,7 +201,7 @@ class AprobacionesExpedientes
      *
      * @param integer $densidad
      *
-     * @return AprobacionesExpedientes
+     * @return ActividadesAprobadas
      */
     public function setDensidad($densidad)
     {
@@ -222,7 +225,7 @@ class AprobacionesExpedientes
      *
      * @param \DateTime $fechaInicio
      *
-     * @return AprobacionesExpedientes
+     * @return ActividadesAprobadas
      */
     public function setFechaInicio($fechaInicio)
     {
@@ -246,7 +249,7 @@ class AprobacionesExpedientes
      *
      * @param \DateTime $fechaFinActividad
      *
-     * @return AprobacionesExpedientes
+     * @return ActividadesAprobadas
      */
     public function setFechaFinActividad($fechaFinActividad)
     {
@@ -270,7 +273,7 @@ class AprobacionesExpedientes
      *
      * @param string $observaciones
      *
-     * @return AprobacionesExpedientes
+     * @return ActividadesAprobadas
      */
     public function setObservaciones($observaciones)
     {
@@ -294,7 +297,7 @@ class AprobacionesExpedientes
      *
      * @param integer $departamentoId
      *
-     * @return AprobacionesExpedientes
+     * @return ActividadesAprobadas
      */
     public function setDepartamentoId($departamentoId)
     {

@@ -81,7 +81,6 @@ class ExpedientesController extends Controller
     public function showAction(Expedientes $expediente)
     {
         $deleteForm = $this->createDeleteForm($expediente);
-        dump($expediente);
         // foreach ($expediente->getDocumentacion() as $key => $value) {
         //   $this->downloadDoc($value);
         // }
