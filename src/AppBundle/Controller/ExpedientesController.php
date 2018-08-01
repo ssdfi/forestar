@@ -84,6 +84,7 @@ class ExpedientesController extends Controller
         // foreach ($expediente->getDocumentacion() as $key => $value) {
         //   $this->downloadDoc($value);
         // }
+        dump($expediente);
         return $this->render('expedientes/show.html.twig', array(
             'expediente' => $expediente,
             'delete_form' => $deleteForm->createView(),
