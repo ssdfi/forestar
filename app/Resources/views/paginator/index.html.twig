@@ -1,0 +1,16 @@
+<div class="well well-sm clearfix">
+  <div class="pagination-info pull-left">
+    Mostrando <b>
+    {% if items|length < 15 %}
+      {{ items.getTotalItemCount }}</b>
+    {% else %}
+      {{(items.getItemNumberPerPage * items.getCurrentPageNumber) - (items.getItemNumberPerPage -1) }} -
+      {{items.getItemNumberPerPage * items.getCurrentPageNumber }}</b>
+    {% endif %}
+    de
+      <b> {{ items.getTotalItemCount }} </b>
+  </div>
+    <ul class="pagination pull-right">
+      {{ knp_pagination_render(items) }}
+    </ul>
+</div>
