@@ -41,22 +41,7 @@
               {% endfor %}
             </tbody>
           </table>
-          <div class="well well-sm clearfix">
-            <div class="pagination-info pull-left">
-              Mostrando <b>
-              {% if expedientes|length < 15 %}
-                {{ expedientes.getTotalItemCount }}</b>
-              {% else %}
-                {{(expedientes.getItemNumberPerPage * expedientes.getCurrentPageNumber) - (expedientes.getItemNumberPerPage -1) }} -
-                {{expedientes.getItemNumberPerPage * expedientes.getCurrentPageNumber }}</b>
-              {% endif %}
-              de
-                <b> {{ expedientes.getTotalItemCount }} </b>
-            </div>
-              <ul class="pagination pull-right">
-                {{ knp_pagination_render(expedientes) }}
-              </ul>
-          </div>
+          {{ include('paginator/index.html.twig', {'items': expedientes}) }}
         </div>
     </div>
 {% endblock %}

@@ -1,0 +1,55 @@
+{% block actividadPresentadaPrototype %}
+  <td>
+    <div class="col-sm-12">
+      {{ form_row(form.especie) }}
+      {{ form_errors(form.especie) }}
+    </div>
+  </td>
+  <td>
+      <div class="col-sm-12">
+        {{ form_row(form.superficieHa) }}
+        {{ form_errors(form.superficieHa) }}
+      </div>
+  </td>
+  <td>
+    <div class="col-sm-12">
+      {{ form_row(form.densidad) }}
+      {{ form_errors(form.densidad) }}
+    </div>
+  </td>
+  <td>
+      <div class="col-sm-12">
+        {{ form_row(form.fechaInicio) }}
+        {{ form_errors(form.fechaInicio) }}
+      </div>
+  </td>
+  <td>
+      <div class="col-sm-12">
+        {{ form_row(form.fechaFinActividad) }}
+        {{ form_errors(form.fechaFinActividad) }}
+      </div>
+  </td>
+  <td>
+      <div class="col-sm-12">
+        {{ form_row(form.departamento) }}
+        {{ form_errors(form.departamento) }}
+      </div>
+  </td>
+  <td>
+      <div class="col-sm-12">
+        {{ form_row(form.tipoActividad) }}
+        {{ form_errors(form.tipoActividad) }}
+      </div>
+  </td>
+  <td>
+      <div class="col-sm-12">
+        {{ form_row(form.observaciones) }}
+        {{ form_errors(form.observaciones) }}
+      </div>
+  </td>
+  <td>
+    <a class="btn btn-danger btn-sm pull-right remove-plantacion remove_nested_fields" data-association="actividades_plantaciones">
+      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+    </a>
+  </td>
+{% endblock %}

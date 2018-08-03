@@ -5,11 +5,97 @@
 {% block body %}
 <div class="col-md-12">
     <div class="row">
-      <div class="col-md-5">
-        <h2>Editar Expediente</h2>
+      <div class="col-md-12">
+        <div class="nav nav-pills nav-justified">
+          <!-- id="v-pills-tab" role="tablist" aria-orientation="vertical" -->
+           <a class="nav-item nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-expediente" role="tab" aria-controls="v-pills-home" aria-selected="true">Expediente</a>
+           <a class="nav-item nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-presentacion" role="tab" aria-controls="v-pills-profile" aria-selected="false">Presentación</a>
+           <a class="nav-item nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-certificacion" role="tab" aria-controls="v-pills-profile" aria-selected="false">Certificación</a>
+           <a class="nav-item nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-inspeccion" role="tab" aria-controls="v-pills-messages" aria-selected="false">Inspección</a>
+           <a class="nav-item nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-sig" role="tab" aria-controls="v-pills-settings" aria-selected="false">SIG</a>
+         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
         {{ form_start(edit_form) }}
-            {{ form_widget(edit_form) }}
-            <input type="submit" value="Edit" />
+        <div class="tab-content" id="v-pills-tabContent">
+          <div class="tab-pane fade show active" id="v-pills-expediente" role="tabpanel" aria-labelledby="v-pills-expediente-tab">
+            <h4>Editar Expediente</h4>
+                {{form_row(edit_form.numeroExpediente)}}
+                {{form_errors(edit_form.numeroExpediente)}}
+
+                {{form_row(edit_form.numeroInterno)}}
+                {{form_errors(edit_form.numeroInterno)}}
+
+                {{form_row(edit_form.titulares)}}
+                {{form_errors(edit_form.titulares)}}
+
+                {{form_row(edit_form.profesionalCargo)}}
+                {{form_errors(edit_form.profesionalCargo)}}
+
+                {{form_row(edit_form.cobroBeneficios)}}
+                {{form_errors(edit_form.cobroBeneficios)}}
+
+                {{form_row(edit_form.fechaPresentacion)}}
+                {{form_errors(edit_form.fechaPresentacion)}}
+
+                {{form_row(edit_form.fechaIngreso)}}
+                {{form_errors(edit_form.fechaIngreso)}}
+
+                {{form_row(edit_form.fechaFin)}}
+                {{form_errors(edit_form.fechaFin)}}
+
+                {{form_row(edit_form.estado)}}
+                {{form_errors(edit_form.estado)}}
+
+                {{form_row(edit_form.estadoAreaContable)}}
+                {{form_errors(edit_form.estadoAreaContable)}}
+
+                {{form_row(edit_form.estadoAreaLegales)}}
+                {{form_errors(edit_form.estadoAreaLegales)}}
+
+                {{form_row(edit_form.estadoAreaPromocion)}}
+                {{form_errors(edit_form.estadoAreaPromocion)}}
+
+                {{form_row(edit_form.estadoAreaSig)}}
+                {{form_errors(edit_form.estadoAreaSig)}}
+
+                {{form_row(edit_form.estadoForestoIndustriales)}}
+                {{form_errors(edit_form.estadoForestoIndustriales)}}
+
+                {{form_row(edit_form.areaEncuentraExpediente)}}
+                {{form_errors(edit_form.areaEncuentraExpediente)}}
+
+                {{form_row(edit_form.departamento)}}
+                {{form_errors(edit_form.departamento)}}
+
+                {{form_row(edit_form.anio)}}
+                {{form_errors(edit_form.anio)}}
+
+          </div>
+          <div class="tab-pane fade" id="v-pills-presentacion" role="tabpanel" aria-labelledby="v-pills-presentacion-tab">
+            <h4>Editar Actividades Presentadas</h4>
+            {% embed "actividadespresentadas/table.html.twig" with { 'actividadesPresentadas': edit_form.actividadesPresentadas} %}
+            {% endembed %}
+          </div>
+          <div class="tab-pane fade" id="v-pills-certificacion" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+            <h4>Editar Actividades Certificadas</h4>
+            {% embed "actividadescertificadas/table.html.twig" with { 'actividadesCertificadas': edit_form.actividadesCertificadas} %}
+            {% endembed %}
+          </div>
+          <div class="tab-pane fade" id="v-pills-inspeccion" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+            <h4>Editar Actividades Inspeccionadas</h4>
+            {% embed "actividadesinspeccionadas/table.html.twig" with { 'actividadesInspeccionadas': edit_form.actividadesInspeccionadas} %}
+            {% endembed %}
+          </div>
+          <div class="tab-pane fade" id="v-pills-sig" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+            <h4>Editar Actividades SIG</h4>
+            {% embed "actividadessig/table.html.twig" with { 'actividadesSig': edit_form.actividadesSig} %}
+            {% endembed %}
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary pull-right">Editar</button>
         {{ form_end(edit_form) }}
       </div>
   </div>
