@@ -86,11 +86,14 @@ class CobrosBeneficios
     private $codigoPostal;
 
     /**
-     * @var integer
+     * @var \ActividadesPresentadas
      *
-     * @ORM\Column(name="expediente_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="cobroBeneficios")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="expediente_id", referencedColumnName="id")
+     * })
      */
-    private $expedienteId;
+    private $expediente;
 
     /**
      * @var string
@@ -349,27 +352,27 @@ class CobrosBeneficios
     }
 
     /**
-     * Set expedienteId
+     * Set expediente
      *
-     * @param integer $expedienteId
+     * @param integer $expediente
      *
      * @return CobrosBeneficios
      */
-    public function setExpedienteId($expedienteId)
+    public function setExpediente($expediente)
     {
-        $this->expedienteId = $expedienteId;
+        $this->expediente = $expediente;
 
         return $this;
     }
 
     /**
-     * Get expedienteId
+     * Get expediente
      *
      * @return integer
      */
-    public function getExpedienteId()
+    public function getExpediente()
     {
-        return $this->expedienteId;
+        return $this->expediente;
     }
 
     /**
@@ -466,5 +469,10 @@ class CobrosBeneficios
     public function getCargaTributariaMunicipal()
     {
         return $this->cargaTributariaMunicipal;
+    }
+
+    public function __toString()
+    {
+      return $this->nombreBanco . ' '. $this->sucursalBanco . ' '. $this->tipoCuenta . ' '.$this->numeroCuenta;
     }
 }

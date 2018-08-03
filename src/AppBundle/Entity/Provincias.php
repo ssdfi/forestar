@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Provincias
+ * ProvinciasProexp
  *
  * @ORM\Table(name="provincias")
  * @ORM\Entity
@@ -13,86 +13,55 @@ use Doctrine\ORM\Mapping as ORM;
 class Provincias
 {
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="pro_id", type="bigint", nullable=false)
+     * @ORM\Column(name="id", type="string", length=2, nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="provincias_pro_id_seq", allocationSize=1, initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="provincias_proexp_id_seq", allocationSize=1, initialValue=1)
      */
-    private $proId;
+    private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="pro_des", type="string", length=50, nullable=true)
+     * @ORM\Column(name="nombre", type="string", length=100, nullable=true)
      */
-    private $proDes;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="pro_pai_id", type="integer", nullable=true)
-     */
-    private $proPaiId;
+    private $nombre;
 
 
 
     /**
-     * Get proId
-     *
-     * @return integer
-     */
-    public function getProId()
-    {
-        return $this->proId;
-    }
-
-    /**
-     * Set proDes
-     *
-     * @param string $proDes
-     *
-     * @return Provincias
-     */
-    public function setProDes($proDes)
-    {
-        $this->proDes = $proDes;
-
-        return $this;
-    }
-
-    /**
-     * Get proDes
+     * Get id
      *
      * @return string
      */
-    public function getProDes()
+    public function getId()
     {
-        return $this->proDes;
+        return $this->id;
     }
 
     /**
-     * Set proPaiId
+     * Set nombre
      *
-     * @param integer $proPaiId
+     * @param string $nombre
      *
-     * @return Provincias
+     * @return ProvinciasProexp
      */
-    public function setProPaiId($proPaiId)
+    public function setNombre($nombre)
     {
-        $this->proPaiId = $proPaiId;
+        $this->nombre = $nombre;
 
         return $this;
     }
 
     /**
-     * Get proPaiId
+     * Get nombre
      *
-     * @return integer
+     * @return string
      */
-    public function getProPaiId()
+    public function getNombre()
     {
-        return $this->proPaiId;
+        return $this->nombre;
     }
 }

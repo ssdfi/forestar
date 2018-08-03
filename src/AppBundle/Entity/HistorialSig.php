@@ -501,4 +501,9 @@ class HistorialSig
     {
         return $this->estadoViverosId;
     }
+
+    public function __toString()
+    {
+      return (string)$this->observacion;
+    }
 }

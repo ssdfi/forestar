@@ -4,12 +4,16 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Expedientes
  *
  * @ORM\Table(name="expedientes", indexes={@ORM\Index(name="IDX_9F651271F9F0FF64", columns={"titular_id"})})
  * @ORM\Entity
+ * @UniqueEntity(fields="numeroInterno",message="Este valor ya existe y no puede repetirse")
+ * @UniqueEntity(fields="numeroExpediente",message="Este valor ya existe y no puede repetirse")
  */
 class Expedientes
 {
@@ -26,7 +30,13 @@ class Expedientes
     /**
      * @var string
      *
-     * @ORM\Column(name="numero_interno", type="string", length=100, nullable=true)
+     * @ORM\Column(name="numero_interno", type="string", length=255, nullable=true)
+     * @Assert\Regex(
+     *     pattern     = "/[0-9]{2}-[0-9]{3}-[0-9]{3}\/[0-9]{2}/",
+     *     message = "El formato debe ser ##-###-###/##"
+     * )
+     * @Assert\Length(min = 13, max=13, exactMessage="El campo debe tener {{ limit }} digitos, ##-###-###/##")
+     * @Assert\NotBlank(message="El campo no puede estar vacío")
      */
     private $numeroInterno;
 
@@ -53,7 +63,7 @@ class Expedientes
     /**
      * @var \Titulares
      *
-     * @ORM\ManyToOne(targetEntity="Profesionales")
+     * @ORM\ManyToOne(targetEntity="Profesionales", inversedBy="expedientes")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="profesional_cargo_id", referencedColumnName="id")
      * })
@@ -61,11 +71,10 @@ class Expedientes
     private $profesionalCargo;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="cobro_beneficios_id", type="integer", nullable=true)
-     */
-    private $cobroBeneficiosId;
+    * One Expediente has Many HistorialSig.
+    * @ORM\OneToMany(targetEntity="CobrosBeneficios", mappedBy="expediente")
+    */
+    private $cobroBeneficios;
 
      /**
       * @var \Titulares
@@ -80,7 +89,13 @@ class Expedientes
     /**
      * @var string
      *
-     * @ORM\Column(name="numero_expediente", type="string", length=100, nullable=true)
+     * @ORM\Column(name="numero_expediente", type="string", length=255, nullable=true)
+     * @Assert\Regex(
+     *     pattern     = "/EXP-S05:[0-9]{7}\/[0-9]{4}|EX-20[0-9]{2}\-[0-9]{8}/",
+     *     message     = "El formato debe ser EXP-S05:#######/#### o EX-20##-########"
+     * )
+     * @Assert\Length(min = 16, max=20, exactMessage="El campo debe tener {{ limit }} digitos, EXP-S05:#######/####")
+     * @Assert\NotBlank(message="El campo no puede estar vacío")
      */
     private $numeroExpediente;
 
@@ -230,7 +245,7 @@ class Expedientes
     /**
      * @var \Titulares
      *
-     * @ORM\ManyToOne(targetEntity="Titulares", inversedBy="expedientes")
+     * @ORM\ManyToOne(targetEntity="Titulares", inversedBy="expediente")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="titular_id", referencedColumnName="id")
      * })
@@ -243,102 +258,95 @@ class Expedientes
      */
     private $actividadesPresentadas;
 
+      /**
+      * One Expediente has Many Actividades cert.
+      * @ORM\OneToMany(targetEntity="ActividadesCertificadas", mappedBy="expediente")
+      */
+    private $actividadesCertificadas;
+
+     /**
+     * One Expediente has Many Actividades insp.
+     * @ORM\OneToMany(targetEntity="ActividadesInspeccionadas", mappedBy="expediente")
+     */
+    private $actividadesInspeccionadas;
+
+      /**
+      * One Expediente has Many ActividadesSig.
+      * @ORM\OneToMany(targetEntity="ActividadesSig", mappedBy="expediente")
+      */
+    private $actividadesSig;
+
+     /**
+     * One Expediente has Many Documentacion.
+     * @ORM\OneToMany(targetEntity="Documentacion", mappedBy="expediente")
+     * @ORM\OrderBy({"fechaPresentacion" = "ASC"})
+     */
+    private $documentacion;
+
     /**
-    * One Expediente has Many Actividades cert.
-    * @ORM\OneToMany(targetEntity="ActividadesCertificadas", mappedBy="expediente")
+    * One Expediente has Many Actividades insp.
+    * @ORM\OneToMany(targetEntity="ActividadesTitulares", mappedBy="expediente")
     */
-   private $actividadesCertificadas;
-
-   /**
-   * One Expediente has Many Actividades insp.
-   * @ORM\OneToMany(targetEntity="ActividadesInspeccionadas", mappedBy="expediente")
-   */
-  private $actividadesInspeccionadas;
+    private $actividadesTitulares;
 
     /**
-    * One Expediente has Many ActividadesSig.
-    * @ORM\OneToMany(targetEntity="ActividadesSig", mappedBy="expediente")
+    * One Expediente has Many EstadoSituacion.
+    * @ORM\OneToMany(targetEntity="EstadoSituacion", mappedBy="expediente")
     */
-   private $actividadesSig;
+    private $estadoSituacion;
 
-   /**
-   * One Expediente has Many Documentacion.
-   * @ORM\OneToMany(targetEntity="Documentacion", mappedBy="expediente")
-   * @ORM\OrderBy({"fechaPresentacion" = "ASC"})
-   */
-  private $documentacion;
+    /**
+    * One Expediente has Many EstadoSituacion.
+    * @ORM\OneToMany(targetEntity="BeneficiosAnalizadosExpedientes", mappedBy="expediente")
+    */
+    private $beneficiosFiscales;
 
-  /**
-  * One Expediente has Many Actividades insp.
-  * @ORM\OneToMany(targetEntity="ActividadesTitulares", mappedBy="expediente")
-  */
-  private $actividadesTitulares;
+    /**
+    * One Expediente has Many EstadoSituacion.
+    * @ORM\OneToMany(targetEntity="ImpactoAmbiental", mappedBy="expediente")
+    */
+    private $impactosAmbientales;
 
-  /**
-  * One Expediente has Many EstadoSituacion.
-  * @ORM\OneToMany(targetEntity="EstadoSituacion", mappedBy="expediente")
-  */
- private $estadoSituacion;
+    /**
+    * One Expediente has Many HistorialContable.
+    * @ORM\OneToMany(targetEntity="HistorialContable", mappedBy="expediente")
+    */
+    private $historialContable;
 
-  /**
-  * One Expediente has Many EstadoSituacion.
-  * @ORM\OneToMany(targetEntity="BeneficiosAnalizadosExpedientes", mappedBy="expediente")
-  */
-  private $beneficiosFiscales;
+    /**
+    * One Expediente has Many HistorialLegales.
+    * @ORM\OneToMany(targetEntity="HistorialLegales", mappedBy="expediente")
+    */
+    private $historialLegales;
 
-  /**
-  * One Expediente has Many EstadoSituacion.
-  * @ORM\OneToMany(targetEntity="ImpactoAmbiental", mappedBy="expediente")
-  */
-  private $impactosAmbientales;
+    /**
+    * One Expediente has Many HistorialForestoIndustriales.
+    * @ORM\OneToMany(targetEntity="HistorialForestoIndustriales", mappedBy="expediente")
+    */
+    private $historialForestoIndustriales;
 
-  /**
-  * One Expediente has Many HistorialContable.
-  * @ORM\OneToMany(targetEntity="HistorialContable", mappedBy="expediente")
-  */
-  private $historialContable;
+    /**
+    * One Expediente has Many HistorialPromocion.
+    * @ORM\OneToMany(targetEntity="HistorialPromocion", mappedBy="expediente")
+    */
+    private $historialPromocion;
 
-  /**
-  * One Expediente has Many HistorialLegales.
-  * @ORM\OneToMany(targetEntity="HistorialLegales", mappedBy="expediente")
-  */
-  private $historialLegales;
-
-  /**
-  * One Expediente has Many HistorialForestoIndustriales.
-  * @ORM\OneToMany(targetEntity="HistorialForestoIndustriales", mappedBy="expediente")
-  */
-  private $historialForestoIndustriales;
-
-  // /**
-  // * One Expediente has Many HistorialViveros.
-  // * @ORM\OneToMany(targetEntity="HistorialViveros", mappedBy="expediente")
-  // */
-  // private $historialViveros;
-
-  /**
-  * One Expediente has Many HistorialPromocion.
-  * @ORM\OneToMany(targetEntity="HistorialPromocion", mappedBy="expediente")
-  */
-  private $historialPromocion;
-
-  /**
-  * One Expediente has Many HistorialSig.
-  * @ORM\OneToMany(targetEntity="HistorialSig", mappedBy="expediente")
-  */
-  private $historialSig;
+    /**
+    * One Expediente has Many HistorialSig.
+    * @ORM\OneToMany(targetEntity="HistorialSig", mappedBy="expediente")
+    */
+    private $historialSig;
 
     /**
     * @var ArrayCollection $titulares
-    * @ORM\ManyToMany(targetEntity="Titulares", inversedBy="expediente" ,cascade={"all","persist"}, fetch="LAZY")
+    * @ORM\ManyToMany(targetEntity="Titulares")
     * @ORM\JoinTable(
     *      name="expedientes_titulares",
     *      joinColumns={@ORM\JoinColumn(name="expediente_id", referencedColumnName="id")},
     *      inverseJoinColumns={@ORM\JoinColumn(name="titular_id", referencedColumnName="id")}
     * )
     */
-     private $titulares;
-
+    private $titulares;
 
     public function __construct(){
       $this->actividadesPresentadas = new ArrayCollection();
@@ -353,10 +361,10 @@ class Expedientes
       $this->historialContable = new ArrayCollection();
       $this->historialLegales = new ArrayCollection();
       $this->historialForestoIndustriales = new ArrayCollection();
-      // $this->historialViveros = new ArrayCollection();
       $this->historialPromocion = new ArrayCollection();
       $this->historialSig = new ArrayCollection();
       $this->titulares = new ArrayCollection();
+      $this->cobroBeneficios = new ArrayCollection();
     }
 
     /**
@@ -466,27 +474,27 @@ class Expedientes
     }
 
     /**
-     * Set cobroBeneficiosId
+     * Set cobroBeneficios
      *
-     * @param integer $cobroBeneficiosId
+     * @param integer $cobroBeneficios
      *
      * @return Expedientes
      */
-    public function setCobroBeneficiosId($cobroBeneficiosId)
+    public function setCobroBeneficios($cobroBeneficios)
     {
-        $this->cobroBeneficiosId = $cobroBeneficiosId;
+        $this->cobroBeneficios = $cobroBeneficios;
 
         return $this;
     }
 
     /**
-     * Get cobroBeneficiosId
+     * Get cobroBeneficios
      *
      * @return integer
      */
-    public function getCobroBeneficiosId()
+    public function getCobroBeneficios()
     {
-        return $this->cobroBeneficiosId;
+        return $this->cobroBeneficios;
     }
 
     /**
@@ -979,6 +987,23 @@ class Expedientes
         return $this->actividadesPresentadas;
     }
 
+    public function addActividadesPresentada($ap)
+    {
+        if (true === $this->actividadesPresentadas->contains($ap)) {
+           return;
+       }
+       $this->actividadesPresentadas[] = $ap;
+
+    }
+
+    public function removeActividadesPresentada($ap)
+    {
+      if (false === $this->actividadesPresentadas->contains($ap)) {
+           return;
+       }
+       $this->actividadesPresentadas->removeElement($ap);
+    }
+
     /**
      * Get Actividad
      *
@@ -989,14 +1014,66 @@ class Expedientes
         return $this->actividadesSig;
     }
 
+    public function addActividadesSig($ap)
+    {
+        if (true === $this->actividadesSig->contains($ap)) {
+           return;
+       }
+       $this->actividadesSig[] = $ap;
+
+    }
+
+    public function removeActividadesSig($ap)
+    {
+      if (false === $this->actividadesSig->contains($ap)) {
+           return;
+       }
+       $this->actividadesSig->removeElement($ap);
+    }
+
     public function getActividadesCertificadas()
     {
         return $this->actividadesCertificadas;
     }
 
+    public function addActividadesCertificada($ac)
+    {
+        if (true === $this->actividadesCertificadas->contains($ac)) {
+           return;
+       }
+       $this->actividadesCertificadas[] = $ac;
+
+    }
+
+    public function removeActividadesCertificada($ac)
+    {
+      if (false === $this->actividadesCertificadas->contains($ac)) {
+           return;
+       }
+       $this->actividadesCertificadas->removeElement($ac);
+
+    }
+
     public function getActividadesInspeccionadas()
     {
         return $this->actividadesInspeccionadas;
+    }
+
+    public function addActividadesInspeccionada($ap)
+    {
+        if (true === $this->actividadesInspeccionadas->contains($ap)) {
+           return;
+       }
+       $this->actividadesInspeccionadas[] = $ap;
+
+    }
+
+    public function removeActividadesInspeccionada($ap)
+    {
+      if (false === $this->actividadesInspeccionadas->contains($ap)) {
+           return;
+       }
+       $this->actividadesInspeccionadas->removeElement($ap);
     }
 
     public function getDocumentacion()

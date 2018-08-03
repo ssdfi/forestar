@@ -176,6 +176,15 @@ class Profesionales
      */
     private $eliminado;
 
+    /**
+    * One Titular has Many Expedientes.
+    * @ORM\OneToMany(targetEntity="Expedientes", mappedBy="profesionalCargo")
+    */
+    private $expedientes;
+
+    public function __construct(){
+      $this->expedientes = new ArrayCollection();
+    }
 
 
     /**
@@ -716,7 +725,11 @@ class Profesionales
         return $this->eliminado;
     }
 
+    public function getExpedientes(){
+      return $this->expedientes;
+    }
     public function __toString() {
       return $this->apellidoNombre;
     }
+
 }

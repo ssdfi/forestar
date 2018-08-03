@@ -67,16 +67,22 @@ class ActividadesSig
     private $observaciones;
 
     /**
-     * @var integer
+     * @var \Departamento
      *
-     * @ORM\Column(name="departamento_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Departamentos")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="departamento_id", referencedColumnName="id")
+     * })
      */
-    private $departamentoId;
+    private $departamento;
 
     /**
-     * @var integer
+     * @var \Departamento
      *
-     * @ORM\Column(name="usuario_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Departamentos")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="departamento_id", referencedColumnName="id")
+     * })
      */
     private $usuarioId;
 
@@ -234,27 +240,27 @@ class ActividadesSig
     }
 
     /**
-     * Set departamentoId
+     * Set departamento
      *
-     * @param integer $departamentoId
+     * @param integer $departamento
      *
      * @return ActividadesSig
      */
-    public function setDepartamentoId($departamentoId)
+    public function setDepartamento($departamento)
     {
-        $this->departamentoId = $departamentoId;
+        $this->departamento = $departamento;
 
         return $this;
     }
 
     /**
-     * Get departamentoId
+     * Get departamento
      *
      * @return integer
      */
-    public function getDepartamentoId()
+    public function getDepartamento()
     {
-        return $this->departamentoId;
+        return $this->departamento;
     }
 
     /**

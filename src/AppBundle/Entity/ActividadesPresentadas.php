@@ -95,7 +95,7 @@ class ActividadesPresentadas
      *   @ORM\JoinColumn(name="departamento_id", referencedColumnName="id")
      * })
      */
-    private $departamentoId;
+    private $departamento;
 
     /**
      * @var \DateTime
@@ -309,27 +309,27 @@ class ActividadesPresentadas
     }
 
     /**
-     * Set departamentoId
+     * Set departamento
      *
-     * @param integer $departamentoId
+     * @param integer $departamento
      *
      * @return ActividadesPresentadas
      */
-    public function setDepartamentoId($departamentoId)
+    public function setDepartamento($departamento)
     {
-        $this->departamentoId = $departamentoId;
+        $this->departamento = $departamento;
 
         return $this;
     }
 
     /**
-     * Get departamentoId
+     * Get departamento
      *
      * @return integer
      */
-    public function getDepartamentoId()
+    public function getDepartamento()
     {
-        return $this->departamentoId;
+        return $this->departamento;
     }
 
     /**

@@ -133,7 +133,7 @@ class Titulares
     * One Titular has Many Expedientes.
     * @ORM\OneToMany(targetEntity="Expedientes", mappedBy="titular")
     */
-    private $expedientes;
+    private $expediente;
 
     /**
     * One Titular has Many Expedientes.
@@ -148,11 +148,10 @@ class Titulares
      */
     private $pequenioProductor;
 
-
     public function __construct(){
       $this->emails = new ArrayCollection();
       $this->telefonos = new ArrayCollection();
-      $this->expedientes = new ArrayCollection();
+      $this->expediente = new ArrayCollection();
       $this->actividadesTitulares = new ArrayCollection();
     }
 
@@ -490,8 +489,8 @@ class Titulares
       return $this->domicilios;
     }
 
-    public function getExpedientes(){
-      return $this->expedientes;
+    public function getExpediente(){
+      return $this->expediente;
     }
 
     public function setPequenioProductor($pequenioProductor)
@@ -516,6 +515,7 @@ class Titulares
     }
 
     public function __toString(){
-      return $this->apellidoNombre;
+      // dump($this->apellidoNombre);
+      return (string)$this->apellidoNombre;
     }
 }
