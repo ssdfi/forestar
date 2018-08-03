@@ -84,6 +84,8 @@ class ExpedientesController extends Controller
         // foreach ($expediente->getDocumentacion() as $key => $value) {
         //   $this->downloadDoc($value);
         // }
+
+        //SI EN OBSERVACIONES TIENE ALGO QUE DICE SEGUNDO TITULAR PONERLO COMO POSIBLE ERROR PARA SOLUCIONAR
         dump($expediente);
         return $this->render('expedientes/show.html.twig', array(
             'expediente' => $expediente,
