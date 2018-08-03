@@ -1708,3 +1708,5 @@ CREATE TABLE public.expedientes_titulares( expediente_id integer NOT NULL, titul
 ALTER TABLE public.expedientes_titulares OWNER TO forestal;
 INSERT INTO public.expedientes_titulares(expediente_id, titular_id) SELECT id, titular_id from expedientes;
 INSERT INTO public.expedientes_titulares(expediente_id, titular_id) SELECT id, segundo_titular_id from expedientes where segundo_titular_id is not null;
+ALTER TABLE provincias RENAME TO provincias_old;
+ALTER TABLE provincias_proexp RENAME TO provincias;
