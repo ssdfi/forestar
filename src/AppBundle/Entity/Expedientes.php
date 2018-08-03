@@ -348,6 +348,12 @@ class Expedientes
     */
     private $titulares;
 
+    /**
+    * One Expediente has Many HistorialSig.
+    * @ORM\OneToMany(targetEntity="Predios", mappedBy="expediente")
+    */
+    private $predios;
+
     public function __construct(){
       $this->actividadesPresentadas = new ArrayCollection();
       $this->actividadesCertificadas = new ArrayCollection();
@@ -365,6 +371,7 @@ class Expedientes
       $this->historialSig = new ArrayCollection();
       $this->titulares = new ArrayCollection();
       $this->cobroBeneficios = new ArrayCollection();
+      $this->predios = new ArrayCollection();
     }
 
     /**
@@ -1120,6 +1127,34 @@ class Expedientes
     {
       return $this->historialSig;
     }
+
+    /**
+     * Get Actividad
+     *
+     * @return \AppBundle\Entity\ActivdiadesSig
+     */
+    public function getPredios()
+    {
+        return $this->predios;
+    }
+
+    public function addPredio($ap)
+    {
+        if (true === $this->predios->contains($ap)) {
+           return;
+       }
+       $this->predios[] = $ap;
+
+    }
+
+    public function removePredio($ap)
+    {
+      if (false === $this->predios->contains($ap)) {
+           return;
+       }
+       $this->predios->removeElement($ap);
+    }
+
 
     public function getTitulares()
     {

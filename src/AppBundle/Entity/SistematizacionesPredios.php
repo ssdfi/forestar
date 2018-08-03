@@ -27,14 +27,17 @@ class SistematizacionesPredios
      *
      * @ORM\Column(name="sistematizacion_id", type="smallint", nullable=true)
      */
-    private $sistematizacionId;
+    private $sistematizacion;
 
     /**
-     * @var integer
+     * @var \Departamento
      *
-     * @ORM\Column(name="predio_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Predios")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="predio_id", referencedColumnName="id")
+     * })
      */
-    private $predioId;
+    private $predio;
 
     /**
      * @var string
@@ -56,51 +59,51 @@ class SistematizacionesPredios
     }
 
     /**
-     * Set sistematizacionId
+     * Set sistematizacion
      *
-     * @param integer $sistematizacionId
+     * @param integer $sistematizacion
      *
      * @return SistematizacionesPredios
      */
-    public function setSistematizacionId($sistematizacionId)
+    public function setSistematizacion($sistematizacion)
     {
-        $this->sistematizacionId = $sistematizacionId;
+        $this->sistematizacion = $sistematizacion;
 
         return $this;
     }
 
     /**
-     * Get sistematizacionId
+     * Get sistematizacion
      *
      * @return integer
      */
-    public function getSistematizacionId()
+    public function getSistematizacion()
     {
-        return $this->sistematizacionId;
+        return $this->sistematizacion;
     }
 
     /**
-     * Set predioId
+     * Set predio
      *
-     * @param integer $predioId
+     * @param integer $predio
      *
      * @return SistematizacionesPredios
      */
-    public function setPredioId($predioId)
+    public function setpredio($predio)
     {
-        $this->predioId = $predioId;
+        $this->predio = $predio;
 
         return $this;
     }
 
     /**
-     * Get predioId
+     * Get predio
      *
      * @return integer
      */
-    public function getPredioId()
+    public function getpredio()
     {
-        return $this->predioId;
+        return $this->predio;
     }
 
     /**

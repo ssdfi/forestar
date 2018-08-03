@@ -23,11 +23,14 @@ class Predios
     private $id;
 
     /**
-     * @var integer
+     * @var \ActividadesPresentadas
      *
-     * @ORM\Column(name="expediente_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="predios")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="expediente_id", referencedColumnName="id")
+     * })
      */
-    private $expedienteId;
+    private $expediente;
 
     /**
      * @var string
@@ -93,11 +96,14 @@ class Predios
     private $localidad;
 
     /**
-     * @var integer
+     * @var \Departamento
      *
-     * @ORM\Column(name="departamento_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Departamentos")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="departamento_id", referencedColumnName="id")
+     * })
      */
-    private $departamentoId;
+    private $departamento;
 
     /**
      * @var float
@@ -231,27 +237,27 @@ class Predios
     }
 
     /**
-     * Set expedienteId
+     * Set expediente
      *
-     * @param integer $expedienteId
+     * @param integer $expediente
      *
      * @return Predios
      */
-    public function setExpedienteId($expedienteId)
+    public function setExpediente($expediente)
     {
-        $this->expedienteId = $expedienteId;
+        $this->expediente = $expediente;
 
         return $this;
     }
 
     /**
-     * Get expedienteId
+     * Get expediente
      *
      * @return integer
      */
-    public function getExpedienteId()
+    public function getExpediente()
     {
-        return $this->expedienteId;
+        return $this->expediente;
     }
 
     /**
@@ -471,27 +477,27 @@ class Predios
     }
 
     /**
-     * Set departamentoId
+     * Set departamento
      *
-     * @param integer $departamentoId
+     * @param integer $departamento
      *
      * @return Predios
      */
-    public function setDepartamentoId($departamentoId)
+    public function setDepartamento($departamento)
     {
-        $this->departamentoId = $departamentoId;
+        $this->departamento = $departamento;
 
         return $this;
     }
 
     /**
-     * Get departamentoId
+     * Get departamento
      *
      * @return integer
      */
-    public function getDepartamentoId()
+    public function getDepartamento()
     {
-        return $this->departamentoId;
+        return $this->departamento;
     }
 
     /**
