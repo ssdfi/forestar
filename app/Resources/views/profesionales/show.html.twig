@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{parent()}} - Titulares{% endblock %}
+{% block body %}
+    <div class="col-md-12">
+      <div class="row">
+      <div class="col-md-4">
+        <div class="card border-info">
+          <div class="card-header bg-info text-white">
+            Profesionales
+          </div>
+          <div class="card-body">
+            <dl class="row">
+              <dt class="col-4">Id</dt>
+              <dd class="col-8">{{ profesionale.id }}</dd>
+              <dt class="col-4">Dni</dt>
+              <dd class="col-8">{{ profesionale.dni }}</dd>
+              <dt class="col-4">Cuit</dt>
+              <dd class="col-8">{{ profesionale.cuit }}</dd>
+              <dt class="col-4">Numeroinscripcion</dt>
+              <dd class="col-8">{{ profesionale.numeroInscripcion }}</dd>
+              <dt class="col-4">Apellidonombre</dt>
+              <dd class="col-8">{{ profesionale.apellidoNombre }}</dd>
+              <dt class="col-4">Emailtitular</dt>
+              <dd class="col-8">{{ profesionale.emailTitular }}</dd>
+              <dt class="col-4">Emailtitular2</dt>
+              <dd class="col-8">{{ profesionale.emailTitular2 }}</dd>
+              <dt class="col-4">Telefono</dt>
+              <dd class="col-8">{{ profesionale.telefono }}</dd>
+              <dt class="col-4">Telefono2</dt>
+              <dd class="col-8">{{ profesionale.telefono2 }}</dd>
+              <dt class="col-4">Fax</dt>
+              <dd class="col-8">{{ profesionale.fax }}</dd>
+              <dt class="col-4">Tituloprofesional</dt>
+              <dd class="col-8">{{ profesionale.tituloProfesional }}</dd>
+              <dt class="col-4">Tituloexpedido</dt>
+              <dd class="col-8">{{ profesionale.tituloExpedido }}</dd>
+              <dt class="col-4">Materiaincumbenciaforestal</dt>
+              <dd class="col-8">{{ profesionale.materiaIncumbenciaForestal }}</dd>
+              <dt class="col-4">Numeroomatricula</dt>
+              <dd class="col-8">{{ profesionale.numerooMatricula }}</dd>
+              <dt class="col-4">Numeromatriculaexpedido</dt>
+              <dd class="col-8">{{ profesionale.numeroMatriculaExpedido }}</dd>
+              <dt class="col-4">Domicilio</dt>
+              <dd class="col-8">{{ profesionale.domicilio }}</dd>
+              <dt class="col-4">Cp</dt>
+              <dd class="col-8">{{ profesionale.cp }}</dd>
+              <dt class="col-4">Localidadid</dt>
+              <dd class="col-8">{{ profesionale.localidadId }}</dd>
+              <dt class="col-4">Foto</dt>
+              <dd class="col-8">{{ profesionale.foto }}</dd>
+              <dt class="col-4">Idbudaf</dt>
+              <dd class="col-8">{{ profesionale.idBudaf }}</dd>
+              <dt class="col-4">Tipodocumento</dt>
+              <dd class="col-8">{{ profesionale.tipoDocumento }}</dd>
+              <dt class="col-4">Aprobado</dt>
+              <dd class="col-8">{% if profesionale.aprobado %}Yes{% else %}No{% endif %}</dd>
+              <dt class="col-4">Eliminado</dt>
+              <dd class="col-8">{% if profesionale.eliminado %}Yes{% else %}No{% endif %}</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <h5>Expedientes asociados al Profesional</h5>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Numero Interno</th>
+              <th scope="col">Numero Expediente</th>
+              <th scope="col">Representante Legal</th>
+              <th scope="col">Profesional a Cargo</th>
+              <th scope="col">Fecha Presentacion</th>
+              <th scope="col">Fecha Ingreso</th>
+              <th scope="col">Fecha Fin</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for expediente in profesionale.expedientes %}
+            <tr data-link="{{ path('expedientes_show', { 'id': expediente.id }) }}">
+              <td><a href="{{ path('expedientes_show', { 'id': expediente.id }) }}">{{ expediente.id }}</a></td>
+              <td>{{ expediente.numeroInterno }}</td>
+              <td>{{ expediente.numeroExpediente }}</td>
+              <td>{{ expediente.representanteLegal }}</td>
+              <td><abbr title="{{ expediente.profesionalCargo }}" data-length="10">{{ expediente.profesionalCargo }}</abbr></td>
+              <td>{% if expediente.fechaPresentacion %}{{ expediente.fechaPresentacion|date('Y-m-d') }}{% endif %}</td>
+              <td>{% if expediente.fechaIngreso %}{{ expediente.fechaIngreso|date('Y-m-d') }}{% endif %}</td>
+              <td>{% if expediente.fechaFin %}{{ expediente.fechaFin|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+      </div>
+    </div>
+{% endblock %}

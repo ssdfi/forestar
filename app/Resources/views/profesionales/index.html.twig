@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{parent()}} - Profesionales{% endblock %}
+{% block body %}
+<div class="row">
+  <div class="col-3">
+    <div class="card card-primary">
+      <div class="card-header bg-info text-white">
+        Buscador de Profesionales
+      </div>
+      <div class="card-body">
+      </div>
+    </div>
+  </div>
+  <div class="col-9">
+    <h4>Listado de Profesionales</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Tipo Documento</th>
+                <th scope="col">DNI</th>
+                <th scope="col">CUIT</th>
+                <th scope="col">Apellido Nombre</th>
+                <th scope="col">Email</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">Domicilio</th>
+                <th scope="col">Cp</th>
+                <th scope="col">Localidad</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for profesionale in profesionales %}
+            <tr data-link="{{ path('profesionales_show', { 'id': profesionale.id }) }}">
+                <td><a href="{{ path('profesionales_show', { 'id': profesionale.id }) }}">{{ profesionale.id }}</a></td>
+                <td>{{ profesionale.dni }}</td>
+                <td>{{ profesionale.tipoDocumento }}</td>
+                <td>{{ profesionale.cuit }}</td>
+                <td>{{ profesionale.apellidoNombre }}</td>
+                <td>{{ profesionale.emailTitular|lower }}</td>
+                <td>{{ profesionale.telefono }}</td>
+                <td>{{ profesionale.domicilio }}</td>
+                <td>{{ profesionale.cp }}</td>
+                <td>{{ profesionale.localidadId }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      {{ include('paginator/index.html.twig', {'items': profesionales}) }}
+  </div>
+</div>
+{% endblock %}
