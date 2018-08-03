@@ -1,0 +1,107 @@
+<div class="col-md-12">
+  {% for item in predios %}
+  	<div class="row">
+  		<div class="col-md-10">
+        <div class="tab-content" id="v-pills-tabContent">
+          <div class="tab-pane fade show active" id="v-pills-general{{ loop.index }}" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+            <div class="col-md-12 border">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="card border-0">
+                      <div class="card-body">
+                        <dl class="row">
+                          <dt class="col-6">Encargado</dt>
+                          <dd class="col-6">{{ item.nombreEncargado }}</dd>
+                          <dt class="col-6">Telefono</dt>
+                          <dd class="col-6">{{ item.numeroTelefono }}</dd>
+                          <dt class="col-6">Nomenclatura Catrastal</dt>
+                          <dd class="col-6">{{ item.nomenclaturaCatastral }}</dd>
+                          <dt class="col-6">Lote</dt>
+                          <dd class="col-6">{{ item.lote }}</dd>
+                          <dt class="col-6">Fracción</dt>
+                          <dd class="col-6">{{ item.fraccion }}</dd>
+                          <dt class="col-6">Parcela</dt>
+                          <dd class="col-6">{{ item.parcela }}</dd>
+                          <dt class="col-6">Matrícula</dt>
+                          <dd class="col-6">{{ item.matricula }}</dd>
+                          <dt class="col-6">Localidad</dt>
+                          <dd class="col-6">{{ item.localidad }}</dd>
+                          <dt class="col-6">Municipio</dt>
+                          <dd class="col-6">{{ item.municipio }}</dd>
+                          <dt class="col-6">Departamento</dt>
+                          <dd class="col-6">{{ item.departamento }}</dd>
+                          <dt class="col-6">Superficie Predio</dt>
+                          <dd class="col-6">{{ item.superficiePredio }}</dd>
+                          <dt class="col-6">Superficie Afectada</dt>
+                          <dd class="col-6">{{ item.superficieAfectada }}</dd>
+                        </dl>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="card border-0">
+                      <div class="card-body">
+                        <dl class="row">
+                          <dt class="col-6">Temperatura Media Anual</dt>
+                          <dd class="col-6">{{ item.temperaturaMediaAnual }}</dd>
+                          <dt class="col-6">Temperatura Máxima Absoluta</dt>
+                          <dd class="col-6">{{ item.temperaturaMaximaAbsoluta }}</dd>
+                          <dt class="col-6">Temperatura Mínima Absoluta</dt>
+                          <dd class="col-6">{{ item.temperaturaMinimaAbsoluta }}</dd>
+                          <dt class="col-6">Precipitación Media Anual</dt>
+                          <dd class="col-6">{{ item.precipitacionMediaAnual }}</dd>
+                          <dt class="col-6">Precipitaciones Mes más lluvioso</dt>
+                          <dd class="col-6">{{ item.precipitacionMesMasLluvioso }}</dd>
+                          <dt class="col-6">Conductividad Agua Riego</dt>
+                          <dd class="col-6">{{ item.conductividadAguaRiego }}</dd>
+                          <dt class="col-6">Clasificación</dt>
+                          <dd class="col-6">{{ item.clasificacion }}</dd>
+                          <dt class="col-6">Profundidad Efectiva</dt>
+                          <dd class="col-6">{{ item.profundidadEfectiva }}</dd>
+                          <dt class="col-6">Altimetría</dt>
+                          <dd class="col-6">{{ item.altimetria }}</dd>
+                          <dt class="col-6">Ph</dt>
+                          <dd class="col-6">{{ item.ph }}</dd>
+                          <dt class="col-6">Salinidad</dt>
+                          <dd class="col-6">{{ item.salinidad }}</dd>
+                          <dt class="col-6">Contenido Materia Orgánica</dt>
+                          <dd class="col-6">{{ item.contenidoMateriaOrganica }}</dd>
+                        </dl>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="v-pills-puntos-gps{{ loop.index }}" role="tabpanel" aria-labelledby="v-pills-home-tab">
+            <h4>Puntos GPS</h4>
+          </div>
+          <div class="tab-pane fade" id="v-pills-sistematizacion{{ loop.index }}" role="tabpanel" aria-labelledby="v-pills-profile-tab">...</div>
+          <div class="tab-pane fade" id="v-pills-preparacion-suelo{{ loop.index }}" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
+          <div class="tab-pane fade" id="v-pills-metodos-plantacion{{ loop.index }}" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
+          <div class="tab-pane fade" id="v-pills-materiales-plantacion{{ loop.index }}" role="tabpanel" aria-labelledby="v-pills-home-tab">...</div>
+          <div class="tab-pane fade" id="v-pills-herbicidas{{ loop.index }}" role="tabpanel" aria-labelledby="v-pills-profile-tab">...</div>
+          <div class="tab-pane fade" id="v-pills-fertilizantes{{ loop.index }}" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
+          <div class="tab-pane fade" id="v-pills-control-malezas{{ loop.index }}" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
+          <div class="tab-pane fade" id="v-pills-control-plagas{{ loop.index }}" role="tabpanel" aria-labelledby="v-pills-home-tab">...</div>
+          <div class="tab-pane fade" id="v-pills-migracion{{ loop.index }}" role="tabpanel" aria-labelledby="v-pills-profile-tab">...m</div>
+        </div>
+  		</div>
+      <div class="col-md-2">
+        <div class="nav flex-column nav-pills border border-secondary" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-general{{ loop.index }}" role="tab" aria-controls="v-pills-home" aria-selected="true">General</a>
+          <a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-puntos-gps{{ loop.index }}" role="tab" aria-controls="v-pills-home" aria-selected="true">Puntos GPS</a>
+          <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-sistematizacion{{ loop.index }}" role="tab" aria-controls="v-pills-profile" aria-selected="false">Sistematización</a>
+          <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-preparacion-suelo{{ loop.index }}" role="tab" aria-controls="v-pills-messages" aria-selected="false">Preparación del suelo</a>
+          <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-metodos-plantacion{{ loop.index }}" role="tab" aria-controls="v-pills-settings" aria-selected="false">Métodos de Plantación</a>
+          <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-materiales-plantacion{{ loop.index }}" role="tab" aria-controls="v-pills-settings" aria-selected="false">Materiales de plantación</a>
+          <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-herbicidas{{ loop.index }}" role="tab" aria-controls="v-pills-settings" aria-selected="false">Herbicidas</a>
+          <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-fertilizantes{{ loop.index }}" role="tab" aria-controls="v-pills-settings" aria-selected="false">Fertilizantes</a>
+          <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-control-malezas{{ loop.index }}" role="tab" aria-controls="v-pills-settings" aria-selected="false">Control de malezas</a>
+          <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-control-plagas{{ loop.index }}" role="tab" aria-controls="v-pills-settings" aria-selected="false">Control de plagas</a>
+          <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-migracion{{ loop.index }}" role="tab" aria-controls="v-pills-settings" aria-selected="false">Datos de Migración</a>
+        </div>
+      </div>
+  	</div>
+  {% endfor %}
+</div>
