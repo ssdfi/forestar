@@ -75,6 +75,7 @@ class ExpedientesType extends AbstractType
           ->add('areaEncuentraExpediente')
           ->add('departamento')
           ->add('anio')
+          ->add('solicitaAdelanto')
           ->add('actividadesPresentadas', CollectionType::class, array(
                 'entry_type'    => ActividadesPresentadasType::class,
                 'allow_add'     => true,
