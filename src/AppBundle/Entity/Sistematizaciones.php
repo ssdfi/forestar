@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * SistematizacionesPredios
  *
- * @ORM\Table(name="sistematizaciones_predios")
+ * @ORM\Table(name="sistematizaciones")
  * @ORM\Entity
  */
-class SistematizacionesPredios
+class Sistematizaciones
 {
     /**
      * @var integer
@@ -23,16 +23,19 @@ class SistematizacionesPredios
     private $id;
 
     /**
-     * @var integer
+     * @var \tipoSistematizacion
      *
-     * @ORM\Column(name="sistematizacion_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposSistematizaciones")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="sistematizacion_id", referencedColumnName="id")
+     * })
      */
-    private $sistematizacion;
+    private $tipoSistematizacion;
 
     /**
      * @var \Departamento
      *
-     * @ORM\ManyToOne(targetEntity="Predios")
+     * @ORM\ManyToOne(targetEntity="Predios", inversedBy="sistematizaciones")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="predio_id", referencedColumnName="id")
      * })
@@ -61,13 +64,13 @@ class SistematizacionesPredios
     /**
      * Set sistematizacion
      *
-     * @param integer $sistematizacion
+     * @param integer $tipoSistematizacion
      *
      * @return SistematizacionesPredios
      */
-    public function setSistematizacion($sistematizacion)
+    public function setTipoSistematizacion($tipoSistematizacion)
     {
-        $this->sistematizacion = $sistematizacion;
+        $this->tipoSistematizacion = $tipoSistematizacion;
 
         return $this;
     }
@@ -77,9 +80,9 @@ class SistematizacionesPredios
      *
      * @return integer
      */
-    public function getSistematizacion()
+    public function getTipoSistematizacion()
     {
-        return $this->sistematizacion;
+        return $this->tipoSistematizacion;
     }
 
     /**

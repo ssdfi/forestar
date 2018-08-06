@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * MalezasPredios
  *
- * @ORM\Table(name="malezas_predios")
+ * @ORM\Table(name="control_malezas")
  * @ORM\Entity
  */
-class MalezasPredios
+class ControlMalezas
 {
     /**
      * @var integer
@@ -23,11 +23,14 @@ class MalezasPredios
     private $id;
 
     /**
-     * @var integer
+     * @var \Predio
      *
-     * @ORM\Column(name="predio_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Predios", inversedBy="controlMalezas")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="predio_id", referencedColumnName="id")
+     * })
      */
-    private $predioId;
+    private $predio;
 
     /**
      * @var string
@@ -58,11 +61,14 @@ class MalezasPredios
     private $dosis;
 
     /**
-     * @var integer
+     * @var \tipoSistematizacion
      *
-     * @ORM\Column(name="control_malezas_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposControlMalezas")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="control_malezas_id", referencedColumnName="id")
+     * })
      */
-    private $controlMalezasId;
+    private $tipoControlMalezas;
 
     /**
      * @var string
@@ -84,27 +90,27 @@ class MalezasPredios
     }
 
     /**
-     * Set predioId
+     * Set predio
      *
-     * @param integer $predioId
+     * @param integer $predio
      *
      * @return MalezasPredios
      */
-    public function setPredioId($predioId)
+    public function setPredio($predio)
     {
-        $this->predioId = $predioId;
+        $this->predio = $predio;
 
         return $this;
     }
 
     /**
-     * Get predioId
+     * Get predio
      *
      * @return integer
      */
-    public function getPredioId()
+    public function getPredio()
     {
-        return $this->predioId;
+        return $this->predio;
     }
 
     /**
@@ -204,27 +210,27 @@ class MalezasPredios
     }
 
     /**
-     * Set controlMalezasId
+     * Set tipoControlMalezas
      *
-     * @param integer $controlMalezasId
+     * @param integer $tipoControlMalezas
      *
      * @return MalezasPredios
      */
-    public function setControlMalezasId($controlMalezasId)
+    public function setTipoControlMalezas($tipoControlMalezas)
     {
-        $this->controlMalezasId = $controlMalezasId;
+        $this->tipoControlMalezas = $tipoControlMalezas;
 
         return $this;
     }
 
     /**
-     * Get controlMalezasId
+     * Get tipoControlMalezas
      *
      * @return integer
      */
-    public function getControlMalezasId()
+    public function getTipoControlMalezas()
     {
-        return $this->controlMalezasId;
+        return $this->tipoControlMalezas;
     }
 
     /**

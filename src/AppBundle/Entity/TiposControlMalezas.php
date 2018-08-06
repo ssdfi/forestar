@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * TiposMalezas
  *
- * @ORM\Table(name="tipos_malezas")
+ * @ORM\Table(name="tipos_control_malezas")
  * @ORM\Entity
  */
-class TiposMalezas
+class TiposControlMalezas
 {
     /**
      * @var integer
@@ -63,5 +63,9 @@ class TiposMalezas
     public function getDescripcion()
     {
         return $this->descripcion;
+    }
+
+    public function __toString(){
+      return $this->descripcion;
     }
 }

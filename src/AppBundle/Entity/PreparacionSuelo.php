@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * PreparacionSueloPredios
  *
- * @ORM\Table(name="preparacion_suelo_predios")
+ * @ORM\Table(name="preparacion_suelo")
  * @ORM\Entity
  */
-class PreparacionSueloPredios
+class PreparacionSuelo
 {
     /**
      * @var integer
@@ -23,18 +23,24 @@ class PreparacionSueloPredios
     private $id;
 
     /**
-     * @var integer
+     * @var \TiposPreparacionSuelo
      *
-     * @ORM\Column(name="preparacion_suelo_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposPreparacionSuelo")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="preparacion_suelo_id", referencedColumnName="id")
+     * })
      */
-    private $preparacionSueloId;
+    private $tipoPreparacionSuelo;
 
     /**
-     * @var integer
+     * @var \Predio
      *
-     * @ORM\Column(name="predio_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Predios", inversedBy="preparacionesSuelo")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="predio_id", referencedColumnName="id")
+     * })
      */
-    private $predioId;
+    private $predio;
 
     /**
      * @var string
@@ -56,51 +62,51 @@ class PreparacionSueloPredios
     }
 
     /**
-     * Set preparacionSueloId
+     * Set TipoPreparacionSuelo
      *
-     * @param integer $preparacionSueloId
+     * @param integer $tipoTipoPreparacionSuelo
      *
-     * @return PreparacionSueloPredios
+     * @return TipoPreparacionSueloPredios
      */
-    public function setPreparacionSueloId($preparacionSueloId)
+    public function setTipoPreparacionSuelo($tipoPreparacionSuelo)
     {
-        $this->preparacionSueloId = $preparacionSueloId;
+        $this->tipoPreparacionSuelo = $tipoPreparacionSuelo;
 
         return $this;
     }
 
     /**
-     * Get preparacionSueloId
+     * Get preparacionSuelo
      *
      * @return integer
      */
-    public function getPreparacionSueloId()
+    public function getTipoPreparacionSuelo()
     {
-        return $this->preparacionSueloId;
+        return $this->tipoPreparacionSuelo;
     }
 
     /**
-     * Set predioId
+     * Set predio
      *
-     * @param integer $predioId
+     * @param integer $predio
      *
      * @return PreparacionSueloPredios
      */
-    public function setPredioId($predioId)
+    public function setPredio($predio)
     {
-        $this->predioId = $predioId;
+        $this->predio = $predio;
 
         return $this;
     }
 
     /**
-     * Get predioId
+     * Get predio
      *
      * @return integer
      */
-    public function getPredioId()
+    public function getPredio()
     {
-        return $this->predioId;
+        return $this->predio;
     }
 
     /**

@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * PlantacionesPredios
  *
- * @ORM\Table(name="plantaciones_predios")
+ * @ORM\Table(name="metodos_plantaciones")
  * @ORM\Entity
  */
-class PlantacionesPredios
+class MetodosPlantaciones
 {
     /**
      * @var integer
@@ -23,18 +23,24 @@ class PlantacionesPredios
     private $id;
 
     /**
-     * @var integer
+     * @var \Predio
      *
-     * @ORM\Column(name="predio_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Predios", inversedBy="metodosPlantaciones")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="predio_id", referencedColumnName="id")
+     * })
      */
-    private $predioId;
+    private $predio;
 
     /**
-     * @var integer
+     * @var \tipoSistematizacion
      *
-     * @ORM\Column(name="metodo_plantacion_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposMetodosPlantacion")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="metodo_plantacion_id", referencedColumnName="id")
+     * })
      */
-    private $metodoPlantacionId;
+    private $tipoMetodoPlantacion;
 
     /**
      * @var string
@@ -56,51 +62,51 @@ class PlantacionesPredios
     }
 
     /**
-     * Set predioId
+     * Set predio
      *
-     * @param integer $predioId
+     * @param integer $predio
      *
      * @return PlantacionesPredios
      */
-    public function setPredioId($predioId)
+    public function setPredio($predio)
     {
-        $this->predioId = $predioId;
+        $this->predio = $predio;
 
         return $this;
     }
 
     /**
-     * Get predioId
+     * Get predio
      *
      * @return integer
      */
-    public function getPredioId()
+    public function getPredio()
     {
-        return $this->predioId;
+        return $this->predio;
     }
 
     /**
-     * Set metodoPlantacionId
+     * Set metodoPlantacion
      *
-     * @param integer $metodoPlantacionId
+     * @param integer $tipoMetodoPlantacion
      *
      * @return PlantacionesPredios
      */
-    public function setMetodoPlantacionId($metodoPlantacionId)
+    public function setTipoMetodoPlantacion($tipoMetodoPlantacion)
     {
-        $this->metodoPlantacionId = $metodoPlantacionId;
+        $this->tipoMetodoPlantacion = $tipoMetodoPlantacion;
 
         return $this;
     }
 
     /**
-     * Get metodoPlantacionId
+     * Get metodoPlantacion
      *
      * @return integer
      */
-    public function getMetodoPlantacionId()
+    public function getTipoMetodoPlantacion()
     {
-        return $this->metodoPlantacionId;
+        return $this->tipoMetodoPlantacion;
     }
 
     /**

@@ -33,18 +33,24 @@ class ActividadesAprobadas
     private $tipoActividad;
 
     /**
-     * @var integer
+     * @var \Expedientes
      *
-     * @ORM\Column(name="expediente_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="actividadesAprobadas")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="expediente_id", referencedColumnName="id")
+     * })
      */
     private $expediente;
 
     /**
-     * @var integer
+     * @var \Especie
      *
-     * @ORM\Column(name="especie_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Especies")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="especie_id", referencedColumnName="id")
+     * })
      */
-    private $especieId;
+    private $especie;
 
     /**
      * @var integer
@@ -82,11 +88,14 @@ class ActividadesAprobadas
     private $observaciones;
 
     /**
-     * @var integer
+     * @var \Departamentos
      *
-     * @ORM\Column(name="departamento_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Departamentos")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="departamento_id", referencedColumnName="id")
+     * })
      */
-    private $departamentoId;
+    private $departamento;
 
 
 
@@ -154,27 +163,27 @@ class ActividadesAprobadas
     }
 
     /**
-     * Set especieId
+     * Set especie
      *
-     * @param integer $especieId
+     * @param integer $especie
      *
      * @return ActividadesAprobadas
      */
-    public function setEspecieId($especieId)
+    public function setEspecie($especie)
     {
-        $this->especieId = $especieId;
+        $this->especie = $especie;
 
         return $this;
     }
 
     /**
-     * Get especieId
+     * Get especie
      *
      * @return integer
      */
-    public function getEspecieId()
+    public function getEspecie()
     {
-        return $this->especieId;
+        return $this->especie;
     }
 
     /**
@@ -298,26 +307,26 @@ class ActividadesAprobadas
     }
 
     /**
-     * Set departamentoId
+     * Set departamento
      *
-     * @param integer $departamentoId
+     * @param integer $departamento
      *
      * @return ActividadesAprobadas
      */
-    public function setDepartamentoId($departamentoId)
+    public function setDepartamento($departamento)
     {
-        $this->departamentoId = $departamentoId;
+        $this->departamento = $departamento;
 
         return $this;
     }
 
     /**
-     * Get departamentoId
+     * Get departamento
      *
      * @return integer
      */
-    public function getDepartamentoId()
+    public function getDepartamento()
     {
-        return $this->departamentoId;
+        return $this->departamento;
     }
 }

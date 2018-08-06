@@ -224,7 +224,64 @@ class Predios
      */
     private $idExternoPredio;
 
+    /**
+    * One Predio has Many Sistematizaciones.
+    * @ORM\OneToMany(targetEntity="Sistematizaciones", mappedBy="predio", cascade={"persist"}, orphanRemoval=true)
+    */
+    private $sistematizaciones;
 
+    /**
+    * One Predio has Many PreparacionesSuelo.
+    * @ORM\OneToMany(targetEntity="PreparacionSuelo", mappedBy="predio", cascade={"persist"}, orphanRemoval=true)
+    */
+    private $preparacionesSuelo;
+
+    /**
+    * One Predio has Many MetodosPlantaciones.
+    * @ORM\OneToMany(targetEntity="MetodosPlantaciones", mappedBy="predio", cascade={"persist"}, orphanRemoval=true)
+    */
+    private $metodosPlantaciones;
+
+    /**
+    * One Predio has Many MaterialesPlantaciones.
+    * @ORM\OneToMany(targetEntity="MaterialesPlantaciones", mappedBy="predio", cascade={"persist"}, orphanRemoval=true)
+    */
+    private $materialesPlantaciones;
+
+    /**
+    * One Predio has Many Herbicidas.
+    * @ORM\OneToMany(targetEntity="Herbicidas", mappedBy="predio", cascade={"persist"}, orphanRemoval=true)
+    */
+    private $herbicidas;
+
+    /**
+    * One Predio has Many Fertilizantes.
+    * @ORM\OneToMany(targetEntity="Fertilizantes", mappedBy="predio", cascade={"persist"}, orphanRemoval=true)
+    */
+    private $fertilizantes;
+
+    /**
+    * One Predio has Many ControlMalezas.
+    * @ORM\OneToMany(targetEntity="ControlMalezas", mappedBy="predio", cascade={"persist"}, orphanRemoval=true)
+    */
+    private $controlMalezas;
+
+    /**
+    * One Predio has Many ControlPlagas.
+    * @ORM\OneToMany(targetEntity="ControlPlagas", mappedBy="predio", cascade={"persist"}, orphanRemoval=true)
+    */
+    private $controlPlagas;
+
+    public function __construct(){
+      $this->sistematizaciones = new ArrayCollection();
+      $this->preparacionesSuelo = new ArrayCollection();
+      $this->metodosPlantaciones = new ArrayCollection();
+      $this->materialesPlantaciones = new ArrayCollection();
+      $this->herbicidas = new ArrayCollection();
+      $this->fertilizantes = new ArrayCollection();
+      $this->controlMalezas = new ArrayCollection();
+      $this->controlPlagas = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -906,5 +963,189 @@ class Predios
     public function getIdExternoPredio()
     {
         return $this->idExternoPredio;
+    }
+
+    public function getSistematizaciones()
+    {
+        return $this->sistematizaciones;
+    }
+
+    public function addSistematizacion($ap)
+    {
+        if (true === $this->sistematizaciones->contains($ap)) {
+           return;
+       }
+       $this->sistematizaciones[] = $ap;
+       $ap->addPredio($this);
+
+    }
+
+    public function removeSistematizacion($ap)
+    {
+      if (false === $this->sistematizaciones->contains($ap)) {
+           return;
+       }
+       $this->sistematizaciones->removeElement($ap);
+    }
+
+    public function getPreparacionesSuelo()
+    {
+        return $this->preparacionesSuelo;
+    }
+
+    public function addPreparacionesSuelo($ap)
+    {
+        if (true === $this->preparacionesSuelo->contains($ap)) {
+           return;
+       }
+       $this->preparacionesSuelo[] = $ap;
+       $ap->addPredio($this);
+
+    }
+
+    public function removePreparacionesSuelo($ap)
+    {
+      if (false === $this->preparacionesSuelo->contains($ap)) {
+           return;
+       }
+       $this->preparacionesSuelo->removeElement($ap);
+    }
+
+    public function getMetodosPlantaciones()
+    {
+        return $this->metodosPlantaciones;
+    }
+
+    public function addMetodosPlantacion($ap)
+    {
+        if (true === $this->metodosPlantaciones->contains($ap)) {
+           return;
+       }
+       $this->metodosPlantaciones[] = $ap;
+       $ap->addPredio($this);
+
+    }
+
+    public function removeMetodosPlantacion($ap)
+    {
+      if (false === $this->metodosPlantaciones->contains($ap)) {
+           return;
+       }
+       $this->metodosPlantaciones->removeElement($ap);
+    }
+
+    public function getMaterialesPlantaciones()
+    {
+        return $this->materialesPlantaciones;
+    }
+
+    public function addMaterialesPlantacion($ap)
+    {
+        if (true === $this->materialesPlantaciones->contains($ap)) {
+           return;
+       }
+       $this->materialesPlantaciones[] = $ap;
+       $ap->addPredio($this);
+
+    }
+
+    public function removeMaterialesPlantacion($ap)
+    {
+      if (false === $this->materialesPlantaciones->contains($ap)) {
+           return;
+       }
+       $this->materialesPlantaciones->removeElement($ap);
+    }
+
+    public function getHerbicidas()
+    {
+        return $this->herbicidas;
+    }
+
+    public function addHerbicida($ap)
+    {
+        if (true === $this->herbicidas->contains($ap)) {
+           return;
+       }
+       $this->herbicidas[] = $ap;
+       $ap->addPredio($this);
+
+    }
+
+    public function removeHerbicida($ap)
+    {
+      if (false === $this->herbicidas->contains($ap)) {
+           return;
+       }
+       $this->herbicidas->removeElement($ap);
+    }
+
+    public function getFertilizantes()
+    {
+        return $this->fertilizantes;
+    }
+
+    public function addFertilizante($ap)
+    {
+        if (true === $this->fertilizantes->contains($ap)) {
+           return;
+       }
+       $this->fertilizantes[] = $ap;
+       $ap->addPredio($this);
+
+    }
+
+    public function removeFertilizante($ap)
+    {
+      if (false === $this->fertilizantes->contains($ap)) {
+           return;
+       }
+       $this->fertilizantes->removeElement($ap);
+    }
+
+    public function getControlMalezas()
+    {
+        return $this->controlMalezas;
+    }
+
+    public function addControlMalezas($ap)
+    {
+        if (true === $this->controlMalezas->contains($ap)) {
+           return;
+       }
+       $this->controlMalezas[] = $ap;
+       $ap->addPredio($this);
+
+    }
+
+    public function removeControlMalezas($ap)
+    {
+      if (false === $this->controlMalezas->contains($ap)) {
+           return;
+       }
+       $this->controlMalezas->removeElement($ap);
+    }
+
+    public function getControlPlagas()
+    {
+        return $this->controlPlagas;
+    }
+
+    public function addControlPlagas($ap)
+    {
+        if (true === $this->controlPlagas->contains($ap)) {
+           return;
+       }
+       $this->controlPlagas[] = $ap;
+       $ap->addPredio($this);
+
+    }
+
+    public function removeControlPlagas($ap)
+    {
+      if (false === $this->controlPlagas->contains($ap)) {
+           return;
+       }
+       $this->controlPlagas->removeElement($ap);
     }
 }

@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Fertilizantes
+ * FertilizantesPredios
  *
  * @ORM\Table(name="fertilizantes")
  * @ORM\Entity
@@ -15,53 +15,211 @@ class Fertilizantes
     /**
      * @var integer
      *
-     * @ORM\Column(name="fer_id", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="fertilizantes_fer_id_seq", allocationSize=1, initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="fertilizantes_predios_id_seq", allocationSize=1, initialValue=1)
      */
-    private $ferId;
+    private $id;
+
+    /**
+     * @var \Predio
+     *
+     * @ORM\ManyToOne(targetEntity="Predios", inversedBy="fertilizantes")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="predio_id", referencedColumnName="id")
+     * })
+     */
+    private $predio;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="fer_nom", type="string", length=100, nullable=true)
+     * @ORM\Column(name="nombre_producto", type="string", length=100, nullable=true)
      */
-    private $ferNom;
+    private $nombreProducto;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="dosis", type="string", length=100, nullable=true)
+     */
+    private $dosis;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="esquema_aplicacion", type="string", length=100, nullable=true)
+     */
+    private $esquemaAplicacion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="periodo_actividad", type="string", length=100, nullable=true)
+     */
+    private $periodoActividad;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="proporcion", type="string", length=100, nullable=true)
+     */
+    private $proporcion;
 
 
 
     /**
-     * Get ferId
+     * Get id
      *
      * @return integer
      */
-    public function getFerId()
+    public function getId()
     {
-        return $this->ferId;
+        return $this->id;
     }
 
     /**
-     * Set ferNom
+     * Set predio
      *
-     * @param string $ferNom
+     * @param integer $predio
      *
-     * @return Fertilizantes
+     * @return FertilizantesPredios
      */
-    public function setFerNom($ferNom)
+    public function setPredio($predio)
     {
-        $this->ferNom = $ferNom;
+        $this->predio = $predio;
 
         return $this;
     }
 
     /**
-     * Get ferNom
+     * Get predio
+     *
+     * @return integer
+     */
+    public function getPredio()
+    {
+        return $this->predio;
+    }
+
+    /**
+     * Set nombreProducto
+     *
+     * @param string $nombreProducto
+     *
+     * @return FertilizantesPredios
+     */
+    public function setNombreProducto($nombreProducto)
+    {
+        $this->nombreProducto = $nombreProducto;
+
+        return $this;
+    }
+
+    /**
+     * Get nombreProducto
      *
      * @return string
      */
-    public function getFerNom()
+    public function getNombreProducto()
     {
-        return $this->ferNom;
+        return $this->nombreProducto;
+    }
+
+    /**
+     * Set dosis
+     *
+     * @param string $dosis
+     *
+     * @return FertilizantesPredios
+     */
+    public function setDosis($dosis)
+    {
+        $this->dosis = $dosis;
+
+        return $this;
+    }
+
+    /**
+     * Get dosis
+     *
+     * @return string
+     */
+    public function getDosis()
+    {
+        return $this->dosis;
+    }
+
+    /**
+     * Set esquemaAplicacion
+     *
+     * @param string $esquemaAplicacion
+     *
+     * @return FertilizantesPredios
+     */
+    public function setEsquemaAplicacion($esquemaAplicacion)
+    {
+        $this->esquemaAplicacion = $esquemaAplicacion;
+
+        return $this;
+    }
+
+    /**
+     * Get esquemaAplicacion
+     *
+     * @return string
+     */
+    public function getEsquemaAplicacion()
+    {
+        return $this->esquemaAplicacion;
+    }
+
+    /**
+     * Set periodoActividad
+     *
+     * @param string $periodoActividad
+     *
+     * @return FertilizantesPredios
+     */
+    public function setPeriodoActividad($periodoActividad)
+    {
+        $this->periodoActividad = $periodoActividad;
+
+        return $this;
+    }
+
+    /**
+     * Get periodoActividad
+     *
+     * @return string
+     */
+    public function getPeriodoActividad()
+    {
+        return $this->periodoActividad;
+    }
+
+    /**
+     * Set proporcion
+     *
+     * @param string $proporcion
+     *
+     * @return FertilizantesPredios
+     */
+    public function setProporcion($proporcion)
+    {
+        $this->proporcion = $proporcion;
+
+        return $this;
+    }
+
+    /**
+     * Get proporcion
+     *
+     * @return string
+     */
+    public function getProporcion()
+    {
+        return $this->proporcion;
     }
 }

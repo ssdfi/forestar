@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * PlagasPredios
  *
- * @ORM\Table(name="plagas_predios")
+ * @ORM\Table(name="control_plagas")
  * @ORM\Entity
  */
-class PlagasPredios
+class ControlPlagas
 {
     /**
      * @var integer
@@ -23,11 +23,14 @@ class PlagasPredios
     private $id;
 
     /**
-     * @var integer
+     * @var \Predio
      *
-     * @ORM\Column(name="predio_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Predios", inversedBy="controlPlagas")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="predio_id", referencedColumnName="id")
+     * })
      */
-    private $predioId;
+    private $predio;
 
     /**
      * @var string
@@ -84,27 +87,27 @@ class PlagasPredios
     }
 
     /**
-     * Set predioId
+     * Set predio
      *
-     * @param integer $predioId
+     * @param integer $predio
      *
      * @return PlagasPredios
      */
-    public function setPredioId($predioId)
+    public function setPredio($predio)
     {
-        $this->predioId = $predioId;
+        $this->predio = $predio;
 
         return $this;
     }
 
     /**
-     * Get predioId
+     * Get predio
      *
      * @return integer
      */
-    public function getPredioId()
+    public function getPredio()
     {
-        return $this->predioId;
+        return $this->predio;
     }
 
     /**

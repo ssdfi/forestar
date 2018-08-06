@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * TiposPlantacion
  *
- * @ORM\Table(name="tipos_plantacion")
+ * @ORM\Table(name="tipos_metodos_plantacion")
  * @ORM\Entity
  */
-class TiposPlantacion
+class TiposMetodosPlantacion
 {
     /**
      * @var integer
@@ -63,5 +63,9 @@ class TiposPlantacion
     public function getNombre()
     {
         return $this->nombre;
+    }
+
+    public function __toString(){
+      return $this->nombre;
     }
 }

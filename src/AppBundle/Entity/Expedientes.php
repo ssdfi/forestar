@@ -272,11 +272,17 @@ class Expedientes
      */
     private $actividadesInspeccionadas;
 
-      /**
-      * One Expediente has Many ActividadesSig.
-      * @ORM\OneToMany(targetEntity="ActividadesSig", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
-      */
+    /**
+    * One Expediente has Many ActividadesSig.
+    * @ORM\OneToMany(targetEntity="ActividadesSig", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
+    */
     private $actividadesSig;
+
+    /**
+    * One Expediente has Many ActividadesAprobadas.
+    * @ORM\OneToMany(targetEntity="ActividadesAprobadas", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
+    */
+    private $actividadesAprobadas;
 
      /**
      * One Expediente has Many Documentacion.
@@ -381,6 +387,7 @@ class Expedientes
       $this->titulares = new ArrayCollection();
       $this->cobroBeneficios = new ArrayCollection();
       $this->predios = new ArrayCollection();
+      $this->actividadesAprobadas = new ArrayCollection();
     }
 
     /**
@@ -1094,7 +1101,29 @@ class Expedientes
            return;
        }
        $this->actividadesInspeccionadas->removeElement($ap);
-      //  $ap->removeExpediente($this);
+    }
+
+    public function getActividadesAprobadas()
+    {
+        return $this->actividadesAprobadas;
+    }
+
+    public function addActividadesAprobada($ap)
+    {
+        if (true === $this->actividadesAprobadas->contains($ap)) {
+           return;
+       }
+       $this->actividadesAprobadas[] = $ap;
+       $ap->addExpediente($this);
+
+    }
+
+    public function removeActividadesAprobada($ap)
+    {
+      if (false === $this->actividadesAprobadas->contains($ap)) {
+           return;
+       }
+       $this->actividadesAprobadas->removeElement($ap);
     }
 
     public function getDocumentacion()

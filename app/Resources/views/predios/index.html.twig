@@ -75,15 +75,199 @@
                 </div>
             </div>
           </div>
-          <div class="tab-pane fade" id="v-pills-sistematizacion{{ loop.index }}" role="tabpanel" aria-labelledby="v-pills-profile-tab">...</div>
-          <div class="tab-pane fade" id="v-pills-preparacion-suelo{{ loop.index }}" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
-          <div class="tab-pane fade" id="v-pills-metodos-plantacion{{ loop.index }}" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
-          <div class="tab-pane fade" id="v-pills-materiales-plantacion{{ loop.index }}" role="tabpanel" aria-labelledby="v-pills-home-tab">...</div>
-          <div class="tab-pane fade" id="v-pills-herbicidas{{ loop.index }}" role="tabpanel" aria-labelledby="v-pills-profile-tab">...</div>
-          <div class="tab-pane fade" id="v-pills-fertilizantes{{ loop.index }}" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
-          <div class="tab-pane fade" id="v-pills-control-malezas{{ loop.index }}" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
-          <div class="tab-pane fade" id="v-pills-control-plagas{{ loop.index }}" role="tabpanel" aria-labelledby="v-pills-home-tab">...</div>
-          <div class="tab-pane fade" id="v-pills-migracion{{ loop.index }}" role="tabpanel" aria-labelledby="v-pills-profile-tab">...m</div>
+          <div class="tab-pane fade" id="v-pills-sistematizacion{{ loop.index }}" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                  {% for item in expediente.predios %}
+                      {% for sistematizacion in item.sistematizaciones %}
+                        <div class="col-md-6 border">
+                          <dl class="row">
+                            <dt class="col-6">Tipo Sistematización</dt>
+                            <dd class="col-6">{{ sistematizacion.tipoSistematizacion }}</dd>
+                            <dt class="col-6">Observación</dt>
+                            <dd class="col-6">{{ sistematizacion.observacion }}</dd>
+                          </dl>
+                        </div>
+                      {% endfor %}
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="v-pills-preparacion-suelo{{ loop.index }}" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                  {% for item in expediente.predios %}
+                      {% for preparacionSuelo in item.preparacionesSuelo %}
+                        <div class="col-md-6 border">
+                          <dl class="row">
+                            <dt class="col-6">Tipo Preparación del Suelo</dt>
+                            <dd class="col-6">{{ preparacionSuelo.tipoPreparacionSuelo }}</dd>
+                            <dt class="col-6">Observación</dt>
+                            <dd class="col-6">{{ preparacionSuelo.observacion }}</dd>
+                          </dl>
+                        </div>
+                      {% endfor %}
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="v-pills-metodos-plantacion{{ loop.index }}" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                  {% for item in expediente.predios %}
+                      {% for metodoPlantacion in item.metodosPlantaciones %}
+                        <div class="col-md-6 border">
+                          <dl class="row">
+                            <dt class="col-6">Tipo Preparación del Suelo</dt>
+                            <dd class="col-6">{{ metodoPlantacion.tipoMetodoPlantacion }}</dd>
+                            <dt class="col-6">Observación</dt>
+                            <dd class="col-6">{{ metodoPlantacion.observacion }}</dd>
+                          </dl>
+                        </div>
+                      {% endfor %}
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="v-pills-materiales-plantacion{{ loop.index }}" role="tabpanel" aria-labelledby="v-pills-home-tab">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                  {% for item in expediente.predios %}
+                      {% for materialPlantacion in item.materialesPlantaciones %}
+                        <div class="col-md-6 border">
+                          <dl class="row">
+                            <dt class="col-6">Tipo Preparación del Suelo</dt>
+                            <dd class="col-6">{{ materialPlantacion.tipoMaterialPlantacion }}</dd>
+                            <dt class="col-6">Oservación</dt>
+                            <dd class="col-6">{{ materialPlantacion.observacion }}</dd>
+                          </dl>
+                        </div>
+                      {% endfor %}
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="v-pills-herbicidas{{ loop.index }}" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                  {% for item in expediente.predios %}
+                      {% for herbicida in item.herbicidas %}
+                        <div class="col-md-6 border">
+                          <dl class="row">
+                            <dt class="col-6">Nombre</dt>
+                            <dd class="col-6">{{ herbicida.nombre }}</dd>
+                            <dt class="col-6">Principio Activo</dt>
+                            <dd class="col-6">{{ herbicida.principioActivo }}</dd>
+                            <dt class="col-6">Esquema Aplicación</dt>
+                            <dd class="col-6">{{ herbicida.esquemaAplicacion }}</dd>
+                            <dt class="col-6">Acción</dt>
+                            <dd class="col-6">{{ herbicida.accion }}</dd>
+                            <dt class="col-6">Dosis</dt>
+                            <dd class="col-6">{{ herbicida.dosis }}</dd>
+                            <dt class="col-6">Período Realización</dt>
+                            <dd class="col-6">{{ herbicida.periodoRealizacion }}</dd>
+                          </dl>
+                        </div>
+                      {% endfor %}
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="v-pills-fertilizantes{{ loop.index }}" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                  {% for item in expediente.predios %}
+                      {% for fertilizante in item.fertilizantes %}
+                        <div class="col-md-6 border">
+                          <dl class="row">
+                            <dt class="col-6">Nombre Producto</dt>
+                            <dd class="col-6">{{ fertilizante.nombreProducto }}</dd>
+                            <dt class="col-6">Dosis</dt>
+                            <dd class="col-6">{{ fertilizante.dosis }}</dd>
+                            <dt class="col-6">Esquema Aplicación</dt>
+                            <dd class="col-6">{{ fertilizante.esquemaAplicacion }}</dd>
+                            <dt class="col-6">Período Actividad</dt>
+                            <dd class="col-6">{{ fertilizante.periodoActividad }}</dd>
+                            <dt class="col-6">Proporción</dt>
+                            <dd class="col-6">{{ fertilizante.proporcion }}</dd>
+                          </dl>
+                        </div>
+                      {% endfor %}
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="v-pills-control-malezas{{ loop.index }}" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                  {% for item in expediente.predios %}
+                      {% for controlMaleza in item.controlMalezas %}
+                        <div class="col-md-6 border">
+                          <dl class="row">
+                            <dt class="col-6">Nombre Producto</dt>
+                            <dd class="col-6">{{ controlMaleza.nombreProducto }}</dd>
+                            <dt class="col-6">Acción</dt>
+                            <dd class="col-6">{{ controlMaleza.accion }}</dd>
+                            <dt class="col-6">Principio Activo</dt>
+                            <dd class="col-6">{{ controlMaleza.principioActivo }}</dd>
+                            <dt class="col-6">Dosis</dt>
+                            <dd class="col-6">{{ controlMaleza.dosis }}</dd>
+                            <dt class="col-6">Tipo Control Malezas</dt>
+                            <dd class="col-6">{{ controlMaleza.tipoControlMalezas }}</dd>
+                            <dt class="col-6">Período</dt>
+                            <dd class="col-6">{{ controlMaleza.periodo }}</dd>
+                          </dl>
+                        </div>
+                      {% endfor %}
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="v-pills-control-plagas{{ loop.index }}" role="tabpanel" aria-labelledby="v-pills-home-tab">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                  {% for item in expediente.predios %}
+                      {% for controlPlaga in item.controlPlagas %}
+                        <div class="col-md-6 border">
+                          <dl class="row">
+                            <dt class="col-6">Nombre</dt>
+                            <dd class="col-6">{{ controlPlaga.nombre }}</dd>
+                            <dt class="col-6">Principio Activo</dt>
+                            <dd class="col-6">{{ controlPlaga.principioActivo }}</dd>
+                            <dt class="col-6">Acción</dt>
+                            <dd class="col-6">{{ controlPlaga.accion }}</dd>
+                            <dt class="col-6">Nombre Plaga</dt>
+                            <dd class="col-6">{{ controlPlaga.nombrePlaga }}</dd>
+                            <dt class="col-6">Período</dt>
+                            <dd class="col-6">{{ controlPlaga.periodo }}</dd>
+                            <dt class="col-6">Dosis</dt>
+                            <dd class="col-6">{{ controlPlaga.dosis }}</dd>
+                          </dl>
+                        </div>
+                      {% endfor %}
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="v-pills-migracion{{ loop.index }}" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+            Datos Migración
+          </div>
         </div>
   		</div>
       <div class="col-md-2">

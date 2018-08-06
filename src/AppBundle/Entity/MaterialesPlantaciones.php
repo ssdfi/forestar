@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * MaterialesPredios
  *
- * @ORM\Table(name="materiales_predios")
+ * @ORM\Table(name="materiales_plantaciones")
  * @ORM\Entity
  */
-class MaterialesPredios
+class MaterialesPlantaciones
 {
     /**
      * @var integer
@@ -23,18 +23,24 @@ class MaterialesPredios
     private $id;
 
     /**
-     * @var integer
+     * @var \Predio
      *
-     * @ORM\Column(name="predio_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Predios", inversedBy="materialesPlantaciones")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="predio_id", referencedColumnName="id")
+     * })
      */
-    private $predioId;
+    private $predio;
 
     /**
-     * @var integer
+     * @var \tipoSistematizacion
      *
-     * @ORM\Column(name="tipo_material_plantacion_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposMaterialPlantacion")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="tipo_material_plantacion_id", referencedColumnName="id")
+     * })
      */
-    private $tipoMaterialPlantacionId;
+    private $tipoMaterialPlantacion;
 
     /**
      * @var string
@@ -56,51 +62,51 @@ class MaterialesPredios
     }
 
     /**
-     * Set predioId
+     * Set predio
      *
-     * @param integer $predioId
+     * @param integer $predio
      *
      * @return MaterialesPredios
      */
-    public function setPredioId($predioId)
+    public function setPredio($predio)
     {
-        $this->predioId = $predioId;
+        $this->predio = $predio;
 
         return $this;
     }
 
     /**
-     * Get predioId
+     * Get predio
      *
      * @return integer
      */
-    public function getPredioId()
+    public function getPredio()
     {
-        return $this->predioId;
+        return $this->predio;
     }
 
     /**
-     * Set tipoMaterialPlantacionId
+     * Set tipoMaterialPlantacion
      *
-     * @param integer $tipoMaterialPlantacionId
+     * @param integer $tipoMaterialPlantacion
      *
      * @return MaterialesPredios
      */
-    public function setTipoMaterialPlantacionId($tipoMaterialPlantacionId)
+    public function setTipoMaterialPlantacion($tipoMaterialPlantacion)
     {
-        $this->tipoMaterialPlantacionId = $tipoMaterialPlantacionId;
+        $this->tipoMaterialPlantacion = $tipoMaterialPlantacion;
 
         return $this;
     }
 
     /**
-     * Get tipoMaterialPlantacionId
+     * Get tipoMaterialPlantacion
      *
      * @return integer
      */
-    public function getTipoMaterialPlantacionId()
+    public function getTipoMaterialPlantacion()
     {
-        return $this->tipoMaterialPlantacionId;
+        return $this->tipoMaterialPlantacion;
     }
 
     /**

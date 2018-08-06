@@ -54,7 +54,7 @@ class ExpedientesController extends Controller
      */
     public function newAction(Request $request)
     {
-        $expediente = new Expediente();
+        $expediente = new Expedientes();
         $form = $this->createForm('AppBundle\Form\ExpedientesType', $expediente);
         $form->handleRequest($request);
 
