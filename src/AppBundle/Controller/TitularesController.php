@@ -24,6 +24,11 @@ class TitularesController extends Controller
     public function indexAction(Request $request)
     {
           $em = $this->getDoctrine()->getManager();
+          $titular = new Titulares();
+          $search_form = $this->createForm('AppBundle\Form\TitularesSearchType', $titular, array(
+            'action' => '/',
+            'method' => 'get'
+          ));
           $dql = $em->createQueryBuilder();
           $dql->select('a')
                ->from('AppBundle:Titulares','a');
@@ -36,10 +41,11 @@ class TitularesController extends Controller
               20,
               array('distinct' => true, 'defaultSortFieldName' => 'a.id', 'defaultSortDirection' => 'desc')
           );
-
+          $search_form->handleRequest($request);
 
           return $this->render('titulares/index.html.twig', array(
               'titulares' => $pagination,
+              'search_form'=>$search_form->createView(),
           ));
     }
 

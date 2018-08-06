@@ -20,7 +20,6 @@ class TitularesType extends AbstractType
           ->add('cuit')
           ->add('documento')
           ->add('fechaNacimiento')
-          ->add('foto')
           ->add('sexo')
           ->add('idExterno')
           ->add('aprobado')

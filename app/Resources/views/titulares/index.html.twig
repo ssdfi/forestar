@@ -1,5 +1,14 @@
 {% extends 'base.html.twig' %}
+
 {% block title %}{{parent()}} - Titulares{% endblock %}
+
+{% block navbarRight %}
+  <li class="nav-item active">
+    <a class="nav-link" href="{{path('titulares_new')}}"><span class="fa fa-plus" aria-hidden="true"></span> Nuevo Titular</a>
+  </li>
+  {{parent()}}
+{% endblock %}
+
 {% block body %}
     <div class="row">
       <div class="col-3">
@@ -8,6 +17,7 @@
             Buscador de Titulares
           </div>
           <div class="card-body">
+            
           </div>
         </div>
       </div>

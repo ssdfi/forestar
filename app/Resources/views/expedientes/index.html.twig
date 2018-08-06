@@ -1,5 +1,14 @@
 {% extends 'base.html.twig' %}
+
 {% block title %}{{parent()}} - Expedientes{% endblock %}
+
+{% block navbarRight %}
+  <li class="nav-item active">
+    <a class="nav-link" href="{{path('expedientes_new')}}"><span class="fa fa-plus" aria-hidden="true"></span> Nuevo Expediente</a>
+  </li>
+  {{parent()}}
+{% endblock %}
+
 {% block body %}
       <div class="row">
         <div class="col-3">

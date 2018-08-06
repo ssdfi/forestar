@@ -393,6 +393,12 @@ class Expedientes
    */
    private $declaracionIvaResoluciones;
 
+   /**
+   * One Expediente has Many DisposicionesProvinciales.
+   * @ORM\OneToMany(targetEntity="ProduccionVolumetrica", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
+   */
+   private $produccionesVolumetricas;
+
     public function __construct(){
       $this->actividadesPresentadas = new ArrayCollection();
       $this->actividadesCertificadas = new ArrayCollection();
@@ -416,6 +422,7 @@ class Expedientes
       $this->resoluciones = new ArrayCollection();
       $this->disposicionesProvinciales = new ArrayCollection();
       $this->declaracionIvaResoluciones = new ArrayCollection();
+      $this->produccionesVolumetricas = new ArrayCollection();
     }
 
     /**
@@ -1312,7 +1319,6 @@ class Expedientes
        $this->disposicionesProvinciales->removeElement($ap);
     }
 
-
     public function getDeclaracionIvaResoluciones()
     {
         return $this->declaracionIvaResoluciones;
@@ -1334,5 +1340,28 @@ class Expedientes
            return;
        }
        $this->declaracionIvaResoluciones->removeElement($ap);
+    }
+
+    public function getProduccionesVolumetricas()
+    {
+        return $this->produccionesVolumetricas;
+    }
+
+    public function addProduccionVolumetrica($ap)
+    {
+        if (true === $this->produccionesVolumetricas->contains($ap)) {
+           return;
+       }
+       $this->produccionesVolumetricas[] = $ap;
+       $ap->addExpediente($this);
+
+    }
+
+    public function removeProduccionVolumetrica($ap)
+    {
+      if (false === $this->produccionesVolumetricas->contains($ap)) {
+           return;
+       }
+       $this->produccionesVolumetricas->removeElement($ap);
     }
 }

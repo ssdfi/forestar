@@ -10,6 +10,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ExpedientesType extends AbstractType
 {
@@ -20,8 +21,8 @@ class ExpedientesType extends AbstractType
     {
         $expediente = $builder->getData() ? $builder->getData()->getId() : '';
         $builder
-          ->add('numeroExpediente')
-          ->add('numeroInterno')
+          ->add('numeroExpediente', TextType::class, array('attr'=>array('pattern' => '.*')))
+          ->add('numeroInterno', TextType::class, array('attr'=>array('pattern' => '.*')))
           ->add
               (
                 $builder->create
