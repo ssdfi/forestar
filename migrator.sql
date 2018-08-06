@@ -1626,6 +1626,8 @@ ALTER TABLE expedientes RENAME COLUMN exp_car TO created_at;
 UPDATE expedientes e SET segundo_titular_id = idok FROM titulareseliminados WHERE tit_id = segundo_titular_id AND e.segundo_titular_id NOT IN (SELECT id FROM titulares);
 UPDATE expedientes e SET segundo_titular_id = null WHERE e.segundo_titular_id NOT IN (SELECT id FROM titulares) AND e.segundo_titular_id NOT IN (SELECT tit_id FROM titulareseliminados);
 ALTER TABLE titulares ADD COLUMN pequenio_productor boolean;
+ALTER TABLE expedientes ADD COLUMN solicita_adelanto boolean;
+UPDATE expedientes e SET solicita_adelanto = true WHERE e.numero_interno ILIKE '% PP';
 UPDATE titulares t SET pequenio_productor = true FROM expedientes e  WHERE t.id = e.titular_id AND e.numero_interno ILIKE '% PP';
 UPDATE expedientes e SET numero_interno = substring(numero_interno from 0 for length(numero_interno)-2) WHERE e.numero_interno ilike '% PP';
 UPDATE actividades_certificadas_expedientes SET especie_id = null WHERE especie_id = 0;
@@ -1710,3 +1712,4 @@ INSERT INTO public.expedientes_titulares(expediente_id, titular_id) SELECT id, t
 INSERT INTO public.expedientes_titulares(expediente_id, titular_id) SELECT id, segundo_titular_id from expedientes where segundo_titular_id is not null;
 ALTER TABLE provincias RENAME TO provincias_old;
 ALTER TABLE provincias_proexp RENAME TO provincias;
+DO $$ DECLARE i TEXT; BEGIN FOR i IN (select table_name from information_schema.tables where table_catalog='forestar' and table_schema='public') LOOP IF EXISTS (SELECT 0 FROM pg_class where relname = i||'_id_seq' ) THEN RAISE NOTICE 'tabla %',i; EXECUTE 'Select setval('''||i||'_id_seq'', (SELECT max(id) as a FROM ' || i ||')+1);'; ELSE RAISE NOTICE 'NO ESTA LA RELACION %',i; END IF; END LOOP; END$$;
