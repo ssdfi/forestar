@@ -1713,3 +1713,17 @@ INSERT INTO public.expedientes_titulares(expediente_id, titular_id) SELECT id, s
 ALTER TABLE provincias RENAME TO provincias_old;
 ALTER TABLE provincias_proexp RENAME TO provincias;
 DO $$ DECLARE i TEXT; BEGIN FOR i IN (select table_name from information_schema.tables where table_catalog='forestar' and table_schema='public') LOOP IF EXISTS (SELECT 0 FROM pg_class where relname = i||'_id_seq' ) THEN RAISE NOTICE 'tabla %',i; EXECUTE 'Select setval('''||i||'_id_seq'', (SELECT max(id) as a FROM ' || i ||')+1);'; ELSE RAISE NOTICE 'NO ESTA LA RELACION %',i; END IF; END LOOP; END$$;
+ALTER TABLE sistematizaciones_predios RENAME TO sistematizaciones;
+ALTER TABLE preparacion_suelo_predios RENAME TO preparacion_suelo;
+ALTER TABLE plantaciones_predios RENAME TO metodos_plantaciones;
+ALTER TABLE materiales_predios RENAME TO materiales_plantaciones;
+ALTER TABLE herbicidas RENAME TO tipos_herbicidas;
+ALTER TABLE herbicidas_predios RENAME TO herbicidas;
+ALTER TABLE fertilizantes RENAME TO tipos_fertilizantes;
+ALTER TABLE fertilizantes_predios RENAME TO fertilizantes;
+ALTER TABLE malezas_predios RENAME TO control_malezas;
+ALTER TABLE plagas RENAME TO tipos_plagas;
+ALTER TABLE plagas_predios RENAME TO control_plagas;
+ALTER TABLE tipos_plantacion RENAME TO tipos_metodos_plantacion;
+UPDATE predios SET departamento_id = null where departamento_id = 0;
+ALTER TABLE tipos_malezas RENAME TO tipos_control_malezas;
