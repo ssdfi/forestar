@@ -91,7 +91,7 @@ class Expedientes
      *
      * @ORM\Column(name="numero_expediente", type="string", length=255, nullable=true)
      * @Assert\Regex(
-     *     pattern     = "/EXP-S05:[0-9]{7}\/[0-9]{4}|EX-20[0-9]{2}\-[0-9]{8}/",
+     *     pattern     = "/EXP-S05:[0-9]{7}\/[0-9]{4}|EX-20[0-9]{2}-[0-9]{8}\b/",
      *     message     = "El formato debe ser EXP-S05:#######/#### o EX-20##-########"
      * )
      * @Assert\Length(min = 16, max=20, exactMessage="El campo debe tener {{ limit }} digitos, EXP-S05:#######/####")
@@ -254,25 +254,27 @@ class Expedientes
 
      /**
      * One Expediente has Many Actividades.
-     * @ORM\OneToMany(targetEntity="ActividadesPresentadas", mappedBy="expediente")
+     * @ORM\OneToMany(targetEntity="ActividadesPresentadas", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
+     * @ORM\OrderBy({"aviFecRea" = "ASC"})
      */
     private $actividadesPresentadas;
 
       /**
       * One Expediente has Many Actividades cert.
-      * @ORM\OneToMany(targetEntity="ActividadesCertificadas", mappedBy="expediente")
+      * @ORM\OneToMany(targetEntity="ActividadesCertificadas", cascade={"persist"}, mappedBy="expediente", orphanRemoval=true)
       */
     private $actividadesCertificadas;
 
      /**
      * One Expediente has Many Actividades insp.
-     * @ORM\OneToMany(targetEntity="ActividadesInspeccionadas", mappedBy="expediente")
+     * @ORM\OneToMany(targetEntity="ActividadesInspeccionadas", mappedBy="expediente", cascade={"persist"}, orphanRemoval=true)
+     * @ORM\OrderBy({"id" = "ASC"})
      */
     private $actividadesInspeccionadas;
 
       /**
       * One Expediente has Many ActividadesSig.
-      * @ORM\OneToMany(targetEntity="ActividadesSig", mappedBy="expediente")
+      * @ORM\OneToMany(targetEntity="ActividadesSig", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
       */
     private $actividadesSig;
 
@@ -353,6 +355,13 @@ class Expedientes
     * @ORM\OneToMany(targetEntity="Predios", mappedBy="expediente")
     */
     private $predios;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="solicita_adelanto", type="boolean", nullable=true)
+     */
+    private $solicitaAdelanto;
 
     public function __construct(){
       $this->actividadesPresentadas = new ArrayCollection();
@@ -1000,6 +1009,7 @@ class Expedientes
            return;
        }
        $this->actividadesPresentadas[] = $ap;
+       $ap->addExpediente($this);
 
     }
 
@@ -1027,6 +1037,7 @@ class Expedientes
            return;
        }
        $this->actividadesSig[] = $ap;
+       $ap->addExpediente($this);
 
     }
 
@@ -1049,6 +1060,7 @@ class Expedientes
            return;
        }
        $this->actividadesCertificadas[] = $ac;
+       $ac->addExpediente($this);
 
     }
 
@@ -1072,6 +1084,7 @@ class Expedientes
            return;
        }
        $this->actividadesInspeccionadas[] = $ap;
+       $ap->addExpediente($this);
 
     }
 
@@ -1081,6 +1094,7 @@ class Expedientes
            return;
        }
        $this->actividadesInspeccionadas->removeElement($ap);
+      //  $ap->removeExpediente($this);
     }
 
     public function getDocumentacion()
@@ -1155,6 +1169,17 @@ class Expedientes
        $this->predios->removeElement($ap);
     }
 
+    public function setSolicitaAdelanto($solicitaAdelanto)
+    {
+        $this->solicitaAdelanto = $solicitaAdelanto;
+
+        return $this;
+    }
+
+    public function getSolicitaAdelanto()
+    {
+        return $this->solicitaAdelanto;
+    }
 
     public function getTitulares()
     {

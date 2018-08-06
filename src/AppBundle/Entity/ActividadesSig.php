@@ -167,6 +167,11 @@ class ActividadesSig
         return $this->expediente;
     }
 
+    public function addExpediente($exp)
+    {
+        $this->expediente = $exp;
+    }
+
     /**
      * Set especie
      *

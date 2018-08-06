@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * ActividadesInspeccionadas
@@ -193,6 +194,11 @@ class ActividadesInspeccionadas
     public function getExpediente()
     {
         return $this->expediente;
+    }
+
+    public function addExpediente($exp)
+    {
+        $this->expediente = $exp;
     }
 
     /**

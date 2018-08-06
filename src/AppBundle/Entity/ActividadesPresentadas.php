@@ -141,27 +141,39 @@ class ActividadesPresentadas
     }
 
     /**
-     * Set expedienteId
+     * Set expediente
      *
-     * @param integer $expedienteId
+     * @param integer $expediente
      *
      * @return ActividadesPresentadas
      */
-    public function setExpedienteId($expedienteId)
+    public function setExpediente($expediente)
     {
-        $this->expedienteId = $expedienteId;
+        $this->expediente = $expediente;
+
+        return $this;
+    }
+
+    public function removeExpediente($expediente)
+    {
+        $this->expediente->remove($expediente);
 
         return $this;
     }
 
     /**
-     * Get expedienteId
+     * Get expediente
      *
      * @return integer
      */
-    public function getExpedienteId()
+    public function getExpediente()
     {
-        return $this->expedienteId;
+        return $this->expediente;
+    }
+
+    public function addExpediente($exp)
+    {
+        $this->expediente = $exp;
     }
 
     /**

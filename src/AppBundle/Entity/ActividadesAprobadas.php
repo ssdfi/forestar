@@ -37,7 +37,7 @@ class ActividadesAprobadas
      *
      * @ORM\Column(name="expediente_id", type="integer", nullable=true)
      */
-    private $expedienteId;
+    private $expediente;
 
     /**
      * @var integer
@@ -125,27 +125,32 @@ class ActividadesAprobadas
     }
 
     /**
-     * Set expedienteId
+     * Set expediente
      *
-     * @param integer $expedienteId
+     * @param integer $expediente
      *
      * @return ActividadesAprobadas
      */
-    public function setExpedienteId($expedienteId)
+    public function setExpediente($expediente)
     {
-        $this->expedienteId = $expedienteId;
+        $this->expediente = $expediente;
 
         return $this;
     }
 
     /**
-     * Get expedienteId
+     * Get expediente
      *
      * @return integer
      */
-    public function getExpedienteId()
+    public function getExpediente()
     {
-        return $this->expedienteId;
+        return $this->expediente;
+    }
+
+    public function addExpediente($exp)
+    {
+        $this->expediente = $exp;
     }
 
     /**
