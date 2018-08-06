@@ -1,0 +1,22 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Tipo Documentacion</th>
+      <th scope="col">Observacion</th>
+      <th scope="col">Fecha Presentacion</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in documentacion %}
+     <tr>
+       <td>{{item.id}}</td>
+       <td>{{item.tipoDocumentacion}}</td>
+       <td>{{item.observacion}}</td>
+       <td>{{item.fechaPresentacion|date('d-m-Y')}}</td>
+       <td>{% if item.archivo %}<span class="fa fa-download">{% endif %}</td>
+     </tr>
+    {% endfor %}
+  </tbody>
+</table>

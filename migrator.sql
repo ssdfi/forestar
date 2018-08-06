@@ -1727,3 +1727,4 @@ ALTER TABLE plagas_predios RENAME TO control_plagas;
 ALTER TABLE tipos_plantacion RENAME TO tipos_metodos_plantacion;
 UPDATE predios SET departamento_id = null where departamento_id = 0;
 ALTER TABLE tipos_malezas RENAME TO tipos_control_malezas;
+update resoluciones set departamento_id = null where departamento_id = 0;

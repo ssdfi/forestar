@@ -1,0 +1,20 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Resolucion</th>
+      <th scope="col">Fecha Entrada</th>
+      <th scope="col">Fecha Salida</th>
+      <th scope="col">Observacion</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in disposicionesProvinciales %}
+      <tr>
+        <td>{{item.resolucionNumero}}</td>
+        <td>{{item.fechaEntrada|date('d-m-Y')}}</td>
+        <td>{{item.fechaSalida|date('d-m-Y')}}</td>
+        <td>{{item.observacion}}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

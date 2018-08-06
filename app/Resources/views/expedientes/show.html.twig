@@ -1,7 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{parent()}} - {{expediente.numeroExpediente}}{% endblock %}
-
+{% block navbarRight %}
+<li class="nav-item active">
+  <a class="nav-link" href="{{path('expedientes_edit', {'id': expediente.id})}}">Editar Expediente</a>
+</li>
+{{parent()}}
+{% endblock %}
 {% block body %}
     <div class="col-md-12">
       <div class="row">
@@ -81,356 +86,81 @@
             {% endif %}
             <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-beneficios-fiscales" role="tab" aria-controls="nav-contact" aria-selected="false">Beneficios Fiscales ({{expediente.beneficiosFiscales|length}})</a>
             <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-predios" role="tab" aria-controls="nav-contact" aria-selected="false">Predios ({{expediente.predios|length}})</a>
-            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-impacto-ambiental" role="tab" aria-controls="nav-contact" aria-selected="false">Impactos Ambientales ({{expediente.impactosAmbientales|length}})</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-disposiciones-provinciales" role="tab" aria-controls="nav-contact" aria-selected="false">Disposiciones Prov. ({{expediente.disposicionesProvinciales|length}})</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-impacto-ambiental" role="tab" aria-controls="nav-contact" aria-selected="false">Impacto Ambiental ({{expediente.impactosAmbientales|length}})</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-declaracion-iva-resoluciones" role="tab" aria-controls="nav-contact" aria-selected="false">IVA por resolución({{expediente.declaracionIvaResoluciones|length}})</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-documentos-legales" role="tab" aria-controls="nav-contact" aria-selected="false">Documentos Legales</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-resoluciones" role="tab" aria-controls="nav-contact" aria-selected="false">Resoluciones ({{expediente.resoluciones|length}})</a>
             <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-observaciones" role="tab" aria-controls="nav-contact" aria-selected="false">Observaciones</a>
           </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-presentacion" role="tabpanel" aria-labelledby="nav-home-tab">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Actividad</th>
-                  <th scope="col">Especie</th>
-                  <th scope="col">Superfice Ha.</th>
-                  <th scope="col">Densidad</th>
-                  <th scope="col">Fecha de Inicio</th>
-                  <th scope="col">Fecha Fin de Actividad</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for actividadPresentada in expediente.actividadesPresentadas %}
-                <tr data-link="{{ path('expedientes_show', { 'id': actividadPresentada.id }) }}">
-                  <td><a href="{{ path('expedientes_show', { 'id': actividadPresentada.id }) }}">{{ actividadPresentada.id }}</a></td>
-                  <td>{{ actividadPresentada.tipoActividad }}</td>
-                  <td>{{ actividadPresentada.especie }}</td>
-                  <td>{{ actividadPresentada.superficieHa }}</td>
-                  <td>{{ actividadPresentada.densidad }}</td>
-                  <td>{% if actividadPresentada.fechaInicio %}{{ actividadPresentada.fechaInicio|date('d-m-Y') }}{% endif %}</td>
-                  <td>{% if actividadPresentada.fechaFinActividad %}{{ actividadPresentada.fechaFinActividad|date('d-m-Y') }}{% endif %}</td>
-                </tr>
-                {% endfor %}
-              </tbody>
-            </table>
+            {% embed "actividadespresentadas/show_table.html.twig" with { 'actividadesPresentadas': expediente.actividadesPresentadas} %}
+            {% endembed %}
           </div>
           <div class="tab-pane fade" id="nav-certificacion" role="tabpanel" aria-labelledby="nav-profile-tab">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Actividad</th>
-                  <th scope="col">Especie</th>
-                  <th scope="col">Superfice Ha.</th>
-                  <th scope="col">Densidad</th>
-                  <th scope="col">Fecha de Inicio</th>
-                  <th scope="col">Fecha Fin de Actividad</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for actividadCertificada in expediente.actividadesCertificadas %}
-                <tr data-link="{{ path('expedientes_show', { 'id': actividadCertificada.id }) }}">
-                  <td><a href="{{ path('expedientes_show', { 'id': actividadCertificada.id }) }}">{{ actividadCertificada.id }}</a></td>
-                  <td>{{ actividadCertificada.tipoActividad }}</td>
-                  <td>{{ actividadCertificada.especie }}</td>
-                  <td>{{ actividadCertificada.superficieHa }}</td>
-                  <td>{{ actividadCertificada.densidad }}</td>
-                  <td>{% if actividadCertificada.fechaInicio %}{{ actividadCertificada.fechaInicio|date('d-m-Y') }}{% endif %}</td>
-                  <td>{% if actividadCertificada.fechaFinActividad %}{{ actividadCertificada.fechaFinActividad|date('d-m-Y') }}{% endif %}</td>
-                </tr>
-                {% endfor %}
-              </tbody>
-            </table>
+            {% embed "actividadescertificadas/show_table.html.twig" with { 'actividadesCertificadas': expediente.actividadesCertificadas} %}
+            {% endembed %}
           </div>
           <div class="tab-pane fade" id="nav-inspeccion" role="tabpanel" aria-labelledby="nav-contact-tab">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Actividad</th>
-                  <th scope="col">Especie</th>
-                  <th scope="col">Superfice Ha.</th>
-                  <th scope="col">Densidad</th>
-                  <th scope="col">Tipo ActividadesInspeccionadas</th>
-                  <th scope="col">Fecha de Inicio</th>
-                  <th scope="col">Fecha Fin</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for actividadInspeccionada in expediente.actividadesInspeccionadas %}
-                <tr data-link="{{ path('expedientes_show', { 'id': actividadInspeccionada.id }) }}">
-                  <td><a href="{{ path('expedientes_show', { 'id': actividadInspeccionada.id }) }}">{{ actividadInspeccionada.id }}</a></td>
-                  <td><abbr title="{{ actividadInspeccionada.tipoActividad }}" data-length="10">{{ actividadInspeccionada.tipoActividad }}</abbr></td>
-                  <td>{{ actividadInspeccionada.especie }}</td>
-                  <td>{{ actividadInspeccionada.superficieHa }}</td>
-                  <td>{{ actividadInspeccionada.densidad }}</td>
-                  <td>{{ actividadInspeccionada.tipoInspeccion }}</td>
-                  <td>{% if actividadInspeccionada.fechaInicio %}{{ actividadInspeccionada.fechaInicio|date('d-m-Y') }}{% endif %}</td>
-                  <td>{% if actividadInspeccionada.fechaFin %}{{ actividadInspeccionada.fechaFin|date('d-m-Y') }}{% endif %}</td>
-                </tr>
-                {% endfor %}
-              </tbody>
-            </table>
+            {% embed "actividadesinspeccionadas/show_table.html.twig" with { 'actividadesInspeccionadas': expediente.actividadesInspeccionadas} %}
+            {% endembed %}
           </div>
           <div class="tab-pane fade" id="nav-sig" role="tabpanel" aria-labelledby="nav-sig-tab">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Tipo Actividad</th>
-                  <th scope="col">Superficie Ha.</th>
-                  <th scope="col">Observaciones</th>
-                  <th scope="col">Fecha Registro</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for item in expediente.actividadesSig %}
-                  <tr>
-                    <td>{{item.id}}</td>
-                    <td>{{item.tipoActividad}}</td>
-                    <td>{{item.superficieHa}}</td>
-                    <td>{{item.observaciones}}</td>
-                    <td>{{item.fechaRegistro|date('d-m-Y')}}</td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table>
+            {% embed "actividadessig/show_table.html.twig" with { 'actividadesSig': expediente.actividadesSig} %}
+            {% endembed %}
           </div>
           <div class="tab-pane fade" id="nav-documentacion" role="tabpanel" aria-labelledby="nav-contact-tab">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Tipo Documentacion</th>
-                  <th scope="col">Observacion</th>
-                  <th scope="col">Fecha Presentacion</th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for item in expediente.documentacion %}
-                 <tr>
-                   <td>{{item.id}}</td>
-                   <td>{{item.tipoDocumentacion}}</td>
-                   <td>{{item.observacion}}</td>
-                   <td>{{item.fechaPresentacion|date('d-m-Y')}}</td>
-                   <td>{% if item.archivo %}<span class="fa fa-download">{% endif %}</td>
-                 </tr>
-                {% endfor %}
-              </tbody>
-            </table>
+            {% embed "documentacion/show_table.html.twig" with { 'documentacion': expediente.documentacion} %}
+            {% endembed %}
           </div>
           <div class="tab-pane fade" id="nav-situacion" role="tabpanel" aria-labelledby="nav-contact-tab">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Observacion</th>
-                  <th scope="col">Especificación</th>
-                  <th scope="col">Fecha</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for item in expediente.estadoSituacion %}
-                  <tr>
-                    <td>{{item.id}}</td>
-                    <td>{{item.observacion}}</td>
-                    <td>{{item.especificacionPlantaciones}}</td>
-                    <td>{{item.fecha|date('d-m-Y')}}</td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table>
+            {% embed "estado_situacion/show_table.html.twig" with { 'estadoSituacion': expediente.estadoSituacion} %}
+            {% endembed %}
           </div>
           {% if expediente.actividadesTitulares|length %}
             <div class="tab-pane fade" id="nav-titulares" role="tabpanel" aria-labelledby="nav-contact-tab">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Apellido y Nombre</th>
-                    <th scope="col">Especie</th>
-                    <th scope="col">Tipo Actividad</th>
-                    <th scope="col">Sup. Presentada</th>
-                    <th scope="col">Tipo Actividad</th>
-                    <th scope="col">Sup. Certificada</th>
-                    <th scope="col">Tipo Actividad</th>
-                    <th scope="col">Sup. Inspeccionada</th>
-                    <th scope="col">Tipo Actividad</th>
-                    <th scope="col">Sup. Aprobada</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for item in expediente.actividadesTitulares %}
-                    <tr>
-                      <td><a href="{{path('titulares_show', { 'id': item.titular.id })}}">{{item.titular.apellidoNombre}}</a></td>
-                      <td>{% if item.actividadPresentada %}{{item.actividadPresentada.especie}}{% endif %}</td>
-                      <td>{% if item.actividadPresentada %}{{item.actividadPresentada.tipoActividad }}{% endif %}</td>
-                      <td>{% if item.actividadPresentada %}{{item.actividadPresentada.superficieHa}}{% endif %}</td>
-                      <td>{% if item.actividadCertificada %}{{item.actividadCertificada.tipoActividad}}{% endif %}</td>
-                      <td>{% if item.actividadCertificada %}{{item.actividadCertificada.superficieHa}}{% endif %}</td>
-                      <td>{% if item.actividadInspeccionada %}{{item.actividadInspeccionada.tipoActividad}}{% endif %}</td>
-                      <td>{% if item.actividadInspeccionada %}{{item.actividadInspeccionada.superficieHa}}{% endif %}</td>
-                      <td>{% if item.actividadAprobada %}{{item.actividadAprobada.tipoActividad}}{% endif %}</td>
-                      <td>{% if item.actividadAprobada %}{{item.actividadAprobada.superficieHa}}{% endif %}</td>
-                    </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
+              {% embed "estado_situacion/show_table.html.twig" with { 'actividadesTitulares': expediente.actividadesTitulares} %}
+              {% endembed %}
             </div>
           {% endif %}
           <div class="tab-pane fade" id="nav-beneficios-fiscales" role="tabpanel" aria-labelledby="nav-contact-tab">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Tipo</th>
-                  <th scope="col">Valor Plantación</th>
-                  <th scope="col">Inicio Plantación</th>
-                  <th scope="col">Fin Plantación</th>
-                  <th scope="col">Impuesto</th>
-                  <th scope="col">Inicio Período Fiscal</th>
-                  <th scope="col">Fin Período Fiscal</th>
-                  <th scope="col">Valor Beneficio</th>
-                  <th scope="col">Observaciones</th>
-                  <th scope="col">Moneda</th>
-                  <th scope="col">Certificado</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for item in expediente.beneficiosFiscales %}
-                  <tr>
-                    <td>{{item.beneficioFiscal}}</td>
-                    <td>{{item.valorPlantacion}}</td>
-                    <td>{{item.inicioPeriodoPlantacion|date('d-m-Y')}}</td>
-                    <td>{{item.finPeriodoPlantacion|date('d-m-Y')}}</td>
-                    <td>{{item.impuesto}}</td>
-                    <td>{{item.inicioPeriodoFiscal|date('d-m-Y')}}</td>
-                    <td>{{item.finPeriodoFiscal|date('d-m-Y')}}</td>
-                    <td>{{item.valorBeneficio}}</td>
-                    <td>{{item.observaciones}}</td>
-                    <td>{{item.moneda}}</td>
-                    <td>{% if item.contieneCertificado %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table>
+            {% embed "beneficios_fiscales/show_table.html.twig" with { 'beneficiosFiscales': expediente.beneficiosFiscales} %}
+            {% endembed %}
           </div>
           <div class="tab-pane fade" id="nav-predios" role="tabpanel" aria-labelledby="nav-contact-tab">
             {% embed "predios/index.html.twig" with { 'predios': expediente.predios} %}
             {% endembed %}
           </div>
-          <div class="tab-pane fade" id="nav-impacto-ambiental" role="tabpanel" aria-labelledby="nav-contact-tab">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Resolución</th>
-                  <th scope="col">Fecha Entrada</th>
-                  <th scope="col">Fecha Salida</th>
-                  <th scope="col">Fecha Carga</th>
-                  <th scope="col">Observación</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for item in expediente.impactosAmbientales %}
-                  <tr>
-                    <td>{{item.resolucionNumero}}</td>
-                    <td>{{item.fechaEntrada|date('d-m-Y')}}</td>
-                    <td>{{item.fechaSalida|date('d-m-Y')}}</td>
-                    <td>{{item.fechaRealCarga|date('d-m-Y')}}</td>
-                    <td>{{item.observacion}}</td>
-                  </tr>
+          <div class="tab-pane fade" id="nav-disposiciones-provinciales" role="tabpanel" aria-labelledby="nav-contact-tab">
+            {% embed "disposiciones_provinciales/show_table.html.twig" with { 'disposicionesProvinciales': expediente.disposicionesProvinciales} %}
+            {% endembed %}
+          </div>
+          <div class="tab-pane fade" id="nav-documentos-legales" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <table>
+              <tr>
+                {% for item in expediente.documentosLegales %}
+                  <td>{% if item.documento %}Documento {{loop.index}} <span class="fa fa-download">{% endif %}</td>
                 {% endfor %}
-              </tbody>
-            </table>
+              </table>
+            </tr>
+          </div>
+          <div class="tab-pane fade" id="nav-resoluciones" role="tabpanel" aria-labelledby="nav-contact-tab">
+            {% embed "resoluciones/show_table.html.twig" with { 'resoluciones': expediente.resoluciones} %}
+            {% endembed %}
+          </div>
+          <div class="tab-pane fade" id="nav-impacto-ambiental" role="tabpanel" aria-labelledby="nav-contact-tab">
+            {% embed "impactos_ambientales/show_table.html.twig" with { 'impactosAmbientales': expediente.impactosAmbientales} %}
+            {% endembed %}
+          </div>
+          <div class="tab-pane fade" id="nav-declaracion-iva-resoluciones" role="tabpanel" aria-labelledby="nav-contact-tab">
+            {% embed "declaracion_iva_resoluciones/show_table.html.twig" with { 'declaracionIvaResoluciones': expediente.declaracionIvaResoluciones} %}
+            {% endembed %}
           </div>
           <div class="tab-pane fade" id="nav-observaciones" role="tabpanel" aria-labelledby="nav-contact-tab">
-            <div class="col-md-12">
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="card">
-                    <div class="card-header">
-                      Contable
-                    </div>
-                    <div class="card-body">
-                      <ul>
-                        {% for item in expediente.historialContable %}
-                          <li>{{item.observacion}}</li>
-                        {% endfor %}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card">
-                    <div class="card-header">
-                      Legales
-                    </div>
-                    <div class="card-body">
-                      <ul>
-                        {% for item in expediente.historialLegales %}
-                          <li>{{item.observacion}}</li>
-                        {% endfor %}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card">
-                    <div class="card-header">
-                      Foresto Industriales
-                    </div>
-                    <div class="card-body">
-                      <ul>
-                        {% for item in expediente.historialForestoIndustriales %}
-                          <li>{{item.observacion}}</li>
-                        {% endfor %}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="card">
-                    <div class="card-header">
-                      Viveros
-                    </div>
-                    <div class="card-body">
-                      <ul>
-
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card">
-                    <div class="card-header">
-                      Promoción
-                    </div>
-                    <div class="card-body">
-                      <ul>
-                        {% for item in expediente.historialPromocion %}
-                          <li>{{item.observacion}}</li>
-                        {% endfor %}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card">
-                    <div class="card-header">
-                      SIG
-                    </div>
-                    <div class="card-body">
-                      <ul>
-                        {% for item in expediente.historialSig %}
-                          <li>{{item.observacion}}</li>
-                        {% endfor %}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </div>
+            {% embed "observaciones/show_cards.html.twig" with { 'expediente': expediente} %}
+            {% endembed %}
           </div>
         </div>
       </div>

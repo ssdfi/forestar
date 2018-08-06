@@ -1,0 +1,22 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Tipo Actividad</th>
+      <th scope="col">Superficie Ha.</th>
+      <th scope="col">Observaciones</th>
+      <th scope="col">Fecha Registro</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in actividadesSig %}
+      <tr>
+        <td>{{item.id}}</td>
+        <td>{{item.tipoActividad}}</td>
+        <td>{{item.superficieHa}}</td>
+        <td>{{item.observaciones}}</td>
+        <td>{{item.fechaRegistro|date('d-m-Y')}}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

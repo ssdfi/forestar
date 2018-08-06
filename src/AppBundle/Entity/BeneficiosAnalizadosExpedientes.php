@@ -71,7 +71,7 @@ class BeneficiosAnalizadosExpedientes
     private $numeroCertificado;
 
     /**
-     * @var \tipoActividad
+     * @var \TiposBeneficiosFiscales
      *
      * @ORM\ManyToOne(targetEntity="TiposBeneficiosFiscales")
      * @ORM\JoinColumns({
@@ -130,7 +130,7 @@ class BeneficiosAnalizadosExpedientes
     private $observaciones;
 
     /**
-     * @var \tipoActividad
+     * @var \tipoMoneda
      *
      * @ORM\ManyToOne(targetEntity="TiposMonedas")
      * @ORM\JoinColumns({

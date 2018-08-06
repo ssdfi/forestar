@@ -1,0 +1,88 @@
+<div class="col-md-12">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          Contable
+        </div>
+        <div class="card-body">
+          <ul>
+            {% for item in expediente.historialContable %}
+              <li>{{item.observacion}}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          Legales
+        </div>
+        <div class="card-body">
+          <ul>
+            {% for item in expediente.historialLegales %}
+              <li>{{item.observacion}}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          Foresto Industriales
+        </div>
+        <div class="card-body">
+          <ul>
+            {% for item in expediente.historialForestoIndustriales %}
+              <li>{{item.observacion}}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          Viveros
+        </div>
+        <div class="card-body">
+          <ul>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          Promoción
+        </div>
+        <div class="card-body">
+          <ul>
+            {% for item in expediente.historialPromocion %}
+              <li>{{item.observacion}}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          SIG
+        </div>
+        <div class="card-body">
+          <ul>
+            {% for item in expediente.historialSig %}
+              <li>{{item.observacion}}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -30,22 +30,17 @@
               <li class="nav-item active">
                 <a class="nav-link" href="{{path('profesionales_index')}}">Profesionales</a>
               </li>
-              <!-- <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Dropdown
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </li> -->
             </ul>
           </div>
+          <ul class="nav navbar-nav navbar-right">
+            {% block navbarRight %}
+            <!-- <li>
+                <a id="nav-logout"  class="text-white" href="/logout" data-confirm="¿Está seguro que desea cerrar la sesión?">
+                  <span class="fa fa-sign-out" aria-hidden="true"></span> Salir
+                </a> -->
+            </li>
+            {% endblock %}
+          </ul>
         </nav>
         <div id="container-fluid">
             <div id="row">

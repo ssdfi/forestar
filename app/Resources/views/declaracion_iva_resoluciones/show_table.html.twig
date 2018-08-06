@@ -1,0 +1,26 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Cantidad</th>
+      <th scope="col">Superficie</th>
+      <th scope="col">Total Gravado</th>
+      <th scope="col">Computable Credito Fiscal</th>
+      <th scope="col">Año Fiscal</th>
+      <th scope="col">Concepto</th>
+      <th scope="col">Observación</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in declaracionIvaResoluciones %}
+      <tr>
+        <td>{{item.cantidad}}</td>
+        <td>{{item.superficie}}</td>
+        <td>{{item.importeTotalGravado}}</td>
+        <td>{{item.importeComputableCreditoFiscal}}</td>
+        <td>{{item.anioFiscal}}</td>
+        <td>{{item.concepto}}</td>
+        <td>{{item.observacion}}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

@@ -369,6 +369,30 @@ class Expedientes
      */
     private $solicitaAdelanto;
 
+    /**
+    * One Expediente has Many Documentacion.
+    * @ORM\OneToMany(targetEntity="DocumentosLegales", mappedBy="expediente")
+    */
+   private $documentosLegales;
+
+   /**
+   * One Expediente has Many ActividadesAprobadas.
+   * @ORM\OneToMany(targetEntity="Resoluciones", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
+   */
+   private $resoluciones;
+
+   /**
+   * One Expediente has Many DisposicionesProvinciales.
+   * @ORM\OneToMany(targetEntity="DisposicionesProvinciales", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
+   */
+   private $disposicionesProvinciales;
+
+   /**
+   * One Expediente has Many DisposicionesProvinciales.
+   * @ORM\OneToMany(targetEntity="DeclaracionIvaResolucion", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
+   */
+   private $declaracionIvaResoluciones;
+
     public function __construct(){
       $this->actividadesPresentadas = new ArrayCollection();
       $this->actividadesCertificadas = new ArrayCollection();
@@ -388,6 +412,10 @@ class Expedientes
       $this->cobroBeneficios = new ArrayCollection();
       $this->predios = new ArrayCollection();
       $this->actividadesAprobadas = new ArrayCollection();
+      $this->documentosLegales = new ArrayCollection();
+      $this->resoluciones = new ArrayCollection();
+      $this->disposicionesProvinciales = new ArrayCollection();
+      $this->declaracionIvaResoluciones = new ArrayCollection();
     }
 
     /**
@@ -1213,5 +1241,98 @@ class Expedientes
     public function getTitulares()
     {
       return $this->titulares;
+    }
+
+    public function getDocumentosLegales()
+    {
+        return $this->documentosLegales;
+    }
+
+    public function addDocumentoLegal($ap)
+    {
+        if (true === $this->documentosLegales->contains($ap)) {
+           return;
+       }
+       $this->documentosLegales[] = $ap;
+       $ap->addExpediente($this);
+
+    }
+
+    public function removeDocumentoLegal($ap)
+    {
+      if (false === $this->documentosLegales->contains($ap)) {
+           return;
+       }
+       $this->documentosLegales->removeElement($ap);
+    }
+
+    public function getResoluciones()
+    {
+        return $this->resoluciones;
+    }
+
+    public function addResolucion($ap)
+    {
+        if (true === $this->resoluciones->contains($ap)) {
+           return;
+       }
+       $this->resoluciones[] = $ap;
+       $ap->addExpediente($this);
+
+    }
+
+    public function removeResolucion($ap)
+    {
+      if (false === $this->resoluciones->contains($ap)) {
+           return;
+       }
+       $this->resoluciones->removeElement($ap);
+    }
+
+    public function getDisposicionesProvinciales()
+    {
+        return $this->disposicionesProvinciales;
+    }
+
+    public function addDisposicionesProvincial($ap)
+    {
+        if (true === $this->disposicionesProvinciales->contains($ap)) {
+           return;
+       }
+       $this->disposicionesProvinciales[] = $ap;
+       $ap->addExpediente($this);
+
+    }
+
+    public function removeDisposicionesProvincial($ap)
+    {
+      if (false === $this->disposicionesProvinciales->contains($ap)) {
+           return;
+       }
+       $this->disposicionesProvinciales->removeElement($ap);
+    }
+
+
+    public function getDeclaracionIvaResoluciones()
+    {
+        return $this->declaracionIvaResoluciones;
+    }
+
+    public function addDeclaracionIvaResoluciones($ap)
+    {
+        if (true === $this->declaracionIvaResoluciones->contains($ap)) {
+           return;
+       }
+       $this->declaracionIvaResoluciones[] = $ap;
+       $ap->addExpediente($this);
+
+    }
+
+    public function removeDeclaracionIvaResoluciones($ap)
+    {
+      if (false === $this->declaracionIvaResoluciones->contains($ap)) {
+           return;
+       }
+       $this->declaracionIvaResoluciones->removeElement($ap);
     }
 }

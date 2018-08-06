@@ -1,0 +1,34 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Tipo</th>
+      <th scope="col">Valor Plantación</th>
+      <th scope="col">Inicio Plantación</th>
+      <th scope="col">Fin Plantación</th>
+      <th scope="col">Impuesto</th>
+      <th scope="col">Inicio Período Fiscal</th>
+      <th scope="col">Fin Período Fiscal</th>
+      <th scope="col">Valor Beneficio</th>
+      <th scope="col">Observaciones</th>
+      <th scope="col">Moneda</th>
+      <th scope="col">Certificado</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in beneficiosFiscales %}
+      <tr>
+        <td>{{item.beneficioFiscal}}</td>
+        <td>{{item.valorPlantacion}}</td>
+        <td>{{item.inicioPeriodoPlantacion|date('d-m-Y')}}</td>
+        <td>{{item.finPeriodoPlantacion|date('d-m-Y')}}</td>
+        <td>{{item.impuesto}}</td>
+        <td>{{item.inicioPeriodoFiscal|date('d-m-Y')}}</td>
+        <td>{{item.finPeriodoFiscal|date('d-m-Y')}}</td>
+        <td>{{item.valorBeneficio}}</td>
+        <td>{{item.observaciones}}</td>
+        <td>{{item.moneda}}</td>
+        <td>{% if item.contieneCertificado %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

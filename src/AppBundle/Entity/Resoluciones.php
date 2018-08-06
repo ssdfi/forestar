@@ -23,25 +23,34 @@ class Resoluciones
     private $id;
 
     /**
-     * @var integer
+     * @var \tipoActividad
      *
-     * @ORM\Column(name="actividad_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposActividades")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="actividad_id", referencedColumnName="id")
+     * })
      */
-    private $actividadId;
+    private $tipoActividad;
 
     /**
-     * @var integer
+     * @var \Expedientes
      *
-     * @ORM\Column(name="expediente_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="resoluciones")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="expediente_id", referencedColumnName="id")
+     * })
      */
-    private $expedienteId;
+    private $expediente;
 
     /**
-     * @var integer
+     * @var \Especie
      *
-     * @ORM\Column(name="especie_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Especies")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="especie_id", referencedColumnName="id")
+     * })
      */
-    private $especieId;
+    private $especie;
 
     /**
      * @var float
@@ -79,11 +88,14 @@ class Resoluciones
     private $observacion;
 
     /**
-     * @var integer
+     * @var \Departamentos
      *
-     * @ORM\Column(name="departamento_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Departamentos")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="departamento_id", referencedColumnName="id")
+     * })
      */
-    private $departamentoId;
+    private $departamento;
 
     /**
      * @var integer
@@ -114,11 +126,14 @@ class Resoluciones
     private $montoPago;
 
     /**
-     * @var integer
+     * @var \tipoMoneda
      *
-     * @ORM\Column(name="moneda_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposMonedas")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="moneda_id", referencedColumnName="id")
+     * })
      */
-    private $monedaId;
+    private $moneda;
 
     /**
      * @var integer
@@ -154,75 +169,75 @@ class Resoluciones
     }
 
     /**
-     * Set actividadId
+     * Set tipoActividad
      *
-     * @param integer $actividadId
+     * @param integer $tipoActividad
      *
      * @return Resoluciones
      */
-    public function setActividadId($actividadId)
+    public function setTipoActividad($tipoActividad)
     {
-        $this->actividadId = $actividadId;
+        $this->tipoActividad = $tipoActividad;
 
         return $this;
     }
 
     /**
-     * Get actividadId
+     * Get tipoActividad
      *
      * @return integer
      */
-    public function getActividadId()
+    public function getTipoActividad()
     {
-        return $this->actividadId;
+        return $this->tipoActividad;
     }
 
     /**
-     * Set expedienteId
+     * Set expediente
      *
-     * @param integer $expedienteId
+     * @param integer $expediente
      *
      * @return Resoluciones
      */
-    public function setExpedienteId($expedienteId)
+    public function setExpediente($expediente)
     {
-        $this->expedienteId = $expedienteId;
+        $this->expediente = $expediente;
 
         return $this;
     }
 
     /**
-     * Get expedienteId
+     * Get expediente
      *
      * @return integer
      */
-    public function getExpedienteId()
+    public function getExpediente()
     {
-        return $this->expedienteId;
+        return $this->expediente;
     }
 
     /**
-     * Set especieId
+     * Set especie
      *
-     * @param integer $especieId
+     * @param integer $especie
      *
      * @return Resoluciones
      */
-    public function setEspecieId($especieId)
+    public function setEspecie($especie)
     {
-        $this->especieId = $especieId;
+        $this->especie = $especie;
 
         return $this;
     }
 
     /**
-     * Get especieId
+     * Get especie
      *
      * @return integer
      */
-    public function getEspecieId()
+    public function getEspecie()
     {
-        return $this->especieId;
+        return $this->especie;
     }
 
     /**
@@ -346,27 +361,27 @@ class Resoluciones
     }
 
     /**
-     * Set departamentoId
+     * Set departamento
      *
-     * @param integer $departamentoId
+     * @param integer $departamento
      *
      * @return Resoluciones
      */
-    public function setDepartamentoId($departamentoId)
+    public function setDepartamento($departamento)
     {
-        $this->departamentoId = $departamentoId;
+        $this->departamento = $departamento;
 
         return $this;
     }
 
     /**
-     * Get departamentoId
+     * Get departamento
      *
      * @return integer
      */
-    public function getDepartamentoId()
+    public function getDepartamento()
     {
-        return $this->departamentoId;
+        return $this->departamento;
     }
 
     /**
@@ -466,27 +481,27 @@ class Resoluciones
     }
 
     /**
-     * Set monedaId
+     * Set moneda
      *
-     * @param integer $monedaId
+     * @param integer $moneda
      *
      * @return Resoluciones
      */
-    public function setMonedaId($monedaId)
+    public function setMoneda($moneda)
     {
-        $this->monedaId = $monedaId;
+        $this->moneda = $moneda;
 
         return $this;
     }
 
     /**
-     * Get monedaId
+     * Get moneda
      *
      * @return integer
      */
-    public function getMonedaId()
+    public function getMoneda()
     {
-        return $this->monedaId;
+        return $this->moneda;
     }
 
     /**
@@ -559,5 +574,10 @@ class Resoluciones
     public function getListadoResolucion()
     {
         return $this->listadoResolucion;
+    }
+
+    public function addExpediente($exp)
+    {
+        $this->expediente = $exp;
     }
 }

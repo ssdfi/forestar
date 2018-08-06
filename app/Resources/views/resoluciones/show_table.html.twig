@@ -1,0 +1,40 @@
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Actividad</th>
+        <th scope="col">Superficie</th>
+        <th scope="col">Densidad</th>
+        <th scope="col">Inicio</th>
+        <th scope="col">Fin</th>
+        <th scope="col">Departamento</th>
+        <th scope="col">N°Resolución</th>
+        <th scope="col">Aprueba</th>
+        <th scope="col">Monto</th>
+        <th scope="col">Tipo Resolucion</th>
+        <th scope="col">Fecha Resolución</th>
+        <th scope="col">Listado</th>
+        <th scope="col">Observación</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in resoluciones %}
+        <tr>
+          <td>{{item.tipoActividad}}</td>
+          <td>{{item.superficieHa}}</td>
+          <td>{{item.densidad}}</td>
+          <td>{{item.fechaInicio|date('d-m-Y')}}</td>
+          <td>{{item.fechaFin|date('d-m-Y')}}</td>
+          <td>{{item.departamento}}</td>
+          <td>{{item.numeroResolucion}}</td>
+          <td>{% if item.aprueba %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</td>
+          <td>{{item.montoPago}} {{item.moneda}}</td>
+          <td>{{item.tipoResolucion}}</td>
+          <td>{{item.fechaResolucion|date('d-m-Y')}}</td>
+          <td>{{item.listadoResolucion}}</td>
+          <td>{{item.observacion}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

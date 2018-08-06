@@ -1,0 +1,26 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Actividad</th>
+      <th scope="col">Especie</th>
+      <th scope="col">Superfice Ha.</th>
+      <th scope="col">Densidad</th>
+      <th scope="col">Fecha de Inicio</th>
+      <th scope="col">Fecha Fin de Actividad</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for actividadCertificada in actividadesCertificadas %}
+    <tr data-link="{{ path('expedientes_show', { 'id': actividadCertificada.id }) }}">
+      <td><a href="{{ path('expedientes_show', { 'id': actividadCertificada.id }) }}">{{ actividadCertificada.id }}</a></td>
+      <td>{{ actividadCertificada.tipoActividad }}</td>
+      <td>{{ actividadCertificada.especie }}</td>
+      <td>{{ actividadCertificada.superficieHa }}</td>
+      <td>{{ actividadCertificada.densidad }}</td>
+      <td>{% if actividadCertificada.fechaInicio %}{{ actividadCertificada.fechaInicio|date('d-m-Y') }}{% endif %}</td>
+      <td>{% if actividadCertificada.fechaFinActividad %}{{ actividadCertificada.fechaFinActividad|date('d-m-Y') }}{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

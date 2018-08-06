@@ -1,0 +1,28 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Actividad</th>
+      <th scope="col">Especie</th>
+      <th scope="col">Superfice Ha.</th>
+      <th scope="col">Densidad</th>
+      <th scope="col">Tipo ActividadesInspeccionadas</th>
+      <th scope="col">Fecha de Inicio</th>
+      <th scope="col">Fecha Fin</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for actividadInspeccionada in expediente.actividadesInspeccionadas %}
+    <tr data-link="{{ path('expedientes_show', { 'id': actividadInspeccionada.id }) }}">
+      <td><a href="{{ path('expedientes_show', { 'id': actividadInspeccionada.id }) }}">{{ actividadInspeccionada.id }}</a></td>
+      <td><abbr title="{{ actividadInspeccionada.tipoActividad }}" data-length="10">{{ actividadInspeccionada.tipoActividad }}</abbr></td>
+      <td>{{ actividadInspeccionada.especie }}</td>
+      <td>{{ actividadInspeccionada.superficieHa }}</td>
+      <td>{{ actividadInspeccionada.densidad }}</td>
+      <td>{{ actividadInspeccionada.tipoInspeccion }}</td>
+      <td>{% if actividadInspeccionada.fechaInicio %}{{ actividadInspeccionada.fechaInicio|date('d-m-Y') }}{% endif %}</td>
+      <td>{% if actividadInspeccionada.fechaFin %}{{ actividadInspeccionada.fechaFin|date('d-m-Y') }}{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
