@@ -1,5 +1,7 @@
-{% block actividadCertificada %}
-<table id="plantaciones" class="table table-striped">
+{% extends 'javascripts.html.twig' %}
+
+{% block content %}
+<table id="actividades-certificadas" class="table table-striped">
   <thead>
     <tr>
       <th>Especie</th>
@@ -14,7 +16,7 @@
       <th></th>
     </tr>
   </thead>
-  <tbody class="actividadesPlantaciones" data-index="{{ actividadesCertificadas|length }}" data-prototype="{% filter escape %}{% include 'actividadescertificadas/prototype.html.twig' with {'form': actividadesCertificadas.vars.prototype } %}{% endfilter %}">
+  <tbody class="actividadesCertificadas" data-index="{{ actividadesCertificadas|length }}" data-prototype="{% filter escape %}{% include 'actividadescertificadas/prototype.html.twig' with {'form': actividadesCertificadas.vars.prototype } %}{% endfilter %}">
     {% if actividadesCertificadas %}
       {% for tag in actividadesCertificadas %}
       <tr class="fields">
@@ -73,7 +75,7 @@
         		</div>
         </td>
         <td>
-        	<a class="btn btn-danger btn-sm pull-right remove-plantacion remove_nested_fields" data-association="actividades_plantaciones">
+        	<a class="btn btn-danger btn-sm pull-right remove-actividad-certificada remove_nested_fields" data-association="actividades_certificadas">
             <span class="fa fa-remove text-white" aria-hidden="true"></span>
         	</a>
         </td>
@@ -86,4 +88,9 @@
   <span class="fa fa-plus" aria-hidden="true"></span>
   Agregar Actividad Certificada
 </a>
+{% endblock %}
+
+{% block javascripts %}
+  {{parent()}}
+  <script src="{{ asset('js/actividades_certificadas.js') }}"></script>
 {% endblock %}

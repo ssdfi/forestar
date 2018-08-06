@@ -1,5 +1,7 @@
-{% block actividadSig %}
-<table id="plantaciones" class="table table-striped">
+{% extends 'javascripts.html.twig' %}
+
+{% block content %}
+<table id="actividades-sig" class="table table-striped">
   <thead>
     <tr>
       <th>Especie</th>
@@ -11,7 +13,7 @@
       <th></th>
     </tr>
   </thead>
-  <tbody class="actividadesPlantaciones" data-index="{{ actividadesSig|length }}" data-prototype="{% filter escape %}{% include 'actividadessig/prototype.html.twig' with {'form': actividadesSig.vars.prototype } %}{% endfilter %}">
+  <tbody class="actividadesSig" data-index="{{ actividadesSig|length }}" data-prototype="{% filter escape %}{% include 'actividadessig/prototype.html.twig' with {'form': actividadesSig.vars.prototype } %}{% endfilter %}">
     {% if actividadesSig %}
       {% for tag in actividadesSig %}
       <tr class="fields">
@@ -52,7 +54,7 @@
         		</div>
         </td>
         <td>
-        	<a class="btn btn-danger btn-sm pull-right remove-plantacion remove_nested_fields" data-association="actividades_plantaciones">
+        	<a class="btn btn-danger btn-sm pull-right remove-actividad-sig remove_nested_fields" data-association="actividades_sig">
             <span class="fa fa-remove text-white" aria-hidden="true"></span>
         	</a>
         </td>
@@ -61,8 +63,13 @@
   {% endif %}
   </tbody>
 </table>
-<a id="add-actividad-certificada" class="btn btn-primary btn-sm add_nested_fields" data-target="#actividad-certificada" href="javascript:void(0)">
+<a id="add-actividad-sig" class="btn btn-primary btn-sm add_nested_fields" data-target="#actividad-sig" href="javascript:void(0)">
   <span class="fa fa-plus" aria-hidden="true"></span>
   Agregar Actividad SIG
 </a>
+{% endblock %}
+
+{% block javascripts %}
+  {{parent()}}
+  <script src="{{ asset('js/actividades_sig.js') }}"></script>
 {% endblock %}

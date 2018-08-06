@@ -1,5 +1,7 @@
-{% block actividadPresentada %}
-<table id="plantaciones" class="table table-striped">
+{% extends 'javascripts.html.twig' %}
+
+{% block content %}
+<table id="actividades-presentadas" class="table table-striped">
   <thead>
     <tr>
       <th>Especie</th>
@@ -13,7 +15,7 @@
       <th></th>
     </tr>
   </thead>
-  <tbody class="actividadesPlantaciones" data-index="{{ actividadesPresentadas|length }}" data-prototype="{% filter escape %}{% include 'actividadespresentadas/prototype.html.twig' with {'form': actividadesPresentadas.vars.prototype } %}{% endfilter %}">
+  <tbody class="actividadesPresentadas" data-index="{{ actividadesPresentadas|length }}" data-prototype="{% filter escape %}{% include 'actividadespresentadas/prototype.html.twig' with {'form': actividadesPresentadas.vars.prototype } %}{% endfilter %}">
     {% if actividadesPresentadas %}
       {% for tag in actividadesPresentadas %}
       <tr class="fields">
@@ -66,7 +68,7 @@
         		</div>
         </td>
         <td>
-        	<a class="btn btn-danger btn-sm pull-right remove-plantacion remove_nested_fields" data-association="actividades_plantaciones">
+        	<a class="btn btn-danger btn-sm pull-right remove-actividad-presentada remove_nested_fields" data-association="actividades_presentadas">
             <span class="fa fa-remove text-white" aria-hidden="true"></span>
         	</a>
         </td>
@@ -79,4 +81,9 @@
   <span class="fa fa-plus" aria-hidden="true"></span>
   Agregar Actividad Presentada
 </a>
+{% endblock %}
+
+{% block javascripts %}
+  {{parent()}}
+  <script src="{{ asset('js/actividades_presentadas.js') }}"></script>
 {% endblock %}

@@ -1,6 +1,8 @@
-{% block actividadInspeccionada %}
+{% extends 'javascripts.html.twig' %}
+
+{% block content %}
 <div class="table-responsive">
-  <table id="plantaciones" class="table table-striped">
+  <table id="actividades-inspeccionadas" class="table table-striped">
     <thead>
       <tr>
         <th>Especie</th>
@@ -17,7 +19,7 @@
         <th></th>
       </tr>
     </thead>
-    <tbody class="actividadesPlantaciones" data-index="{{ actividadesInspeccionadas|length }}" data-prototype="{% filter escape %}{% include 'actividadesinspeccionadas/prototype.html.twig' with {'form': actividadesInspeccionadas.vars.prototype } %}{% endfilter %}">
+    <tbody class="actividadesInspeccionadas" data-index="{{ actividadesInspeccionadas|length }}" data-prototype="{% filter escape %}{% include 'actividadesinspeccionadas/prototype.html.twig' with {'form': actividadesInspeccionadas.vars.prototype } %}{% endfilter %}">
       {% if actividadesInspeccionadas %}
         {% for tag in actividadesInspeccionadas %}
         <tr class="fields">
@@ -88,7 +90,7 @@
           		</div>
           </td>
           <td>
-          	<a class="btn btn-danger btn-sm pull-right remove-plantacion remove_nested_fields" data-association="actividades_plantaciones">
+          	<a class="btn btn-danger btn-sm pull-right remove-actividad-inspeccionada remove_nested_fields" data-association="actividades_inspeccionadas">
               <span class="fa fa-remove text-white" aria-hidden="true"></span>
           	</a>
           </td>
@@ -102,4 +104,9 @@
     Agregar Actividad Inspeccionada
   </a>
 </div>
+{% endblock %}
+
+{% block javascripts %}
+  {{parent()}}
+  <script src="{{ asset('js/actividades_inspeccionadas.js') }}"></script>
 {% endblock %}
