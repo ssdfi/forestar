@@ -18,7 +18,7 @@ class ActividadesCertificadasType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('especie')
+        ->add('especie', EntityType::class, array('class'=>'AppBundle\Entity\Especies','required'=>true,'label' => false))
         ->add('superficieHa', IntegerType::class, array('label'=>false,'required'=>false))
         ->add('densidad', IntegerType::class, array('label'=>false,'required'=>false))
         ->add('fechaInicio', DateType::class, array('label' => false,'widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))

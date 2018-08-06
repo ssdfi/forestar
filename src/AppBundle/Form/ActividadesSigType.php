@@ -18,7 +18,7 @@ class ActividadesSigType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-          ->add('especie')
+          ->add('especie', EntityType::class, array('class'=>'AppBundle\Entity\Especies','required'=>true,'label' => false))
           ->add('superficieHa', IntegerType::class, array('label'=>false,'required'=>false))
           ->add('departamento',EntityType::class, array('class'=>'AppBundle\Entity\Departamentos','required'=>true,'label' => false))
           // ->add('historialSigId')
