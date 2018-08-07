@@ -7,12 +7,17 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormEvent;
 use AppBundle\Form\EventListener\AddTitularesListener;
+use AppBundle\Form\EventListener\AddProfesionalesListener;
+use AppBundle\Form\EventListener\AddRepresentanteLegalListener;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class ExpedientesType extends AbstractType
 {
@@ -37,7 +42,6 @@ class ExpedientesType extends AbstractType
                   'error_bubbling' => true,
                   'query_builder' =>
                     function (EntityRepository $er) use ($expediente) {
-                                dump($er);
                                 return $er->createQueryBuilder('p')
                                 ->leftJoin('p.expedientes', 'e')
                                 ->where('e.id = :expediente_id')
@@ -49,28 +53,25 @@ class ExpedientesType extends AbstractType
                   )
                 )
               )
-          // ->add('representanteLegal')
-          ->add('profesionalCargo')
-          ->add('cobroBeneficios', EntityType::class, array(
-                  'class' =>  \AppBundle\Entity\CobrosBeneficios::class,
-                  'multiple'=>true,
-                  'required'=>false,
-                  'compound'=>false,
-                  'query_builder' => function (EntityRepository $er) use ($expediente) {
-                                                  return $er->createQueryBuilder('p')
-                                                  ->leftJoin('p.expediente', 'e')
-                                                  ->where('e.id = :expediente_id')
-                                                  ->setParameter('expediente_id', $expediente);;
-                                        },
-                  'choice_value'=>function ($data) {
-                        return $data->getId();
-                   },
-                  )
-          )
-          // ->add('entidadAgrupadoraId')
-          ->add('fechaPresentacion', DateType::class, array('label' => false,'widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
-          ->add('fechaIngreso', DateType::class, array('label' => false,'widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
-          ->add('fechaFin',DateType::class, array('label' => false,'widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
+          // ->add('cobroBeneficios', EntityType::class, array(
+          //         'class' =>  \AppBundle\Entity\CobrosBeneficios::class,
+          //         'multiple'=>true,
+          //         'required'=>false,
+          //         'compound'=>false,
+          //         'query_builder' => function (EntityRepository $er) use ($expediente) {
+          //                                         return $er->createQueryBuilder('p')
+          //                                         ->leftJoin('p.expediente', 'e')
+          //                                         ->where('e.id = :expediente_id')
+          //                                         ->setParameter('expediente_id', $expediente);;
+          //                               },
+          //         'choice_value'=>function ($data) {
+          //               return $data->getId();
+          //          },
+          //         )
+          // )
+          ->add('fechaPresentacion', DateType::class, array('label' => 'Fecha de Presentación','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
+          ->add('fechaIngreso', DateType::class, array('label' => 'Fecha de Ingreso','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
+          ->add('fechaFin',DateType::class, array('label' => 'Fecha Fin','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
           ->add('estado')
           ->add('estadoAreaContable')
           ->add('estadoAreaLegales')
@@ -79,8 +80,17 @@ class ExpedientesType extends AbstractType
           ->add('estadoForestoIndustriales')
           ->add('areaEncuentraExpediente')
           ->add('departamento')
-          ->add('anio')
+          ->add('anio', TextType::class, array('label'=>'Año', 'required'=>false))
           ->add('solicitaAdelanto', CheckboxType::class, array('attr' => array('data-label' => 'Solicita Adelanto'), 'label' => false, 'required'=>false))
+          ->add('cobroBeneficios', CollectionType::class, array(
+                'entry_type'    => CobrosBeneficiosType::class,
+                'allow_add'     => true,
+                'allow_delete'  => true,
+                'prototype'     => true,
+                'label'         => false,
+                'by_reference'  => false,
+              )
+          )
           ->add('actividadesPresentadas', CollectionType::class, array(
                 'entry_type'    => ActividadesPresentadasType::class,
                 'allow_add'     => true,
@@ -117,11 +127,9 @@ class ExpedientesType extends AbstractType
                 'by_reference'  => false,
               )
           );
-
           $builder->addEventSubscriber(new AddTitularesListener());
-          // ->add('createdAt')
-          // ->add('estadoViveros')
-          // ->add('usuarioId')
+          $builder->addEventSubscriber(new AddProfesionalesListener());
+          $builder->addEventSubscriber(new AddRepresentanteLegalListener());
     }/**
      * {@inheritdoc}
      */

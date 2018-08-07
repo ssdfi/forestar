@@ -99,3 +99,8 @@ ul, ol {
 .modal-lg {
     max-width: 60% !important;
 }
+
+td .col-sm-12{
+  padding-right: 0px!important;
+  padding-left: 0px!important;
+}

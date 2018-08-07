@@ -11,5 +11,17 @@
       }
       return _results;
     });
+
+    /* Elimina el profesional seleccionado */
+    $("#remove-profesional").click(function() {
+      $("#appbundle_expedientes_profesionalCargo").val('');
+      return $("#appbundle_expedientes_profesional_cargo_id").val('');
+    });
+
+    /* Elimina el representante legal seleccionado */
+    $("#remove-representante-legal").click(function() {
+      $("#appbundle_expedientes_representanteLegal").val('');
+      return $("#appbundle_expedientes_representante_legal_id").val('');
+    });
   });
 }).call(this);

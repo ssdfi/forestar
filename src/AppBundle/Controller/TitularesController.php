@@ -118,8 +118,6 @@ class TitularesController extends Controller
 
         $response = new Response();
         $response->setContent(json_encode($result));
-        // dump($response);
-        // // sdo;
         $response->headers->set('Content-Type', 'application/json');
         return $response;
     }

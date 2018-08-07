@@ -1,0 +1,56 @@
+{% extends 'javascripts.html.twig' %}
+
+{% block content %}
+<table id="actividades-sig" class="table table-striped">
+  <thead>
+    <tr>
+      <th>Especie</th>
+      <th>Superficie</th>
+      <th>Departamento</th>
+      <th>Tipo</th>
+      <th>Inspeccion ID</th>
+      <th>Observaciones</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody class="cobrosBeneficios" data-index="{{ cobrosBeneficios|length }}" data-prototype="{% filter escape %}{% include 'cobros_beneficios/prototype.html.twig' with {'form': cobrosBeneficios.vars.prototype } %}{% endfilter %}">
+    {% if cobrosBeneficios %}
+      {% for tag in cobrosBeneficios %}
+      <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-10">
+          <div id="accordion">
+            <div class="card">
+              <div class="card-header" id="cobro-beneficio-{{loop.index}}">
+                <h5 class="mb-0">
+                  <a class="btn" data-toggle="collapse" href="#collapse-{{loop.index}}" role="button" aria-expanded="false" aria-controls="collapse-{{loop.index}}">
+                    Cobro Beneficio #{{loop.index}}<a class="btn btn-danger btn-sm pull-right remove-cobros-beneficio remove_nested_fields" data-association="cobros_beneficios">
+                      <span class="fa fa-remove text-white" aria-hidden="true"></span>
+                  	</a>
+                  </a>
+                </h5>
+              </div>
+              <div id="collapse-{{loop.index}}" class="collapse">
+                <div class="card-body">
+                  {{dump(tag)}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
+  </tbody>
+</table>
+<a id="add-cobros-beneficio" class="btn btn-primary btn-sm add_nested_fields" data-target="#cobros-beneficio" href="javascript:void(0)">
+  <span class="fa fa-plus" aria-hidden="true"></span>
+  Agregar Cobro
+</a>
+{% endblock %}
+
+{% block javascripts %}
+  {{parent()}}
+  <script src="{{ asset('js/cobros_beneficios.js') }}"></script>
+{% endblock %}

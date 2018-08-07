@@ -14,6 +14,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity
  * @UniqueEntity(fields="numeroInterno",message="Este valor ya existe y no puede repetirse")
  * @UniqueEntity(fields="numeroExpediente",message="Este valor ya existe y no puede repetirse")
+ * @ORM\HasLifecycleCallbacks
  */
 class Expedientes
 {
@@ -72,7 +73,7 @@ class Expedientes
 
     /**
     * One Expediente has Many HistorialSig.
-    * @ORM\OneToMany(targetEntity="CobrosBeneficios", mappedBy="expediente")
+    * @ORM\OneToMany(targetEntity="CobrosBeneficios", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
     */
     private $cobroBeneficios;
 
@@ -1329,5 +1330,15 @@ class Expedientes
            return;
        }
        $this->produccionesVolumetricas->removeElement($ap);
+    }
+
+    /**
+     * Gets triggered only on insert
+
+     * @ORM\PrePersist
+     */
+    public function onPrePersist()
+    {
+        $this->createdAt = new \DateTime("now");
     }
 }
