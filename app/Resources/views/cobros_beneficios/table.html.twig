@@ -2,17 +2,6 @@
 
 {% block content %}
 <table id="actividades-sig" class="table table-striped">
-  <thead>
-    <tr>
-      <th>Especie</th>
-      <th>Superficie</th>
-      <th>Departamento</th>
-      <th>Tipo</th>
-      <th>Inspeccion ID</th>
-      <th>Observaciones</th>
-      <th></th>
-    </tr>
-  </thead>
   <tbody class="cobrosBeneficios" data-index="{{ cobrosBeneficios|length }}" data-prototype="{% filter escape %}{% include 'cobros_beneficios/prototype.html.twig' with {'form': cobrosBeneficios.vars.prototype } %}{% endfilter %}">
     {% if cobrosBeneficios %}
       {% for tag in cobrosBeneficios %}
@@ -22,18 +11,109 @@
         <div class="col-md-10">
           <div id="accordion">
             <div class="card">
-              <div class="card-header" id="cobro-beneficio-{{loop.index}}">
+              <div class="card-header" id="heading{{loop.index}}">
                 <h5 class="mb-0">
-                  <a class="btn" data-toggle="collapse" href="#collapse-{{loop.index}}" role="button" aria-expanded="false" aria-controls="collapse-{{loop.index}}">
-                    Cobro Beneficio #{{loop.index}}<a class="btn btn-danger btn-sm pull-right remove-cobros-beneficio remove_nested_fields" data-association="cobros_beneficios">
+                  <a class="btn" data-toggle="collapse" href="#collapse{{loop.index}}" role="button" aria-expanded="false" aria-controls="collapse{{loop.index}}">
+                    Cobro Beneficio #{{loop.index}} - <b>{{tag.children.nombreBanco.vars.value}}</b>
+                    <a class="btn btn-danger btn-sm pull-right remove-cobros-beneficio remove_nested_fields" data-association="cobros_beneficios">
                       <span class="fa fa-remove text-white" aria-hidden="true"></span>
                   	</a>
                   </a>
                 </h5>
               </div>
-              <div id="collapse-{{loop.index}}" class="collapse">
+              <div id="collapse{{loop.index}}" class="collapse" aria-labelledby="heading{{loop.index}}" data-parent="#accordion">
                 <div class="card-body">
-                  {{dump(tag)}}
+                  <div class="row">
+                    {{ form_label(tag.nombreBanco) }}
+                    <div class="col-md-10">
+                      {{ form_widget(tag.nombreBanco) }}
+                      {{ form_errors(tag.nombreBanco) }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    {{ form_label(tag.tipoCuenta) }}
+                    <div class="col-md-10">
+                      {{ form_widget(tag.tipoCuenta) }}
+                      {{ form_errors(tag.tipoCuenta) }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    {{ form_label(tag.sucursalBanco) }}
+                    <div class="col-md-10">
+                      {{ form_widget(tag.sucursalBanco) }}
+                      {{ form_errors(tag.sucursalBanco) }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    {{ form_label(tag.numeroCuenta) }}
+                    <div class="col-md-10">
+                      {{ form_widget(tag.numeroCuenta) }}
+                      {{ form_errors(tag.numeroCuenta) }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    {{ form_label(tag.numeroCbu) }}
+                    <div class="col-md-10">
+                      {{ form_widget(tag.numeroCbu) }}
+                      {{ form_errors(tag.numeroCbu) }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    {{ form_label(tag.numeroSucursal) }}
+                    <div class="col-md-10">
+                      {{ form_widget(tag.numeroSucursal) }}
+                      {{ form_errors(tag.numeroSucursal) }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    {{ form_label(tag.domicilioSucursal) }}
+                    <div class="col-md-10">
+                      {{ form_widget(tag.domicilioSucursal) }}
+                      {{ form_errors(tag.domicilioSucursal) }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    {{ form_label(tag.localidadId) }}
+                    <div class="col-md-10">
+                      {{ form_widget(tag.localidadId) }}
+                      {{ form_errors(tag.localidadId) }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    {{ form_label(tag.codigoPostal) }}
+                    <div class="col-md-10">
+                      {{ form_widget(tag.codigoPostal) }}
+                      {{ form_errors(tag.codigoPostal) }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    {{ form_label(tag.devolucionIva) }}
+                    <div class="col-md-10">
+                      {{ form_widget(tag.devolucionIva) }}
+                      {{ form_errors(tag.devolucionIva) }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    {{ form_label(tag.cargaTributariaNacional) }}
+                    <div class="col-md-10">
+                      {{ form_widget(tag.cargaTributariaNacional) }}
+                      {{ form_errors(tag.cargaTributariaNacional) }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    {{ form_label(tag.cargaTributariaProvincial) }}
+                    <div class="col-md-10">
+                      {{ form_widget(tag.cargaTributariaProvincial) }}
+                      {{ form_errors(tag.cargaTributariaProvincial) }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    {{ form_label(tag.cargaTributariaMunicipal) }}
+                    <div class="col-md-10">
+                      {{ form_widget(tag.cargaTributariaMunicipal) }}
+                      {{ form_errors(tag.cargaTributariaMunicipal) }}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
