@@ -41,7 +41,11 @@
                 <td><a href="{{ path('expedientes_show', { 'id': expediente.id }) }}">{{ expediente.id }}</a></td>
                 <td>{{ expediente.numeroInterno }}</td>
                 <td>{{ expediente.numeroExpediente }}</td>
-                <td><abbr title="{{ expediente.titular.apellidoNombre }}" data-length="10">{{ expediente.titular.apellidoNombre }}</abbr></td>
+                <td>
+                  {% for titular in expediente.titulares %}
+                      <a href="{{path('titulares_show', { 'id': titular.id })}}"><abbr title="{{titular}}" data-length="10">{{titular}}</abbr></a>{% if loop.last == false %} | {% endif %}
+                  {% endfor %}
+                </td>
                 <td>{{ expediente.representanteLegal }}</td>
                 <td><abbr title="{{ expediente.profesionalCargo }}" data-length="10">{{ expediente.profesionalCargo }}</abbr></td>
                 <td>{% if expediente.fechaIngreso %}{{ expediente.fechaIngreso|date('Y-m-d') }}{% endif %}</td>

@@ -242,16 +242,6 @@ class Expedientes
      */
     private $usuarioId;
 
-    /**
-     * @var \Titulares
-     *
-     * @ORM\ManyToOne(targetEntity="Titulares", inversedBy="expediente")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="titular_id", referencedColumnName="id")
-     * })
-     */
-    private $titular;
-
      /**
      * One Expediente has Many Actividades.
      * @ORM\OneToMany(targetEntity="ActividadesPresentadas", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
@@ -347,7 +337,7 @@ class Expedientes
 
     /**
     * @var ArrayCollection $titulares
-    * @ORM\ManyToMany(targetEntity="Titulares")
+    * @ORM\ManyToMany(targetEntity="Titulares", cascade={"persist"}, inversedBy="expedientes")
     * @ORM\JoinTable(
     *      name="expedientes_titulares",
     *      joinColumns={@ORM\JoinColumn(name="expediente_id", referencedColumnName="id")},
@@ -1009,30 +999,6 @@ class Expedientes
     public function getUsuarioId()
     {
         return $this->usuarioId;
-    }
-
-    /**
-     * Set titular
-     *
-     * @param \AppBundle\Entity\Titulares $titular
-     *
-     * @return Expedientes
-     */
-    public function setTitular(\AppBundle\Entity\Titulares $titular = null)
-    {
-        $this->titular = $titular;
-
-        return $this;
-    }
-
-    /**
-     * Get titular
-     *
-     * @return \AppBundle\Entity\Titulares
-     */
-    public function getTitular()
-    {
-        return $this->titular;
     }
 
     /**

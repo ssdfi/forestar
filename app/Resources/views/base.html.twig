@@ -9,6 +9,7 @@
                 <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
                 <link rel="stylesheet" type="text/css" media="screen" href="/css/application.css"/>
                 <link rel="stylesheet" type="text/css" media="screen" href="/css/body.css"/>
+                <link rel="stylesheet" type="text/css" media="screen" href="/css/bootstrap-switch.css"/>
             {% endstylesheets %}
 
             {% stylesheets 'bundles/app/css/*' output='css/compiled/main.css' %}
@@ -52,6 +53,7 @@
             {% javascripts '@jquery' '@bootstrap_js' %}
               <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
               <script type="text/javascript" src="{{ asset_url }}"></script>
+              <script src="/js/bootstrap-switch.js"></script>
               <script src="/js/application.js"></script>
             {% endjavascripts %}
         {% endblock %}

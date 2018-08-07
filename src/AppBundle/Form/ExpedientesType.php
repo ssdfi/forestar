@@ -7,10 +7,12 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use AppBundle\Form\EventListener\AddTitularesListener;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class ExpedientesType extends AbstractType
 {
@@ -32,12 +34,14 @@ class ExpedientesType extends AbstractType
                   'multiple'=>true,
                   'required'=>false,
                   'compound'=>false,
+                  'error_bubbling' => true,
                   'query_builder' =>
                     function (EntityRepository $er) use ($expediente) {
+                                dump($er);
                                 return $er->createQueryBuilder('p')
-                                ->leftJoin('p.expediente', 'e')
+                                ->leftJoin('p.expedientes', 'e')
                                 ->where('e.id = :expediente_id')
-                                ->setParameter('expediente_id', $expediente);;
+                                ->setParameter('expediente_id', $expediente);
                       },
                   'choice_value'=>function ($data) {
                         return $data->getId();
@@ -76,7 +80,7 @@ class ExpedientesType extends AbstractType
           ->add('areaEncuentraExpediente')
           ->add('departamento')
           ->add('anio')
-          ->add('solicitaAdelanto')
+          ->add('solicitaAdelanto', CheckboxType::class, array('attr' => array('data-label' => 'Solicita Adelanto'), 'label' => false, 'required'=>false))
           ->add('actividadesPresentadas', CollectionType::class, array(
                 'entry_type'    => ActividadesPresentadasType::class,
                 'allow_add'     => true,
@@ -113,6 +117,8 @@ class ExpedientesType extends AbstractType
                 'by_reference'  => false,
               )
           );
+
+          $builder->addEventSubscriber(new AddTitularesListener());
           // ->add('createdAt')
           // ->add('estadoViveros')
           // ->add('usuarioId')

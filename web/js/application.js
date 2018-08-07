@@ -14,21 +14,15 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require bootstrap-switch
-
-/*
- * Define los valores por defecto de Bootstrap Switch
- */
-// $.fn.bootstrapSwitch.defaults.onText = 'Sí';
-// $.fn.bootstrapSwitch.defaults.offText = 'No';
-// $.fn.bootstrapSwitch.defaults.labelWidth = '150';
-
 /*
  * Convierte todos los checkbox en switch
  */
 $(function() {
     $("input[data-label]").each(function() {
         $(this).bootstrapSwitch({
-            labelText: this.dataset.label
+            labelText: this.dataset.label,
+            onText: "SI",
+            offText: "NO"
         });
     });
 });

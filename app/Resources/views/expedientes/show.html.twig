@@ -20,7 +20,7 @@
               <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-documentacion" role="tab" aria-controls="nav-contact" aria-selected="false">Documentación ({{expediente.documentacion|length}})</a>
               <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-situacion" role="tab" aria-controls="nav-contact" aria-selected="false">Estado Situación ({{expediente.estadoSituacion|length}})</a>
               {% if expediente.ActividadesTitulares|length %}
-                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-titulares" role="tab" aria-controls="nav-contact" aria-selected="false">Productores Asociados ({{expediente.actividadesTitulares|length}})</a>
+                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-actividades-titulares" role="tab" aria-controls="nav-contact" aria-selected="false">Productores Asociados ({{expediente.actividadesTitulares|length}})</a>
               {% endif %}
               <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-beneficios-fiscales" role="tab" aria-controls="nav-contact" aria-selected="false">Beneficios Fiscales ({{expediente.beneficiosFiscales|length}})</a>
               <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-predios" role="tab" aria-controls="nav-contact" aria-selected="false">Predios ({{expediente.predios|length}})</a>
@@ -52,7 +52,7 @@
                 <dt class="col-6">Titulares</dt>
                 <dd class="col-6">
                   {% for titular in expediente.titulares %}
-                      <a href="{{path('titulares_show', { 'id': expediente.titular.id })}}">{{titular}}</a>{% if loop.last == false %} | {% endif %}
+                      <a href="{{path('titulares_show', { 'id': titular.id })}}">{{titular}}</a>{% if loop.last == false %} | {% endif %}
                   {% endfor %}</dd>
                 <dt class="col-6">Entidad Agrupadora</dt>
                 <dd class="col-6"><a href="#">{{ expediente.entidadAgrupadoraId }}</a></dd>
@@ -125,8 +125,8 @@
               {% endembed %}
             </div>
             {% if expediente.actividadesTitulares|length %}
-              <div class="tab-pane fade" id="nav-titulares" role="tabpanel" aria-labelledby="nav-contact-tab">
-                {% embed "estado_situacion/show_table.html.twig" with { 'actividadesTitulares': expediente.actividadesTitulares} %}
+              <div class="tab-pane fade" id="nav-actividades-titulares" role="tabpanel" aria-labelledby="nav-contact-tab">
+                {% embed "actividades_titulares/show_table.html.twig" with { 'actividadesTitulares': expediente.actividadesTitulares} %}
                 {% endembed %}
               </div>
             {% endif %}

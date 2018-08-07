@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class TitularesType extends AbstractType
 {
@@ -15,14 +16,13 @@ class TitularesType extends AbstractType
     {
         $builder
           ->add('apellidoNombre')
-          ->add('agrupador')
+          ->add('agrupador', CheckboxType::class, array('attr' => array('data-label' => 'Agrupador'), 'label' => false, 'required'=>false))
           ->add('tipoDocumento')
           ->add('cuit')
           ->add('documento')
           ->add('fechaNacimiento')
           ->add('sexo')
-          ->add('idExterno')
-          ->add('aprobado')
+          ->add('aprobado', CheckboxType::class, array('attr' => array('data-label' => 'Aprobado'), 'label' => false, 'required'=>false))
           ->add('numeroRegistro');
     }/**
      * {@inheritdoc}

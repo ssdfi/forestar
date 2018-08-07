@@ -91,3 +91,11 @@ ul, ol {
     margin-left: 10px;
     margin-right: 0px;
 }
+
+.form-check {
+  padding-left: 0px!important;
+}
+
+.modal-lg {
+    max-width: 60% !important;
+}

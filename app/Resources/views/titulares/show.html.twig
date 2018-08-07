@@ -64,7 +64,7 @@
             </tr>
           </thead>
           <tbody>
-            {% for expediente in titulare.expediente %}
+            {% for expediente in titulare.expedientes %}
             <tr data-link="{{ path('expedientes_show', { 'id': expediente.id }) }}">
               <td><a href="{{ path('expedientes_show', { 'id': expediente.id }) }}">{{ expediente.id }}</a></td>
               <td>{{ expediente.numeroInterno }}</td>

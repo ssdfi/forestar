@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}{{parent()}}
+	- Editar Profesional{% endblock %}
+{% form_theme edit_form 'bootstrap_4_layout.html.twig' %}
 {% block body %}
     <h1>Profesionale edit</h1>
 
