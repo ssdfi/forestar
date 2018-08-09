@@ -58,6 +58,6 @@
 {% endblock %}
 
 {% block javascripts %}
-  {{parent()}}
+  <script type="text/javascript" src="{{ asset('/assetic/jquery.js') }}"></script>
   <script src="{{ asset('js/titulares.js') }}"></script>
 {% endblock %}
