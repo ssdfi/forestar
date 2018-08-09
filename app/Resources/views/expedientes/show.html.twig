@@ -59,7 +59,7 @@
                 <dt class="col-6">Representante Legal</dt>
                 <dd class="col-6">{% if expediente.representanteLegal.id is defined %}<a href="{{path('titulares_show', { 'id': expediente.representanteLegal.id })}}">{{ expediente.representanteLegal }}</a>{% endif %}</dd>
                 <dt class="col-6">Profesional Cargo</dt>
-                <dd class="col-6">{% if expediente.representanteLegal.id is defined %}<a href="{{path('profesionales_show', { 'id': expediente.profesionalCargo.id })}}">{{ expediente.profesionalCargo }}</a>{% endif %}</dd>
+                <dd class="col-6">{% if expediente.profesionalCargo.id is defined %}<a href="{{path('profesionales_show', { 'id': expediente.profesionalCargo.id })}}">{{ expediente.profesionalCargo }}</a>{% endif %}</dd>
                 <dt class="col-6">Fecha Presentacion</dt>
                 <dd class="col-6">{% if expediente.fechaPresentacion %}{{ expediente.fechaPresentacion|date('d-m-Y') }}{% endif %}</dd>
                 <dt class="col-6">Fecha Ingreso</dt>

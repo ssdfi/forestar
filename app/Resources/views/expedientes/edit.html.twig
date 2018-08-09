@@ -92,24 +92,6 @@
 							{% embed "cobros_beneficios/table.html.twig" with {
 								'cobrosBeneficios' : edit_form.cobroBeneficios
 							} %}{% endembed %}
-							<div class="form-group row">
-								{{ form_label(edit_form.cobroBeneficios, null, {'label_attr': {'class': 'col-sm-2 form-control-label'}}) }}
-								<div class="col-sm-10">
-									{{form_widget(edit_form.cobroBeneficios)}}
-									<div class="row pull-right">
-										<div class="pull-right">
-											<button type="button" class="btn btn-secondary btn-xs" data-toggle="modal" data-target="#cobro-beneficios-modal" id="add-cobro-beneficio">
-												<span class="fa fa-plus" aria-hidden="true"></span>
-												Asociar
-											</button>
-											<button type="button" class="btn btn-secondary btn-xs" id="remove-cobro-beneficio">
-												<span class="fa fa-remove" aria-hidden="true"></span>
-												Eliminar
-											</button>
-										</div>
-									</div>
-								</div>
-							</div>
 							{{form_row(edit_form.fechaPresentacion)}}
 							{{form_row(edit_form.fechaIngreso)}}
 							{{form_row(edit_form.fechaFin)}}
