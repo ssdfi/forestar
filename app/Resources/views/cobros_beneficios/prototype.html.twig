@@ -1,8 +1,107 @@
 {% block cobrosBeneficioPrototype %}
-  
-  <td>
-    <a class="btn btn-danger btn-sm pull-right remove-cobros-beneficio remove_nested_fields" data-association="cobros_beneficios">
-      <span class="fa fa-remove text-white" aria-hidden="true"></span>
+<div class="card-header" id="___heading___">
+  <h5 class="mb-0">
+    <a class="btn" data-toggle="collapse" href="#___collapse___" role="button" aria-expanded="true" aria-controls="___collapse___">
+      <b>Cobro Beneficio #___count___ </b> - <b class="head-name___count___"></b>
+      <a class="btn btn-danger btn-sm pull-right remove-cobros-beneficio remove_nested_fields" data-association="cobros_beneficios">
+        <span class="fa fa-remove text-white" aria-hidden="true"></span>
+      </a>
     </a>
-  </td>
+  </h5>
+</div>
+<div id="___collapse___" class="collapse" aria-labelledby="___heading___" data-parent="#accordion">
+  <div class="card-body">
+    <div class="row">
+      {{ form_label(form.nombreBanco) }}
+      <div class="col-md-10">
+        {{ form_widget(form.nombreBanco) }}
+        {{ form_errors(form.nombreBanco) }}
+      </div>
+    </div>
+    <div class="row">
+      {{ form_label(form.tipoCuenta) }}
+      <div class="col-md-10">
+        {{ form_widget(form.tipoCuenta) }}
+        {{ form_errors(form.tipoCuenta) }}
+      </div>
+    </div>
+    <div class="row">
+      {{ form_label(form.sucursalBanco) }}
+      <div class="col-md-10">
+        {{ form_widget(form.sucursalBanco) }}
+        {{ form_errors(form.sucursalBanco) }}
+      </div>
+    </div>
+    <div class="row">
+      {{ form_label(form.numeroCuenta) }}
+      <div class="col-md-10">
+        {{ form_widget(form.numeroCuenta) }}
+        {{ form_errors(form.numeroCuenta) }}
+      </div>
+    </div>
+    <div class="row">
+      {{ form_label(form.numeroCbu) }}
+      <div class="col-md-10">
+        {{ form_widget(form.numeroCbu) }}
+        {{ form_errors(form.numeroCbu) }}
+      </div>
+    </div>
+    <div class="row">
+      {{ form_label(form.numeroSucursal) }}
+      <div class="col-md-10">
+        {{ form_widget(form.numeroSucursal) }}
+        {{ form_errors(form.numeroSucursal) }}
+      </div>
+    </div>
+    <div class="row">
+      {{ form_label(form.domicilioSucursal) }}
+      <div class="col-md-10">
+        {{ form_widget(form.domicilioSucursal) }}
+        {{ form_errors(form.domicilioSucursal) }}
+      </div>
+    </div>
+    <div class="row">
+      {{ form_label(form.localidadId) }}
+      <div class="col-md-10">
+        {{ form_widget(form.localidadId) }}
+        {{ form_errors(form.localidadId) }}
+      </div>
+    </div>
+    <div class="row">
+      {{ form_label(form.codigoPostal) }}
+      <div class="col-md-10">
+        {{ form_widget(form.codigoPostal) }}
+        {{ form_errors(form.codigoPostal) }}
+      </div>
+    </div>
+    <div class="row">
+      {{ form_label(form.devolucionIva) }}
+      <div class="col-md-10">
+        {{ form_widget(form.devolucionIva) }}
+        {{ form_errors(form.devolucionIva) }}
+      </div>
+    </div>
+    <div class="row">
+      {{ form_label(form.cargaTributariaNacional) }}
+      <div class="col-md-10">
+        {{ form_widget(form.cargaTributariaNacional) }}
+        {{ form_errors(form.cargaTributariaNacional) }}
+      </div>
+    </div>
+    <div class="row">
+      {{ form_label(form.cargaTributariaProvincial) }}
+      <div class="col-md-10">
+        {{ form_widget(form.cargaTributariaProvincial) }}
+        {{ form_errors(form.cargaTributariaProvincial) }}
+      </div>
+    </div>
+    <div class="row">
+      {{ form_label(form.cargaTributariaMunicipal) }}
+      <div class="col-md-10">
+        {{ form_widget(form.cargaTributariaMunicipal) }}
+        {{ form_errors(form.cargaTributariaMunicipal) }}
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
