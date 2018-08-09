@@ -53,22 +53,6 @@ class ExpedientesType extends AbstractType
                   )
                 )
               )
-          // ->add('cobroBeneficios', EntityType::class, array(
-          //         'class' =>  \AppBundle\Entity\CobrosBeneficios::class,
-          //         'multiple'=>true,
-          //         'required'=>false,
-          //         'compound'=>false,
-          //         'query_builder' => function (EntityRepository $er) use ($expediente) {
-          //                                         return $er->createQueryBuilder('p')
-          //                                         ->leftJoin('p.expediente', 'e')
-          //                                         ->where('e.id = :expediente_id')
-          //                                         ->setParameter('expediente_id', $expediente);;
-          //                               },
-          //         'choice_value'=>function ($data) {
-          //               return $data->getId();
-          //          },
-          //         )
-          // )
           ->add('fechaPresentacion', DateType::class, array('label' => 'Fecha de Presentación','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
           ->add('fechaIngreso', DateType::class, array('label' => 'Fecha de Ingreso','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
           ->add('fechaFin',DateType::class, array('label' => 'Fecha Fin','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
