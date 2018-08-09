@@ -1,6 +1,3 @@
-{% extends 'javascripts.html.twig' %}
-
-{% block content %}
 <div class="table-responsive">
   <table id="actividades-inspeccionadas" class="table table-striped">
     <thead>
@@ -104,9 +101,7 @@
     Agregar Actividad Inspeccionada
   </a>
 </div>
-{% endblock %}
 
 {% block javascripts %}
-  {{parent()}}
   <script src="{{ asset('js/actividades_inspeccionadas.js') }}"></script>
 {% endblock %}

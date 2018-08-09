@@ -1,6 +1,3 @@
-{% extends 'javascripts.html.twig' %}
-
-{% block content %}
 <table id="actividades-presentadas" class="table table-striped">
   <thead>
     <tr>
@@ -81,9 +78,7 @@
   <span class="fa fa-plus" aria-hidden="true"></span>
   Agregar Actividad Presentada
 </a>
-{% endblock %}
 
 {% block javascripts %}
-  {{parent()}}
   <script src="{{ asset('js/actividades_presentadas.js') }}"></script>
 {% endblock %}
