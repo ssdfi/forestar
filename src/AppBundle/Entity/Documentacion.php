@@ -46,7 +46,7 @@ class Documentacion
     /**
      * @var \ActividadesPresentadas
      *
-     * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="documentacion")
+     * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="documentaciones")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="expediente_id", referencedColumnName="id")
      * })
@@ -221,5 +221,10 @@ class Documentacion
     public function getFechaPresentacion()
     {
         return $this->fechaPresentacion;
+    }
+
+    public function addExpediente($exp)
+    {
+        $this->expediente = $exp;
     }
 }

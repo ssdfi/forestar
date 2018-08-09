@@ -163,4 +163,9 @@ class BeneficiosFiscalesSolicitados
     {
         return $this->expediente;
     }
+    
+    public function addExpediente($exp)
+    {
+        $this->expediente = $exp;
+    }
 }

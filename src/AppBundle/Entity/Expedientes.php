@@ -277,10 +277,10 @@ class Expedientes
 
      /**
      * One Expediente has Many Documentacion.
-     * @ORM\OneToMany(targetEntity="Documentacion", mappedBy="expediente")
+     * @ORM\OneToMany(targetEntity="Documentacion", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
      * @ORM\OrderBy({"fechaPresentacion" = "ASC"})
      */
-    private $documentacion;
+    private $documentaciones;
 
     /**
     * One Expediente has Many Actividades insp.
@@ -290,9 +290,9 @@ class Expedientes
 
     /**
     * One Expediente has Many EstadoSituacion.
-    * @ORM\OneToMany(targetEntity="EstadoSituacion", mappedBy="expediente")
+    * @ORM\OneToMany(targetEntity="EstadoSituacion", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
     */
-    private $estadoSituacion;
+    private $estadoSituaciones;
 
     /**
     * One Expediente has Many EstadoSituacion.
@@ -410,7 +410,7 @@ class Expedientes
 
    /**
    * One Expediente has Many Beneficios Fiscales Solicitados.
-   * @ORM\OneToMany(targetEntity="BeneficiosFiscalesSolicitados", mappedBy="expediente")
+   * @ORM\OneToMany(targetEntity="BeneficiosFiscalesSolicitados", mappedBy="expediente", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
    */
    private $beneficiosFiscalesSolicitados;
 
@@ -426,8 +426,8 @@ class Expedientes
       $this->actividadesInspeccionadas = new ArrayCollection();
       $this->actividadesTitulares = new ArrayCollection();
       $this->actividadesSig = new ArrayCollection();
-      $this->documentacion = new ArrayCollection();
-      $this->estadoSituacion = new ArrayCollection();
+      $this->documentaciones = new ArrayCollection();
+      $this->estadoSituaciones = new ArrayCollection();
       $this->beneficiosFiscales = new ArrayCollection();
       $this->impactosAmbientales = new ArrayCollection();
       $this->historialContable = new ArrayCollection();
@@ -1181,14 +1181,50 @@ class Expedientes
        $this->actividadesAprobadas->removeElement($ap);
     }
 
-    public function getDocumentacion()
+    public function getDocumentaciones()
     {
-        return $this->documentacion;
+        return $this->documentaciones;
     }
 
-    public function getEstadoSituacion()
+    public function addDocumentacion($ap)
     {
-        return $this->estadoSituacion;
+        if (true === $this->documentaciones->contains($ap)) {
+           return;
+       }
+       $this->documentaciones[] = $ap;
+       $ap->addExpediente($this);
+
+    }
+
+    public function removeDocumentacion($ap)
+    {
+      if (false === $this->documentaciones->contains($ap)) {
+           return;
+       }
+       $this->documentaciones->removeElement($ap);
+    }
+
+    public function getEstadoSituaciones()
+    {
+        return $this->estadoSituaciones;
+    }
+
+    public function addEstadoSituacion($ap)
+    {
+        if (true === $this->estadoSituaciones->contains($ap)) {
+           return;
+       }
+       $this->estadoSituaciones[] = $ap;
+       $ap->addExpediente($this);
+
+    }
+
+    public function removeEstadoSituacion($ap)
+    {
+      if (false === $this->estadoSituaciones->contains($ap)) {
+           return;
+       }
+       $this->estadoSituaciones->removeElement($ap);
     }
 
     public function getActividadesTitulares()
@@ -1400,6 +1436,24 @@ class Expedientes
 
     public function getBeneficiosFiscalesSolicitados(){
       return $this->beneficiosFiscalesSolicitados;
+    }
+
+    public function addBeneficiosFiscalesSolicitado($ap)
+    {
+        if (true === $this->beneficiosFiscalesSolicitados->contains($ap)) {
+           return;
+       }
+       $this->beneficiosFiscalesSolicitados[] = $ap;
+       $ap->addExpediente($this);
+
+    }
+
+    public function removeBeneficiosFiscalesSolicitado($ap)
+    {
+      if (false === $this->beneficiosFiscalesSolicitados->contains($ap)) {
+           return;
+       }
+       $this->beneficiosFiscalesSolicitados->removeElement($ap);
     }
 
     public function getEstabilidadFiscal(){

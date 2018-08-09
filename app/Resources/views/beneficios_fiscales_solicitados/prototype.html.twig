@@ -1,0 +1,25 @@
+{% block beneficioFiscalSolicitadoPrototype %}
+<td>
+  <div class="col-sm-12">
+    {{ form_widget(form.tipoBeneficio) }}
+    {{ form_errors(form.tipoBeneficio) }}
+  </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.fechaCarga) }}
+      {{ form_errors(form.fechaCarga) }}
+    </div>
+</td>
+<td>
+  <div class="col-sm-12">
+    {{ form_widget(form.observaciones) }}
+    {{ form_errors(form.observaciones) }}
+  </div>
+</td>
+  <td>
+    <a class="btn btn-danger btn-sm pull-right remove-beneficio-fiscal-solicitado remove_nested_fields" data-association="beneficios_fiscales_solicitados">
+      <span class="fa fa-remove text-white" aria-hidden="true"></span>
+    </a>
+  </td>
+{% endblock %}

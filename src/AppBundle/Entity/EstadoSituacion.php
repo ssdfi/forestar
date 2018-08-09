@@ -25,7 +25,7 @@ class EstadoSituacion
     /**
      * @var \ActividadesPresentadas
      *
-     * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="estadoSituacion")
+     * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="estadoSituaciones")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="expediente_id", referencedColumnName="id")
      * })
@@ -283,5 +283,10 @@ class EstadoSituacion
     public function getNombreProfesional()
     {
         return $this->nombreProfesional;
+    }
+
+    public function addExpediente($exp)
+    {
+        $this->expediente = $exp;
     }
 }

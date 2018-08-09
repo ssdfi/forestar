@@ -102,6 +102,15 @@ class ExpedientesType extends AbstractType
                 'by_reference'  => false,
               )
           )
+          ->add('documentaciones', CollectionType::class, array(
+                'entry_type'    => DocumentacionType::class,
+                'allow_add'     => true,
+                'allow_delete'  => true,
+                'prototype'     => true,
+                'label'         => false,
+                'by_reference'  => false,
+              )
+          )
           ->add('actividadesSig', CollectionType::class, array(
                 'entry_type'    => ActividadesSigType::class,
                 'allow_add'     => true,
@@ -110,7 +119,34 @@ class ExpedientesType extends AbstractType
                 'label'         => false,
                 'by_reference'  => false,
               )
-          );
+          )
+          ->add('estadoSituaciones', CollectionType::class, array(
+                'entry_type'    => EstadoSituacionType::class,
+                'allow_add'     => true,
+                'allow_delete'  => true,
+                'prototype'     => true,
+                'label'         => false,
+                'by_reference'  => false,
+              )
+            )
+          ->add('beneficiosFiscalesSolicitados', CollectionType::class, array(
+                'entry_type'    => BeneficiosFiscalesSolicitadosType::class,
+                'allow_add'     => true,
+                'allow_delete'  => true,
+                'prototype'     => true,
+                'label'         => false,
+                'by_reference'  => false,
+              )
+            )
+            ->add('disposicionesProvinciales', CollectionType::class, array(
+                  'entry_type'    => DisposicionesProvincialesType::class,
+                  'allow_add'     => true,
+                  'allow_delete'  => true,
+                  'prototype'     => true,
+                  'label'         => false,
+                  'by_reference'  => false,
+                )
+              );
           $builder->addEventSubscriber(new AddTitularesListener());
           $builder->addEventSubscriber(new AddProfesionalesListener());
           $builder->addEventSubscriber(new AddRepresentanteLegalListener());

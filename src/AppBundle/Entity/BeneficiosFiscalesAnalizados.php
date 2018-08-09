@@ -510,4 +510,9 @@ class BeneficiosFiscalesAnalizados
     {
         return $this->moneda;
     }
+
+    public function addExpediente($exp)
+    {
+        $this->expediente = $exp;
+    }
 }

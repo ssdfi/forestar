@@ -18,6 +18,10 @@
 					<a class="nav-item nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-presentacion" role="tab" aria-controls="v-pills-profile" aria-selected="false">Presentación</a>
 					<a class="nav-item nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-certificacion" role="tab" aria-controls="v-pills-profile" aria-selected="false">Certificación</a>
 					<a class="nav-item nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-inspeccion" role="tab" aria-controls="v-pills-messages" aria-selected="false">Inspección</a>
+					<a class="nav-item nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-documentacion" role="tab" aria-controls="v-pills-messages" aria-selected="false">Documentación</a>
+					<a class="nav-item nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-estado-situacion" role="tab" aria-controls="v-pills-messages" aria-selected="false">Estado de Situación</a>
+					<a class="nav-item nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-beneficio-fiscal-solicitado" role="tab" aria-controls="v-pills-messages" aria-selected="false">Beneficio Fiscal - Carga</a>
+					<a class="nav-item nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-disposiciones-provinciales" role="tab" aria-controls="v-pills-messages" aria-selected="false">Disposiciones Prov.</a>
 					<a class="nav-item nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-sig" role="tab" aria-controls="v-pills-settings" aria-selected="false">Aprobación SIG</a>
 				</div>
 			</div>
@@ -123,6 +127,30 @@
 						<h4>Editar Actividades Inspeccionadas</h4>
 						{% embed "actividadesinspeccionadas/table.html.twig" with {
 							'actividadesInspeccionadas' : edit_form.actividadesInspeccionadas
+						} %}{% endembed %}
+					</div>
+					<div class="tab-pane fade" id="v-pills-documentacion" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+						<h4>Editar Documentación</h4>
+						{% embed "documentacion/table.html.twig" with {
+							'documentacion' : edit_form.documentaciones
+						} %}{% endembed %}
+					</div>
+					<div class="tab-pane fade" id="v-pills-estado-situacion" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+						<h4>Editar Estado de Situación</h4>
+						{% embed "estado_situacion/table.html.twig" with {
+							'estadoSituaciones' : edit_form.estadoSituaciones
+						} %}{% endembed %}
+					</div>
+					<div class="tab-pane fade" id="v-pills-beneficio-fiscal-solicitado" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+						<h4>Editar Beneficio Fiscal - Carga</h4>
+						{% embed "beneficios_fiscales_solicitados/table.html.twig" with {
+							'beneficiosFiscalesSolicitados' : edit_form.beneficiosFiscalesSolicitados
+						} %}{% endembed %}
+					</div>
+					<div class="tab-pane fade" id="v-pills-disposiciones-provinciales" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+						<h4>Editar Disposiciones Provinciales</h4>
+						{% embed "disposiciones_provinciales/table.html.twig" with {
+							'disposicionesProvinciales' : edit_form.disposicionesProvinciales
 						} %}{% endembed %}
 					</div>
 					<div class="tab-pane fade" id="v-pills-sig" role="tabpanel" aria-labelledby="v-pills-settings-tab">

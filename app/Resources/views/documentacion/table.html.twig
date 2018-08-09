@@ -1,0 +1,58 @@
+<div class="table-responsive">
+  <table id="documentaciones" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Tipo Documentación</th>
+        <th>Nombre Archivo</th>
+        <th>Fecha Presentación</th>
+        <th>Observación</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class="documentaciones" data-index="{{ documentacion|length }}" data-prototype="{% filter escape %}{% include 'documentacion/prototype.html.twig' with {'form': documentacion.vars.prototype } %}{% endfilter %}">
+      {% if documentacion %}
+        {% for tag in documentacion %}
+        <tr class="fields">
+          <td>
+          	<div class="col-sm-12">
+          		{{ form_widget(tag.tipoDocumentacion) }}
+              {{ form_errors(tag.tipoDocumentacion) }}
+          	</div>
+          </td>
+          <td>
+            <div class="col-sm-12">
+              {{ form_widget(tag.nombreArchivo) }}
+              {{ form_errors(tag.nombreArchivo) }}
+            </div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.fechaPresentacion) }}
+                {{ form_errors(tag.fechaPresentacion) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.observacion) }}
+                {{ form_errors(tag.observacion) }}
+          		</div>
+          </td>
+          <td>
+          	<a class="btn btn-danger btn-sm pull-right remove-documentacion remove_nested_fields" data-association="documentaciones">
+              <span class="fa fa-remove text-white" aria-hidden="true"></span>
+          	</a>
+          </td>
+        </tr>
+      {% endfor %}
+    {% endif %}
+    </tbody>
+  </table>
+  <a id="add-documentacion" class="btn btn-primary btn-sm add_nested_fields" data-target="#documentacion" href="javascript:void(0)">
+    <span class="fa fa-plus" aria-hidden="true"></span>
+    Agregar Documentación
+  </a>
+</div>
+
+{% block javascripts %}
+  <script src="{{ asset('js/documentaciones.js') }}"></script>
+{% endblock %}

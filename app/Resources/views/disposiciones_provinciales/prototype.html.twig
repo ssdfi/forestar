@@ -1,0 +1,31 @@
+{% block actividadInspeccionadaPrototype %}
+<td>
+  <div class="col-sm-12">
+    {{ form_widget(form.resolucionNumero) }}
+    {{ form_errors(form.resolucionNumero) }}
+  </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.fechaEntrada) }}
+      {{ form_errors(form.fechaEntrada) }}
+    </div>
+</td>
+<td>
+  <div class="col-sm-12">
+    {{ form_widget(form.fechaSalida) }}
+    {{ form_errors(form.fechaSalida) }}
+  </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.observacion) }}
+      {{ form_errors(form.observacion) }}
+    </div>
+</td>
+  <td>
+    <a class="btn btn-danger btn-sm pull-right remove-actividad-inspeccionada remove_nested_fields" data-association="actividades_inspeccionadas">
+      <span class="fa fa-remove text-white" aria-hidden="true"></span>
+    </a>
+  </td>
+{% endblock %}

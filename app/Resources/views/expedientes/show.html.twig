@@ -16,8 +16,8 @@
               <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-presentacion" role="tab" aria-controls="nav-home" aria-selected="true">Presentación ({{expediente.actividadesPresentadas|length}})</a>
               <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-certificacion" role="tab" aria-controls="nav-profile" aria-selected="false">Certificación ({{expediente.ActividadesCertificadas|length}})</a>
               <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-inspeccion" role="tab" aria-controls="nav-contact" aria-selected="false">Inspección ({{expediente.actividadesInspeccionadas|length}})</a>
-              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-documentacion" role="tab" aria-controls="nav-contact" aria-selected="false">Documentación ({{expediente.documentacion|length}})</a>
-              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-situacion" role="tab" aria-controls="nav-contact" aria-selected="false">Estado Situación ({{expediente.estadoSituacion|length}})</a>
+              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-documentacion" role="tab" aria-controls="nav-contact" aria-selected="false">Documentación ({{expediente.documentaciones|length}})</a>
+              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-situacion" role="tab" aria-controls="nav-contact" aria-selected="false">Estado Situación ({{expediente.estadoSituaciones|length}})</a>
               <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-beneficios-fiscales-solicitados" role="tab" aria-controls="nav-contact" aria-selected="false">Beneficios Fiscales - Carga({{expediente.beneficiosFiscalesSolicitados|length}})</a>
               {% if expediente.ActividadesTitulares|length %}
                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-actividades-titulares" role="tab" aria-controls="nav-contact" aria-selected="false">Productores Asociados ({{expediente.actividadesTitulares|length}})</a>
@@ -123,11 +123,11 @@
               {% endembed %}
             </div>
             <div class="tab-pane fade" id="nav-documentacion" role="tabpanel" aria-labelledby="nav-contact-tab">
-              {% embed "documentacion/show_table.html.twig" with { 'documentacion': expediente.documentacion} %}
+              {% embed "documentacion/show_table.html.twig" with { 'documentacion': expediente.documentaciones} %}
               {% endembed %}
             </div>
             <div class="tab-pane fade" id="nav-situacion" role="tabpanel" aria-labelledby="nav-contact-tab">
-              {% embed "estado_situacion/show_table.html.twig" with { 'estadoSituacion': expediente.estadoSituacion} %}
+              {% embed "estado_situacion/show_table.html.twig" with { 'estadoSituacion': expediente.estadoSituaciones} %}
               {% endembed %}
             </div>
             <div class="tab-pane fade" id="nav-beneficios-fiscales-solicitados" role="tabpanel" aria-labelledby="nav-contact-tab">

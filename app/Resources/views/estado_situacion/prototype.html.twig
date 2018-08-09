@@ -1,0 +1,49 @@
+{% block estadosSituacionPrototype %}
+<td>
+  <div class="col-sm-12">
+    {{ form_widget(form.nombreProfesional) }}
+    {{ form_errors(form.nombreProfesional) }}
+  </div>
+</td>
+<td>
+  <div class="col-sm-12">
+    {{ form_widget(form.razonSocial) }}
+    {{ form_errors(form.razonSocial) }}
+  </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.tipoNumeroDocumento) }}
+      {{ form_errors(form.tipoNumeroDocumento) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.cuit) }}
+      {{ form_errors(form.cuit) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.especificacionPlantaciones) }}
+      {{ form_errors(form.especificacionPlantaciones) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.fecha) }}
+      {{ form_errors(form.fecha) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.observacion) }}
+      {{ form_errors(form.observacion) }}
+    </div>
+</td>
+  <td>
+    <a class="btn btn-danger btn-sm pull-right remove-estado-situacion remove_nested_fields" data-association="estado_situaciones">
+      <span class="fa fa-remove text-white" aria-hidden="true"></span>
+    </a>
+  </td>
+{% endblock %}

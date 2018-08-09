@@ -1,0 +1,51 @@
+<div class="table-responsive">
+  <table id="beneficios-fiscales-solicitados" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Tipo Beneficio</th>
+        <th>Fecha Carga</th>
+        <th>Observacion</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class="beneficiosFiscalesSolicitados" data-index="{{ beneficiosFiscalesSolicitados|length }}" data-prototype="{% filter escape %}{% include 'beneficios_fiscales_solicitados/prototype.html.twig' with {'form': beneficiosFiscalesSolicitados.vars.prototype } %}{% endfilter %}">
+      {% if beneficiosFiscalesSolicitados %}
+        {% for tag in beneficiosFiscalesSolicitados %}
+        <tr class="fields">
+          <td>
+            <div class="col-sm-12">
+              {{ form_widget(tag.tipoBeneficio) }}
+              {{ form_errors(tag.tipoBeneficio) }}
+            </div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.fechaCarga) }}
+                {{ form_errors(tag.fechaCarga) }}
+          		</div>
+          </td>
+          <td>
+            <div class="col-sm-12">
+              {{ form_widget(tag.observaciones) }}
+              {{ form_errors(tag.observaciones) }}
+            </div>
+          </td>
+          <td>
+          	<a class="btn btn-danger btn-sm pull-right remove-beneficio-fiscal-solicitado remove_nested_fields" data-association="beneficios_fiscales_solicitados">
+              <span class="fa fa-remove text-white" aria-hidden="true"></span>
+          	</a>
+          </td>
+        </tr>
+      {% endfor %}
+    {% endif %}
+    </tbody>
+  </table>
+  <a id="add-beneficio-fiscal-solicitado" class="btn btn-primary btn-sm add_nested_fields" data-target="#beneficio-fiscal-solicitado" href="javascript:void(0)">
+    <span class="fa fa-plus" aria-hidden="true"></span>
+    Agregar Beneficio Fiscal Solicitado
+  </a>
+</div>
+
+{% block javascripts %}
+  <script src="{{ asset('js/beneficios_fiscales_solicitados.js') }}"></script>
+{% endblock %}

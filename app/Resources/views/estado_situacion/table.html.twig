@@ -1,0 +1,79 @@
+<div class="table-responsive">
+  <table id="estado-situaciones" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nombre Profesional</th>
+        <th>Razón Social</th>
+        <th>Tipo Número de Documento</th>
+        <th>CUIT</th>
+        <th>Especificación Plantaciones</th>
+        <th>Fecha</th>
+        <th>Observación</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class="estadoSituaciones" data-index="{{ estadoSituaciones|length }}" data-prototype="{% filter escape %}{% include 'estado_situacion/prototype.html.twig' with {'form': estadoSituaciones.vars.prototype } %}{% endfilter %}">
+      {% if estadoSituaciones %}
+        {% for tag in estadoSituaciones %}
+        <tr class="fields">
+          <td>
+          	<div class="col-sm-12">
+          		{{ form_widget(tag.nombreProfesional) }}
+              {{ form_errors(tag.nombreProfesional) }}
+          	</div>
+          </td>
+          <td>
+            <div class="col-sm-12">
+              {{ form_widget(tag.razonSocial) }}
+              {{ form_errors(tag.razonSocial) }}
+            </div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.tipoNumeroDocumento) }}
+                {{ form_errors(tag.tipoNumeroDocumento) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.cuit) }}
+                {{ form_errors(tag.cuit) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.especificacionPlantaciones) }}
+                {{ form_errors(tag.especificacionPlantaciones) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.fecha) }}
+                {{ form_errors(tag.fecha) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.observacion) }}
+                {{ form_errors(tag.observacion) }}
+          		</div>
+          </td>
+          <td>
+          	<a class="btn btn-danger btn-sm pull-right remove-estado-situacion remove_nested_fields" data-association="estado_situaciones">
+              <span class="fa fa-remove text-white" aria-hidden="true"></span>
+          	</a>
+          </td>
+        </tr>
+      {% endfor %}
+    {% endif %}
+    </tbody>
+  </table>
+  <a id="add-estado-situacion" class="btn btn-primary btn-sm add_nested_fields" data-target="#estado-situacion" href="javascript:void(0)">
+    <span class="fa fa-plus" aria-hidden="true"></span>
+    Agregar Estado de situación
+  </a>
+</div>
+
+{% block javascripts %}
+  <script src="{{ asset('js/estado_situaciones.js') }}"></script>
+{% endblock %}
