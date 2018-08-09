@@ -1,0 +1,22 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Especie</th>
+      <th scope="col">Superfice Ha.</th>
+      <th scope="col">Año</th>
+      <th scope="col">Observaciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for abastecimientoAproximado in abastecimientosAproximado %}
+    <tr>
+      <td>{{ abastecimientoAproximado.id }}</td>
+      <td>{{ abastecimientoAproximado.especie }}</td>
+      <td>{{ abastecimientoAproximado.superficie }}</td>
+      <td>{{ abastecimientoAproximado.anio }}</td>
+      <td>{{ abastecimientoAproximado.observaciones }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

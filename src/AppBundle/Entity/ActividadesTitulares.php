@@ -131,9 +131,9 @@ class ActividadesTitulares
     private $entidadAgrupadora;
 
     /**
-     * @var \BeneficiosAnalizadosExpedientes
+     * @var \BeneficiosFiscalesAnalizados
      *
-     * @ORM\ManyToOne(targetEntity="BeneficiosAnalizadosExpedientes")
+     * @ORM\ManyToOne(targetEntity="BeneficiosFiscalesAnalizados")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="beneficios_analizados_expedientes_id", referencedColumnName="id")
      * })
@@ -141,9 +141,9 @@ class ActividadesTitulares
     private $beneficiosAnalizadosExpedientes;
 
     /**
-     * @var \BeneficiosSolicitadosExpedientes
+     * @var \BeneficiosFiscalesSolicitados
      *
-     * @ORM\ManyToOne(targetEntity="BeneficiosSolicitadosExpedientes")
+     * @ORM\ManyToOne(targetEntity="BeneficiosFiscalesSolicitados")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="beneficios_solicitados_expedientes_id", referencedColumnName="id")
      * })
@@ -683,11 +683,11 @@ class ActividadesTitulares
     /**
      * Set beneficiosAnalizadosExpedientes
      *
-     * @param \AppBundle\Entity\BeneficiosAnalizadosExpedientes $beneficiosAnalizadosExpedientes
+     * @param \AppBundle\Entity\BeneficiosFiscalesAnalizados $beneficiosAnalizadosExpedientes
      *
      * @return ActividadesTitulares
      */
-    public function setBeneficiosAnalizadosExpedientes(\AppBundle\Entity\BeneficiosAnalizadosExpedientes $beneficiosAnalizadosExpedientes = null)
+    public function setBeneficiosFiscalesAnalizados(\AppBundle\Entity\BeneficiosFiscalesAnalizados $beneficiosAnalizadosExpedientes = null)
     {
         $this->beneficiosAnalizadosExpedientes = $beneficiosAnalizadosExpedientes;
 
@@ -697,9 +697,9 @@ class ActividadesTitulares
     /**
      * Get beneficiosAnalizadosExpedientes
      *
-     * @return \AppBundle\Entity\BeneficiosAnalizadosExpedientes
+     * @return \AppBundle\Entity\BeneficiosFiscalesAnalizados
      */
-    public function getBeneficiosAnalizadosExpedientes()
+    public function getBeneficiosFiscalesAnalizados()
     {
         return $this->beneficiosAnalizadosExpedientes;
     }
@@ -707,11 +707,11 @@ class ActividadesTitulares
     /**
      * Set beneficiosSolicitadosExpedientes
      *
-     * @param \AppBundle\Entity\BeneficiosSolicitadosExpedientes $beneficiosSolicitadosExpedientes
+     * @param \AppBundle\Entity\BeneficiosFiscalesSolicitados $beneficiosSolicitadosExpedientes
      *
      * @return ActividadesTitulares
      */
-    public function setBeneficiosSolicitadosExpedientes(\AppBundle\Entity\BeneficiosSolicitadosExpedientes $beneficiosSolicitadosExpedientes = null)
+    public function setBeneficiosFiscalesSolicitados(\AppBundle\Entity\BeneficiosFiscalesSolicitados $beneficiosSolicitadosExpedientes = null)
     {
         $this->beneficiosSolicitadosExpedientes = $beneficiosSolicitadosExpedientes;
 
@@ -721,9 +721,9 @@ class ActividadesTitulares
     /**
      * Get beneficiosSolicitadosExpedientes
      *
-     * @return \AppBundle\Entity\BeneficiosSolicitadosExpedientes
+     * @return \AppBundle\Entity\BeneficiosFiscalesSolicitados
      */
-    public function getBeneficiosSolicitadosExpedientes()
+    public function getBeneficiosFiscalesSolicitados()
     {
         return $this->beneficiosSolicitadosExpedientes;
     }

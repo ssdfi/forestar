@@ -1025,4 +1025,8 @@ class Certificados
     {
         return $this->nombreArchivoResolucion;
     }
+
+    public function __toString(){
+      return (string)$this->id;
+    }
 }

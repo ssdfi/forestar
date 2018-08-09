@@ -86,10 +86,7 @@ class ExpedientesController extends Controller
         // }
 
         //SI EN OBSERVACIONES TIENE ALGO QUE DICE SEGUNDO TITULAR PONERLO COMO POSIBLE ERROR PARA SOLUCIONAR
-        // dump($expediente);
-        foreach ($expediente->getTitulares() as $key => $value) {
-          dump($value);
-        }
+        dump($expediente);
         return $this->render('expedientes/show.html.twig', array(
             'expediente' => $expediente,
             'delete_form' => $deleteForm->createView(),

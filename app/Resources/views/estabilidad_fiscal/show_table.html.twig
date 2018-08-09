@@ -1,0 +1,40 @@
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Numero Certificado</th>
+        <th scope="col">Impuesto</th>
+        <th scope="col">Inicio</th>
+        <th scope="col">Fin</th>
+        <th scope="col">Fecha de Emisión</th>
+        <th scope="col">Volumen</th>
+        <th scope="col">Valor Beneficio</th>
+        <th scope="col">Moneda</th>
+        <th scope="col">Certificado</th>
+        <th scope="col">Estado Solicitud Certificado</th>
+        <th scope="col">Producto</th>
+        <th scope="col">Coef. Conversion</th>
+        <th scope="col">Observacion</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in estabilidadFiscal %}
+      <tr>
+        <td>{{ item.numeroCertificado }}</td>
+        <td>{{ item.impuesto }}</td>
+        <td>{{ item.inicioPeriodoFiscal|date('d-m-Y') }}</td>
+        <td>{{ item.finPeriodoFiscal|date('d-m-Y') }}</td>
+        <td>{{ item.fechaEmision|date('d-m-Y') }}</td>
+        <td>{{ item.volumen }}</td>
+        <td>{{ item.valorBeneficio }}</td>
+        <td>{{ item.moneda }}</td>
+        <td><b>{{ item.certificado }}</b> para ver</td>
+        <td>{{ item.estadoSolicitudCertificado }}</td>
+        <td>{{ item.producto }}</td>
+        <td>{{ item.coeficienteConversion }}</td>
+        <td>{{ item.observacion }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

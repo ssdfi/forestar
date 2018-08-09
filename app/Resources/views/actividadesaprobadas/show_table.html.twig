@@ -1,0 +1,26 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Actividad</th>
+      <th scope="col">Especie</th>
+      <th scope="col">Superfice Ha.</th>
+      <th scope="col">Densidad</th>
+      <th scope="col">Fecha de Inicio</th>
+      <th scope="col">Fecha Fin de Actividad</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for actividadAprobada in actividadesAprobadas %}
+    <tr data-link="{{ path('expedientes_show', { 'id': actividadAprobada.id }) }}">
+      <td><a href="{{ path('expedientes_show', { 'id': actividadAprobada.id }) }}">{{ actividadAprobada.id }}</a></td>
+      <td>{{ actividadAprobada.tipoActividad }}</td>
+      <td>{{ actividadAprobada.especie }}</td>
+      <td>{{ actividadAprobada.superficieHa }}</td>
+      <td>{{ actividadAprobada.densidad }}</td>
+      <td>{% if actividadAprobada.fechaInicio %}{{ actividadAprobada.fechaInicio|date('d-m-Y') }}{% endif %}</td>
+      <td>{% if actividadAprobada.fechaFinActividad %}{{ actividadAprobada.fechaFinActividad|date('d-m-Y') }}{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

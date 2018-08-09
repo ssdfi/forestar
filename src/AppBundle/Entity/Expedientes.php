@@ -296,7 +296,7 @@ class Expedientes
 
     /**
     * One Expediente has Many EstadoSituacion.
-    * @ORM\OneToMany(targetEntity="BeneficiosAnalizadosExpedientes", mappedBy="expediente")
+    * @ORM\OneToMany(targetEntity="BeneficiosFiscalesAnalizados", mappedBy="expediente")
     */
     private $beneficiosFiscales;
 
@@ -390,6 +390,36 @@ class Expedientes
    */
    private $produccionesVolumetricas;
 
+   /**
+   * One Expediente has Many ActividadesAprobadas.
+   * @ORM\OneToMany(targetEntity="Garantias", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
+   */
+   private $garantias;
+
+   /**
+   * One Expediente has Many DisposicionesProvinciales.
+   * @ORM\OneToMany(targetEntity="DeclaracionIva", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
+   */
+   private $declaracionesIva;
+
+   /**
+   * One Expediente has Many DisposicionesProvinciales.
+   * @ORM\OneToMany(targetEntity="AbastecimientoAproximado", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
+   */
+   private $cronogramaPlantacion;
+
+   /**
+   * One Expediente has Many Beneficios Fiscales Solicitados.
+   * @ORM\OneToMany(targetEntity="BeneficiosFiscalesSolicitados", mappedBy="expediente")
+   */
+   private $beneficiosFiscalesSolicitados;
+
+   /**
+   * One Expediente has Many EF.
+   * @ORM\OneToMany(targetEntity="ConsumoDebitado", mappedBy="expediente")
+   */
+   private $estabilidadFiscal;
+
     public function __construct(){
       $this->actividadesPresentadas = new ArrayCollection();
       $this->actividadesCertificadas = new ArrayCollection();
@@ -414,6 +444,11 @@ class Expedientes
       $this->disposicionesProvinciales = new ArrayCollection();
       $this->declaracionIvaResoluciones = new ArrayCollection();
       $this->produccionesVolumetricas = new ArrayCollection();
+      $this->garantias = new ArrayCollection();
+      $this->declaracionesIva = new ArrayCollection();
+      $this->cronogramaPlantacion = new ArrayCollection();
+      $this->beneficiosFiscalesSolicitados = new ArrayCollection();
+      $this->estabilidadFiscal = new ArrayCollection();
     }
 
     /**
@@ -1350,6 +1385,26 @@ class Expedientes
        $this->produccionesVolumetricas->removeElement($ap);
     }
 
+    public function getGarantias()
+    {
+      return $this->garantias;
+    }
+
+    public function getDeclaracionesIva(){
+      return $this->declaracionesIva;
+    }
+
+    public function getCronogramaPlantacion(){
+      return $this->cronogramaPlantacion;
+    }
+
+    public function getBeneficiosFiscalesSolicitados(){
+      return $this->beneficiosFiscalesSolicitados;
+    }
+
+    public function getEstabilidadFiscal(){
+      return $this->estabilidadFiscal;
+    }
     /**
      * Gets triggered only on insert
 

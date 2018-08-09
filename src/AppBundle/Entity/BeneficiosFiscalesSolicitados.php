@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * BeneficiosSolicitadosExpedientes
+ * BeneficiosFiscalesSolicitados
  *
- * @ORM\Table(name="beneficios_solicitados_expedientes")
+ * @ORM\Table(name="beneficios_fiscales_solicitados")
  * @ORM\Entity
  */
-class BeneficiosSolicitadosExpedientes
+class BeneficiosFiscalesSolicitados
 {
     /**
      * @var integer
@@ -23,11 +23,14 @@ class BeneficiosSolicitadosExpedientes
     private $id;
 
     /**
-     * @var integer
+     * @var \tipoMoneda
      *
-     * @ORM\Column(name="tipo_beneficio_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposBeneficiosFiscales")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="tipo_beneficio_id", referencedColumnName="id")
+     * })
      */
-    private $tipoBeneficioId;
+    private $tipoBeneficio;
 
     /**
      * @var string
@@ -44,11 +47,14 @@ class BeneficiosSolicitadosExpedientes
     private $fechaCarga;
 
     /**
-     * @var integer
+     * @var \Expedientes
      *
-     * @ORM\Column(name="expediente_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="beneficiosFiscalesSolicitados")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="expediente_id", referencedColumnName="id")
+     * })
      */
-    private $expedienteId;
+    private $expediente;
 
 
 
@@ -63,27 +69,27 @@ class BeneficiosSolicitadosExpedientes
     }
 
     /**
-     * Set tipoBeneficioId
+     * Set tipoBeneficio
      *
-     * @param integer $tipoBeneficioId
+     * @param integer $tipoBeneficio
      *
-     * @return BeneficiosSolicitadosExpedientes
+     * @return BeneficiosFiscalesSolicitados
      */
-    public function setTipoBeneficioId($tipoBeneficioId)
+    public function setTipoBeneficio($tipoBeneficio)
     {
-        $this->tipoBeneficioId = $tipoBeneficioId;
+        $this->tipoBeneficio = $tipoBeneficio;
 
         return $this;
     }
 
     /**
-     * Get tipoBeneficioId
+     * Get tipoBeneficio
      *
      * @return integer
      */
-    public function getTipoBeneficioId()
+    public function getTipoBeneficio()
     {
-        return $this->tipoBeneficioId;
+        return $this->tipoBeneficio;
     }
 
     /**
@@ -91,7 +97,7 @@ class BeneficiosSolicitadosExpedientes
      *
      * @param string $observaciones
      *
-     * @return BeneficiosSolicitadosExpedientes
+     * @return BeneficiosFiscalesSolicitados
      */
     public function setObservaciones($observaciones)
     {
@@ -115,7 +121,7 @@ class BeneficiosSolicitadosExpedientes
      *
      * @param \DateTime $fechaCarga
      *
-     * @return BeneficiosSolicitadosExpedientes
+     * @return BeneficiosFiscalesSolicitados
      */
     public function setFechaCarga($fechaCarga)
     {
@@ -135,26 +141,26 @@ class BeneficiosSolicitadosExpedientes
     }
 
     /**
-     * Set expedienteId
+     * Set expediente
      *
-     * @param integer $expedienteId
+     * @param integer $expediente
      *
-     * @return BeneficiosSolicitadosExpedientes
+     * @return BeneficiosFiscalesSolicitados
      */
-    public function setExpedienteId($expedienteId)
+    public function setExpediente($expediente)
     {
-        $this->expedienteId = $expedienteId;
+        $this->expediente = $expediente;
 
         return $this;
     }
 
     /**
-     * Get expedienteId
+     * Get expediente
      *
      * @return integer
      */
-    public function getExpedienteId()
+    public function getExpediente()
     {
-        return $this->expedienteId;
+        return $this->expediente;
     }
 }

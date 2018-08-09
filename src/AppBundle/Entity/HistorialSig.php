@@ -33,9 +33,12 @@ class HistorialSig
     private $expediente;
 
     /**
-     * @var integer
+     * @var \tipoActividad
      *
-     * @ORM\Column(name="area_enviado_expediente_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Areas")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="area_enviado_expediente_id", referencedColumnName="id")
+     * })
      */
     private $areaEnviadoExpediente;
 
@@ -58,35 +61,47 @@ class HistorialSig
      *
      * @ORM\Column(name="usuario_id", type="smallint", nullable=true)
      */
-    private $usuarioId;
+    private $usuario;
 
     /**
-     * @var integer
+     * @var \tipoActividad
      *
-     * @ORM\Column(name="estado_area_contable_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposEstadosContables")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="estado_area_contable_id", referencedColumnName="id")
+     * })
      */
-    private $estadoAreaContableId;
+    private $estadoAreaContable;
 
     /**
-     * @var integer
+     * @var \tipoActividad
      *
-     * @ORM\Column(name="estado_area_legales_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposEstadosLegales")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="estado_area_legales_id", referencedColumnName="id")
+     * })
      */
-    private $estadoAreaLegalesId;
+    private $estadoAreaLegales;
 
     /**
-     * @var integer
+     * @var \tipoActividad
      *
-     * @ORM\Column(name="estado_area_promocion_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposEstadosPromocion")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="estado_area_promocion_id", referencedColumnName="id")
+     * })
      */
-    private $estadoAreaPromocionId;
+    private $estadoAreaPromocion;
 
     /**
-     * @var integer
+     * @var \tipoActividad
      *
-     * @ORM\Column(name="estado_area_sig_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposEstadosSig")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="estado_area_sig_id", referencedColumnName="id")
+     * })
      */
-    private $estadoAreaSigId;
+    private $estadoAreaSig;
 
     /**
      * @var string
@@ -103,11 +118,14 @@ class HistorialSig
     private $fechaUltimaModificacion;
 
     /**
-     * @var integer
+     * @var \tipoActividad
      *
-     * @ORM\Column(name="estado_principal_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposEstadosPrincipales")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="estado_principal_id", referencedColumnName="id")
+     * })
      */
-    private $estadoPrincipalId;
+    private $estadoPrincipal;
 
     /**
      * @var \DateTime
@@ -117,18 +135,21 @@ class HistorialSig
     private $hsiFecRea;
 
     /**
-     * @var integer
+     * @var \tipoActividad
      *
-     * @ORM\Column(name="estado_foresto_industriales_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposEstadosForestoIndustrial")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="estado_foresto_industriales_id", referencedColumnName="id")
+     * })
      */
-    private $estadoForestoIndustrialesId;
+    private $estadoForestoIndustriales;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="estado_viveros_id", type="smallint", nullable=true)
      */
-    private $estadoViverosId;
+    private $estadoViveros;
 
 
 
@@ -239,123 +260,123 @@ class HistorialSig
     }
 
     /**
-     * Set usuarioId
+     * Set usuario
      *
-     * @param integer $usuarioId
+     * @param integer $usuario
      *
      * @return Historialsig
      */
-    public function setUsuarioId($usuarioId)
+    public function setUsuario($usuario)
     {
-        $this->usuarioId = $usuarioId;
+        $this->usuario = $usuario;
 
         return $this;
     }
 
     /**
-     * Get usuarioId
+     * Get usuario
      *
      * @return integer
      */
-    public function getUsuarioId()
+    public function getUsuario()
     {
-        return $this->usuarioId;
+        return $this->usuario;
     }
 
     /**
-     * Set estadoAreaContableId
+     * Set estadoAreaContable
      *
-     * @param integer $estadoAreaContableId
+     * @param integer $estadoAreaContable
      *
      * @return Historialsig
      */
-    public function setEstadoAreaContableId($estadoAreaContableId)
+    public function setEstadoAreaContable($estadoAreaContable)
     {
-        $this->estadoAreaContableId = $estadoAreaContableId;
+        $this->estadoAreaContable = $estadoAreaContable;
 
         return $this;
     }
 
     /**
-     * Get estadoAreaContableId
+     * Get estadoAreaContable
      *
      * @return integer
      */
-    public function getEstadoAreaContableId()
+    public function getEstadoAreaContable()
     {
-        return $this->estadoAreaContableId;
+        return $this->estadoAreaContable;
     }
 
     /**
-     * Set estadoAreaLegalesId
+     * Set estadoAreaLegales
      *
-     * @param integer $estadoAreaLegalesId
+     * @param integer $estadoAreaLegales
      *
      * @return Historialsig
      */
-    public function setEstadoAreaLegalesId($estadoAreaLegalesId)
+    public function setEstadoAreaLegales($estadoAreaLegales)
     {
-        $this->estadoAreaLegalesId = $estadoAreaLegalesId;
+        $this->estadoAreaLegales = $estadoAreaLegales;
 
         return $this;
     }
 
     /**
-     * Get estadoAreaLegalesId
+     * Get estadoAreaLegales
      *
      * @return integer
      */
-    public function getEstadoAreaLegalesId()
+    public function getEstadoAreaLegales()
     {
-        return $this->estadoAreaLegalesId;
+        return $this->estadoAreaLegales;
     }
 
     /**
-     * Set estadoAreaPromocionId
+     * Set estadoAreaPromocion
      *
-     * @param integer $estadoAreaPromocionId
+     * @param integer $estadoAreaPromocion
      *
      * @return Historialsig
      */
-    public function setEstadoAreaPromocionId($estadoAreaPromocionId)
+    public function setEstadoAreaPromocion($estadoAreaPromocion)
     {
-        $this->estadoAreaPromocionId = $estadoAreaPromocionId;
+        $this->estadoAreaPromocion = $estadoAreaPromocion;
 
         return $this;
     }
 
     /**
-     * Get estadoAreaPromocionId
+     * Get estadoAreaPromocion
      *
      * @return integer
      */
-    public function getEstadoAreaPromocionId()
+    public function getEstadoAreaPromocion()
     {
-        return $this->estadoAreaPromocionId;
+        return $this->estadoAreaPromocion;
     }
 
     /**
-     * Set estadoAreaSigId
+     * Set estadoAreaSig
      *
-     * @param integer $estadoAreaSigId
+     * @param integer $estadoAreaSig
      *
      * @return Historialsig
      */
-    public function setEstadoAreaSigId($estadoAreaSigId)
+    public function setEstadoAreaSig($estadoAreaSig)
     {
-        $this->estadoAreaSigId = $estadoAreaSigId;
+        $this->estadoAreaSig = $estadoAreaSig;
 
         return $this;
     }
 
     /**
-     * Get estadoAreaSigId
+     * Get estadoAreaSig
      *
      * @return integer
      */
-    public function getEstadoAreaSigId()
+    public function getEstadoAreaSig()
     {
-        return $this->estadoAreaSigId;
+        return $this->estadoAreaSig;
     }
 
     /**
@@ -407,27 +428,27 @@ class HistorialSig
     }
 
     /**
-     * Set estadoPrincipalId
+     * Set estadoPrincipal
      *
-     * @param integer $estadoPrincipalId
+     * @param integer $estadoPrincipal
      *
      * @return Historialsig
      */
-    public function setEstadoPrincipalId($estadoPrincipalId)
+    public function setEstadoPrincipal($estadoPrincipal)
     {
-        $this->estadoPrincipalId = $estadoPrincipalId;
+        $this->estadoPrincipal = $estadoPrincipal;
 
         return $this;
     }
 
     /**
-     * Get estadoPrincipalId
+     * Get estadoPrincipal
      *
      * @return integer
      */
-    public function getEstadoPrincipalId()
+    public function getEstadoPrincipal()
     {
-        return $this->estadoPrincipalId;
+        return $this->estadoPrincipal;
     }
 
     /**
@@ -455,51 +476,51 @@ class HistorialSig
     }
 
     /**
-     * Set estadoForestoIndustrialesId
+     * Set estadoForestoIndustriales
      *
-     * @param integer $estadoForestoIndustrialesId
+     * @param integer $estadoForestoIndustriales
      *
      * @return Historialsig
      */
-    public function setEstadoForestoIndustrialesId($estadoForestoIndustrialesId)
+    public function setEstadoForestoIndustriales($estadoForestoIndustriales)
     {
-        $this->estadoForestoIndustrialesId = $estadoForestoIndustrialesId;
+        $this->estadoForestoIndustriales = $estadoForestoIndustriales;
 
         return $this;
     }
 
     /**
-     * Get estadoForestoIndustrialesId
+     * Get estadoForestoIndustriales
      *
      * @return integer
      */
-    public function getEstadoForestoIndustrialesId()
+    public function getEstadoForestoIndustriales()
     {
-        return $this->estadoForestoIndustrialesId;
+        return $this->estadoForestoIndustriales;
     }
 
     /**
-     * Set estadoViverosId
+     * Set estadoViveros
      *
-     * @param integer $estadoViverosId
+     * @param integer $estadoViveros
      *
      * @return Historialsig
      */
-    public function setEstadoViverosId($estadoViverosId)
+    public function setEstadoViveros($estadoViveros)
     {
-        $this->estadoViverosId = $estadoViverosId;
+        $this->estadoViveros = $estadoViveros;
 
         return $this;
     }
 
     /**
-     * Get estadoViverosId
+     * Get estadoViveros
      *
      * @return integer
      */
-    public function getEstadoViverosId()
+    public function getEstadoViveros()
     {
-        return $this->estadoViverosId;
+        return $this->estadoViveros;
     }
 
     public function __toString()

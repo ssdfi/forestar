@@ -33,11 +33,14 @@ class HistorialContable
     private $expediente;
 
     /**
-     * @var integer
+     * @var \tipoActividad
      *
-     * @ORM\Column(name="area_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Areas")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="area_id", referencedColumnName="id")
+     * })
      */
-    private $areaId;
+    private $area;
 
     /**
      * @var \DateTime
@@ -61,32 +64,44 @@ class HistorialContable
     private $usuarioId;
 
     /**
-     * @var integer
+     * @var \tipoActividad
      *
-     * @ORM\Column(name="estado_contable_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposEstadosContables")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="estado_contable_id", referencedColumnName="id")
+     * })
      */
-    private $estadoContableId;
+    private $estadoContable;
 
     /**
-     * @var integer
+     * @var \tipoActividad
      *
-     * @ORM\Column(name="estado_legal_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposEstadosLegales")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="estado_legal_id", referencedColumnName="id")
+     * })
      */
-    private $estadoLegalId;
+    private $estadoLegal;
 
     /**
-     * @var integer
+     * @var \tipoActividad
      *
-     * @ORM\Column(name="estado_promocion_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposEstadosPromocion")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="estado_promocion_id", referencedColumnName="id")
+     * })
      */
-    private $estadoPromocionId;
+    private $estadoPromocion;
 
     /**
-     * @var integer
+     * @var \tipoActividad
      *
-     * @ORM\Column(name="estado_sig_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposEstadosSig")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="estado_sig_id", referencedColumnName="id")
+     * })
      */
-    private $estadoSigId;
+    private $estadoSig;
 
     /**
      * @var string
@@ -103,25 +118,31 @@ class HistorialContable
     private $fechaUltimaModificacion;
 
     /**
-     * @var integer
+     * @var \tipoActividad
      *
-     * @ORM\Column(name="estado_principal_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposEstadosPrincipales")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="estado_principal_id", referencedColumnName="id")
+     * })
      */
-    private $estadoPrincipalId;
+    private $estadoPrincipal;
 
     /**
-     * @var integer
+     * @var \tipoActividad
      *
-     * @ORM\Column(name="estado_foresto_industriales_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposEstadosForestoIndustrial")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="estado_foresto_industriales_id", referencedColumnName="id")
+     * })
      */
-    private $estadoForestoIndustrialesId;
+    private $estadoForestoIndustriales;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="estado_viveros_id", type="smallint", nullable=true)
      */
-    private $estadoViverosId;
+    private $estadoViveros;
 
 
 
@@ -160,27 +181,27 @@ class HistorialContable
     }
 
     /**
-     * Set areaId
+     * Set area
      *
-     * @param integer $areaId
+     * @param integer $area
      *
      * @return HistorialContable
      */
-    public function setAreaId($areaId)
+    public function setArea($area)
     {
-        $this->areaId = $areaId;
+        $this->area = $area;
 
         return $this;
     }
 
     /**
-     * Get areaId
+     * Get area
      *
      * @return integer
      */
-    public function getAreaId()
+    public function getArea()
     {
-        return $this->areaId;
+        return $this->area;
     }
 
     /**
@@ -256,99 +277,99 @@ class HistorialContable
     }
 
     /**
-     * Set estadoContableId
+     * Set estadoContable
      *
-     * @param integer $estadoContableId
+     * @param integer $estadoContable
      *
      * @return HistorialContable
      */
-    public function setEstadoContableId($estadoContableId)
+    public function setEstadoContable($estadoContable)
     {
-        $this->estadoContableId = $estadoContableId;
+        $this->estadoContable = $estadoContable;
 
         return $this;
     }
 
     /**
-     * Get estadoContableId
+     * Get estadoContable
      *
      * @return integer
      */
-    public function getEstadoContableId()
+    public function getEstadoContable()
     {
-        return $this->estadoContableId;
+        return $this->estadoContable;
     }
 
     /**
-     * Set estadoLegalId
+     * Set estadoLegal
      *
-     * @param integer $estadoLegalId
+     * @param integer $estadoLegal
      *
      * @return HistorialContable
      */
-    public function setEstadoLegalId($estadoLegalId)
+    public function setEstadoLegal($estadoLegal)
     {
-        $this->estadoLegalId = $estadoLegalId;
+        $this->estadoLegal = $estadoLegal;
 
         return $this;
     }
 
     /**
-     * Get estadoLegalId
+     * Get estadoLegal
      *
      * @return integer
      */
-    public function getEstadoLegalId()
+    public function getEstadoLegal()
     {
-        return $this->estadoLegalId;
+        return $this->estadoLegal;
     }
 
     /**
-     * Set estadoPromocionId
+     * Set estadoPromocion
      *
-     * @param integer $estadoPromocionId
+     * @param integer $estadoPromocion
      *
      * @return HistorialContable
      */
-    public function setEstadoPromocionId($estadoPromocionId)
+    public function setEstadoPromocion($estadoPromocion)
     {
-        $this->estadoPromocionId = $estadoPromocionId;
+        $this->estadoPromocion = $estadoPromocion;
 
         return $this;
     }
 
     /**
-     * Get estadoPromocionId
+     * Get estadoPromocion
      *
      * @return integer
      */
-    public function getEstadoPromocionId()
+    public function getEstadoPromocion()
     {
-        return $this->estadoPromocionId;
+        return $this->estadoPromocion;
     }
 
     /**
-     * Set estadoSigId
+     * Set estadoSig
      *
-     * @param integer $estadoSigId
+     * @param integer $estadoSig
      *
      * @return HistorialContable
      */
-    public function setEstadoSigId($estadoSigId)
+    public function setEstadoSig($estadoSig)
     {
-        $this->estadoSigId = $estadoSigId;
+        $this->estadoSig = $estadoSig;
 
         return $this;
     }
 
     /**
-     * Get estadoSigId
+     * Get estadoSig
      *
      * @return integer
      */
-    public function getEstadoSigId()
+    public function getEstadoSig()
     {
-        return $this->estadoSigId;
+        return $this->estadoSig;
     }
 
     /**
@@ -400,74 +421,74 @@ class HistorialContable
     }
 
     /**
-     * Set estadoPrincipalId
+     * Set estadoPrincipal
      *
-     * @param integer $estadoPrincipalId
+     * @param integer $estadoPrincipal
      *
      * @return HistorialContable
      */
-    public function setEstadoPrincipalId($estadoPrincipalId)
+    public function setEstadoPrincipal($estadoPrincipal)
     {
-        $this->estadoPrincipalId = $estadoPrincipalId;
+        $this->estadoPrincipal = $estadoPrincipal;
 
         return $this;
     }
 
     /**
-     * Get estadoPrincipalId
+     * Get estadoPrincipal
      *
      * @return integer
      */
-    public function getEstadoPrincipalId()
+    public function getEstadoPrincipal()
     {
-        return $this->estadoPrincipalId;
+        return $this->estadoPrincipal;
     }
 
     /**
-     * Set estadoForestoIndustrialesId
+     * Set estadoForestoIndustriales
      *
-     * @param integer $estadoForestoIndustrialesId
+     * @param integer $estadoForestoIndustriales
      *
      * @return HistorialContable
      */
-    public function setEstadoForestoIndustrialesId($estadoForestoIndustrialesId)
+    public function setEstadoForestoIndustriales($estadoForestoIndustriales)
     {
-        $this->estadoForestoIndustrialesId = $estadoForestoIndustrialesId;
+        $this->estadoForestoIndustriales = $estadoForestoIndustriales;
 
         return $this;
     }
 
     /**
-     * Get estadoForestoIndustrialesId
+     * Get estadoForestoIndustriales
      *
      * @return integer
      */
-    public function getEstadoForestoIndustrialesId()
+    public function getEstadoForestoIndustriales()
     {
-        return $this->estadoForestoIndustrialesId;
+        return $this->estadoForestoIndustriales;
     }
 
     /**
-     * Set estadoViverosId
+     * Set estadoViveros
      *
-     * @param integer $estadoViverosId
+     * @param integer $estadoViveros
      *
      * @return HistorialContable
      */
-    public function setEstadoViverosId($estadoViverosId)
+    public function setEstadoViveros($estadoViveros)
     {
-        $this->estadoViverosId = $estadoViverosId;
+        $this->estadoViveros = $estadoViveros;
 
         return $this;
     }
 
     /**
-     * Get estadoViverosId
+     * Get estadoViveros
      *
      * @return integer
      */
-    public function getEstadoViverosId()
+    public function getEstadoViveros()
     {
-        return $this->estadoViverosId;
+        return $this->estadoViveros;
     }
 }

@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * BeneficiosAnalizadosExpedientes
+ * BeneficiosFiscalesAnalizados
  *
- * @ORM\Table(name="beneficios_analizados_expedientes")
+ * @ORM\Table(name="beneficios_fiscales_analizados")
  * @ORM\Entity
  */
-class BeneficiosAnalizadosExpedientes
+class BeneficiosFiscalesAnalizados
 {
     /**
      * @var integer
@@ -156,7 +156,7 @@ class BeneficiosAnalizadosExpedientes
      *
      * @param integer $beneficioFiscal
      *
-     * @return BeneficiosAnalizadosExpedientes
+     * @return BeneficiosFiscalesAnalizados
      */
     public function setBeneficioFiscal($beneficioFiscal)
     {
@@ -180,7 +180,7 @@ class BeneficiosAnalizadosExpedientes
      *
      * @param integer $expediente
      *
-     * @return BeneficiosAnalizadosExpedientes
+     * @return BeneficiosFiscalesAnalizados
      */
     public function setExpediente($expediente)
     {
@@ -204,7 +204,7 @@ class BeneficiosAnalizadosExpedientes
      *
      * @param string $valorPlantacion
      *
-     * @return BeneficiosAnalizadosExpedientes
+     * @return BeneficiosFiscalesAnalizados
      */
     public function setValorPlantacion($valorPlantacion)
     {
@@ -228,7 +228,7 @@ class BeneficiosAnalizadosExpedientes
      *
      * @param \DateTime $inicioPeriodoPlantacion
      *
-     * @return BeneficiosAnalizadosExpedientes
+     * @return BeneficiosFiscalesAnalizados
      */
     public function setInicioPeriodoPlantacion($inicioPeriodoPlantacion)
     {
@@ -252,7 +252,7 @@ class BeneficiosAnalizadosExpedientes
      *
      * @param \DateTime $finPeriodoPlantacion
      *
-     * @return BeneficiosAnalizadosExpedientes
+     * @return BeneficiosFiscalesAnalizados
      */
     public function setFinPeriodoPlantacion($finPeriodoPlantacion)
     {
@@ -276,7 +276,7 @@ class BeneficiosAnalizadosExpedientes
      *
      * @param integer $numeroCertificado
      *
-     * @return BeneficiosAnalizadosExpedientes
+     * @return BeneficiosFiscalesAnalizados
      */
     public function setNumeroCertificado($numeroCertificado)
     {
@@ -300,7 +300,7 @@ class BeneficiosAnalizadosExpedientes
      *
      * @param integer $impuesto
      *
-     * @return BeneficiosAnalizadosExpedientes
+     * @return BeneficiosFiscalesAnalizados
      */
     public function setImpuesto($impuesto)
     {
@@ -324,7 +324,7 @@ class BeneficiosAnalizadosExpedientes
      *
      * @param \DateTime $inicioPeriodoFiscal
      *
-     * @return BeneficiosAnalizadosExpedientes
+     * @return BeneficiosFiscalesAnalizados
      */
     public function setInicioPeriodoFiscal($inicioPeriodoFiscal)
     {
@@ -348,7 +348,7 @@ class BeneficiosAnalizadosExpedientes
      *
      * @param \DateTime $finPeriodoFiscal
      *
-     * @return BeneficiosAnalizadosExpedientes
+     * @return BeneficiosFiscalesAnalizados
      */
     public function setFinPeriodoFiscal($finPeriodoFiscal)
     {
@@ -372,7 +372,7 @@ class BeneficiosAnalizadosExpedientes
      *
      * @param boolean $contieneCertificado
      *
-     * @return BeneficiosAnalizadosExpedientes
+     * @return BeneficiosFiscalesAnalizados
      */
     public function setContieneCertificado($contieneCertificado)
     {
@@ -396,7 +396,7 @@ class BeneficiosAnalizadosExpedientes
      *
      * @param \DateTime $fechaEmision
      *
-     * @return BeneficiosAnalizadosExpedientes
+     * @return BeneficiosFiscalesAnalizados
      */
     public function setFechaEmision($fechaEmision)
     {
@@ -420,7 +420,7 @@ class BeneficiosAnalizadosExpedientes
      *
      * @param integer $volumen
      *
-     * @return BeneficiosAnalizadosExpedientes
+     * @return BeneficiosFiscalesAnalizados
      */
     public function setVolumen($volumen)
     {
@@ -444,7 +444,7 @@ class BeneficiosAnalizadosExpedientes
      *
      * @param string $valorBeneficio
      *
-     * @return BeneficiosAnalizadosExpedientes
+     * @return BeneficiosFiscalesAnalizados
      */
     public function setValorBeneficio($valorBeneficio)
     {
@@ -468,7 +468,7 @@ class BeneficiosAnalizadosExpedientes
      *
      * @param string $observaciones
      *
-     * @return BeneficiosAnalizadosExpedientes
+     * @return BeneficiosFiscalesAnalizados
      */
     public function setObservaciones($observaciones)
     {
@@ -492,7 +492,7 @@ class BeneficiosAnalizadosExpedientes
      *
      * @param integer $moneda
      *
-     * @return BeneficiosAnalizadosExpedientes
+     * @return BeneficiosFiscalesAnalizados
      */
     public function setMoneda($moneda)
     {

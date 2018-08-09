@@ -23,11 +23,14 @@ class ConsumoDebitado
     private $id;
 
     /**
-     * @var integer
+     * @var \Expedientes
      *
-     * @ORM\Column(name="expediente_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="estabilidadFiscal")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="expediente_id", referencedColumnName="id")
+     * })
      */
-    private $expedienteId;
+    private $expediente;
 
     /**
      * @var string
@@ -37,11 +40,14 @@ class ConsumoDebitado
     private $numeroCertificado;
 
     /**
-     * @var integer
+     * @var \Especie
      *
-     * @ORM\Column(name="impuesto_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposImpuestos")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="impuesto_id", referencedColumnName="id")
+     * })
      */
-    private $impuestoId;
+    private $impuesto;
 
     /**
      * @var \DateTime
@@ -86,32 +92,44 @@ class ConsumoDebitado
     private $observacion;
 
     /**
-     * @var integer
+     * @var \Especie
      *
-     * @ORM\Column(name="moneda_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposMonedas")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="moneda_id", referencedColumnName="id")
+     * })
      */
-    private $monedaId;
+    private $moneda;
 
     /**
-     * @var integer
+     * @var \Especie
      *
-     * @ORM\Column(name="certificado_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Certificados")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="certificado_id", referencedColumnName="id")
+     * })
      */
-    private $certificadoId;
+    private $certificado;
 
     /**
-     * @var integer
+     * @var \Especie
      *
-     * @ORM\Column(name="estado_solicitud_certificado_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposEstadoCertificado")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="estado_solicitud_certificado_id", referencedColumnName="id")
+     * })
      */
-    private $estadoSolicitudCertificadoId;
+    private $estadoSolicitudCertificado;
 
     /**
-     * @var integer
+     * @var \Especie
      *
-     * @ORM\Column(name="producto_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposProductos")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="producto_id", referencedColumnName="id")
+     * })
      */
-    private $productoId;
+    private $producto;
 
     /**
      * @var integer
@@ -133,27 +151,27 @@ class ConsumoDebitado
     }
 
     /**
-     * Set expedienteId
+     * Set expediente
      *
-     * @param integer $expedienteId
+     * @param integer $expediente
      *
      * @return ConsumoDebitado
      */
-    public function setExpedienteId($expedienteId)
+    public function setExpediente($expediente)
     {
-        $this->expedienteId = $expedienteId;
+        $this->expediente = $expediente;
 
         return $this;
     }
 
     /**
-     * Get expedienteId
+     * Get expediente
      *
      * @return integer
      */
-    public function getExpedienteId()
+    public function getExpediente()
     {
-        return $this->expedienteId;
+        return $this->expediente;
     }
 
     /**
@@ -181,27 +199,27 @@ class ConsumoDebitado
     }
 
     /**
-     * Set impuestoId
+     * Set impuesto
      *
-     * @param integer $impuestoId
+     * @param integer $impuesto
      *
      * @return ConsumoDebitado
      */
-    public function setImpuestoId($impuestoId)
+    public function setImpuesto($impuesto)
     {
-        $this->impuestoId = $impuestoId;
+        $this->impuesto = $impuesto;
 
         return $this;
     }
 
     /**
-     * Get impuestoId
+     * Get impuesto
      *
      * @return integer
      */
-    public function getImpuestoId()
+    public function getImpuesto()
     {
-        return $this->impuestoId;
+        return $this->impuesto;
     }
 
     /**
@@ -349,99 +367,99 @@ class ConsumoDebitado
     }
 
     /**
-     * Set monedaId
+     * Set moneda
      *
-     * @param integer $monedaId
+     * @param integer $moneda
      *
      * @return ConsumoDebitado
      */
-    public function setMonedaId($monedaId)
+    public function setMoneda($moneda)
     {
-        $this->monedaId = $monedaId;
+        $this->moneda = $moneda;
 
         return $this;
     }
 
     /**
-     * Get monedaId
+     * Get moneda
      *
      * @return integer
      */
-    public function getMonedaId()
+    public function getMoneda()
     {
-        return $this->monedaId;
+        return $this->moneda;
     }
 
     /**
-     * Set certificadoId
+     * Set certificado
      *
-     * @param integer $certificadoId
+     * @param integer $certificado
      *
      * @return ConsumoDebitado
      */
-    public function setCertificadoId($certificadoId)
+    public function setCertificado($certificado)
     {
-        $this->certificadoId = $certificadoId;
+        $this->certificado = $certificado;
 
         return $this;
     }
 
     /**
-     * Get certificadoId
+     * Get certificado
      *
      * @return integer
      */
-    public function getCertificadoId()
+    public function getCertificado()
     {
-        return $this->certificadoId;
+        return $this->certificado;
     }
 
     /**
-     * Set estadoSolicitudCertificadoId
+     * Set estadoSolicitudCertificado
      *
-     * @param integer $estadoSolicitudCertificadoId
+     * @param integer $estadoSolicitudCertificado
      *
      * @return ConsumoDebitado
      */
-    public function setEstadoSolicitudCertificadoId($estadoSolicitudCertificadoId)
+    public function setEstadoSolicitudCertificado($estadoSolicitudCertificado)
     {
-        $this->estadoSolicitudCertificadoId = $estadoSolicitudCertificadoId;
+        $this->estadoSolicitudCertificado = $estadoSolicitudCertificado;
 
         return $this;
     }
 
     /**
-     * Get estadoSolicitudCertificadoId
+     * Get estadoSolicitudCertificado
      *
      * @return integer
      */
-    public function getEstadoSolicitudCertificadoId()
+    public function getEstadoSolicitudCertificado()
     {
-        return $this->estadoSolicitudCertificadoId;
+        return $this->estadoSolicitudCertificado;
     }
 
     /**
-     * Set productoId
+     * Set producto
      *
-     * @param integer $productoId
+     * @param integer $producto
      *
      * @return ConsumoDebitado
      */
-    public function setProductoId($productoId)
+    public function setProducto($producto)
     {
-        $this->productoId = $productoId;
+        $this->producto = $producto;
 
         return $this;
     }
 
     /**
-     * Get productoId
+     * Get producto
      *
      * @return integer
      */
-    public function getProductoId()
+    public function getProducto()
     {
-        return $this->productoId;
+        return $this->producto;
     }
 
     /**

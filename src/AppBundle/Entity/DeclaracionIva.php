@@ -23,11 +23,14 @@ class DeclaracionIva
     private $id;
 
     /**
-     * @var integer
+     * @var \Expedientes
      *
-     * @ORM\Column(name="expediente_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="declaracionesIva")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="expediente_id", referencedColumnName="id")
+     * })
      */
-    private $expedienteId;
+    private $expediente;
 
     /**
      * @var \DateTime
@@ -65,11 +68,14 @@ class DeclaracionIva
     private $observacion;
 
     /**
-     * @var integer
+     * @var \tipoMoneda
      *
-     * @ORM\Column(name="tipo_moneda_id", type="smallint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TiposMonedas")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="tipo_moneda_id", referencedColumnName="id")
+     * })
      */
-    private $tipoMonedaId;
+    private $tipoMoneda;
 
 
 
@@ -84,27 +90,27 @@ class DeclaracionIva
     }
 
     /**
-     * Set expedienteId
+     * Set expediente
      *
-     * @param integer $expedienteId
+     * @param integer $expediente
      *
      * @return DeclaracionIva
      */
-    public function setExpedienteId($expedienteId)
+    public function setExpediente($expediente)
     {
-        $this->expedienteId = $expedienteId;
+        $this->expediente = $expediente;
 
         return $this;
     }
 
     /**
-     * Get expedienteId
+     * Get expediente
      *
      * @return integer
      */
-    public function getExpedienteId()
+    public function getExpediente()
     {
-        return $this->expedienteId;
+        return $this->expediente;
     }
 
     /**
@@ -228,26 +234,26 @@ class DeclaracionIva
     }
 
     /**
-     * Set tipoMonedaId
+     * Set tipoMoneda
      *
-     * @param integer $tipoMonedaId
+     * @param integer $tipoMoneda
      *
      * @return DeclaracionIva
      */
-    public function setTipoMonedaId($tipoMonedaId)
+    public function setTipoMoneda($tipoMoneda)
     {
-        $this->tipoMonedaId = $tipoMonedaId;
+        $this->tipoMoneda = $tipoMoneda;
 
         return $this;
     }
 
     /**
-     * Get tipoMonedaId
+     * Get tipoMoneda
      *
      * @return integer
      */
-    public function getTipoMonedaId()
+    public function getTipoMoneda()
     {
-        return $this->tipoMonedaId;
+        return $this->tipoMoneda;
     }
 }

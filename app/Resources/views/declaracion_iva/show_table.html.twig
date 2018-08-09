@@ -1,0 +1,24 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Fecha Emisión</th>
+      <th scope="col">Inicio Período Fiscal</th>
+      <th scope="col">Fin Período Fiscal</th>
+      <th scope="col">Valor Beneficio</th>
+      <th scope="col">Tipo Moneda</th>
+      <th scope="col">Observación</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in declaracionIva %}
+      <tr>
+        <td>{{item.fechaEmision|date('d-m-Y')}}</td>
+        <td>{{item.inicioPeriodoFiscal|date('d-m-Y')}}</td>
+        <td>{{item.finPeriodoFiscal|date('d-m-Y')}}</td>
+        <td>{{item.valorBeneficio}}</td>
+        <td>{{item.tipoMoneda}}</td>
+        <td>{{item.observacion}}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

@@ -1,0 +1,36 @@
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Enviado</th>
+        <th scope="col">Estado General</th>
+        <th scope="col">Contable</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Entrada</th>
+        <th scope="col">Salida</th>
+        <th scope="col">Estado Legales</th>
+        <th scope="col">Estado SIG</th>
+        <th scope="col">Estado Promoción</th>
+        <th scope="col">Estado Foresto Industria</th>
+        <th scope="col">Observaciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in historialLegales %}
+        <tr>
+          <td>{{item.areaEnviadoExpediente}}</td>
+          <td>{{item.estadoPrincipal}}</td>
+          <td>{{item.estadoAreaContable}}</td>
+          <td>{{item.fechaUltimaModificacion|date('d-m-Y')}}</td>
+          <td>{{item.fechaInicio|date('d-m-Y')}}</td>
+          <td>{{item.fechaFin|date('d-m-Y')}}</td>
+          <td>{{item.estadoAreaLegales}}</td>
+          <td>{{item.estadoAreaSig}}</td>
+          <td>{{item.estadoAreaPromocion}}</td>
+          <td>{{item.estadoForestoIndustriales}}</td>
+          <td>{{item.observacion}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
