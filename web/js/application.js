@@ -17,6 +17,8 @@
 /*
  * Convierte todos los checkbox en switch
  */
+
+$.fn.bootstrapSwitch.defaults.labelWidth = '150';
 $(function() {
     $("input[data-label]").each(function() {
         $(this).bootstrapSwitch({

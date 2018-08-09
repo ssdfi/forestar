@@ -146,6 +146,33 @@ class ExpedientesType extends AbstractType
                   'label'         => false,
                   'by_reference'  => false,
                 )
+              )
+            ->add('impactosAmbientales', CollectionType::class, array(
+                  'entry_type'    => ImpactoAmbientalType::class,
+                  'allow_add'     => true,
+                  'allow_delete'  => true,
+                  'prototype'     => true,
+                  'label'         => false,
+                  'by_reference'  => false,
+                )
+              )
+              ->add('historialContables', CollectionType::class, array(
+                  'entry_type'    => HistorialContableType::class,
+                  'allow_add'     => true,
+                  'allow_delete'  => true,
+                  'prototype'     => true,
+                  'label'         => false,
+                  'by_reference'  => false,
+                )
+              )
+              ->add('beneficiosFiscales', CollectionType::class, array(
+                  'entry_type'    => BeneficiosFiscalesAnalizadosType::class,
+                  'allow_add'     => true,
+                  'allow_delete'  => true,
+                  'prototype'     => true,
+                  'label'         => false,
+                  'by_reference'  => false,
+                )
               );
           $builder->addEventSubscriber(new AddTitularesListener());
           $builder->addEventSubscriber(new AddProfesionalesListener());

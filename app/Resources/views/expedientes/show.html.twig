@@ -25,7 +25,7 @@
               <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-predios" role="tab" aria-controls="nav-contact" aria-selected="false">Predios ({{expediente.predios|length}})</a>
               <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-disposiciones-provinciales" role="tab" aria-controls="nav-contact" aria-selected="false">Disposiciones Prov. ({{expediente.disposicionesProvinciales|length}})</a>
               <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-impacto-ambiental" role="tab" aria-controls="nav-contact" aria-selected="false">Impacto Ambiental ({{expediente.impactosAmbientales|length}})</a>
-              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-analisis-area-contable" role="tab" aria-controls="nav-contact" aria-selected="false">Análisis del Área Contable ({{expediente.historialContable|length}})</a>
+              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-analisis-area-contable" role="tab" aria-controls="nav-contact" aria-selected="false">Análisis del Área Contable ({{expediente.historialContables|length}})</a>
               <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-beneficios-fiscales" role="tab" aria-controls="nav-contact" aria-selected="false">Beneficios Fiscales - Análisis({{expediente.beneficiosFiscales|length}})</a>
               <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-garantias-presentadas" role="tab" aria-controls="nav-contact" aria-selected="false">Garantías Presentadas({{expediente.garantias|length}})</a>
               <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-estabilidad-fiscal" role="tab" aria-controls="nav-contact" aria-selected="false">Estabilidad Fiscal ({{expediente.estabilidadFiscal|length}})</a>
@@ -178,7 +178,7 @@
               {% endembed %}
             </div>
             <div class="tab-pane fade" id="nav-analisis-area-contable" role="tabpanel" aria-labelledby="nav-contact-tab">
-              {% embed "historial_contable/show_table.html.twig" with { 'historialContable': expediente.historialContable} %}
+              {% embed "historial_contable/show_table.html.twig" with { 'historialContables': expediente.historialContables} %}
               {% endembed %}
             </div>
             <div class="tab-pane fade" id="nav-declaracion-iva" role="tabpanel" aria-labelledby="nav-contact-tab">

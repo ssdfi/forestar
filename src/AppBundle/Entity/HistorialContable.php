@@ -25,7 +25,7 @@ class HistorialContable
     /**
      * @var \Expedientes
      *
-     * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="historialContable")
+     * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="historialContables")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="expediente_id", referencedColumnName="id")
      * })
@@ -491,4 +491,10 @@ class HistorialContable
     {
         return $this->estadoViveros;
     }
+
+    public function addExpediente($exp)
+    {
+        $this->expediente = $exp;
+    }
+
 }

@@ -296,21 +296,21 @@ class Expedientes
 
     /**
     * One Expediente has Many EstadoSituacion.
-    * @ORM\OneToMany(targetEntity="BeneficiosFiscalesAnalizados", mappedBy="expediente")
+    * @ORM\OneToMany(targetEntity="BeneficiosFiscalesAnalizados", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
     */
     private $beneficiosFiscales;
 
     /**
     * One Expediente has Many EstadoSituacion.
-    * @ORM\OneToMany(targetEntity="ImpactoAmbiental", mappedBy="expediente")
+    * @ORM\OneToMany(targetEntity="ImpactoAmbiental", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
     */
     private $impactosAmbientales;
 
     /**
     * One Expediente has Many HistorialContable.
-    * @ORM\OneToMany(targetEntity="HistorialContable", mappedBy="expediente")
+    * @ORM\OneToMany(targetEntity="HistorialContable", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
     */
-    private $historialContable;
+    private $historialContables;
 
     /**
     * One Expediente has Many HistorialLegales.
@@ -1237,14 +1237,68 @@ class Expedientes
         return $this->beneficiosFiscales;
     }
 
+    public function addBeneficiosFiscal($ap)
+    {
+        if (true === $this->beneficiosFiscales->contains($ap)) {
+           return;
+       }
+       $this->beneficiosFiscales[] = $ap;
+       $ap->addExpediente($this);
+
+    }
+
+    public function removeBeneficiosFiscal($ap)
+    {
+      if (false === $this->beneficiosFiscales->contains($ap)) {
+           return;
+       }
+       $this->beneficiosFiscales->removeElement($ap);
+    }
+
     public function getImpactosAmbientales()
     {
         return $this->impactosAmbientales;
     }
-    public function getHistorialContable()
+
+    public function addImpactosAmbiental($ap)
     {
-      return $this->historialContable;
+        if (true === $this->impactosAmbientales->contains($ap)) {
+           return;
+       }
+       $this->impactosAmbientales[] = $ap;
+       $ap->addExpediente($this);
+
     }
+
+    public function removeImpactosAmbiental($ap)
+    {
+      if (false === $this->impactosAmbientales->contains($ap)) {
+           return;
+       }
+       $this->impactosAmbientales->removeElement($ap);
+    }
+
+    public function getHistorialContables()
+    {
+      return $this->historialContables;
+    }
+    public function addHistorialContable($ap)
+    {
+        if (true === $this->historialContables->contains($ap)) {
+           return;
+       }
+       $this->historialContables[] = $ap;
+       $ap->addExpediente($this);
+    }
+
+    public function removeHistorialContable($ap)
+    {
+      if (false === $this->historialContables->contains($ap)) {
+           return;
+       }
+       $this->historialContables->removeElement($ap);
+    }
+
     public function getHistorialLegales()
     {
       return $this->historialLegales;

@@ -523,6 +523,11 @@ class HistorialSig
         return $this->estadoViveros;
     }
 
+    public function addExpediente($exp)
+    {
+        $this->expediente = $exp;
+    }
+
     public function __toString()
     {
       return (string)$this->observacion;

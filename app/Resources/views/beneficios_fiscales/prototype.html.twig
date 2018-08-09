@@ -1,0 +1,91 @@
+{% block beneficioFiscalSolicitadoPrototype %}
+  <td>
+    <div class="col-sm-12">
+      {{ form_widget(form.beneficioFiscal) }}
+      {{ form_errors(form.beneficioFiscal) }}
+    </div>
+  </td>
+  <td>
+      <div class="col-sm-12">
+        {{ form_widget(form.valorPlantacion) }}
+        {{ form_errors(form.valorPlantacion) }}
+      </div>
+  </td>
+  <td>
+    <div class="col-sm-12">
+      {{ form_widget(form.numeroCertificado) }}
+      {{ form_errors(form.numeroCertificado) }}
+    </div>
+  </td>
+  <td>
+    <div class="col-sm-12">
+      {{ form_widget(form.inicioPeriodoPlantacion) }}
+      {{ form_errors(form.inicioPeriodoPlantacion) }}
+    </div>
+  </td>
+  <td>
+    <div class="col-sm-12">
+      {{ form_widget(form.finPeriodoPlantacion) }}
+      {{ form_errors(form.finPeriodoPlantacion) }}
+    </div>
+  </td>
+  <td>
+    <div class="col-sm-12">
+      {{ form_widget(form.inicioPeriodoFiscal) }}
+      {{ form_errors(form.inicioPeriodoFiscal) }}
+    </div>
+  </td>
+  <td>
+    <div class="col-sm-12">
+      {{ form_widget(form.finPeriodoFiscal) }}
+      {{ form_errors(form.finPeriodoFiscal) }}
+    </div>
+  </td>
+  <td>
+    <div class="col-sm-12">
+      {{ form_widget(form.fechaEmision) }}
+      {{ form_errors(form.fechaEmision) }}
+    </div>
+  </td>
+  <td>
+    <div class="col-sm-12">
+      {{ form_widget(form.impuesto) }}
+      {{ form_errors(form.impuesto) }}
+    </div>
+  </td>
+  <td>
+    <div class="col-sm-12">
+      {{ form_widget(form.volumen) }}
+      {{ form_errors(form.volumen) }}
+    </div>
+  </td>
+  <td>
+    <div class="col-sm-12">
+      {{ form_widget(form.valorBeneficio) }}
+      {{ form_errors(form.valorBeneficio) }}
+    </div>
+  </td>
+  <td>
+    <div class="col-sm-12">
+      {{ form_widget(form.moneda) }}
+      {{ form_errors(form.moneda) }}
+    </div>
+  </td>
+  <td>
+    <div class="col-sm-12">
+      {{ form_widget(form.contieneCertificado) }}
+      {{ form_errors(form.contieneCertificado) }}
+    </div>
+  </td>
+  <td>
+    <div class="col-sm-12">
+      {{ form_widget(form.observaciones) }}
+      {{ form_errors(form.observaciones) }}
+    </div>
+  </td>
+  <td>
+    <a class="btn btn-danger btn-sm pull-right remove-beneficio-fiscal remove_nested_fields" data-association="beneficios_fiscales">
+      <span class="fa fa-remove text-white" aria-hidden="true"></span>
+    </a>
+  </td>
+{% endblock %}

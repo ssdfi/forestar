@@ -253,4 +253,9 @@ class ImpactoAmbiental
     {
         return $this->observacion;
     }
+    
+    public function addExpediente($exp)
+    {
+        $this->expediente = $exp;
+    }
 }

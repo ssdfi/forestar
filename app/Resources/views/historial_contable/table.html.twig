@@ -1,0 +1,100 @@
+<div class="table-responsive">
+  <table id="historial_contables" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Inicio</th>
+        <th>Fin</th>
+        <th>Área</th>
+        <th>Estado Contable</th>
+        <th>Estado Promoción</th>
+        <th>Estado SIG</th>
+        <th>Estado Legal</th>
+        <th>Estado Principal</th>
+        <th>Estado Foresto Industrial</th>
+        <th>Observacion</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class="historialContables" data-index="{{ historialContables|length }}" data-prototype="{% filter escape %}{% include 'historial_contable/prototype.html.twig' with {'form': historialContables.vars.prototype } %}{% endfilter %}">
+      {% if historialContables %}
+        {% for tag in historialContables %}
+        <tr class="fields">
+          <td>
+          	<div class="col-sm-12">
+          		{{ form_widget(tag.fechaInicio) }}
+              {{ form_errors(tag.fechaInicio) }}
+          	</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.fechaFin) }}
+                {{ form_errors(tag.fechaFin) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.area) }}
+                {{ form_errors(tag.area) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.estadoContable) }}
+                {{ form_errors(tag.estadoContable) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.estadoPromocion) }}
+                {{ form_errors(tag.estadoPromocion) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.estadoSig) }}
+                {{ form_errors(tag.estadoSig) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.estadoLegal) }}
+                {{ form_errors(tag.estadoLegal) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.estadoPrincipal) }}
+                {{ form_errors(tag.estadoPrincipal) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.estadoForestoIndustriales) }}
+                {{ form_errors(tag.estadoForestoIndustriales) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.observacion) }}
+                {{ form_errors(tag.observacion) }}
+          		</div>
+          </td>
+          <td>
+          	<a class="btn btn-danger btn-sm pull-right remove-historial-contable remove_nested_fields" data-association="historial_contables">
+              <span class="fa fa-remove text-white" aria-hidden="true"></span>
+          	</a>
+          </td>
+        </tr>
+      {% endfor %}
+    {% endif %}
+    </tbody>
+  </table>
+  <a id="add-historial-contable" class="btn btn-primary btn-sm add_nested_fields" data-target="#historial-contable" href="javascript:void(0)">
+    <span class="fa fa-plus" aria-hidden="true"></span>
+    Agregar Análisis Área Contable
+  </a>
+</div>
+
+{% block javascripts %}
+  <script src="{{ asset('js/historial_contables.js') }}"></script>
+{% endblock %}

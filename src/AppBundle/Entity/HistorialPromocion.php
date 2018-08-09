@@ -491,4 +491,9 @@ class HistorialPromocion
     {
         return $this->estadoViverosId;
     }
+
+    public function addExpediente($exp)
+    {
+        $this->expediente = $exp;
+    }
 }

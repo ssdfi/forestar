@@ -491,4 +491,9 @@ class HistorialLegales
     {
         return $this->estadoViverosId;
     }
+
+    public function addExpediente($exp)
+    {
+        $this->expediente = $exp;
+    }
 }

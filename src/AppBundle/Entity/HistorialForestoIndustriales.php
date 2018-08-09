@@ -522,4 +522,9 @@ class HistorialForestoIndustriales
     {
         return $this->esForestoIndustrial;
     }
+
+    public function addExpediente($exp)
+    {
+        $this->expediente = $exp;
+    }
 }
