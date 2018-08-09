@@ -391,7 +391,7 @@ class Expedientes
    private $produccionesVolumetricas;
 
    /**
-   * One Expediente has Many ActividadesAprobadas.
+   * One Expediente has Many Garantias.
    * @ORM\OneToMany(targetEntity="Garantias", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
    */
    private $garantias;
@@ -1478,6 +1478,24 @@ class Expedientes
     public function getGarantias()
     {
       return $this->garantias;
+    }
+
+    public function addGarantia($ap)
+    {
+        if (true === $this->garantias->contains($ap)) {
+           return;
+       }
+       $this->garantias[] = $ap;
+       $ap->addExpediente($this);
+
+    }
+
+    public function removeGarantia($ap)
+    {
+      if (false === $this->garantias->contains($ap)) {
+           return;
+       }
+       $this->garantias->removeElement($ap);
     }
 
     public function getDeclaracionesIva(){

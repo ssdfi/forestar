@@ -1,0 +1,72 @@
+<div class="table-responsive">
+  <table id="garantias" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Fecha Inicio</th>
+        <th>Fecha Fin</th>
+        <th>Tipo Garantía</th>
+        <th>Valor</th>
+        <th>Tipo Moneda</th>
+        <th>Observación</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class="garantias" data-index="{{ garantias|length }}" data-prototype="{% filter escape %}{% include 'garantias_presentadas/prototype.html.twig' with {'form': garantias.vars.prototype } %}{% endfilter %}">
+      {% if garantias %}
+        {% for tag in garantias %}
+        <tr class="fields">
+          <td>
+          	<div class="col-sm-12">
+          		{{ form_widget(tag.fechaInicio) }}
+              {{ form_errors(tag.fechaInicio) }}
+          	</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.fechaFin) }}
+                {{ form_errors(tag.fechaFin) }}
+          		</div>
+          </td>
+          <td>
+            <div class="col-sm-12">
+              {{ form_widget(tag.tipoGarantia) }}
+              {{ form_errors(tag.tipoGarantia) }}
+            </div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.valor) }}
+                {{ form_errors(tag.valor) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.tipoMoneda) }}
+                {{ form_errors(tag.tipoMoneda) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.observacion) }}
+                {{ form_errors(tag.observacion) }}
+          		</div>
+          </td>
+          <td>
+          	<a class="btn btn-danger btn-sm pull-right remove-garantia remove_nested_fields" data-association="garantias">
+              <span class="fa fa-remove text-white" aria-hidden="true"></span>
+          	</a>
+          </td>
+        </tr>
+      {% endfor %}
+    {% endif %}
+    </tbody>
+  </table>
+  <a id="add-garantia" class="btn btn-primary btn-sm add_nested_fields" data-target="#garantia" href="javascript:void(0)">
+    <span class="fa fa-plus" aria-hidden="true"></span>
+    Agregar Garantía
+  </a>
+</div>
+
+{% block javascripts %}
+  <script src="{{ asset('js/garantias.js') }}"></script>
+{% endblock %}

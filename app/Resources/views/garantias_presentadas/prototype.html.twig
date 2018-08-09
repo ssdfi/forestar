@@ -1,0 +1,43 @@
+{% block garantiaPrototype %}
+<td>
+  <div class="col-sm-12">
+    {{ form_widget(form.fechaInicio) }}
+    {{ form_errors(form.fechaInicio) }}
+  </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.fechaFin) }}
+      {{ form_errors(form.fechaFin) }}
+    </div>
+</td>
+<td>
+  <div class="col-sm-12">
+    {{ form_widget(form.tipoGarantia) }}
+    {{ form_errors(form.tipoGarantia) }}
+  </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.valor) }}
+      {{ form_errors(form.valor) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.tipoMoneda) }}
+      {{ form_errors(form.tipoMoneda) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.observacion) }}
+      {{ form_errors(form.observacion) }}
+    </div>
+</td>
+  <td>
+    <a class="btn btn-danger btn-sm pull-right remove-garantia remove_nested_fields" data-association="garantias">
+      <span class="fa fa-remove text-white" aria-hidden="true"></span>
+    </a>
+  </td>
+{% endblock %}

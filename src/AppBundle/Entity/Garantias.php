@@ -259,4 +259,8 @@ class Garantias
     {
         return $this->valor;
     }
+    public function addExpediente($exp)
+    {
+        $this->expediente = $exp;
+    }
 }
