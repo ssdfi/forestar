@@ -471,6 +471,11 @@ class CobrosBeneficios
         return $this->cargaTributariaMunicipal;
     }
 
+    public function addExpediente($exp)
+    {
+        $this->expediente = $exp;
+    }
+
     public function __toString()
     {
       return $this->nombreBanco . ' '. $this->sucursalBanco . ' '. $this->tipoCuenta . ' '.$this->numeroCuenta;
