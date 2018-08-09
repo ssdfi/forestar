@@ -1,7 +1,15 @@
+{% block stylesheets %}
+    {% stylesheets "@bootstrap_css" "@fontawesome_css" %}
+    {% endstylesheets %}
+
+    {% stylesheets 'bundles/app/css/*' output='css/compiled/main.css' %}
+        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+{% endblock %}
 {% block content %}{% endblock %}
 {% block javascripts %}
     {% javascripts '@jquery' '@bootstrap_js' %}
-      <!-- <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script> -->
+      <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
       <script type="text/javascript" src="{{ asset_url }}"></script>
       <script src="/js/application.js"></script>
     {% endjavascripts %}

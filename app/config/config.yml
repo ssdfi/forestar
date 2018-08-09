@@ -116,7 +116,6 @@ assetic:
             inputs:
                 - '%kernel.root_dir%/../vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.woff2'
             output: "fonts/fontawesome-webfont.woff2"
-
         jquery:
             inputs:
                 - '%kernel.root_dir%/../vendor/components/jquery/jquery.js'
