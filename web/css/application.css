@@ -104,3 +104,7 @@ td .col-sm-12{
   padding-right: 0px!important;
   padding-left: 0px!important;
 }
+
+#accordion .card{
+  margin-left: 0px!important;
+}
