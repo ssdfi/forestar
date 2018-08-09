@@ -546,6 +546,24 @@ class Expedientes
         return $this->cobroBeneficios;
     }
 
+    public function addCobroBeneficio($ap)
+    {
+        if (true === $this->cobroBeneficios->contains($ap)) {
+           return;
+       }
+       $this->cobroBeneficios[] = $ap;
+       $ap->addExpediente($this);
+
+    }
+
+    public function removeCobroBeneficio($ap)
+    {
+      if (false === $this->cobroBeneficios->contains($ap)) {
+           return;
+       }
+       $this->cobroBeneficios->removeElement($ap);
+    }
+
     /**
      * Set entidadAgrupadoraId
      *
