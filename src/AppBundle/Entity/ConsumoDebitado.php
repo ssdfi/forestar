@@ -25,7 +25,7 @@ class ConsumoDebitado
     /**
      * @var \Expedientes
      *
-     * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="estabilidadFiscal")
+     * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="estabilidadFiscales")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="expediente_id", referencedColumnName="id")
      * })
@@ -484,5 +484,10 @@ class ConsumoDebitado
     public function getCoeficienteConversion()
     {
         return $this->coeficienteConversion;
+    }
+
+    public function addExpediente($exp)
+    {
+        $this->expediente = $exp;
     }
 }

@@ -26,6 +26,7 @@
 					<a class="nav-item nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-analisis-area-contable" role="tab" aria-controls="v-pills-messages" aria-selected="false">Análisis Área Contable</a>
 					<a class="nav-item nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-beneficio-fiscal" role="tab" aria-controls="v-pills-messages" aria-selected="false">Beneficio Fiscal Análisis</a>
 					<a class="nav-item nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-garantias-presentadas" role="tab" aria-controls="v-pills-messages" aria-selected="false">Garantías Presentadas</a>
+					<a class="nav-item nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-estabilidad-fiscal" role="tab" aria-controls="v-pills-messages" aria-selected="false">Estabilidad Fiscal</a>
 					<a class="nav-item nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-sig" role="tab" aria-controls="v-pills-settings" aria-selected="false">Aprobación SIG</a>
 				</div>
 			</div>
@@ -179,6 +180,12 @@
 						<h4>Garantías Presentadas</h4>
 						{% embed "garantias_presentadas/table.html.twig" with {
 							'garantias' : edit_form.garantias
+						} %}{% endembed %}
+					</div>
+					<div class="tab-pane fade" id="v-pills-estabilidad-fiscal" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+						<h4>Estabilidad Fiscal</h4>
+						{% embed "estabilidad_fiscal/table.html.twig" with {
+							'estabilidadFiscales' : edit_form.estabilidadFiscales
 						} %}{% endembed %}
 					</div>
 					<div class="tab-pane fade" id="v-pills-sig" role="tabpanel" aria-labelledby="v-pills-settings-tab">

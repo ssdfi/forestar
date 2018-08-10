@@ -1,20 +1,20 @@
 $(document).ready(function () {
 
-  $('#add-actividad-certificada').click(function (e) {
+  $('#add-estabilidad-fiscal').click(function (e) {
     e.preventDefault();
-    actividadCertificadaAdd();
+    estabilidadFiscalAdd();
     return;
   });
 
 
-  $(document).on( "click",'.remove-actividad-certificada',function (e) {
+  $(document).on( "click",'.remove-estabilidad-fiscal',function (e) {
     e.preventDefault();
-    actividadCertificadaRemove(this);
+    estabilidadFiscalRemove(this);
     return;
   });
 
-  function actividadCertificadaAdd() {
-      var collectionHolder = $('.actividadesCertificadas');
+  function estabilidadFiscalAdd() {
+      var collectionHolder = $('.estabilidadFiscales');
       var collectionCount = collectionHolder.children().length;
       var prototipo = collectionHolder.attr('data-prototype');
       prototipo = prototipo.replace(/__name__/g, collectionCount);
@@ -24,7 +24,7 @@ $(document).ready(function () {
       return;
   }
 
-  function actividadCertificadaRemove(btn) {
+  function estabilidadFiscalRemove(btn) {
     var row = $(btn).closest('.fields');
     row.remove();
     return false;

@@ -182,6 +182,15 @@ class ExpedientesType extends AbstractType
                   'label'         => false,
                   'by_reference'  => false,
                 )
+              )
+              ->add('estabilidadFiscales', CollectionType::class, array(
+                  'entry_type'    => ConsumoDebitadoType::class,
+                  'allow_add'     => true,
+                  'allow_delete'  => true,
+                  'prototype'     => true,
+                  'label'         => false,
+                  'by_reference'  => false,
+                )
               );
           $builder->addEventSubscriber(new AddTitularesListener());
           $builder->addEventSubscriber(new AddProfesionalesListener());

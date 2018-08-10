@@ -1,0 +1,121 @@
+<div class="table-responsive">
+  <table id="estabilidad-fiscales" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Numero Certificado</th>
+        <th>Inicio Periodo Fiscal</th>
+        <th>FinPeriodo Fiscal</th>
+        <th>Fecha Emision</th>
+        <th>Volumen</th>
+        <th>Valor Beneficio</th>
+        <th>Coeficiente Conversion</th>
+        <th>Impuesto</th>
+        <th>Moneda</th>
+        <th>Certificado</th>
+        <th>Estado Solicitud Certificado</th>
+        <th>Producto</th>
+        <th>Observacion</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class="estabilidadFiscales" data-index="{{ estabilidadFiscales|length }}" data-prototype="{% filter escape %}{% include 'estabilidad_fiscal/prototype.html.twig' with {'form': estabilidadFiscales.vars.prototype } %}{% endfilter %}">
+      {% if estabilidadFiscales %}
+        {% for tag in estabilidadFiscales %}
+        <tr class="fields">
+          <td>
+          	<div class="col-sm-12">
+          		{{ form_widget(tag.numeroCertificado) }}
+              {{ form_errors(tag.numeroCertificado) }}
+          	</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.inicioPeriodoFiscal) }}
+                {{ form_errors(tag.inicioPeriodoFiscal) }}
+          		</div>
+          </td>
+          <td>
+            <div class="col-sm-12">
+              {{ form_widget(tag.finPeriodoFiscal) }}
+              {{ form_errors(tag.finPeriodoFiscal) }}
+            </div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.fechaEmision) }}
+                {{ form_errors(tag.fechaEmision) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.volumen) }}
+                {{ form_errors(tag.volumen) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.valorBeneficio) }}
+                {{ form_errors(tag.valorBeneficio) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.coeficienteConversion) }}
+                {{ form_errors(tag.coeficienteConversion) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.impuesto) }}
+                {{ form_errors(tag.impuesto) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.moneda) }}
+                {{ form_errors(tag.moneda) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.certificado) }}
+                {{ form_errors(tag.certificado) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.estadoSolicitudCertificado) }}
+                {{ form_errors(tag.estadoSolicitudCertificado) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.producto) }}
+                {{ form_errors(tag.producto) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.observacion) }}
+                {{ form_errors(tag.observacion) }}
+          		</div>
+          </td>
+          <td>
+          	<a class="btn btn-danger btn-sm pull-right remove-estabilidad-fiscal remove_nested_fields" data-association="estabilidad_fiscales">
+              <span class="fa fa-remove text-white" aria-hidden="true"></span>
+          	</a>
+          </td>
+        </tr>
+      {% endfor %}
+    {% endif %}
+    </tbody>
+  </table>
+  <a id="add-estabilidad-fiscal" class="btn btn-primary btn-sm add_nested_fields" data-target="#estabilidad-fiscal" href="javascript:void(0)">
+    <span class="fa fa-plus" aria-hidden="true"></span>
+    Agregar Disposición Provincial
+  </a>
+</div>
+
+{% block javascripts %}
+  <script src="{{ asset('js/estabilidad_fiscales.js') }}"></script>
+{% endblock %}

@@ -2,18 +2,18 @@ $(document).ready(function () {
 
   $('#add-actividad-sig').click(function (e) {
     e.preventDefault();
-    actividadInspeccionadaAdd();
+    actividadSigAdd();
     return;
   });
 
 
   $(document).on( "click",'.remove-actividad-sig',function (e) {
     e.preventDefault();
-    actividadInspeccionadaRemove(this);
+    actividadSigRemove(this);
     return;
   });
 
-  function actividadInspeccionadaAdd() {
+  function actividadSigAdd() {
       var collectionHolder = $('.actividadesSig');
       var collectionCount = collectionHolder.children().length;
       var prototipo = collectionHolder.attr('data-prototype');
@@ -24,7 +24,7 @@ $(document).ready(function () {
       return;
   }
 
-  function actividadInspeccionadaRemove(btn) {
+  function actividadSigRemove(btn) {
     var row = $(btn).closest('.fields');
     row.remove();
     return false;

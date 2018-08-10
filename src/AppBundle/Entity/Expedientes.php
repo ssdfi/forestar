@@ -418,7 +418,7 @@ class Expedientes
    * One Expediente has Many EF.
    * @ORM\OneToMany(targetEntity="ConsumoDebitado", mappedBy="expediente")
    */
-   private $estabilidadFiscal;
+   private $estabilidadFiscales;
 
     public function __construct(){
       $this->actividadesPresentadas = new ArrayCollection();
@@ -448,7 +448,7 @@ class Expedientes
       $this->declaracionesIva = new ArrayCollection();
       $this->cronogramaPlantacion = new ArrayCollection();
       $this->beneficiosFiscalesSolicitados = new ArrayCollection();
-      $this->estabilidadFiscal = new ArrayCollection();
+      $this->estabilidadFiscales = new ArrayCollection();
     }
 
     /**
@@ -1528,9 +1528,29 @@ class Expedientes
        $this->beneficiosFiscalesSolicitados->removeElement($ap);
     }
 
-    public function getEstabilidadFiscal(){
-      return $this->estabilidadFiscal;
+    public function getEstabilidadFiscales()
+    {
+      return $this->estabilidadFiscales;
     }
+
+    public function addEstabilidadFiscal($ap)
+    {
+        if (true === $this->estabilidadFiscales->contains($ap)) {
+           return;
+       }
+       $this->estabilidadFiscales[] = $ap;
+       $ap->addExpediente($this);
+
+    }
+
+    public function removeEstabilidadFiscal($ap)
+    {
+      if (false === $this->estabilidadFiscales->contains($ap)) {
+           return;
+       }
+       $this->estabilidadFiscales->removeElement($ap);
+    }
+
     /**
      * Gets triggered only on insert
 
