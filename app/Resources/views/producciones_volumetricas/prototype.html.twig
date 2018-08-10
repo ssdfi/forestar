@@ -1,0 +1,43 @@
+{% block produccionVolumetricaPrototype %}
+<td>
+  <div class="col-sm-12">
+    {{ form_widget(form.especie) }}
+    {{ form_errors(form.especie) }}
+  </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.intervencion) }}
+      {{ form_errors(form.intervencion) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.edad) }}
+      {{ form_errors(form.edad) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.superficiePulpable) }}
+      {{ form_errors(form.superficiePulpable) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.superficieAserrable) }}
+      {{ form_errors(form.superficieAserrable) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.superficieLaminable) }}
+      {{ form_errors(form.superficieLaminable) }}
+    </div>
+</td>
+  <td>
+    <a class="btn btn-danger btn-sm pull-right remove-produccion-volumetrica remove_nested_fields" data-association="producciones_volumetricas">
+      <span class="fa fa-remove text-white" aria-hidden="true"></span>
+    </a>
+  </td>
+{% endblock %}

@@ -1,0 +1,72 @@
+<div class="table-responsive">
+  <table id="producciones_volumetricas" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Especie</th>
+        <th>Intervención</th>
+        <th>Edad</th>
+        <th>Superficie Pulpable</th>
+        <th>Superficie Aserrable</th>
+        <th>Superficie Laminable</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class="produccionesVolumetricas" data-index="{{ produccionesVolumetricas|length }}" data-prototype="{% filter escape %}{% include 'producciones_volumetricas/prototype.html.twig' with {'form': produccionesVolumetricas.vars.prototype } %}{% endfilter %}">
+      {% if produccionesVolumetricas %}
+        {% for tag in produccionesVolumetricas %}
+        <tr class="fields">
+          <td>
+          	<div class="col-sm-12">
+          		{{ form_widget(tag.especie) }}
+              {{ form_errors(tag.especie) }}
+          	</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.intervencion) }}
+                {{ form_errors(tag.intervencion) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.edad) }}
+                {{ form_errors(tag.edad) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.superficiePulpable) }}
+                {{ form_errors(tag.superficiePulpable) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.superficieAserrable) }}
+                {{ form_errors(tag.superficieAserrable) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.superficieLaminable) }}
+                {{ form_errors(tag.superficieLaminable) }}
+          		</div>
+          </td>
+          <td>
+          	<a class="btn btn-danger btn-sm pull-right remove-produccion-volumetrica remove_nested_fields" data-association="producciones_volumetricas">
+              <span class="fa fa-remove text-white" aria-hidden="true"></span>
+          	</a>
+          </td>
+        </tr>
+      {% endfor %}
+    {% endif %}
+    </tbody>
+  </table>
+  <a id="add-produccion-volumetrica" class="btn btn-primary btn-sm add_nested_fields" data-target="#produccion-volumetrica" href="javascript:void(0)">
+    <span class="fa fa-plus" aria-hidden="true"></span>
+    Agregar Producción Volumétrica
+  </a>
+</div>
+
+{% block javascripts %}
+  <script src="{{ asset('js/producciones_volumetricas.js') }}"></script>
+{% endblock %}

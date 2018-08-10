@@ -1513,7 +1513,7 @@ class Expedientes
         return $this->produccionesVolumetricas;
     }
 
-    public function addProduccionVolumetrica($ap)
+    public function addProduccionesVolumetrica($ap)
     {
         if (true === $this->produccionesVolumetricas->contains($ap)) {
            return;
@@ -1523,7 +1523,7 @@ class Expedientes
 
     }
 
-    public function removeProduccionVolumetrica($ap)
+    public function removeProduccionesVolumetrica($ap)
     {
       if (false === $this->produccionesVolumetricas->contains($ap)) {
            return;
