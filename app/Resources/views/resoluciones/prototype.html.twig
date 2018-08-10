@@ -1,0 +1,97 @@
+{% block resolucionPrototype %}
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.tipoResolucion) }}
+      {{ form_errors(form.tipoResolucion) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.numeroResolucion) }}
+      {{ form_errors(form.numeroResolucion) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.fechaResolucion) }}
+      {{ form_errors(form.fechaResolucion) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.listadoResolucion) }}
+      {{ form_errors(form.listadoResolucion) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.departamento) }}
+      {{ form_errors(form.departamento) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.tipoActividad) }}
+      {{ form_errors(form.tipoActividad) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.especie) }}
+      {{ form_errors(form.especie) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.superficieHa) }}
+      {{ form_errors(form.superficieHa) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.densidad) }}
+      {{ form_errors(form.densidad) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.fechaInicio) }}
+      {{ form_errors(form.fechaInicio) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.fechaFin) }}
+      {{ form_errors(form.fechaFin) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.montoPago) }}
+      {{ form_errors(form.montoPago) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.moneda) }}
+      {{ form_errors(form.moneda) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.aprueba) }}
+      {{ form_errors(form.aprueba) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.observacion) }}
+      {{ form_errors(form.observacion) }}
+    </div>
+</td>
+  <td>
+    <a class="btn btn-danger btn-sm pull-right remove-resolucion remove_nested_fields" data-association="resoluciones">
+      <span class="fa fa-remove text-white" aria-hidden="true"></span>
+    </a>
+  </td>
+{% endblock %}

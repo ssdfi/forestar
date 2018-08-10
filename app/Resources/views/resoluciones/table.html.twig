@@ -1,0 +1,135 @@
+<div class="table-responsive">
+  <table id="resoluciones" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Tipo Resolución</th>
+        <th>Número Resolución</th>
+        <th>Fecha Resolución</th>
+        <th>Listado</th>
+        <th>Departamento</th>
+        <th>Tipo Actividad</th>
+        <th>Especie</th>
+        <th>Superficie</th>
+        <th>Densidad</th>
+        <th>Fecha Inicio</th>
+        <th>Fecha Fin</th>
+        <th>Monto Pago</th>
+        <th>Moneda</th>
+        <th>Aprueba</th>
+        <th>Observación</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class="resoluciones" data-index="{{ resoluciones|length }}" data-prototype="{% filter escape %}{% include 'resoluciones/prototype.html.twig' with {'form': resoluciones.vars.prototype } %}{% endfilter %}">
+      {% if resoluciones %}
+        {% for tag in resoluciones %}
+        <tr class="fields">
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.tipoResolucion) }}
+                {{ form_errors(tag.tipoResolucion) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.numeroResolucion) }}
+                {{ form_errors(tag.numeroResolucion) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.fechaResolucion) }}
+                {{ form_errors(tag.fechaResolucion) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.listadoResolucion) }}
+                {{ form_errors(tag.listadoResolucion) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.departamento) }}
+                {{ form_errors(tag.departamento) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.tipoActividad) }}
+                {{ form_errors(tag.tipoActividad) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.especie) }}
+                {{ form_errors(tag.especie) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.superficieHa) }}
+                {{ form_errors(tag.superficieHa) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.densidad) }}
+                {{ form_errors(tag.densidad) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.fechaInicio) }}
+                {{ form_errors(tag.fechaInicio) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.fechaFin) }}
+                {{ form_errors(tag.fechaFin) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.montoPago) }}
+                {{ form_errors(tag.montoPago) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.moneda) }}
+                {{ form_errors(tag.moneda) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.aprueba) }}
+                {{ form_errors(tag.aprueba) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.observacion) }}
+                {{ form_errors(tag.observacion) }}
+          		</div>
+          </td>
+          <td>
+          	<a class="btn btn-danger btn-sm pull-right remove-resolucion remove_nested_fields" data-association="resoluciones">
+              <span class="fa fa-remove text-white" aria-hidden="true"></span>
+          	</a>
+          </td>
+        </tr>
+      {% endfor %}
+    {% endif %}
+    </tbody>
+  </table>
+  <a id="add-resolucion" class="btn btn-primary btn-sm add_nested_fields" data-target="#resolucion" href="javascript:void(0)">
+    <span class="fa fa-plus" aria-hidden="true"></span>
+    Agregar Resolución
+  </a>
+</div>
+
+{% block javascripts %}
+  <script src="{{ asset('js/resoluciones.js') }}"></script>
+{% endblock %}
