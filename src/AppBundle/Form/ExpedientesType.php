@@ -238,7 +238,16 @@ class ExpedientesType extends AbstractType
                 )
               )
               ->add('actividadesAprobadas', CollectionType::class, array(
-                  'entry_type'    => actividadesAprobadasType::class,
+                  'entry_type'    => ActividadesAprobadasType::class,
+                  'allow_add'     => true,
+                  'allow_delete'  => true,
+                  'prototype'     => true,
+                  'label'         => false,
+                  'by_reference'  => false,
+                )
+              )
+              ->add('historialForestoIndustriales', CollectionType::class, array(
+                  'entry_type'    => HistorialForestoIndustrialesType::class,
                   'allow_add'     => true,
                   'allow_delete'  => true,
                   'prototype'     => true,

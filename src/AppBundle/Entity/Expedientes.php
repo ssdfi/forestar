@@ -314,13 +314,13 @@ class Expedientes
 
     /**
     * One Expediente has Many HistorialLegales.
-    * @ORM\OneToMany(targetEntity="HistorialLegales", mappedBy="expediente", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
+    * @ORM\OneToMany(targetEntity="HistorialLegales", mappedBy="expediente", mappedBy="expediente", cascade={"persist"}, orphanRemoval=true)
     */
     private $historialLegales;
 
     /**
     * One Expediente has Many HistorialForestoIndustriales.
-    * @ORM\OneToMany(targetEntity="HistorialForestoIndustriales", mappedBy="expediente")
+    * @ORM\OneToMany(targetEntity="HistorialForestoIndustriales", mappedBy="expediente", cascade={"persist"}, orphanRemoval=true)
     */
     private $historialForestoIndustriales;
 
@@ -1324,6 +1324,23 @@ class Expedientes
     public function getHistorialForestoIndustriales()
     {
       return $this->historialForestoIndustriales;
+    }
+
+    public function addHistorialForestoIndustrial($ap)
+    {
+        if (true === $this->historialForestoIndustriales->contains($ap)) {
+           return;
+       }
+       $this->historialForestoIndustriales[] = $ap;
+       $ap->addExpediente($this);
+    }
+
+    public function removeHistorialForestoIndustrial($ap)
+    {
+      if (false === $this->historialForestoIndustriales->contains($ap)) {
+           return;
+       }
+       $this->historialForestoIndustriales->removeElement($ap);
     }
 
 

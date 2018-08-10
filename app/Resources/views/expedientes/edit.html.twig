@@ -45,6 +45,9 @@
 					{% if edit_form.actividadesAprobadas is defined %}
 						<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-actividades-aprobadas" role="tab" aria-controls="v-pills-messages" aria-selected="false">Aprobación Promoción</a>
 					{% endif %}
+					{% if edit_form.historialForestoIndustriales is defined %}
+						<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-analisis-area-foresto-industrial" role="tab" aria-controls="v-pills-messages" aria-selected="false">Análisis Área Foresto Industrial</a>
+					{% endif %}
 					<a class="nav-item nav-link border" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-sig" role="tab" aria-controls="v-pills-settings" aria-selected="false">Aprobación SIG</a>
 				</div>
 			</div>
@@ -254,8 +257,16 @@
 							} %}{% endembed %}
 						</div>
 					{% endif %}
+					{% if edit_form.actividadesAprobadas is defined %}
+						<div class="tab-pane fade" id="v-pills-analisis-area-foresto-industrial" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+							<h4>Análisis del área Forestoindustrial</h4>
+							{% embed "historial_foresto_industrial/table.html.twig" with {
+								'historialForestoIndustriales' : edit_form.historialForestoIndustriales
+							} %}{% endembed %}
+						</div>
+					{% endif %}
 					<div class="tab-pane fade" id="v-pills-sig" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-						<h4>Editar Actividades SIG</h4>
+						<h4>Aprobación SIG</h4>
 						{% embed "actividadessig/table.html.twig" with {
 							'actividadesSig' : edit_form.actividadesSig
 						} %}{% endembed %}
