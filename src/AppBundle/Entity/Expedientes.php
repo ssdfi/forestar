@@ -1434,7 +1434,7 @@ class Expedientes
         return $this->declaracionIvaResoluciones;
     }
 
-    public function addDeclaracionIvaResoluciones($ap)
+    public function addDeclaracionIvaResolucion($ap)
     {
         if (true === $this->declaracionIvaResoluciones->contains($ap)) {
            return;
@@ -1444,7 +1444,7 @@ class Expedientes
 
     }
 
-    public function removeDeclaracionIvaResoluciones($ap)
+    public function removeDeclaracionIvaResolucion($ap)
     {
       if (false === $this->declaracionIvaResoluciones->contains($ap)) {
            return;

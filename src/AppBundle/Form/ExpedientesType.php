@@ -201,6 +201,15 @@ class ExpedientesType extends AbstractType
                   'by_reference'  => false,
                 )
               )
+              ->add('declaracionIvaResoluciones', CollectionType::class, array(
+                  'entry_type'    => DeclaracionIvaResolucionType::class,
+                  'allow_add'     => true,
+                  'allow_delete'  => true,
+                  'prototype'     => true,
+                  'label'         => false,
+                  'by_reference'  => false,
+                )
+              )
               ;
           $builder->addEventSubscriber(new AddTitularesListener());
           $builder->addEventSubscriber(new AddProfesionalesListener());

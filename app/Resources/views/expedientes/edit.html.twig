@@ -28,7 +28,10 @@
 					<a class="nav-item nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-garantias-presentadas" role="tab" aria-controls="v-pills-messages" aria-selected="false">Garantías Presentadas</a>
 					<a class="nav-item nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-estabilidad-fiscal" role="tab" aria-controls="v-pills-messages" aria-selected="false">Estabilidad Fiscal</a>
 					{% if edit_form.declaracionesIvas is defined %}
-						<a class="nav-item nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-declaracion-iva" role="tab" aria-controls="v-pills-messages" aria-selected="false">Declaración IVA</a>
+						<a class="nav-item nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-declaracion-iva" role="tab" aria-controls="v-pills-messages" aria-selected="false">IVA</a>
+					{% endif %}
+					{% if edit_form.declaracionIvaResoluciones is defined %}
+						<a class="nav-item nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-declaracion-iva-resolucion" role="tab" aria-controls="v-pills-messages" aria-selected="false">IVA por resolución</a>
 					{% endif %}
 					<a class="nav-item nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-sig" role="tab" aria-controls="v-pills-settings" aria-selected="false">Aprobación SIG</a>
 				</div>
@@ -196,6 +199,14 @@
 							<h4>Impuesto al valor agregado</h4>
 							{% embed "declaracion_iva/table.html.twig" with {
 								'declaracionesIva' : edit_form.declaracionesIvas
+							} %}{% endembed %}
+						</div>
+					{% endif %}
+					{% if edit_form.declaracionIvaResoluciones is defined %}
+						<div class="tab-pane fade" id="v-pills-declaracion-iva-resolucion" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+							<h4>IVA por resolucion</h4>
+							{% embed "declaracion_iva_resoluciones/table.html.twig" with {
+								'declaracionesIvaResoluciones' : edit_form.declaracionIvaResoluciones
 							} %}{% endembed %}
 						</div>
 					{% endif %}

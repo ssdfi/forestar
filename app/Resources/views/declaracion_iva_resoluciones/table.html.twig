@@ -1,0 +1,79 @@
+<div class="table-responsive">
+  <table id="declaraciones-iva-resoluciones" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Concepto</th>
+        <th>Cantidad</th>
+        <th>Superficie</th>
+        <th>Importe Total Gravado</th>
+        <th>Importe Computable Credito Fiscal</th>
+        <th>Año Fiscal</th>
+        <th>Observacion</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class="declaracionesIvaResoluciones" data-index="{{ declaracionesIvaResoluciones|length }}" data-prototype="{% filter escape %}{% include 'declaracion_iva_resoluciones/prototype.html.twig' with {'form': declaracionesIvaResoluciones.vars.prototype } %}{% endfilter %}">
+      {% if declaracionesIvaResoluciones %}
+        {% for tag in declaracionesIvaResoluciones %}
+        <tr class="fields">
+          <td>
+          	<div class="col-sm-12">
+          		{{ form_widget(tag.concepto) }}
+              {{ form_errors(tag.concepto) }}
+          	</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.cantidad) }}
+                {{ form_errors(tag.cantidad) }}
+          		</div>
+          </td>
+          <td>
+            <div class="col-sm-12">
+              {{ form_widget(tag.superficie) }}
+              {{ form_errors(tag.superficie) }}
+            </div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.importeTotalGravado) }}
+                {{ form_errors(tag.importeTotalGravado) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.importeComputableCreditoFiscal) }}
+                {{ form_errors(tag.importeComputableCreditoFiscal) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.anioFiscal) }}
+                {{ form_errors(tag.anioFiscal) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.observacion) }}
+                {{ form_errors(tag.observacion) }}
+          		</div>
+          </td>
+          <td>
+          	<a class="btn btn-danger btn-sm pull-right remove-declaracion-iva-resolucion remove_nested_fields" data-association="declaraciones_iva_resoluciones">
+              <span class="fa fa-remove text-white" aria-hidden="true"></span>
+          	</a>
+          </td>
+        </tr>
+      {% endfor %}
+    {% endif %}
+    </tbody>
+  </table>
+  <a id="add-declaracion-iva-resolucion" class="btn btn-primary btn-sm add_nested_fields" data-target="#declaracion-iva-resolucion" href="javascript:void(0)">
+    <span class="fa fa-plus" aria-hidden="true"></span>
+    Agregar Declaración IVA por Resolución
+  </a>
+</div>
+
+{% block javascripts %}
+  <script src="{{ asset('js/declaraciones_iva_resoluciones.js') }}"></script>
+{% endblock %}
