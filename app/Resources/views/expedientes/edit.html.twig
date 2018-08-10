@@ -39,6 +39,9 @@
 					{% if edit_form.resoluciones is defined %}
 						<a class="nav-item nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-resoluciones" role="tab" aria-controls="v-pills-messages" aria-selected="false">Resoluciones</a>
 					{% endif %}
+					{% if edit_form.historialPromociones is defined %}
+						<a class="nav-item nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-analisis-area-promocion" role="tab" aria-controls="v-pills-messages" aria-selected="false">Análisis Área Promoción</a>
+					{% endif %}
 					<a class="nav-item nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-sig" role="tab" aria-controls="v-pills-settings" aria-selected="false">Aprobación SIG</a>
 				</div>
 			</div>
@@ -229,6 +232,14 @@
 							<h4>Resoluciones</h4>
 							{% embed "resoluciones/table.html.twig" with {
 								'resoluciones' : edit_form.resoluciones
+							} %}{% endembed %}
+						</div>
+					{% endif %}
+					{% if edit_form.historialPromociones is defined %}
+						<div class="tab-pane fade" id="v-pills-analisis-area-promocion" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+							<h4>Análisis Área Promoción</h4>
+							{% embed "historial_promocion/table.html.twig" with {
+								'historialPromociones' : edit_form.historialPromociones
 							} %}{% endembed %}
 						</div>
 					{% endif %}

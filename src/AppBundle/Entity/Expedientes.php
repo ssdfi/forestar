@@ -325,10 +325,10 @@ class Expedientes
     private $historialForestoIndustriales;
 
     /**
-    * One Expediente has Many HistorialPromocion.
-    * @ORM\OneToMany(targetEntity="HistorialPromocion", mappedBy="expediente")
+    * One Expediente has Many HistorialPromociones.
+    * @ORM\OneToMany(targetEntity="HistorialPromocion", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
     */
-    private $historialPromocion;
+    private $historialPromociones;
 
     /**
     * One Expediente has Many HistorialSig.
@@ -433,7 +433,7 @@ class Expedientes
       $this->historialContable = new ArrayCollection();
       $this->historialLegales = new ArrayCollection();
       $this->historialForestoIndustriales = new ArrayCollection();
-      $this->historialPromocion = new ArrayCollection();
+      $this->historialPromociones = new ArrayCollection();
       $this->historialSig = new ArrayCollection();
       $this->titulares = new ArrayCollection();
       $this->cobroBeneficios = new ArrayCollection();
@@ -1299,6 +1299,7 @@ class Expedientes
        $this->historialContables->removeElement($ap);
     }
 
+
     public function getHistorialLegales()
     {
       return $this->historialLegales;
@@ -1319,14 +1320,36 @@ class Expedientes
        }
        $this->historialLegales->removeElement($ap);
     }
+
     public function getHistorialForestoIndustriales()
     {
       return $this->historialForestoIndustriales;
     }
-    public function getHistorialPromocion()
+
+
+    public function getHistorialPromociones()
     {
-      return $this->historialPromocion;
+      return $this->historialPromociones;
     }
+
+    public function addHistorialPromocion($ap)
+    {
+        if (true === $this->historialPromociones->contains($ap)) {
+           return;
+       }
+       $this->historialPromociones[] = $ap;
+       $ap->addExpediente($this);
+    }
+
+    public function removeHistorialPromocion($ap)
+    {
+      if (false === $this->historialPromociones->contains($ap)) {
+           return;
+       }
+       $this->historialPromociones->removeElement($ap);
+    }
+
+
     public function getHistorialSig()
     {
       return $this->historialSig;
