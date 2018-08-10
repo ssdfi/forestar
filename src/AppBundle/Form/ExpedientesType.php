@@ -219,6 +219,15 @@ class ExpedientesType extends AbstractType
                   'by_reference'  => false,
                 )
               )
+              ->add('historialLegales', CollectionType::class, array(
+                  'entry_type'    => HistorialLegalesType::class,
+                  'allow_add'     => true,
+                  'allow_delete'  => true,
+                  'prototype'     => true,
+                  'label'         => false,
+                  'by_reference'  => false,
+                )
+              )
               ;
           $builder->addEventSubscriber(new AddTitularesListener());
           $builder->addEventSubscriber(new AddProfesionalesListener());

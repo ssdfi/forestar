@@ -314,7 +314,7 @@ class Expedientes
 
     /**
     * One Expediente has Many HistorialLegales.
-    * @ORM\OneToMany(targetEntity="HistorialLegales", mappedBy="expediente")
+    * @ORM\OneToMany(targetEntity="HistorialLegales", mappedBy="expediente", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
     */
     private $historialLegales;
 
@@ -1302,6 +1302,22 @@ class Expedientes
     public function getHistorialLegales()
     {
       return $this->historialLegales;
+    }
+    public function addHistorialLegal($ap)
+    {
+        if (true === $this->historialLegales->contains($ap)) {
+           return;
+       }
+       $this->historialLegales[] = $ap;
+       $ap->addExpediente($this);
+    }
+
+    public function removeHistorialLegal($ap)
+    {
+      if (false === $this->historialLegales->contains($ap)) {
+           return;
+       }
+       $this->historialLegales->removeElement($ap);
     }
     public function getHistorialForestoIndustriales()
     {
