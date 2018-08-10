@@ -1,0 +1,72 @@
+<div class="table-responsive">
+  <table id="declaraciones-iva" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Fecha Emision</th>
+        <th>Inicio Periodo Fiscal</th>
+        <th>Fin Periodo Fiscal</th>
+        <th>Valor Beneficio</th>
+        <th>Moneda</th>
+        <th>Observacion</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class="declaracionesIva" data-index="{{ declaracionesIva|length }}" data-prototype="{% filter escape %}{% include 'declaracion_iva/prototype.html.twig' with {'form': declaracionesIva.vars.prototype } %}{% endfilter %}">
+      {% if declaracionesIva %}
+        {% for tag in declaracionesIva %}
+        <tr class="fields">
+          <td>
+          	<div class="col-sm-12">
+          		{{ form_widget(tag.fechaEmision) }}
+              {{ form_errors(tag.fechaEmision) }}
+          	</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.inicioPeriodoFiscal) }}
+                {{ form_errors(tag.inicioPeriodoFiscal) }}
+          		</div>
+          </td>
+          <td>
+            <div class="col-sm-12">
+              {{ form_widget(tag.finPeriodoFiscal) }}
+              {{ form_errors(tag.finPeriodoFiscal) }}
+            </div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.valorBeneficio) }}
+                {{ form_errors(tag.valorBeneficio) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.tipoMoneda) }}
+                {{ form_errors(tag.tipoMoneda) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.observacion) }}
+                {{ form_errors(tag.observacion) }}
+          		</div>
+          </td>
+          <td>
+          	<a class="btn btn-danger btn-sm pull-right remove-declaracion-iva remove_nested_fields" data-association="declaraciones_iva">
+              <span class="fa fa-remove text-white" aria-hidden="true"></span>
+          	</a>
+          </td>
+        </tr>
+      {% endfor %}
+    {% endif %}
+    </tbody>
+  </table>
+  <a id="add-declaracion-iva" class="btn btn-primary btn-sm add_nested_fields" data-target="#declaracion-iva" href="javascript:void(0)">
+    <span class="fa fa-plus" aria-hidden="true"></span>
+    Agregar Disposición Provincial
+  </a>
+</div>
+
+{% block javascripts %}
+  <script src="{{ asset('js/declaraciones_iva.js') }}"></script>
+{% endblock %}

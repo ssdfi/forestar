@@ -28,8 +28,8 @@
               <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-analisis-area-contable" role="tab" aria-controls="nav-contact" aria-selected="false">Análisis del Área Contable ({{expediente.historialContables|length}})</a>
               <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-beneficios-fiscales" role="tab" aria-controls="nav-contact" aria-selected="false">Beneficios Fiscales - Análisis({{expediente.beneficiosFiscales|length}})</a>
               <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-garantias-presentadas" role="tab" aria-controls="nav-contact" aria-selected="false">Garantías Presentadas({{expediente.garantias|length}})</a>
-              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-estabilidad-fiscal" role="tab" aria-controls="nav-contact" aria-selected="false">Estabilidad Fiscal ({{expediente.estabilidadFiscal|length}})</a>
-              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-declaracion-iva" role="tab" aria-controls="nav-contact" aria-selected="false">Impuesto al valor agregado ({{expediente.declaracionesIva|length}})</a>
+              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-estabilidad-fiscal" role="tab" aria-controls="nav-contact" aria-selected="false">Estabilidad Fiscal ({{expediente.estabilidadFiscales|length}})</a>
+              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-declaracion-iva" role="tab" aria-controls="nav-contact" aria-selected="false">Impuesto al valor agregado ({{expediente.declaracionesIvas|length}})</a>
               <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-declaracion-iva-resoluciones" role="tab" aria-controls="nav-contact" aria-selected="false">IVA por resolución({{expediente.declaracionIvaResoluciones|length}})</a>
               <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-analisis-area-legales" role="tab" aria-controls="nav-contact" aria-selected="false">Análisis Área Legales ({{expediente.historialLegales|length}})</a>
               <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-documentos-legales" role="tab" aria-controls="nav-contact" aria-selected="false">Documentos Legales</a>
@@ -149,7 +149,7 @@
               {% endembed %}
             </div>
             <div class="tab-pane fade" id="nav-estabilidad-fiscal" role="tabpanel" aria-labelledby="nav-contact-tab">
-              {% embed "estabilidad_fiscal/show_table.html.twig" with { 'estabilidadFiscal': expediente.estabilidadFiscal} %}
+              {% embed "estabilidad_fiscal/show_table.html.twig" with { 'estabilidadFiscal': expediente.estabilidadFiscales} %}
               {% endembed %}
             </div>
             <div class="tab-pane fade" id="nav-predios" role="tabpanel" aria-labelledby="nav-contact-tab">
@@ -182,7 +182,7 @@
               {% endembed %}
             </div>
             <div class="tab-pane fade" id="nav-declaracion-iva" role="tabpanel" aria-labelledby="nav-contact-tab">
-              {% embed "declaracion_iva/show_table.html.twig" with { 'declaracionIva': expediente.declaracionesIva} %}
+              {% embed "declaracion_iva/show_table.html.twig" with { 'declaracionIva': expediente.declaracionesIvas} %}
               {% endembed %}
             </div>
             <div class="tab-pane fade" id="nav-declaracion-iva-resoluciones" role="tabpanel" aria-labelledby="nav-contact-tab">

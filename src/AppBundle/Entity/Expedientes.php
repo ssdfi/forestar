@@ -302,7 +302,7 @@ class Expedientes
 
     /**
     * One Expediente has Many EstadoSituacion.
-    * @ORM\OneToMany(targetEntity="ImpactoAmbiental", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
+    * @ORM\OneToMany(targetEntity="ImpactoAmbiental", mappedBy="expediente", cascade={"persist"}, orphanRemoval=true)
     */
     private $impactosAmbientales;
 
@@ -400,7 +400,7 @@ class Expedientes
    * One Expediente has Many DisposicionesProvinciales.
    * @ORM\OneToMany(targetEntity="DeclaracionIva", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
    */
-   private $declaracionesIva;
+   private $declaracionesIvas;
 
    /**
    * One Expediente has Many DisposicionesProvinciales.
@@ -416,7 +416,7 @@ class Expedientes
 
    /**
    * One Expediente has Many EF.
-   * @ORM\OneToMany(targetEntity="ConsumoDebitado", mappedBy="expediente")
+   * @ORM\OneToMany(targetEntity="ConsumoDebitado", mappedBy="expediente", cascade={"persist"}, orphanRemoval=true)
    */
    private $estabilidadFiscales;
 
@@ -1498,8 +1498,26 @@ class Expedientes
        $this->garantias->removeElement($ap);
     }
 
-    public function getDeclaracionesIva(){
-      return $this->declaracionesIva;
+    public function addDeclaracionesIva($ap)
+    {
+      if (true === $this->declaracionesIvas->contains($ap)) {
+        return;
+      }
+      $this->declaracionesIvas[] = $ap;
+      $ap->addExpediente($this);
+
+    }
+    public function getDeclaracionesIvas(){
+      return $this->declaracionesIvas;
+    }
+
+
+    public function removeDeclaracionesIva($ap)
+    {
+      if (false === $this->declaracionesIvas->contains($ap)) {
+           return;
+       }
+       $this->declaracionesIvas->removeElement($ap);
     }
 
     public function getCronogramaPlantacion(){

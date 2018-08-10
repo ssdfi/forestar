@@ -25,7 +25,7 @@ class DeclaracionIva
     /**
      * @var \Expedientes
      *
-     * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="declaracionesIva")
+     * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="declaracionesIvas")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="expediente_id", referencedColumnName="id")
      * })
@@ -255,5 +255,10 @@ class DeclaracionIva
     public function getTipoMoneda()
     {
         return $this->tipoMoneda;
+    }
+
+    public function addExpediente($exp)
+    {
+        $this->expediente = $exp;
     }
 }
