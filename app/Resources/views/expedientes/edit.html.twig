@@ -42,6 +42,9 @@
 					{% if edit_form.historialPromociones is defined %}
 						<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-analisis-area-promocion" role="tab" aria-controls="v-pills-messages" aria-selected="false">Análisis Área Promoción</a>
 					{% endif %}
+					{% if edit_form.actividadesAprobadas is defined %}
+						<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-actividades-aprobadas" role="tab" aria-controls="v-pills-messages" aria-selected="false">Aprobación Promoción</a>
+					{% endif %}
 					<a class="nav-item nav-link border" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-sig" role="tab" aria-controls="v-pills-settings" aria-selected="false">Aprobación SIG</a>
 				</div>
 			</div>
@@ -240,6 +243,14 @@
 							<h4>Análisis Área Promoción</h4>
 							{% embed "historial_promocion/table.html.twig" with {
 								'historialPromociones' : edit_form.historialPromociones
+							} %}{% endembed %}
+						</div>
+					{% endif %}
+					{% if edit_form.actividadesAprobadas is defined %}
+						<div class="tab-pane fade" id="v-pills-actividades-aprobadas" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+							<h4>Aprobación Promoción</h4>
+							{% embed "actividadesaprobadas/table.html.twig" with {
+								'actividadesAprobadas' : edit_form.actividadesAprobadas
 							} %}{% endembed %}
 						</div>
 					{% endif %}

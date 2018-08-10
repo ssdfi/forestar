@@ -19,7 +19,7 @@
               <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-documentacion" role="tab" aria-controls="nav-contact" aria-selected="false">Documentación ({{expediente.documentaciones|length}})</a>
               <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-situacion" role="tab" aria-controls="nav-contact" aria-selected="false">Estado Situación ({{expediente.estadoSituaciones|length}})</a>
               <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-beneficios-fiscales-solicitados" role="tab" aria-controls="nav-contact" aria-selected="false">Beneficios Fiscales - Carga({{expediente.beneficiosFiscalesSolicitados|length}})</a>
-              {% if expediente.ActividadesTitulares|length %}
+              {% if expediente.actividadesTitulares|length %}
                 <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-actividades-titulares" role="tab" aria-controls="nav-contact" aria-selected="false">Productores Asociados ({{expediente.actividadesTitulares|length}})</a>
               {% endif %}
               <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-predios" role="tab" aria-controls="nav-contact" aria-selected="false">Predios ({{expediente.predios|length}})</a>
