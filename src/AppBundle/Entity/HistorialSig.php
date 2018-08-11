@@ -25,7 +25,7 @@ class HistorialSig
     /**
      * @var \Expedientes
      *
-     * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="historialSig")
+     * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="historialSigs")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="expediente_id", referencedColumnName="id")
      * })

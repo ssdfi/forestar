@@ -39,7 +39,7 @@
               <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-analisis-area-foresto-industrial" role="tab" aria-controls="nav-contact" aria-selected="false">Análisis Área Foresto Industrial ({{expediente.historialForestoIndustriales|length}})</a>
               <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-producciones-volumetricas" role="tab" aria-controls="nav-contact" aria-selected="false">Producciones Volumétricas ({{expediente.produccionesVolumetricas|length}})</a>
               <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-abastecimiento-aproximado" role="tab" aria-controls="nav-sig" aria-selected="false">Cronograma de Plantación ({{expediente.cronogramaPlantaciones|length}})</a>
-              <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-analisis-area-sig" role="tab" aria-controls="nav-sig" aria-selected="false">Análisis del Área SIG ({{expediente.historialSig|length}})</a>
+              <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-analisis-area-sig" role="tab" aria-controls="nav-sig" aria-selected="false">Análisis del Área SIG ({{expediente.historialSigs|length}})</a>
               <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-sig" role="tab" aria-controls="nav-sig" aria-selected="false">Aprobación SIG ({{expediente.actividadesSig|length}})</a>
               <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-observaciones" role="tab" aria-controls="nav-contact" aria-selected="false">Observaciones</a>
               <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-datos-migracion" role="tab" aria-controls="nav-contact" aria-selected="false">Datos Migración</a>
@@ -214,7 +214,7 @@
               {% endembed %}
             </div>
             <div class="tab-pane fade" id="nav-analisis-area-sig" role="tabpanel" aria-labelledby="nav-contact-tab">
-              {% embed "historial_sig/show_table.html.twig" with { 'historialSig': expediente.historialSig} %}
+              {% embed "historial_sig/show_table.html.twig" with { 'historialSigs': expediente.historialSigs} %}
               {% endembed %}
             </div>
             <div class="tab-pane fade" id="nav-observaciones" role="tabpanel" aria-labelledby="nav-contact-tab">

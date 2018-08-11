@@ -1,0 +1,107 @@
+<div class="table-responsive">
+  <table id="historial-sigs" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Fecha Inicio</th>
+        <th>Fecha Fin</th>
+        <th>Area Enviado Expediente</th>
+        <th>Estado Contable</th>
+        <th>Estado Legales</th>
+        <th>Estado Promocion</th>
+        <th>Estado SIG</th>
+        <th>Estado Principal</th>
+        <th>Estado ForestoIndustrial</th>
+        <th>Estado Viveros</th>
+        <th>Observacion</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class="historialSigs" data-index="{{ historialSigs|length }}" data-prototype="{% filter escape %}{% include 'historial_sig/prototype.html.twig' with {'form': historialSigs.vars.prototype } %}{% endfilter %}">
+      {% if historialSigs %}
+        {% for tag in historialSigs %}
+        <tr class="fields">
+          <td>
+          	<div class="col-sm-12">
+          		{{ form_widget(tag.fechaInicio) }}
+              {{ form_errors(tag.fechaInicio) }}
+          	</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.fechaFin) }}
+                {{ form_errors(tag.fechaFin) }}
+          		</div>
+          </td>
+          <td>
+            <div class="col-sm-12">
+              {{ form_widget(tag.areaEnviadoExpediente) }}
+              {{ form_errors(tag.areaEnviadoExpediente) }}
+            </div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.estadoAreaContable) }}
+                {{ form_errors(tag.estadoAreaContable) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.estadoAreaLegales) }}
+                {{ form_errors(tag.estadoAreaLegales) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.estadoAreaPromocion) }}
+                {{ form_errors(tag.estadoAreaPromocion) }}
+          		</div>
+          </td>
+          <td>
+            	<div class="col-sm-12">
+          			{{ form_widget(tag.estadoAreaSig) }}
+                {{ form_errors(tag.estadoAreaSig) }}
+          		</div>
+          </td>
+          <td>
+              <div class="col-sm-12">
+                {{ form_widget(tag.estadoPrincipal) }}
+                {{ form_errors(tag.estadoPrincipal) }}
+              </div>
+          </td>
+          <td>
+              <div class="col-sm-12">
+                {{ form_widget(tag.estadoForestoIndustriales) }}
+                {{ form_errors(tag.estadoForestoIndustriales) }}
+              </div>
+          </td>
+          <td>
+              <div class="col-sm-12">
+                {{ form_widget(tag.estadoViveros) }}
+                {{ form_errors(tag.estadoViveros) }}
+              </div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.observacion) }}
+                {{ form_errors(tag.observacion) }}
+          		</div>
+          </td>
+          <td>
+          	<a class="btn btn-danger btn-sm pull-right remove-historial-sig remove_nested_fields" data-association="historial_sigs">
+              <span class="fa fa-remove text-white" aria-hidden="true"></span>
+          	</a>
+          </td>
+        </tr>
+      {% endfor %}
+    {% endif %}
+    </tbody>
+  </table>
+  <a id="add-historial-sig" class="btn btn-primary btn-sm add_nested_fields" data-target="#historial-sig" href="javascript:void(0)">
+    <span class="fa fa-plus" aria-hidden="true"></span>
+    Agregar Análisis Área SIG
+  </a>
+</div>
+
+{% block javascripts %}
+  <script src="{{ asset('js/historial_sigs.js') }}"></script>
+{% endblock %}

@@ -273,6 +273,15 @@ class ExpedientesType extends AbstractType
                   'by_reference'  => false,
                 )
               )
+              ->add('historialSigs', CollectionType::class, array(
+                  'entry_type'    => HistorialSigType::class,
+                  'allow_add'     => true,
+                  'allow_delete'  => true,
+                  'prototype'     => true,
+                  'label'         => false,
+                  'by_reference'  => false,
+                )
+              )
               ;
           $builder->addEventSubscriber(new AddTitularesListener());
           $builder->addEventSubscriber(new AddProfesionalesListener());

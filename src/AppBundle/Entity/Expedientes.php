@@ -332,9 +332,9 @@ class Expedientes
 
     /**
     * One Expediente has Many HistorialSig.
-    * @ORM\OneToMany(targetEntity="HistorialSig", mappedBy="expediente")
+    * @ORM\OneToMany(targetEntity="HistorialSig", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
     */
-    private $historialSig;
+    private $historialSigs;
 
     /**
     * @var ArrayCollection $titulares
@@ -434,7 +434,7 @@ class Expedientes
       $this->historialLegales = new ArrayCollection();
       $this->historialForestoIndustriales = new ArrayCollection();
       $this->historialPromociones = new ArrayCollection();
-      $this->historialSig = new ArrayCollection();
+      $this->historialSigs = new ArrayCollection();
       $this->titulares = new ArrayCollection();
       $this->cobroBeneficios = new ArrayCollection();
       $this->predios = new ArrayCollection();
@@ -1367,9 +1367,26 @@ class Expedientes
     }
 
 
-    public function getHistorialSig()
+    public function getHistorialSigS()
     {
-      return $this->historialSig;
+      return $this->historialSigs;
+    }
+
+    public function addHistorialSig($ap)
+    {
+        if (true === $this->historialSigs->contains($ap)) {
+           return;
+       }
+       $this->historialSigs[] = $ap;
+       $ap->addExpediente($this);
+    }
+
+    public function removeHistorialSig($ap)
+    {
+      if (false === $this->historialSigs->contains($ap)) {
+           return;
+       }
+       $this->historialSigs->removeElement($ap);
     }
 
     /**
