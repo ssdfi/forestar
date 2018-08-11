@@ -118,6 +118,13 @@ class ActividadesCertificadas
      */
     private $usuarioId;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="etapa", type="integer", nullable=true)
+     */
+    private $etapa;
+
 
 
     /**

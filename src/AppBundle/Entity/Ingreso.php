@@ -25,14 +25,14 @@ class Ingreso
     /**
      * @var string
      *
-     * @ORM\Column(name="ing_ayn", type="string", length=255, nullable=true)
+     * @ORM\Column(name="ing_ayn", type="string", nullable=true)
      */
     private $ingAyn;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ing_tdo", type="string", length=255, nullable=true)
+     * @ORM\Column(name="ing_tdo", type="string", nullable=true)
      */
     private $ingTdo;
 
@@ -46,7 +46,7 @@ class Ingreso
     /**
      * @var string
      *
-     * @ORM\Column(name="ing_act", type="string", length=255, nullable=true)
+     * @ORM\Column(name="ing_act", type="string", nullable=true)
      */
     private $ingAct;
 
@@ -67,21 +67,21 @@ class Ingreso
     /**
      * @var string
      *
-     * @ORM\Column(name="ing_esp", type="string", length=255, nullable=true)
+     * @ORM\Column(name="ing_esp", type="string", nullable=true)
      */
     private $ingEsp;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ing_int", type="string", length=255, nullable=true)
+     * @ORM\Column(name="ing_int", type="string", nullable=true)
      */
     private $ingInt;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ing_num", type="string", length=255, nullable=true)
+     * @ORM\Column(name="ing_num", type="string", nullable=true)
      */
     private $ingNum;
 

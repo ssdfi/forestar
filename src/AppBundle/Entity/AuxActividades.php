@@ -25,14 +25,14 @@ class AuxActividades
     /**
      * @var string
      *
-     * @ORM\Column(name="actividad", type="string", length=255, nullable=true)
+     * @ORM\Column(name="actividad", type="string", nullable=true)
      */
     private $actividad;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="periodo", type="string", length=255, nullable=true)
+     * @ORM\Column(name="periodo", type="string", nullable=true)
      */
     private $periodo;
 
@@ -46,7 +46,7 @@ class AuxActividades
     /**
      * @var string
      *
-     * @ORM\Column(name="especie", type="string", length=255, nullable=true)
+     * @ORM\Column(name="especie", type="string", nullable=true)
      */
     private $especie;
 
@@ -60,14 +60,14 @@ class AuxActividades
     /**
      * @var string
      *
-     * @ORM\Column(name="partido", type="string", length=255, nullable=true)
+     * @ORM\Column(name="partido", type="string", nullable=true)
      */
     private $partido;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="observacion", type="string", length=255, nullable=true)
+     * @ORM\Column(name="observacion", type="string", nullable=true)
      */
     private $observacion;
 

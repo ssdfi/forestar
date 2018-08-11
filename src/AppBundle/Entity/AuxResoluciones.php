@@ -25,7 +25,7 @@ class AuxResoluciones
     /**
      * @var string
      *
-     * @ORM\Column(name="resolucion_nro", type="string", length=255, nullable=true)
+     * @ORM\Column(name="resolucion_nro", type="string", nullable=true)
      */
     private $resolucionNro;
 
@@ -39,14 +39,14 @@ class AuxResoluciones
     /**
      * @var string
      *
-     * @ORM\Column(name="interno", type="string", length=255, nullable=true)
+     * @ORM\Column(name="interno", type="string", nullable=true)
      */
     private $interno;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="expediente", type="string", length=255, nullable=true)
+     * @ORM\Column(name="expediente", type="string", nullable=true)
      */
     private $expediente;
 

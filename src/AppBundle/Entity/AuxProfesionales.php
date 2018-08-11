@@ -25,7 +25,7 @@ class AuxProfesionales
     /**
      * @var string
      *
-     * @ORM\Column(name="prf_ayn", type="string", length=255, nullable=true)
+     * @ORM\Column(name="prf_ayn", type="string", nullable=true)
      */
     private $prfAyn;
 
@@ -39,28 +39,28 @@ class AuxProfesionales
     /**
      * @var string
      *
-     * @ORM\Column(name="prf_cui", type="string", length=255, nullable=true)
+     * @ORM\Column(name="prf_cui", type="string", nullable=true)
      */
     private $prfCui;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prf_dom", type="string", length=255, nullable=true)
+     * @ORM\Column(name="prf_dom", type="string", nullable=true)
      */
     private $prfDom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="provincia", type="string", length=255, nullable=true)
+     * @ORM\Column(name="provincia", type="string", nullable=true)
      */
     private $provincia;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="localidad", type="string", length=255, nullable=true)
+     * @ORM\Column(name="localidad", type="string", nullable=true)
      */
     private $localidad;
 
@@ -74,56 +74,56 @@ class AuxProfesionales
     /**
      * @var string
      *
-     * @ORM\Column(name="prf_tel1", type="string", length=255, nullable=true)
+     * @ORM\Column(name="prf_tel1", type="string", nullable=true)
      */
     private $prfTel1;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prf_tel2", type="string", length=255, nullable=true)
+     * @ORM\Column(name="prf_tel2", type="string", nullable=true)
      */
     private $prfTel2;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prf_fax", type="string", length=255, nullable=true)
+     * @ORM\Column(name="prf_fax", type="string", nullable=true)
      */
     private $prfFax;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prf_ema1", type="string", length=255, nullable=true)
+     * @ORM\Column(name="prf_ema1", type="string", nullable=true)
      */
     private $prfEma1;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prf_ema2", type="string", length=255, nullable=true)
+     * @ORM\Column(name="prf_ema2", type="string", nullable=true)
      */
     private $prfEma2;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prf_tit", type="string", length=255, nullable=true)
+     * @ORM\Column(name="prf_tit", type="string", nullable=true)
      */
     private $prfTit;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prf_exp", type="string", length=255, nullable=true)
+     * @ORM\Column(name="prf_exp", type="string", nullable=true)
      */
     private $prfExp;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prf_mex", type="string", length=255, nullable=true)
+     * @ORM\Column(name="prf_mex", type="string", nullable=true)
      */
     private $prfMex;
 

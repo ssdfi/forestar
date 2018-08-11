@@ -32,7 +32,7 @@ class AuxTits
     /**
      * @var string
      *
-     * @ORM\Column(name="tit_tdo", type="string", length=255, nullable=true)
+     * @ORM\Column(name="tit_tdo", type="string", nullable=true)
      */
     private $titTdo;
 
@@ -60,7 +60,7 @@ class AuxTits
     /**
      * @var string
      *
-     * @ORM\Column(name="tit_sex", type="string", length=255, nullable=true)
+     * @ORM\Column(name="tit_sex", type="string", nullable=true)
      */
     private $titSex;
 

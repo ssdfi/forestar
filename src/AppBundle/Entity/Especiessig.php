@@ -25,42 +25,42 @@ class Especiessig
     /**
      * @var string
      *
-     * @ORM\Column(name="codigo_sp", type="string", length=255, nullable=true)
+     * @ORM\Column(name="codigo_sp", type="string", nullable=true)
      */
     private $codigoSp;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="codigo_genero", type="string", length=255, nullable=true)
+     * @ORM\Column(name="codigo_genero", type="string", nullable=true)
      */
     private $codigoGenero;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="codigo_especie", type="string", length=255, nullable=true)
+     * @ORM\Column(name="codigo_especie", type="string", nullable=true)
      */
     private $codigoEspecie;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="codigo_clon_var", type="string", length=255, nullable=true)
+     * @ORM\Column(name="codigo_clon_var", type="string", nullable=true)
      */
     private $codigoClonVar;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nombre_cientifico", type="string", length=255, nullable=true)
+     * @ORM\Column(name="nombre_cientifico", type="string", nullable=true)
      */
     private $nombreCientifico;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nombre_comun", type="string", length=255, nullable=true)
+     * @ORM\Column(name="nombre_comun", type="string", nullable=true)
      */
     private $nombreComun;
 

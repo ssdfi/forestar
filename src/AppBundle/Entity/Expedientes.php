@@ -31,7 +31,7 @@ class Expedientes
     /**
      * @var string
      *
-     * @ORM\Column(name="numero_interno", type="string", length=255, nullable=true)
+     * @ORM\Column(name="numero_interno", type="string", nullable=true)
      * @Assert\Regex(
      *     pattern     = "/[0-9]{2}-[0-9]{3}-[0-9]{3}\/[0-9]{2}/",
      *     message = "El formato debe ser ##-###-###/##"
@@ -40,7 +40,12 @@ class Expedientes
      * @Assert\NotBlank(message="El campo no puede estar vacío")
      */
     private $numeroInterno;
-
+    /**
+     * @var \titular para eliminar
+     *
+     * @ORM\Column(name="titular_id", type="integer", nullable=true)
+     */
+    private $titular;
     /**
      * @var \Titulares
      *
@@ -90,7 +95,7 @@ class Expedientes
     /**
      * @var string
      *
-     * @ORM\Column(name="numero_expediente", type="string", length=255, nullable=true)
+     * @ORM\Column(name="numero_expediente", type="string", nullable=true)
      * @Assert\Regex(
      *     pattern     = "/EXP-S05:[0-9]{7}\/[0-9]{4}|EX-20[0-9]{2}-[0-9]{8}\b/",
      *     message     = "El formato debe ser EXP-S05:#######/#### o EX-20##-########"

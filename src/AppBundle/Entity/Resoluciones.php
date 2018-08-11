@@ -156,6 +156,13 @@ class Resoluciones
      */
     private $listadoResolucion;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="etapa", type="integer", nullable=true)
+     */
+    private $etapa;
+
 
 
     /**

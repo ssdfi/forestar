@@ -67,14 +67,14 @@ class AuxExped
     /**
      * @var string
      *
-     * @ORM\Column(name="exp_num", type="string", length=255, nullable=true)
+     * @ORM\Column(name="exp_num", type="string", nullable=true)
      */
     private $expNum;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="exp_num_int", type="string", length=255, nullable=true)
+     * @ORM\Column(name="exp_num_int", type="string", nullable=true)
      */
     private $expNumInt;
 

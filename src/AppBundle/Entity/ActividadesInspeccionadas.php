@@ -136,6 +136,13 @@ class ActividadesInspeccionadas
      */
     private $inspeccionRelacionadaId;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="etapa", type="integer", nullable=true)
+     */
+    private $etapa;
+
 
 
     /**

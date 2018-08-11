@@ -103,6 +103,12 @@ class ActividadesSig
      * @ORM\Column(name="fecha_registro", type="date", nullable=true)
      */
     private $fechaRegistro;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="etapa", type="integer", nullable=true)
+     */
+    private $etapa;
 
 
 

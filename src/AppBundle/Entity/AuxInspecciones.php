@@ -67,21 +67,21 @@ class AuxInspecciones
     /**
      * @var string
      *
-     * @ORM\Column(name="ins_act", type="string", length=255, nullable=true)
+     * @ORM\Column(name="ins_act", type="string", nullable=true)
      */
     private $insAct;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ins_esp", type="string", length=255, nullable=true)
+     * @ORM\Column(name="ins_esp", type="string", nullable=true)
      */
     private $insEsp;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ins_obs", type="string", length=255, nullable=true)
+     * @ORM\Column(name="ins_obs", type="string", nullable=true)
      */
     private $insObs;
 
