@@ -76,14 +76,11 @@ class ActividadesSig
      */
     private $departamento;
 
-    /**
-     * @var \Departamento
-     *
-     * @ORM\ManyToOne(targetEntity="Departamentos")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="departamento_id", referencedColumnName="id")
-     * })
-     */
+     /**
+      * @var integer
+      *
+      * @ORM\Column(name="usuario_id", type="integer", nullable=true)
+      */
     private $usuarioId;
 
     /**
@@ -91,7 +88,7 @@ class ActividadesSig
      *
      * @ORM\Column(name="inspeccion_id", type="integer", nullable=true)
      */
-    private $inspeccionId;
+    private $inspeccion;
 
     /**
      * @var integer
@@ -293,27 +290,27 @@ class ActividadesSig
     }
 
     /**
-     * Set inspeccionId
+     * Set inspeccion
      *
-     * @param integer $inspeccionId
+     * @param integer $inspeccion
      *
      * @return ActividadesSig
      */
-    public function setInspeccionId($inspeccionId)
+    public function setInspeccion($inspeccion)
     {
-        $this->inspeccionId = $inspeccionId;
+        $this->inspeccion = $inspeccion;
 
         return $this;
     }
 
     /**
-     * Get inspeccionId
+     * Get inspeccion
      *
      * @return integer
      */
-    public function getInspeccionId()
+    public function getInspeccion()
     {
-        return $this->inspeccionId;
+        return $this->inspeccion;
     }
 
     /**

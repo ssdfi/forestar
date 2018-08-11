@@ -1744,3 +1744,4 @@ insert into expedientes_titulares(expediente_id, titular_id) select expediente_i
 drop table temp;
 ALTER TABLE expedientes_titulares ADD PRIMARY KEY (expediente_id, titular_id);
 ALTER TABLE beneficios_solicitados_expedientes RENAME TO beneficios_fiscales_solicitados;
+UPDATE actividades_sig SET inspeccion_id = null WHERE inspeccion_id = 0;
