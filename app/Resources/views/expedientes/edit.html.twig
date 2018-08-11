@@ -51,6 +51,9 @@
 					{% if edit_form.produccionesVolumetricas is defined %}
 						<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-producciones-volumetricas" role="tab" aria-controls="v-pills-messages" aria-selected="false">Producciones Volumétricas</a>
 					{% endif %}
+					{% if edit_form.cronogramaPlantaciones is defined %}
+						<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-cronograma-plantacion" role="tab" aria-controls="v-pills-messages" aria-selected="false">Cronograma Plantaciones</a>
+					{% endif %}
 					<a class="nav-item nav-link border" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-sig" role="tab" aria-controls="v-pills-settings" aria-selected="false">Aprobación SIG</a>
 				</div>
 			</div>
@@ -273,6 +276,14 @@
 							<h4>Producciones Volumétricas</h4>
 							{% embed "producciones_volumetricas/table.html.twig" with {
 								'produccionesVolumetricas' : edit_form.produccionesVolumetricas
+							} %}{% endembed %}
+						</div>
+					{% endif %}
+					{% if edit_form.cronogramaPlantaciones is defined %}
+						<div class="tab-pane fade" id="v-pills-cronograma-plantacion" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+							<h4>Producciones Volumétricas</h4>
+							{% embed "abastecimiento_aproximado/table.html.twig" with {
+								'cronogramaPlantaciones' : edit_form.cronogramaPlantaciones
 							} %}{% endembed %}
 						</div>
 					{% endif %}

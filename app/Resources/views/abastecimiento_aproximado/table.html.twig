@@ -1,0 +1,56 @@
+<table id="cronograma-plantaciones" class="table table-striped">
+  <thead>
+    <tr>
+      <th>Especie</th>
+      <th>Superficie</th>
+      <th>Año</th>
+      <th>Observaciones</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody class="cronogramaPlantaciones" data-index="{{ cronogramaPlantaciones|length }}" data-prototype="{% filter escape %}{% include 'abastecimiento_aproximado/prototype.html.twig' with {'form': cronogramaPlantaciones.vars.prototype } %}{% endfilter %}">
+    {% if cronogramaPlantaciones %}
+      {% for tag in cronogramaPlantaciones %}
+      <tr class="fields">
+        <td>
+        	<div class="col-sm-12">
+        		{{ form_widget(tag.especie) }}
+            {{ form_errors(tag.especie) }}
+        	</div>
+        </td>
+        <td>
+        		<div class="col-sm-12">
+        			{{ form_widget(tag.superficie) }}
+              {{ form_errors(tag.superficie) }}
+        		</div>
+        </td>
+        <td>
+          <div class="col-sm-12">
+            {{ form_widget(tag.anio) }}
+            {{ form_errors(tag.anio) }}
+          </div>
+        </td>
+        <td>
+        		<div class="col-sm-12">
+        			{{ form_widget(tag.observaciones) }}
+              {{ form_errors(tag.observaciones) }}
+        		</div>
+        </td>
+        <td>
+        	<a class="btn btn-danger btn-sm pull-right remove-cronograma-plantacion remove_nested_fields" data-association="cronograma_plantaciones">
+            <span class="fa fa-remove text-white" aria-hidden="true"></span>
+        	</a>
+        </td>
+      </tr>
+    {% endfor %}
+  {% endif %}
+  </tbody>
+</table>
+<a id="add-cronograma-plantacion" class="btn btn-primary btn-sm add_nested_fields" data-target="#cronograma-plantacion" href="javascript:void(0)">
+  <span class="fa fa-plus" aria-hidden="true"></span>
+  Agregar Cronograma de Plantación
+</a>
+
+{% block javascripts %}
+  <script src="{{ asset('js/cronograma_plantaciones.js') }}"></script>
+{% endblock %}

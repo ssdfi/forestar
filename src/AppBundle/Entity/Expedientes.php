@@ -406,7 +406,7 @@ class Expedientes
    * One Expediente has Many DisposicionesProvinciales.
    * @ORM\OneToMany(targetEntity="AbastecimientoAproximado", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
    */
-   private $cronogramaPlantacion;
+   private $cronogramaPlantaciones;
 
    /**
    * One Expediente has Many Beneficios Fiscales Solicitados.
@@ -446,7 +446,7 @@ class Expedientes
       $this->produccionesVolumetricas = new ArrayCollection();
       $this->garantias = new ArrayCollection();
       $this->declaracionesIva = new ArrayCollection();
-      $this->cronogramaPlantacion = new ArrayCollection();
+      $this->cronogramaPlantaciones = new ArrayCollection();
       $this->beneficiosFiscalesSolicitados = new ArrayCollection();
       $this->estabilidadFiscales = new ArrayCollection();
     }
@@ -1554,6 +1554,10 @@ class Expedientes
        $this->garantias->removeElement($ap);
     }
 
+    public function getDeclaracionesIvas(){
+      return $this->declaracionesIvas;
+    }
+
     public function addDeclaracionesIva($ap)
     {
       if (true === $this->declaracionesIvas->contains($ap)) {
@@ -1562,9 +1566,6 @@ class Expedientes
       $this->declaracionesIvas[] = $ap;
       $ap->addExpediente($this);
 
-    }
-    public function getDeclaracionesIvas(){
-      return $this->declaracionesIvas;
     }
 
 
@@ -1576,9 +1577,29 @@ class Expedientes
        $this->declaracionesIvas->removeElement($ap);
     }
 
-    public function getCronogramaPlantacion(){
-      return $this->cronogramaPlantacion;
+    public function getCronogramaPlantaciones(){
+      return $this->cronogramaPlantaciones;
     }
+
+    public function addCronogramaPlantacion($ap)
+    {
+      if (true === $this->cronogramaPlantaciones->contains($ap)) {
+        return;
+      }
+      $this->cronogramaPlantaciones[] = $ap;
+      $ap->addExpediente($this);
+
+    }
+
+
+    public function removeCronogramaPlantacion($ap)
+    {
+      if (false === $this->cronogramaPlantaciones->contains($ap)) {
+           return;
+       }
+       $this->cronogramaPlantaciones->removeElement($ap);
+    }
+
 
     public function getBeneficiosFiscalesSolicitados(){
       return $this->beneficiosFiscalesSolicitados;

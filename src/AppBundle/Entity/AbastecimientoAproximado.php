@@ -25,7 +25,7 @@ class AbastecimientoAproximado
     /**
      * @var \Expedientes
      *
-     * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="cronogramaPlantacion")
+     * @ORM\ManyToOne(targetEntity="Expedientes", inversedBy="cronogramaPlantaciones")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="expediente_id", referencedColumnName="id")
      * })
@@ -193,5 +193,10 @@ class AbastecimientoAproximado
     public function getObservaciones()
     {
         return $this->observaciones;
+    }
+
+    public function addExpediente($exp)
+    {
+        $this->expediente = $exp;
     }
 }

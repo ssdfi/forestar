@@ -1,0 +1,31 @@
+{% block cronogramaPlantacionPrototype %}
+<td>
+  <div class="col-sm-12">
+    {{ form_widget(form.especie) }}
+    {{ form_errors(form.especie) }}
+  </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.superficie) }}
+      {{ form_errors(form.superficie) }}
+    </div>
+</td>
+<td>
+  <div class="col-sm-12">
+    {{ form_widget(form.anio) }}
+    {{ form_errors(form.anio) }}
+  </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.observaciones) }}
+      {{ form_errors(form.observaciones) }}
+    </div>
+</td>
+  <td>
+    <a class="btn btn-danger btn-sm pull-right remove-cronograma-plantacion remove_nested_fields" data-association="cronograma_plantaciones">
+      <span class="fa fa-remove text-white" aria-hidden="true"></span>
+    </a>
+  </td>
+{% endblock %}
