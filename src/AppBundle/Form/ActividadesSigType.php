@@ -23,8 +23,8 @@ class ActividadesSigType extends AbstractType
           ->add('departamento',EntityType::class, array('class'=>'AppBundle\Entity\Departamentos','required'=>true,'label' => false))
           // ->add('historialSigId')
           // ->add('fechaRegistro')
-          ->add('tipoActividad',EntityType::class, array('class'=>'AppBundle\Entity\TiposActividades','required'=>true,'label' => false))
-          ->add('inspeccion',EntityType::class, array('class'=>'AppBundle\Entity\TiposInspeccion','required'=>true,'label' => false))
+          ->add('tipoActividad')
+          ->add('inspeccion')
           ->add('observaciones',TextareaType::class,array('label' => false,'required'=>false,'attr' => array('class' => 'form-control')));
     }/**
      * {@inheritdoc}

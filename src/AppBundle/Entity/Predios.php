@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Predios
@@ -315,6 +316,11 @@ class Predios
     public function getExpediente()
     {
         return $this->expediente;
+    }
+
+    public function addExpediente($exp)
+    {
+        $this->expediente = $exp;
     }
 
     /**
@@ -1108,7 +1114,7 @@ class Predios
         return $this->controlMalezas;
     }
 
-    public function addControlMalezas($ap)
+    public function addControlMaleza($ap)
     {
         if (true === $this->controlMalezas->contains($ap)) {
            return;
@@ -1118,7 +1124,7 @@ class Predios
 
     }
 
-    public function removeControlMalezas($ap)
+    public function removeControlMaleza($ap)
     {
       if (false === $this->controlMalezas->contains($ap)) {
            return;
@@ -1131,7 +1137,7 @@ class Predios
         return $this->controlPlagas;
     }
 
-    public function addControlPlagas($ap)
+    public function addControlPlaga($ap)
     {
         if (true === $this->controlPlagas->contains($ap)) {
            return;
@@ -1141,7 +1147,7 @@ class Predios
 
     }
 
-    public function removeControlPlagas($ap)
+    public function removeControlPlaga($ap)
     {
       if (false === $this->controlPlagas->contains($ap)) {
            return;

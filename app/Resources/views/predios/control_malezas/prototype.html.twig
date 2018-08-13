@@ -1,0 +1,43 @@
+{% block controlMaleza %}
+<td>
+  <div class="col-sm-12">
+    {{ form_widget(form.nombreProducto) }}
+    {{ form_errors(form.nombreProducto) }}
+  </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.accion) }}
+      {{ form_errors(form.accion) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.principioActivo) }}
+      {{ form_errors(form.principioActivo) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.dosis) }}
+      {{ form_errors(form.dosis) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.periodo) }}
+      {{ form_errors(form.periodo) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.tipoControlMalezas) }}
+      {{ form_errors(form.tipoControlMalezas) }}
+    </div>
+</td>
+<td>
+  <a class="btn btn-danger btn-sm pull-right remove-control-maleza remove_nested_fields" data-association="control_malezas">
+    <span class="fa fa-remove text-white" aria-hidden="true"></span>
+  </a>
+</td>
+{% endblock %}

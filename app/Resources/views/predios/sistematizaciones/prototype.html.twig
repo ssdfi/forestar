@@ -1,0 +1,19 @@
+{% block sistematizacion %}
+<td>
+  <div class="col-sm-12">
+    {{ form_widget(form.tipoSistematizacion) }}
+    {{ form_errors(form.tipoSistematizacion) }}
+  </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.observacion) }}
+      {{ form_errors(form.observacion) }}
+    </div>
+</td>
+<td>
+  <a class="btn btn-danger btn-sm pull-right remove-sistematizacion remove_nested_fields" data-association="historial_sigs">
+    <span class="fa fa-remove text-white" aria-hidden="true"></span>
+  </a>
+</td>
+{% endblock %}

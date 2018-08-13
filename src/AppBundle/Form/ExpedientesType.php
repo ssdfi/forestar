@@ -138,6 +138,19 @@ class ExpedientesType extends AbstractType
                 'by_reference'  => false,
               )
             )
+            ->add('predios', CollectionType::class, array(
+                'entry_type'    => PrediosType::class,
+                'allow_add'     => true,
+                'allow_delete'  => true,
+                'prototype'     => true,
+                'label'         => false,
+                'required'      => false,
+                'by_reference'  => false,
+                'entry_options' => array(
+                    'label' => false,
+                )
+              )
+            )
             ->add('disposicionesProvinciales', CollectionType::class, array(
                   'entry_type'    => DisposicionesProvincialesType::class,
                   'allow_add'     => true,

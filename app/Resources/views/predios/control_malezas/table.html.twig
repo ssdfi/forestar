@@ -1,0 +1,72 @@
+<div class="table-responsive">
+	<table id="control-malezas" class="table table-striped">
+		<thead>
+			<tr>
+				<th>Nombre Producto</th>
+				<th>Acción</th>
+				<th>Prinpio Activo</th>
+				<th>Dosis</th>
+				<th>Período</th>
+				<th>Tipo Control Maleza</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody class="controlMalezas" data-index="{{ controlMalezas|length }}" data-prototype="{% filter escape %}{% include 'predios/control_malezas/prototype.html.twig' with {'form': controlMalezas.vars.prototype } %}{% endfilter %}">
+			{% if controlMalezas %}
+				{% for tag in controlMalezas %}
+					<tr class="fields">
+						<td>
+							<div class="col-sm-12">
+								{{ form_widget(tag.nombreProducto) }}
+								{{ form_errors(tag.nombreProducto) }}
+							</div>
+						</td>
+						<td>
+							<div class="col-sm-12">
+								{{ form_widget(tag.accion) }}
+								{{ form_errors(tag.accion) }}
+							</div>
+						</td>
+						<td>
+							<div class="col-sm-12">
+								{{ form_widget(tag.principioActivo) }}
+								{{ form_errors(tag.principioActivo) }}
+							</div>
+						</td>
+						<td>
+							<div class="col-sm-12">
+								{{ form_widget(tag.dosis) }}
+								{{ form_errors(tag.dosis) }}
+							</div>
+						</td>
+						<td>
+							<div class="col-sm-12">
+								{{ form_widget(tag.periodo) }}
+								{{ form_errors(tag.periodo) }}
+							</div>
+						</td>
+						<td>
+							<div class="col-sm-12">
+								{{ form_widget(tag.tipoControlMalezas) }}
+								{{ form_errors(tag.tipoControlMalezas) }}
+							</div>
+						</td>
+						<td>
+							<a class="btn btn-danger btn-sm pull-right remove-control-maleza remove_nested_fields" data-association="control_malezas">
+								<span class="fa fa-remove text-white" aria-hidden="true"></span>
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			{% endif %}
+		</tbody>
+	</table>
+	<a id="add-control-maleza" class="btn btn-primary btn-sm add_nested_fields" data-target="#control-maleza" href="javascript:void(0)">
+		<span class="fa fa-plus" aria-hidden="true"></span>
+		Agregar Control Maleza
+	</a>
+</div>
+
+{% block javascripts %}
+  <script src="{{ asset('js/predios/control_malezas.js') }}"></script>
+{% endblock %}

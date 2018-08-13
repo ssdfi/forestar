@@ -1,0 +1,65 @@
+<div class="table-responsive">
+	<table id="fertilizantes" class="table table-striped">
+		<thead>
+			<tr>
+				<th>Nombre Producto</th>
+				<th>Dosis</th>
+				<th>Esquema Aplicacion</th>
+				<th>Período Actividad</th>
+				<th>Proporción</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody class="fertilizantes" data-index="{{ fertilizantes|length }}" data-prototype="{% filter escape %}{% include 'predios/fertilizantes/prototype.html.twig' with {'form': fertilizantes.vars.prototype } %}{% endfilter %}">
+			{% if fertilizantes %}
+				{% for tag in fertilizantes %}
+					<tr class="fields">
+						<td>
+							<div class="col-sm-12">
+								{{ form_widget(tag.nombreProducto) }}
+								{{ form_errors(tag.nombreProducto) }}
+							</div>
+						</td>
+						<td>
+							<div class="col-sm-12">
+								{{ form_widget(tag.dosis) }}
+								{{ form_errors(tag.dosis) }}
+							</div>
+						</td>
+						<td>
+							<div class="col-sm-12">
+								{{ form_widget(tag.esquemaAplicacion) }}
+								{{ form_errors(tag.esquemaAplicacion) }}
+							</div>
+						</td>
+						<td>
+							<div class="col-sm-12">
+								{{ form_widget(tag.periodoActividad) }}
+								{{ form_errors(tag.periodoActividad) }}
+							</div>
+						</td>
+						<td>
+							<div class="col-sm-12">
+								{{ form_widget(tag.proporcion) }}
+								{{ form_errors(tag.proporcion) }}
+							</div>
+						</td>
+						<td>
+							<a class="btn btn-danger btn-sm pull-right remove-fertilizante remove_nested_fields" data-association="fertilizantes">
+								<span class="fa fa-remove text-white" aria-hidden="true"></span>
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			{% endif %}
+		</tbody>
+	</table>
+	<a id="add-fertilizante" class="btn btn-primary btn-sm add_nested_fields" data-target="#fertilizantes" href="javascript:void(0)">
+		<span class="fa fa-plus" aria-hidden="true"></span>
+		Agregar Fertilizante
+	</a>
+</div>
+
+{% block javascripts %}
+	<script src="{{ asset('js/predios/fertilizantes.js') }}"></script>
+{% endblock %}

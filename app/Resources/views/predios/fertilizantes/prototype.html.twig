@@ -1,0 +1,37 @@
+{% block fertilizante %}
+<td>
+  <div class="col-sm-12">
+    {{ form_widget(form.nombreProducto) }}
+    {{ form_errors(form.nombreProducto) }}
+  </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.dosis) }}
+      {{ form_errors(form.dosis) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.esquemaAplicacion) }}
+      {{ form_errors(form.esquemaAplicacion) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.periodoActividad) }}
+      {{ form_errors(form.periodoActividad) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.proporcion) }}
+      {{ form_errors(form.proporcion) }}
+    </div>
+</td>
+<td>
+  <a class="btn btn-danger btn-sm pull-right remove-fertilizante remove_nested_fields" data-association="fertilizantes">
+    <span class="fa fa-remove text-white" aria-hidden="true"></span>
+  </a>
+</td>
+{% endblock %}

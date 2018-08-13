@@ -354,7 +354,7 @@ class Expedientes
 
     /**
     * One Expediente has Many HistorialSig.
-    * @ORM\OneToMany(targetEntity="Predios", mappedBy="expediente")
+    * @ORM\OneToMany(targetEntity="Predios", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
     */
     private $predios;
 
@@ -1410,8 +1410,8 @@ class Expedientes
            return;
        }
        $this->predios[] = $ap;
-
-    }
+       $ap->addExpediente($this);
+     }
 
     public function removePredio($ap)
     {

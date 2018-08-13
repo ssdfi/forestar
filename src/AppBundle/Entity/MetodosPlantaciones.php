@@ -85,6 +85,11 @@ class MetodosPlantaciones
         return $this->predio;
     }
 
+    public function addPredio($predio)
+    {
+        $this->predio = $predio;
+    }
+
     /**
      * Set metodoPlantacion
      *

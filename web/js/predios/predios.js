@@ -1,20 +1,20 @@
 $(document).ready(function () {
 
-  $('#add-cobro-beneficio').click(function (e) {
+  $('#add-predio').click(function (e) {
     e.preventDefault();
-    cobroBeneficioAdd();
+    predioAdd();
     return;
   });
 
 
-  $(document).on( "click",'.remove-cobros-beneficio',function (e) {
+  $(document).on( "click",'.remove-predio',function (e) {
     e.preventDefault();
-    cobroBeneficioRemove(this);
+    predioRemove(this);
     return;
   });
 
-  function cobroBeneficioAdd() {
-      var collectionHolder = $('.cobrosBeneficios');
+  function predioAdd() {
+      var collectionHolder = $('.predios');
       var collectionCount = collectionHolder.children().length;
       var prototipo = collectionHolder.attr('data-prototype');
       prototipo = prototipo.replace(/___count___/g, (collectionCount+1));
@@ -22,18 +22,12 @@ $(document).ready(function () {
       prototipo = prototipo.replace(/___collapse___/g, 'collapse'+(collectionCount+1));
       prototipo = prototipo.replace(/__name__/g, collectionCount);
       collectionCount++;
-      var newLi = jQuery('<div class="card"></tr>').html(prototipo);
+      var newLi = jQuery('<div class="row"></div>').html(prototipo);
       newLi.appendTo(collectionHolder).trigger('create');
-      var nombre = 'appbundle_expedientes_cobroBeneficios_'+(collectionCount-1)+'_nombreBanco';
-      var nombreBanco = document.getElementById(nombre);
-      var headName = ".head-name"+(collectionCount);
-      $(nombreBanco).keyup(function() {
-          $(headName).text(this.value);
-      });
       return;
   }
 
-  function cobroBeneficioRemove(btn) {
+  function predioRemove(btn) {
     var row = $(btn).closest('.card');
     row.remove();
     return false;

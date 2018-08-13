@@ -21,6 +21,9 @@
 					<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-documentacion" role="tab" aria-controls="v-pills-messages" aria-selected="false">Documentación</a>
 					<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-estado-situacion" role="tab" aria-controls="v-pills-messages" aria-selected="false">Estado de Situación</a>
 					<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-beneficio-fiscal-solicitado" role="tab" aria-controls="v-pills-messages" aria-selected="false">Beneficio Fiscal Carga</a>
+					{% if edit_form.predios is defined %}
+						<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-predios" role="tab" aria-controls="v-pills-messages" aria-selected="false">Predios</a>
+					{% endif %}
 					<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-disposiciones-provinciales" role="tab" aria-controls="v-pills-messages" aria-selected="false">Disposiciones Provinciales</a>
 					<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-impacto-ambiental" role="tab" aria-controls="v-pills-messages" aria-selected="false">Impacto Ambiental</a>
 					<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-analisis-area-contable" role="tab" aria-controls="v-pills-messages" aria-selected="false">Análisis Área Contable</a>
@@ -182,6 +185,14 @@
 							'beneficiosFiscalesSolicitados' : edit_form.beneficiosFiscalesSolicitados
 						} %}{% endembed %}
 					</div>
+					{% if edit_form.predios is defined %}
+						<div class="tab-pane fade" id="v-pills-predios" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+							<h4>Editar Predios</h4>
+							{% embed "predios/table.html.twig" with {
+								'predios' : edit_form.predios
+							} %}{% endembed %}
+						</div>
+					{% endif %}
 					<div class="tab-pane fade" id="v-pills-disposiciones-provinciales" role="tabpanel" aria-labelledby="v-pills-messages-tab">
 						<h4>Editar Disposiciones Provinciales</h4>
 						{% embed "disposiciones_provinciales/table.html.twig" with {

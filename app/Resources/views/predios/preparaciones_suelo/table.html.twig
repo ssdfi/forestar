@@ -1,0 +1,45 @@
+<div class="table-responsive">
+	<table id="preparaciones-suelo" class="table table-striped">
+		<thead>
+			<tr>
+				<th>Tipo Sistematización</th>
+				<th>Observación</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody class="preparacionesSuelo" data-index="{{ preparacionesSuelo|length }}" data-prototype="{% filter escape %}{% include 'predios/preparaciones_suelo/prototype.html.twig' with {'form': preparacionesSuelo.vars.prototype } %}{% endfilter %}">
+			{% if preparacionesSuelo %}
+				{% for tag in preparacionesSuelo %}
+					<tr class="fields">
+						<td>
+							<div class="col-sm-12">
+								{{ form_widget(tag.tipoPreparacionSuelo) }}
+								{{ form_errors(tag.tipoPreparacionSuelo) }}
+							</div>
+						</td>
+						<td>
+							<div class="col-sm-12">
+								{{ form_widget(tag.observacion) }}
+								{{ form_errors(tag.observacion) }}
+							</div>
+						</td>
+						<td>
+							<a class="btn btn-danger btn-sm pull-right remove-preparacion-suelo remove_nested_fields" data-association="preparaciones_suelo">
+								<span class="fa fa-remove text-white" aria-hidden="true"></span>
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			{% endif %}
+		</tbody>
+	</table>
+
+	<a id="add-preparacion-suelo" class="btn btn-primary btn-sm add_nested_fields" data-target="#preparacion_suelo" href="javascript:void(0)">
+		<span class="fa fa-plus" aria-hidden="true"></span>
+		Agregar Preparación del Suelo
+	</a>
+</div>
+
+{% block javascripts %}
+	<script src="{{ asset('js/predios/preparacion_suelos.js') }}"></script>
+{% endblock %}

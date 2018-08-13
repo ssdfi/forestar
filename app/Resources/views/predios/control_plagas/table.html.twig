@@ -1,0 +1,72 @@
+<div class="table-responsive">
+	<table id="control-plagas" class="table table-striped">
+		<thead>
+			<tr>
+				<th>Nombre</th>
+				<th>Acción</th>
+				<th>Prinpio Activo</th>
+				<th>Nombre PLaga</th>
+				<th>Período</th>
+				<th>Dosis</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody class="controlPlagas" data-index="{{ controlPlagas|length }}" data-prototype="{% filter escape %}{% include 'predios/control_plagas/prototype.html.twig' with {'form': controlPlagas.vars.prototype } %}{% endfilter %}">
+			{% if controlPlagas %}
+				{% for tag in controlPlagas %}
+					<tr class="fields">
+						<td>
+							<div class="col-sm-12">
+								{{ form_widget(tag.nombre) }}
+								{{ form_errors(tag.nombre) }}
+							</div>
+						</td>
+						<td>
+							<div class="col-sm-12">
+								{{ form_widget(tag.accion) }}
+								{{ form_errors(tag.accion) }}
+							</div>
+						</td>
+						<td>
+							<div class="col-sm-12">
+								{{ form_widget(tag.principioActivo) }}
+								{{ form_errors(tag.principioActivo) }}
+							</div>
+						</td>
+						<td>
+							<div class="col-sm-12">
+								{{ form_widget(tag.nombrePlaga) }}
+								{{ form_errors(tag.nombrePlaga) }}
+							</div>
+						</td>
+						<td>
+							<div class="col-sm-12">
+								{{ form_widget(tag.periodo) }}
+								{{ form_errors(tag.periodo) }}
+							</div>
+						</td>
+						<td>
+							<div class="col-sm-12">
+								{{ form_widget(tag.dosis) }}
+								{{ form_errors(tag.dosis) }}
+							</div>
+						</td>
+						<td>
+							<a class="btn btn-danger btn-sm pull-right remove-control-plaga remove_nested_fields" data-association="control_plagas">
+								<span class="fa fa-remove text-white" aria-hidden="true"></span>
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			{% endif %}
+		</tbody>
+	</table>
+	<a id="add-control-plaga" class="btn btn-primary btn-sm add_nested_fields" data-target="#control-plaga" href="javascript:void(0)">
+		<span class="fa fa-plus" aria-hidden="true"></span>
+		Agregar Control Plaga
+	</a>
+</div>
+
+{% block javascripts %}
+	<script src="{{ asset('js/predios/control_plagas.js') }}"></script>
+{% endblock %}

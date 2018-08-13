@@ -1,0 +1,45 @@
+<div class="table-responsive">
+<table id="sistematizaciones" class="table table-striped">
+  <thead>
+    <tr>
+      <th>Tipo Sistematización</th>
+      <th>Observación</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody class="sistematizaciones" data-index="{{ sistematizaciones|length }}" data-prototype="{% filter escape %}{% include 'predios/sistematizaciones/prototype.html.twig' with {'form': sistematizaciones.vars.prototype } %}{% endfilter %}">
+    {% if sistematizaciones %}
+      {% for tag in sistematizaciones %}
+      <tr class="fields">
+        <td>
+          <div class="col-sm-12">
+            {{ form_widget(tag.tipoSistematizacion) }}
+            {{ form_errors(tag.tipoSistematizacion) }}
+          </div>
+        </td>
+        <td>
+            <div class="col-sm-12">
+              {{ form_widget(tag.observacion) }}
+              {{ form_errors(tag.observacion) }}
+            </div>
+        </td>
+        <td>
+          <a class="btn btn-danger btn-sm pull-right remove-sistematizacion remove_nested_fields" data-association="historial_sigs">
+            <span class="fa fa-remove text-white" aria-hidden="true"></span>
+          </a>
+        </td>
+      </tr>
+    {% endfor %}
+  {% endif %}
+  </tbody>
+</table>
+
+	<a id="add-sistematizacion" class="btn btn-primary btn-sm add_nested_fields" data-target="#sistematizacion" href="javascript:void(0)">
+		<span class="fa fa-plus" aria-hidden="true"></span>
+		Agregar Sistematización
+	</a>
+</div>
+
+{% block javascripts %}
+  <script src="{{ asset('js/predios/sistematizaciones.js') }}"></script>
+{% endblock %}

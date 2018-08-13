@@ -1,0 +1,44 @@
+<div class="table-responsive">
+<table id="metodos-plantaciones" class="table table-striped">
+  <thead>
+    <tr>
+      <th>Tipo Sistematización</th>
+      <th>Observación</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody class="metodosPlantaciones" data-index="{{ metodosPlantaciones|length }}" data-prototype="{% filter escape %}{% include 'predios/metodos_plantaciones/prototype.html.twig' with {'form': metodosPlantaciones.vars.prototype } %}{% endfilter %}">
+    {% if metodosPlantaciones %}
+      {% for tag in metodosPlantaciones %}
+      <tr class="fields">
+        <td>
+          <div class="col-sm-12">
+            {{ form_widget(tag.tipoMetodoPlantacion) }}
+            {{ form_errors(tag.tipoMetodoPlantacion) }}
+          </div>
+        </td>
+        <td>
+            <div class="col-sm-12">
+              {{ form_widget(tag.observacion) }}
+              {{ form_errors(tag.observacion) }}
+            </div>
+        </td>
+        <td>
+          <a class="btn btn-danger btn-sm pull-right remove-metodo-plantacion remove_nested_fields" data-association="metodos_plantaciones">
+            <span class="fa fa-remove text-white" aria-hidden="true"></span>
+          </a>
+        </td>
+      </tr>
+    {% endfor %}
+  {% endif %}
+  </tbody>
+</table>
+	<a id="add-metodo-plantacion" class="btn btn-primary btn-sm add_nested_fields" data-target="#metodo-plantacion" href="javascript:void(0)">
+		<span class="fa fa-plus" aria-hidden="true"></span>
+		Agregar Metodo de Plantacion
+	</a>
+</div>
+
+{% block javascripts %}
+  <script src="{{ asset('js/predios/metodos_plantaciones.js') }}"></script>
+{% endblock %}

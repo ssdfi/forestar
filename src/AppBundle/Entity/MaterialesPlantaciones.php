@@ -84,6 +84,11 @@ class MaterialesPlantaciones
     {
         return $this->predio;
     }
+    
+    public function addPredio($predio)
+    {
+        $this->predio = $predio;
+    }
 
     /**
      * Set tipoMaterialPlantacion

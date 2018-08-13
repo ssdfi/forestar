@@ -92,7 +92,7 @@ class Sistematizaciones
      *
      * @return SistematizacionesPredios
      */
-    public function setpredio($predio)
+    public function setPredio($predio)
     {
         $this->predio = $predio;
 
@@ -104,9 +104,14 @@ class Sistematizaciones
      *
      * @return integer
      */
-    public function getpredio()
+    public function getPredio()
     {
         return $this->predio;
+    }
+
+    public function addPredio($predio)
+    {
+        $this->predio = $predio;
     }
 
     /**

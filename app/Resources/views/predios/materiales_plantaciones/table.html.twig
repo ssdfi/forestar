@@ -1,0 +1,47 @@
+<div class="table-responsive">
+	<table id="materiales-plantaciones" class="table table-striped">
+		<thead>
+			<tr>
+				<th>Tipo Sistematización</th>
+				<th>Observación</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody
+			class="materialesPlantaciones"
+			data-index="{{ materialesPlantaciones|length }}"
+			data-prototype="{% filter escape %}{% include 'predios/materiales_plantaciones/prototype.html.twig' with {'form': materialesPlantaciones.vars.prototype } %}{% endfilter %}">
+			{% if materialesPlantaciones %}
+				{% for tag in materialesPlantaciones %}
+					<tr class="fields">
+						<td>
+							<div class="col-sm-12">
+								{{ form_widget(tag.tipoMaterialPlantacion) }}
+								{{ form_errors(tag.tipoMaterialPlantacion) }}
+							</div>
+						</td>
+						<td>
+							<div class="col-sm-12">
+								{{ form_widget(tag.observacion) }}
+								{{ form_errors(tag.observacion) }}
+							</div>
+						</td>
+						<td>
+							<a class="btn btn-danger btn-sm pull-right remove-material-plantacion remove_nested_fields" data-association="materiales_plantaciones">
+								<span class="fa fa-remove text-white" aria-hidden="true"></span>
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			{% endif %}
+		</tbody>
+	</table>
+	<a id="add-material-plantacion" class="btn btn-primary btn-sm add_nested_fields" data-target="#material-plantacion" href="javascript:void(0)">
+		<span class="fa fa-plus" aria-hidden="true"></span>
+		Agregar Material Plantación
+	</a>
+</div>
+
+{% block javascripts %}
+	<script src="{{ asset('js/predios/materiales_plantaciones.js') }}"></script>
+{% endblock %}

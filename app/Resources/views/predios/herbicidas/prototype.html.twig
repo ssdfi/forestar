@@ -1,0 +1,43 @@
+{% block herbicida %}
+<td>
+  <div class="col-sm-12">
+    {{ form_widget(form.nombre) }}
+    {{ form_errors(form.nombre) }}
+  </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.principioActivo) }}
+      {{ form_errors(form.principioActivo) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.esquemaAplicacion) }}
+      {{ form_errors(form.esquemaAplicacion) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.accion) }}
+      {{ form_errors(form.accion) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.dosis) }}
+      {{ form_errors(form.dosis) }}
+    </div>
+</td>
+<td>
+    <div class="col-sm-12">
+      {{ form_widget(form.periodoRealizacion) }}
+      {{ form_errors(form.periodoRealizacion) }}
+    </div>
+</td>
+<td>
+  <a class="btn btn-danger btn-sm pull-right remove-herbicida remove_nested_fields" data-association="herbicidas">
+    <span class="fa fa-remove text-white" aria-hidden="true"></span>
+  </a>
+</td>
+{% endblock %}

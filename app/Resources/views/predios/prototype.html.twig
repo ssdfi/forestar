@@ -1,0 +1,267 @@
+{% block cobrosBeneficioPrototype %}
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-header" id="___heading___">
+				<h5 class="mb-0">
+					<a class="btn" data-toggle="collapse" href="#___collapse___" role="button" aria-expanded="true" aria-controls="___collapse___">
+						Predios #___count___ -
+						<b>{{form.children.nombreEncargado.vars.value}}</b>
+						<b>{{form.children.nomenclaturaCatastral.vars.value}}</b>
+						<a class="btn btn-danger btn-sm pull-right remove-cobros-beneficio remove_nested_fields" data-association="cobros_beneficios">
+							<span class="fa fa-remove text-white" aria-hidden="true"></span>
+						</a>
+					</a>
+				</h5>
+			</div>
+			<div id="___collapse___" class="collapse" aria-labelledby="___heading___" data-parent="#accordion">
+				<div class="row">
+					<div class="col-md-10">
+						<div class="tab-content" id="v-pills-tabContent">
+							<div class="tab-pane fade show active" id="v-pills-general___count___" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+								<div class="col-md-12 border">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="card border-0">
+												<div class="card-body">
+													<div class="row">
+														{{ form_label(form.nombreEncargado) }}
+														<div class="col-md-10">
+															{{ form_widget(form.nombreEncargado) }}
+															{{ form_errors(form.nombreEncargado) }}
+														</div>
+													</div>
+													<div class="row">
+														{{ form_label(form.numeroTelefono) }}
+														<div class="col-md-10">
+															{{ form_widget(form.numeroTelefono) }}
+															{{ form_errors(form.numeroTelefono) }}
+														</div>
+													</div>
+													<div class="row">
+														{{ form_label(form.nomenclaturaCatastral) }}
+														<div class="col-md-10">
+															{{ form_widget(form.nomenclaturaCatastral) }}
+															{{ form_errors(form.nomenclaturaCatastral) }}
+														</div>
+													</div>
+													<div class="row">
+														{{ form_label(form.lote) }}
+														<div class="col-md-10">
+															{{ form_widget(form.lote) }}
+															{{ form_errors(form.lote) }}
+														</div>
+													</div>
+													<div class="row">
+														{{ form_label(form.fraccion) }}
+														<div class="col-md-10">
+															{{ form_widget(form.fraccion) }}
+															{{ form_errors(form.fraccion) }}
+														</div>
+													</div>
+													<div class="row">
+														{{ form_label(form.parcela) }}
+														<div class="col-md-10">
+															{{ form_widget(form.parcela) }}
+															{{ form_errors(form.parcela) }}
+														</div>
+													</div>
+													<div class="row">
+														{{ form_label(form.matricula) }}
+														<div class="col-md-10">
+															{{ form_widget(form.matricula) }}
+															{{ form_errors(form.matricula) }}
+														</div>
+													</div>
+													<div class="row">
+														{{ form_label(form.localidad) }}
+														<div class="col-md-10">
+															{{ form_widget(form.localidad) }}
+															{{ form_errors(form.localidad) }}
+														</div>
+													</div>
+													<div class="row">
+														{{ form_label(form.municipio) }}
+														<div class="col-md-10">
+															{{ form_widget(form.municipio) }}
+															{{ form_errors(form.municipio) }}
+														</div>
+													</div>
+													<div class="row">
+														{{ form_label(form.departamento) }}
+														<div class="col-md-10">
+															{{ form_widget(form.departamento) }}
+															{{ form_errors(form.departamento) }}
+														</div>
+													</div>
+													<div class="row">
+														{{ form_label(form.superficiePredio) }}
+														<div class="col-md-10">
+															{{ form_widget(form.superficiePredio) }}
+															{{ form_errors(form.superficiePredio) }}
+														</div>
+													</div>
+													<div class="row">
+														{{ form_label(form.superficieAfectada) }}
+														<div class="col-md-10">
+															{{ form_widget(form.superficieAfectada) }}
+															{{ form_errors(form.superficieAfectada) }}
+														</div>
+													</div>
+													<div class="row">
+														{{ form_label(form.puntosGps) }}
+														<div class="col-md-10">
+															{{ form_widget(form.puntosGps) }}
+															{{ form_errors(form.puntosGps) }}
+														</div>
+													</div>
+													<div class="row">
+														{{ form_label(form.temperaturaMediaAnual) }}
+														<div class="col-md-10">
+															{{ form_widget(form.temperaturaMediaAnual) }}
+															{{ form_errors(form.temperaturaMediaAnual) }}
+														</div>
+													</div>
+													<div class="row">
+														{{ form_label(form.temperaturaMaximaAbsoluta) }}
+														<div class="col-md-10">
+															{{ form_widget(form.temperaturaMaximaAbsoluta) }}
+															{{ form_errors(form.temperaturaMaximaAbsoluta) }}
+														</div>
+													</div>
+													<div class="row">
+														{{ form_label(form.temperaturaMinimaAbsoluta) }}
+														<div class="col-md-10">
+															{{ form_widget(form.temperaturaMinimaAbsoluta) }}
+															{{ form_errors(form.temperaturaMinimaAbsoluta) }}
+														</div>
+													</div>
+													<div class="row">
+														{{ form_label(form.precipitacionMediaAnual) }}
+														<div class="col-md-10">
+															{{ form_widget(form.precipitacionMediaAnual) }}
+															{{ form_errors(form.precipitacionMediaAnual) }}
+														</div>
+													</div>
+													<div class="row">
+														{{ form_label(form.precipitacionMesMasLluvioso) }}
+														<div class="col-md-10">
+															{{ form_widget(form.precipitacionMesMasLluvioso) }}
+															{{ form_errors(form.precipitacionMesMasLluvioso) }}
+														</div>
+													</div>
+													<div class="row">
+														{{ form_label(form.conductividadAguaRiego) }}
+														<div class="col-md-10">
+															{{ form_widget(form.conductividadAguaRiego) }}
+															{{ form_errors(form.conductividadAguaRiego) }}
+														</div>
+													</div>
+													<div class="row">
+														{{ form_label(form.clasificacion) }}
+														<div class="col-md-10">
+															{{ form_widget(form.clasificacion) }}
+															{{ form_errors(form.clasificacion) }}
+														</div>
+													</div>
+													<div class="row">
+														{{ form_label(form.profundidadEfectiva) }}
+														<div class="col-md-10">
+															{{ form_widget(form.profundidadEfectiva) }}
+															{{ form_errors(form.profundidadEfectiva) }}
+														</div>
+													</div>
+													<div class="row">
+														{{ form_label(form.altimetria) }}
+														<div class="col-md-10">
+															{{ form_widget(form.altimetria) }}
+															{{ form_errors(form.altimetria) }}
+														</div>
+													</div>
+													<div class="row">
+														{{ form_label(form.ph) }}
+														<div class="col-md-10">
+															{{ form_widget(form.ph) }}
+															{{ form_errors(form.ph) }}
+														</div>
+													</div>
+													<div class="row">
+														{{ form_label(form.salinidad) }}
+														<div class="col-md-10">
+															{{ form_widget(form.salinidad) }}
+															{{ form_errors(form.salinidad) }}
+														</div>
+													</div>
+													<div class="row">
+														{{ form_label(form.contenidoMateriaOrganica) }}
+														<div class="col-md-10">
+															{{ form_widget(form.contenidoMateriaOrganica) }}
+															{{ form_errors(form.contenidoMateriaOrganica) }}
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane fade" id="v-pills-sistematizacion___count___" role="tabpanel" aria-labelledby="v-pills-presentacion___count___-tab">
+								{% embed "predios/sistematizaciones/table.html.twig" with {
+									'sistematizaciones' : form.sistematizaciones
+								} %}{% endembed %}
+							</div>
+							<div class="tab-pane fade" id="v-pills-preparacion-suelo___count___" role="tabpanel" aria-labelledby="v-pills-preparacion-suelo___count___-tab">
+								{% embed "predios/preparaciones_suelo/table.html.twig" with {
+									'preparacionesSuelo' : form.preparacionesSuelo
+								} %}{% endembed %}
+							</div>
+							<div class="tab-pane fade" id="v-pills-metodos-plantacion___count___" role="tabpanel" aria-labelledby="v-pills-metodos-plantacion___count___-tab">
+								{% embed "predios/metodos_plantaciones/table.html.twig" with {
+									'metodosPlantaciones' : form.metodosPlantaciones
+								} %}{% endembed %}
+							</div>
+							<div class="tab-pane fade" id="v-pills-material-plantacion___count___" role="tabpanel" aria-labelledby="v-pills-material-plantacion___count___-tab">
+								{% embed "predios/materiales_plantaciones/table.html.twig" with {
+									'materialesPlantaciones' : form.materialesPlantaciones
+								} %}{% endembed %}
+							</div>
+							<div class="tab-pane fade" id="v-pills-herbicidas___count___" role="tabpanel" aria-labelledby="v-pills-herbicidas___count___-tab">
+								{% embed "predios/herbicidas/table.html.twig" with {
+									'herbicidas' : form.herbicidas
+								} %}{% endembed %}
+							</div>
+							<div class="tab-pane fade" id="v-pills-fertilizantes___count___" role="tabpanel" aria-labelledby="v-pills-fertilizantes___count___-tab">
+								{% embed "predios/fertilizantes/table.html.twig" with {
+									'fertilizantes' : form.fertilizantes
+								} %}{% endembed %}
+							</div>
+							<div class="tab-pane fade" id="v-pills-control-maleza___count___" role="tabpanel" aria-labelledby="v-pills-control-maleza___count___-tab">
+								{% embed "predios/control_malezas/table.html.twig" with {
+									'controlMalezas' : form.controlMalezas
+								} %}{% endembed %}
+							</div>
+							<div class="tab-pane fade" id="v-pills-control-plaga___count___" role="tabpanel" aria-labelledby="v-pills-control-plaga___count___-tab">
+								{% embed "predios/control_plagas/table.html.twig" with {
+									'controlPlagas' : form.controlPlagas
+								} %}{% endembed %}
+							</div>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="nav flex-column nav-pills border border-secondary" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+							<a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-general___count___" role="tab" aria-controls="v-pills-home" aria-selected="true">General</a>
+							<a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-sistematizacion___count___" role="tab" aria-controls="v-pills-profile" aria-selected="false">Sistematización</a>
+							<a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-preparacion-suelo___count___" role="tab" aria-controls="v-pills-messages" aria-selected="false">Preparación del suelo</a>
+							<a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-metodos-plantacion___count___" role="tab" aria-controls="v-pills-settings" aria-selected="false">Métodos de Plantación</a>
+							<a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-material-plantacion___count___" role="tab" aria-controls="v-pills-settings" aria-selected="false">Materiales Plantación</a>
+							<a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-herbicidas___count___" role="tab" aria-controls="v-pills-settings" aria-selected="false">Herbicidas</a>
+							<a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-fertilizantes___count___" role="tab" aria-controls="v-pills-settings" aria-selected="false">Fertilizantes</a>
+							<a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-control-maleza___count___" role="tab" aria-controls="v-pills-settings" aria-selected="false">Control de malezas</a>
+							<a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-control-plaga___count___" role="tab" aria-controls="v-pills-settings" aria-selected="false">Control de plagas</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
