@@ -1,0 +1,36 @@
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nombre Banco</th>
+        <th scope="col">Tipo Cuenta</th>
+        <th scope="col">Sucursal</th>
+        <th scope="col">Nro. Cuenta</th>
+        <th scope="col">Nro. CBU</th>
+        <th scope="col">Nro. Sucursal</th>
+        <th scope="col">Domicilio Sucursal</th>
+        <th scope="col">Localidad</th>
+        <th scope="col">Carga Tributaria Nacional</th>
+        <th scope="col">Carga Tributaria Provincial</th>
+        <th scope="col">Carga Tributaria Municipal</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in cobroBeneficios %}
+        <tr>
+          <td>{{item.nombreBanco}}</td>
+          <td>{{item.tipoCuenta}}</td>
+          <td>{{item.sucursalBanco}}</td>
+          <td>{{item.numeroCuenta}}</td>
+          <td>{{item.numeroCbu}}</td>
+          <td>{{item.numeroSucursal}}</td>
+          <td>{{item.domicilioSucursal}}</td>
+          <td>{{item.localidadId}}</td>
+          <td>{{item.cargaTributariaNacional}}</td>
+          <td>{{item.cargaTributariaProvincial}}</td>
+          <td>{{item.cargaTributariaMunicipal}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

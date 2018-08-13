@@ -81,47 +81,14 @@ class ExpedientesController extends Controller
     public function showAction(Expedientes $expediente)
     {
         $deleteForm = $this->createDeleteForm($expediente);
-        // foreach ($expediente->getDocumentacion() as $key => $value) {
-        //   $this->downloadDoc($value);
-        // }
 
         //SI EN OBSERVACIONES TIENE ALGO QUE DICE SEGUNDO TITULAR PONERLO COMO POSIBLE ERROR PARA SOLUCIONAR
-        dump($expediente);
+        // dump($expediente);
+
         return $this->render('expedientes/show.html.twig', array(
             'expediente' => $expediente,
             'delete_form' => $deleteForm->createView(),
         ));
-    }
-
-    public function downloadDoc($file) {
-      // dump($file);
-      // dump(unpack('H*', $file->getArchivo()));
-      // $archivo = unpack('H*', $file->getArchivo());
-      // $archivo = unpack('H*', $file->getArchivo());
-      // $archivo = hex2bin($file->getArchivo());
-      // dump($archivo);
-      // // $response = new BinaryFileResponse(hex2bin($archivo[1]));
-      // $response = new Response(base64_decode($archivo[1]));
-      // // $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT);
-      // $response->setStatusCode(200);
-      // $response->headers->set('Content-Type', 'octet-stream');
-      // $response->headers->set('Content-Disposition', 'attachment; filename="'.$file->getNombreArchivo().'".doc');
-      // $response->headers->set('Content-Length', filesize(base64_encode($archivo[1])));
-      // $response = new Response();
-      // $filename = 'yourFileName.doc';
-
-      // Set headers
-      // $response->headers->set('Cache-Control', 'private');
-      // $response->headers->set('Content-type', 'octet-stream' );
-      // $response->headers->set('Content-Disposition', 'attachment; filename="' . $filename . '";');
-      // $response->headers->set('Content-length',  strlen($archivo[1]));
-
-      // Send headers before outputting anything
-      // $response->sendHeaders();
-      //
-      // $response->setContent( $archivo[1] );
-      //
-      // return $response;
     }
 
     /**

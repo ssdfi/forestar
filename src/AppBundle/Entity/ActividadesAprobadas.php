@@ -97,12 +97,12 @@ class ActividadesAprobadas
      */
     private $departamento;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="etapa", type="integer", nullable=true)
-     */
-    private $etapa;
+    // /**
+    //  * @var integer
+    //  *
+    //  * @ORM\Column(name="etapa", type="integer", nullable=true)
+    //  */
+    // private $etapa;
 
 
 
