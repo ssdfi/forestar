@@ -1,0 +1,62 @@
+{% if error %}
+	<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ForestAR - Login</title>
+		{% block stylesheets %}
+				{% stylesheets "@bootstrap_css" "@fontawesome_css" %}
+						<link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
+						<link rel="stylesheet" type="text/css" media="screen" href="/css/public.css"/>
+						<link rel="stylesheet" type="text/css" media="screen" href="/css/body.css"/>
+						<link rel="stylesheet" type="text/css" media="screen" href="/css/bootstrap-switch.css"/>
+				{% endstylesheets %}
+
+				{% stylesheets 'bundles/app/css/*' output='css/compiled/main.css' %}
+						<link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
+				{% endstylesheets %}
+		{% endblock %}
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<h1>
+						<i class="fa fa-tree text-white"></i>
+						ForestAR
+					</h1>
+					<div class="panel panel-primary panel-login">
+						<div class="panel-heading">
+							<h2 class="text-white">Inicio de sesión</h2>
+						</div>
+						<div class="panel-body">
+							<form accept-charset="UTF-8" action="{{ path('login') }}" method="post" role="form">
+								<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
+								<div class="form-group">
+									<label class="sr-only control-label" for="username">Username</label>
+									<input class="form-control" id="username" name="_username" value="{{ last_username }}" placeholder="Nombre de usuario MAGyP" type="text"/></div>
+								<div class="form-group">
+									<label class="sr-only control-label" for="password">Password</label>
+									<input class="form-control" id="password" name="_password" placeholder="Contraseña" type="password"/></div>
+								<button id='login' type="submit" class="btn btn-success pull-right">
+									<i class="glyphicon glyphicon-log-in"></i>
+									Entrar
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% block javascripts %}
+			{% javascripts '@jquery' '@bootstrap_js' %}
+				<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+				<script type="text/javascript" src="{{ asset_url }}"></script>
+				<script src="/js/bootstrap-switch.js"></script>
+				<script src="/js/application.js"></script>
+			{% endjavascripts %}
+		{% endblock %}
+	</body>
+</html>

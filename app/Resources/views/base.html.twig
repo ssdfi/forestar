@@ -1,61 +1,65 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}ForestAR{% endblock %}</title>
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        {% block stylesheets %}
-            {% stylesheets "@bootstrap_css" "@fontawesome_css" %}
-                <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
-                <link rel="stylesheet" type="text/css" media="screen" href="/css/application.css"/>
-                <link rel="stylesheet" type="text/css" media="screen" href="/css/body.css"/>
-                <link rel="stylesheet" type="text/css" media="screen" href="/css/bootstrap-switch.css"/>
-            {% endstylesheets %}
+	<head>
+		<meta charset="UTF-8"/>
+		<title>
+			{% block title %}ForestAR{% endblock %}
+		</title>
+		<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+		{% block stylesheets %}
+			{% stylesheets "@bootstrap_css" "@fontawesome_css" %}
+			<link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
+			<link rel="stylesheet" type="text/css" media="screen" href="/css/application.css"/>
+			<link rel="stylesheet" type="text/css" media="screen" href="/css/body.css"/>
+			<link rel="stylesheet" type="text/css" media="screen" href="/css/bootstrap-switch.css"/>
+			{% endstylesheets %}
+			{% stylesheets 'bundles/app/css/*' output = 'css/compiled/main.css' %}
+			<link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
+			{% endstylesheets %}
+		{% endblock %}
+	</head>
+	<body>
 
-            {% stylesheets 'bundles/app/css/*' output='css/compiled/main.css' %}
-                <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
-            {% endstylesheets %}
-        {% endblock %}
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <a href="/"><i class="fa fa-tree text-white" aria-hidden="true"></i></a>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="{{path('expedientes_index')}}">Expedientes</a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="{{path('titulares_index')}}">Titulares</a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="{{path('profesionales_index')}}">Profesionales</a>
-              </li>
-            </ul>
-          </div>
-          <ul class="nav navbar-nav navbar-right">
-            {% block navbarRight %}
-            <!-- <li>
-                <a id="nav-logout"  class="text-white" href="/logout" data-confirm="¿Está seguro que desea cerrar la sesión?">
-                  <span class="fa fa-sign-out" aria-hidden="true"></span> Salir
-                </a> -->
-            </li>
-            {% endblock %}
-          </ul>
-        </nav>
-        <div id="container-fluid">
-            <div id="row">
-              {% block body %}
-              {% endblock %}
-          </div>
-        </div>
-        {% block javascripts %}
-            {% javascripts '@jquery' '@bootstrap_js' %}
-              <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
-              <script type="text/javascript" src="{{ asset_url }}"></script>
-              <script src="/js/bootstrap-switch.js"></script>
-              <script src="/js/application.js"></script>
-            {% endjavascripts %}
-        {% endblock %}
-    </body>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a href="/">
+				<i class="fa fa-tree text-white" aria-hidden="true"></i>
+			</a>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="{{path('expedientes_index')}}">Expedientes</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="{{path('titulares_index')}}">Titulares</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="{{path('profesionales_index')}}">Profesionales</a>
+					</li>
+				</ul>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+        {% block navbarRight %}
+					<li class="nav-item navbar-danger">
+						<a id="nav-logout" class="nav-link btn-outline-danger  text-white" href="{{path('logout')}}" data-confirm="¿Está seguro que desea cerrar la sesión?">
+							<span class="fa fa-sign-out" aria-hidden="true"></span>
+							Salir
+						</a>
+					</li>
+				{% endblock %}
+			</ul>
+		</nav>
+		<div id="container-fluid">
+			<div id="row">
+				{% block body %}{% endblock %}
+			</div>
+		</div>
+		{% block javascripts %}
+			{% javascripts '@jquery' '@bootstrap_js' %}
+			<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+			<script type="text/javascript" src="{{ asset_url }}"></script>
+			<script src="/js/bootstrap-switch.js"></script>
+			<script src="/js/application.js"></script>
+			{% endjavascripts %}
+		{% endblock %}
+	</body>
 </html>

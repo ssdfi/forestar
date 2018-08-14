@@ -108,3 +108,12 @@ td .col-sm-12{
 #accordion .card{
   margin-left: 0px!important;
 }
+
+.navbar {
+  padding-right: 0px;
+}
+
+/*.navbar-nav {
+    float: left;
+    margin: 0;
+}*/
