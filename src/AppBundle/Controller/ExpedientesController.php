@@ -28,9 +28,31 @@ class ExpedientesController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $dql = $em->createQueryBuilder();
+        $expediente = new Expedientes();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $search_form = $this->createForm('AppBundle\Form\ExpedientesSearchType', $expediente, array(
+          'action' => '/expedientes/',
+          'method' => 'get',
+          'user' => $user
+        ));
+        $param=($request->query->get('expedientes_search'))? $request->query->get('expedientes_search'):[];
+
         $dql->select('a')
              ->from('AppBundle:Expedientes','a');
         $query = $em->createQuery($dql);
+
+        if(array_key_exists('numeroInterno',$param) && $param['numeroInterno']){
+          $dql->andwhere($dql->expr()->like('UPPER(a.numeroInterno)', $dql->expr()->literal('%'.strtoupper($param['numeroInterno']).'%')));
+        }
+
+        if(array_key_exists('numeroExpediente',$param) && $param['numeroExpediente']){
+          $dql->andwhere($dql->expr()->like('UPPER(a.numeroExpediente)', $dql->expr()->literal('%'.strtoupper($param['numeroExpediente']).'%')));
+        }
+
+        if(array_key_exists('solicita_adelanto',$param) && $param['solicita_adelanto']) {
+          $activo = $param['solicita_adelanto'] == 1 ? 'TRUE' : 'FALSE';
+          $dql->andwhere('a.solicitaAdelanto ='.$activo);
+        }
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -40,9 +62,10 @@ class ExpedientesController extends Controller
             array('distinct' => true, 'defaultSortFieldName' => 'a.id', 'defaultSortDirection' => 'desc')
         );
 
-
         return $this->render('expedientes/index.html.twig', array(
             'expedientes' => $pagination,
+            'search_form'=>$search_form->createView(),
+            'param' => $param
         ));
     }
 

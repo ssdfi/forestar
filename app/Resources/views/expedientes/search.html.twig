@@ -1,0 +1,34 @@
+{{ form_start(search_form, {'attr':{'class':'form-horizontal'}}) }}
+	<div class="form-group row">
+		{{ form_label(search_form.numeroInterno, null, {'label_attr': {'class': 'control-label col-sm-5'}}) }}
+		<div class="col-sm-7">
+			{{ form_widget(search_form.numeroInterno, {'attr': {'class': 'form-control'}}) }}
+		</div>
+	</div>
+	<div class="form-group row">
+		{{ form_label(search_form.numeroExpediente, null, {'label_attr': {'class': 'control-label col-sm-5'}}) }}
+		<div class="col-sm-7">
+			{{ form_errors(search_form.numeroExpediente) }}
+			{{ form_widget(search_form.numeroExpediente) }}
+		</div>
+	</div>
+	<div class="form-group row">
+		{{ form_label(search_form.solicita_adelanto, null, {'label_attr': {'class': 'control-label col-sm-5'}}) }}
+		<div class="col-sm-7">
+			{% for child in search_form.solicita_adelanto %}
+				{{ form_widget(child, {'attr': { 'class': 'required form-check-input form-check-inline', 'value': child.vars.value  } }) }}
+				{{ form_label(child, null, {'attr' : { 'label_attr': {'class': 'form-check-label form-check-inline'}}}) }}
+			{% endfor %}
+		</div>
+	</div>
+	<div class="form-group row">
+		<div class="col-sm-6">
+			{{ form_widget(search_form.exportar) }}
+		</div>
+		<div class="col-sm-6">
+			{{ form_widget(search_form.buscar) }}
+		</div>
+	</div>
+{{ form_widget(search_form) }}
+<input type="hidden" name="_csrf_token" value="{{ csrf_token('search_form') }}">
+{{ form_end(search_form) }}

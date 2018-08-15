@@ -95,4 +95,8 @@ class Responsables
     {
         return $this->areaId;
     }
+
+    public function __toString(){
+      return $this->apellidoNombre;
+    }
 }
