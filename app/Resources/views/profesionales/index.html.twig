@@ -18,6 +18,7 @@
         Buscador de Profesionales
       </div>
       <div class="card-body">
+        {{ include('profesionales/search.html.twig', {'search_form':search_form}) }}
       </div>
     </div>
   </div>
@@ -27,8 +28,8 @@
         <thead>
             <tr>
                 <th scope="col">Id</th>
-                <th scope="col">Tipo Documento</th>
                 <th scope="col">DNI</th>
+                <th scope="col">Tipo Documento</th>
                 <th scope="col">CUIT</th>
                 <th scope="col">Apellido Nombre</th>
                 <th scope="col">Email</th>

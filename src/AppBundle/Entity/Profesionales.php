@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Profesionales
@@ -135,9 +136,12 @@ class Profesionales
     private $cp;
 
     /**
-     * @var integer
+     * @var \Localidades
      *
-     * @ORM\Column(name="localidad_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Localidades")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="localidad_id", referencedColumnName="id")
+     * })
      */
     private $localidadId;
 

@@ -26,10 +26,29 @@ class ProfesionalesController extends Controller
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $profesional = new Profesionales();
+        $search_form = $this->createForm('AppBundle\Form\ProfesionalesSearchType', $profesional, array(
+          'action' => '/',
+          'method' => 'get',
+          'user' => $user
+        ));
+        $param=($request->query->get('profesionales_search'))? $request->query->get('profesionales_search'):[];
+
         $dql = $em->createQueryBuilder();
         $dql->select('a')
              ->from('AppBundle:Profesionales','a');
         $query = $em->createQuery($dql);
+
+        if(array_key_exists('nombre',$param) && $param['nombre']){
+          $dql->andwhere($dql->expr()->like('UPPER(a.apellidoNombre)', $dql->expr()->literal('%'.strtoupper($param['nombre']).'%')));
+        }
+        if(array_key_exists('documento',$param) && $param['documento']){
+          $dql->andWhere('a.dni = '.$param['documento']);
+        }
+        if(array_key_exists('cuit',$param) && $param['cuit']){
+          $dql->andWhere('a.cuit = '.$param['cuit']);
+        }
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -42,6 +61,8 @@ class ProfesionalesController extends Controller
 
         return $this->render('profesionales/index.html.twig', array(
             'profesionales' => $pagination,
+            'search_form'=>$search_form->createView(),
+            'param' => $param,
         ));
     }
 

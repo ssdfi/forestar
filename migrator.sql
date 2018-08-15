@@ -1748,3 +1748,4 @@ UPDATE actividades_sig SET inspeccion_id = null WHERE inspeccion_id = 0;
 INSERT INTO public.tipos_estados_legales(id, nombre, estado_general) VALUES (4, 'ESTADOELIMINADO--CORREGIR', 0);
 UPDATE expedientes SET profesional_cargo_id = null where profesional_cargo_id not in (select id from profesionales);
 update expedientes set departamento_id = null where departamento_id = 0;
+UPDATE profesionales SET localidad_id = null WHERE localidad_id = 0;

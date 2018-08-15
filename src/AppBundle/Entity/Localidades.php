@@ -126,4 +126,8 @@ class Localidades
     {
         return $this->codigoPostal;
     }
+
+    public function __toString(){
+      return $this->nombre;
+    }
 }
