@@ -40,7 +40,7 @@ class ExpedientesSearchType extends AbstractType
           ->add('numeroExpediente', TextType::class, array("attr"=> array("class"=>"form-control"),'required'=>false))
           // ->add('responsable', EntityType::class, array("attr"=> array("class"=>"form-control"),'class'=>'AppBundle\Entity\Responsables','placeholder' => "",'mapped'=>false))
           ->add('solicita_adelanto', ChoiceType::class, array('choices'=>array('Todos'=>null,'Sí'=>true, 'No'=>false),"attr"=> array("class"=>"form-control form-check-inline"),'expanded'=>true, 'multiple'=>false,'empty_data'=>false, 'mapped'=>false))
-          ->add('exportar', SubmitType::class)
+          // ->add('exportar', SubmitType::class)
           ->add('buscar', SubmitType::class, array('attr'=>array('class'=>'btn btn-primary pull-right')));
 
         $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
