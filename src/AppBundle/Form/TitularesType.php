@@ -23,7 +23,8 @@ class TitularesType extends AbstractType
           ->add('fechaNacimiento')
           ->add('sexo')
           ->add('aprobado', CheckboxType::class, array('attr' => array('data-label' => 'Aprobado'), 'label' => false, 'required'=>false))
-          ->add('numeroRegistro');
+          ->add('numeroRegistro')
+          ->add('pequenio_productor', CheckboxType::class, array('attr' => array('data-label' => 'Pequeño Productor'), 'label' => false, 'required'=>false));
     }/**
      * {@inheritdoc}
      */

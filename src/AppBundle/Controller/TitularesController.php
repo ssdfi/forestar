@@ -26,14 +26,32 @@ class TitularesController extends Controller
     {
           $em = $this->getDoctrine()->getManager();
           $titular = new Titulares();
+          $user = $this->get('security.token_storage')->getToken()->getUser();
           $search_form = $this->createForm('AppBundle\Form\TitularesSearchType', $titular, array(
             'action' => '/',
-            'method' => 'get'
+            'method' => 'get',
+            'user' => $user
           ));
+          $param=($request->query->get('titulares_search'))? $request->query->get('titulares_search'):[];
+
           $dql = $em->createQueryBuilder();
           $dql->select('a')
                ->from('AppBundle:Titulares','a');
           $query = $em->createQuery($dql);
+
+          if(array_key_exists('nombre',$param) && $param['nombre']){
+            $dql->andwhere($dql->expr()->like('UPPER(a.apellidoNombre)', $dql->expr()->literal('%'.strtoupper($param['nombre']).'%')));
+          }
+          if(array_key_exists('documento',$param) && $param['documento']){
+            $dql->andWhere('a.documento = '.$param['documento']);
+          }
+          if(array_key_exists('cuit',$param) && $param['cuit']){
+            $dql->andWhere('a.cuit = '.$param['cuit']);
+          }
+          if(array_key_exists('pequenioProductor',$param) && $param['pequenioProductor']){
+            $var = ($param['pequenioProductor'] == 1) ? 'true' : 'false';
+            $dql->andWhere('a.pequenioProductor = ' . $var);
+          }
 
           $paginator  = $this->get('knp_paginator');
           $pagination = $paginator->paginate(
@@ -47,6 +65,7 @@ class TitularesController extends Controller
           return $this->render('titulares/index.html.twig', array(
               'titulares' => $pagination,
               'search_form'=>$search_form->createView(),
+              'param' => $param
           ));
     }
 

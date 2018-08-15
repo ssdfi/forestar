@@ -1,0 +1,23 @@
+<form name="titulares_search" class="form-horizontal" method="get" accept-charset="UTF-8">
+	<div id="titulares">
+		<div class="form-group">
+			<label class="control-label" for="titulares_nombre">Apellido y Nombre</label>
+			<input id="titulares_nombre" class="form-control" value="{% if param.nombre is defined %}{{param.nombre}}{% endif %}" name="titulares_search[nombre]" type="text">
+		</div>
+		<div class="form-group">
+			<label class="control-label" for="titulares_documento">DNI</label>
+			<input id="titulares_documento" class="form-control" value="{% if param.documento is defined %}{{param.documento}}{% endif %}" name="titulares_search[documento]" type="text">
+		</div>
+		<div class="form-group">
+			<label class="control-label" for="titulares_cuit">CUIT</label>
+			<input id="titulares_cuit" class="form-control" value="{% if param.cuit is defined %}{{param.cuit}}{% endif %}" name="titulares_search[cuit]" type="text">
+		</div>
+    <div class="form-group">
+      <div class="form-check">
+        <input type="checkbox" id="titulares_pequenio_productor" {% if param.pequenioProductor is defined %} checked {% endif %} data-label='Pequeño Productor' name="titulares_search[pequenioProductor]" class="form-check-input" value="1">
+      </div>
+    </div>
+	</div>
+	<input type="hidden" name="_csrf_token" value="{{ csrf_token('titulares') }}">
+	<input id="search" class="btn btn-primary pull-right" value="Buscar" type="submit">
+</form>
