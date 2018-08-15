@@ -1,15 +1,44 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div id="wrapper">
-        <div id="container">
-            <div id="welcome" class="text-center">
-                <h1>ForestAR <span class="fa fa-tree"></span></h1>
-            </div>
-        </div>
-    </div>
+	<div id="wrapper">
+		<div id="container">
+			<!-- <div class="row">
+				<div class="col-sm-4">
+					<div class="card">
+						<canvas id="myChart" width="400" height="400"></canvas>
+						<div class="card-body">
+							<h5 class="card-title">Expedientes ingresados</h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="card">
+						<canvas id="oilChart" width="400" height="400"></canvas>
+						<div class="card-body">
+							<h5 class="card-title">Distribución de Expedientes por Área</h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="card">
+						<canvas id="speedChart" width="400" height="400"></canvas>
+						<div class="card-body">
+							<h5 class="card-title">Entrada/Salida de Expedientes</h5>
+						</div>
+					</div>
+				</div>
+			</div> -->
+		</div>
+	</div>
 {% endblock %}
 
 {% block stylesheets %}
-{{parent()}}
+	{{parent()}}
+{% endblock %}
+
+{% block javascripts %}
+	{{parent()}}
+	<script src="{{asset('js/Chart.js')}}"></script>
+	<script src="{{asset('js/graphs.js')}}"></script>
 {% endblock %}

@@ -1,20 +1,66 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{parent()}}
-	- Editar Expediente{% endblock %}
+	- Nuevo Expediente{% endblock %}
 {% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
 
 {% block body %}
 	{% embed "titulares/modal_search.html.twig" %}
 	{% endembed %}
+	{% embed "representantes_legales/modal_search.html.twig" %}
+	{% endembed %}
+	{% embed "profesionales/modal_search.html.twig" %}
+	{% endembed %}
 	<div class="col-md-12">
 		<div class="row">
 			<div class="col-md-12">
-				<div class="nav nav-pills nav-justified border bg-light">
-					<a class="nav-item nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-expediente" role="tab" aria-controls="v-pills-home" aria-selected="true">Expediente</a>
-					<a class="nav-item nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-presentacion" role="tab" aria-controls="v-pills-profile" aria-selected="false">Presentación</a>
-					<a class="nav-item nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-certificacion" role="tab" aria-controls="v-pills-profile" aria-selected="false">Certificación</a>
-					<a class="nav-item nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-inspeccion" role="tab" aria-controls="v-pills-messages" aria-selected="false">Inspección</a>
-					<a class="nav-item nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-sig" role="tab" aria-controls="v-pills-settings" aria-selected="false">SIG</a>
+				<div class="nav nav-pills flex-column flex-sm-row nav-fill bg-light">
+					<a class="nav-item nav-link active border" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-expediente" role="tab" aria-controls="v-pills-home" aria-selected="true">Expediente</a>
+					<a class="nav-item nav-link border" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-presentacion" role="tab" aria-controls="v-pills-profile" aria-selected="false">Presentación</a>
+					<a class="nav-item nav-link border" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-certificacion" role="tab" aria-controls="v-pills-profile" aria-selected="false">Certificación</a>
+					<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-inspeccion" role="tab" aria-controls="v-pills-messages" aria-selected="false">Inspección</a>
+					<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-documentacion" role="tab" aria-controls="v-pills-messages" aria-selected="false">Documentación</a>
+					<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-estado-situacion" role="tab" aria-controls="v-pills-messages" aria-selected="false">Estado de Situación</a>
+					<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-beneficio-fiscal-solicitado" role="tab" aria-controls="v-pills-messages" aria-selected="false">Beneficio Fiscal Carga</a>
+					{% if form.predios is defined %}
+						<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-predios" role="tab" aria-controls="v-pills-messages" aria-selected="false">Predios</a>
+					{% endif %}
+					<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-disposiciones-provinciales" role="tab" aria-controls="v-pills-messages" aria-selected="false">Disposiciones Provinciales</a>
+					<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-impacto-ambiental" role="tab" aria-controls="v-pills-messages" aria-selected="false">Impacto Ambiental</a>
+					<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-analisis-area-contable" role="tab" aria-controls="v-pills-messages" aria-selected="false">Análisis Área Contable</a>
+					<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-beneficio-fiscal" role="tab" aria-controls="v-pills-messages" aria-selected="false">Beneficio Fiscal Análisis</a>
+					<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-garantias-presentadas" role="tab" aria-controls="v-pills-messages" aria-selected="false">Garantías Presentadas</a>
+					<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-estabilidad-fiscal" role="tab" aria-controls="v-pills-messages" aria-selected="false">Estabilidad Fiscal</a>
+					{% if form.declaracionesIvas is defined %}
+						<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-declaracion-iva" role="tab" aria-controls="v-pills-messages" aria-selected="false">IVA</a>
+					{% endif %}
+					{% if form.declaracionIvaResoluciones is defined %}
+						<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-declaracion-iva-resolucion" role="tab" aria-controls="v-pills-messages" aria-selected="false">IVA por resolución</a>
+					{% endif %}
+					{% if form.historialLegales is defined %}
+						<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-analisis-area-legal" role="tab" aria-controls="v-pills-messages" aria-selected="false">Análisis Área Legales</a>
+					{% endif %}
+					{% if form.resoluciones is defined %}
+						<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-resoluciones" role="tab" aria-controls="v-pills-messages" aria-selected="false">Resoluciones</a>
+					{% endif %}
+					{% if form.historialPromociones is defined %}
+						<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-analisis-area-promocion" role="tab" aria-controls="v-pills-messages" aria-selected="false">Análisis Área Promoción</a>
+					{% endif %}
+					{% if form.actividadesAprobadas is defined %}
+						<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-actividades-aprobadas" role="tab" aria-controls="v-pills-messages" aria-selected="false">Aprobación Promoción</a>
+					{% endif %}
+					{% if form.historialForestoIndustriales is defined %}
+						<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-analisis-area-foresto-industrial" role="tab" aria-controls="v-pills-messages" aria-selected="false">Análisis Área Foresto Industrial</a>
+					{% endif %}
+					{% if form.produccionesVolumetricas is defined %}
+						<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-producciones-volumetricas" role="tab" aria-controls="v-pills-messages" aria-selected="false">Producciones Volumétricas</a>
+					{% endif %}
+					{% if form.cronogramaPlantaciones is defined %}
+						<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-cronograma-plantacion" role="tab" aria-controls="v-pills-messages" aria-selected="false">Cronograma Plantaciones</a>
+					{% endif %}
+					{% if form.historialSigs is defined %}
+						<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-analisis-area-sig" role="tab" aria-controls="v-pills-messages" aria-selected="false">Análisis Área SIG</a>
+					{% endif %}
+					<a class="nav-item nav-link border" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-sig" role="tab" aria-controls="v-pills-settings" aria-selected="false">Aprobación SIG</a>
 				</div>
 			</div>
 		</div>
@@ -24,7 +70,7 @@
 				<div class="tab-content" id="v-pills-tabContent">
 					<div class="tab-pane fade show active" id="v-pills-expediente" role="tabpanel" aria-labelledby="v-pills-expediente-tab">
 						<div class="col-md-10 mx-auto bg-light">
-							<h4>Editar Expediente</h4>
+							<h4>Nuevo Expediente</h4>
 							{{form_row(form.numeroExpediente)}}
 							{{form_row(form.numeroInterno)}}
 							<div class="form-group row">
@@ -54,7 +100,7 @@
 										</div>
 										<div class="col-sm-2">
 											<span class="form-group">
-												<button id="add-profesional" class="btn btn-default" type="button" data-toggle="modal" data-target="#profesional-modal">
+												<button id="add-profesional" class="btn btn-default" type="button" data-toggle="modal" data-target="#profesionales-modal">
 													<span class="fa fa-search" aria-hidden="true"></span>
 												</button>
 												<button id="remove-profesional" class="btn btn-default" type="button">
@@ -65,25 +111,29 @@
 									</div>
 								</div>
 							</div>
-
 							<div class="form-group row">
-								{{ form_label(form.cobroBeneficios, null, {'label_attr': {'class': 'col-sm-2 form-control-label'}}) }}
+								{{ form_label(form.representanteLegal, null, {'label_attr': {'class': 'col-sm-2 form-control-label'}}) }}
 								<div class="col-sm-10">
-									{{form_widget(form.cobroBeneficios)}}
-									<div class="row pull-right">
-										<div class="pull-right">
-											<button type="button" class="btn btn-secondary btn-xs" data-toggle="modal" data-target="#cobro-beneficios-modal" id="add-cobro-beneficio">
-												<span class="fa fa-plus" aria-hidden="true"></span>
-												Asociar
-											</button>
-											<button type="button" class="btn btn-secondary btn-xs" id="remove-cobro-beneficio">
-												<span class="fa fa-remove" aria-hidden="true"></span>
-												Eliminar
-											</button>
+									<div class="row">
+										<div class="col-sm-10">
+											{{form_widget(form.representanteLegal)}}
+										</div>
+										<div class="col-sm-2">
+											<span class="form-group">
+												<button id="add-representante-legal" class="btn btn-default" type="button" data-toggle="modal" data-target="#representante-legal-modal">
+													<span class="fa fa-search" aria-hidden="true"></span>
+												</button>
+												<button id="remove-representante-legal" class="btn btn-default" type="button">
+													<span class="fa fa-remove" aria-hidden="true"></span>
+												</button>
+											</span>
 										</div>
 									</div>
 								</div>
 							</div>
+							{% embed "cobros_beneficios/table.html.twig" with {
+								'cobrosBeneficios' : form.cobroBeneficios
+							} %}{% endembed %}
 							{{form_row(form.fechaPresentacion)}}
 							{{form_row(form.fechaIngreso)}}
 							{{form_row(form.fechaFin)}}
@@ -117,8 +167,150 @@
 							'actividadesInspeccionadas' : form.actividadesInspeccionadas
 						} %}{% endembed %}
 					</div>
+					<div class="tab-pane fade" id="v-pills-documentacion" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+						<h4>Editar Documentación</h4>
+						{% embed "documentacion/table.html.twig" with {
+							'documentacion' : form.documentaciones
+						} %}{% endembed %}
+					</div>
+					<div class="tab-pane fade" id="v-pills-estado-situacion" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+						<h4>Editar Estado de Situación</h4>
+						{% embed "estado_situacion/table.html.twig" with {
+							'estadoSituaciones' : form.estadoSituaciones
+						} %}{% endembed %}
+					</div>
+					<div class="tab-pane fade" id="v-pills-beneficio-fiscal-solicitado" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+						<h4>Editar Beneficio Fiscal - Carga</h4>
+						{% embed "beneficios_fiscales_solicitados/table.html.twig" with {
+							'beneficiosFiscalesSolicitados' : form.beneficiosFiscalesSolicitados
+						} %}{% endembed %}
+					</div>
+					{% if form.predios is defined %}
+						<div class="tab-pane fade" id="v-pills-predios" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+							<h4>Editar Predios</h4>
+							{% embed "predios/table.html.twig" with {
+								'predios' : form.predios
+							} %}{% endembed %}
+						</div>
+					{% endif %}
+					<div class="tab-pane fade" id="v-pills-disposiciones-provinciales" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+						<h4>Editar Disposiciones Provinciales</h4>
+						{% embed "disposiciones_provinciales/table.html.twig" with {
+							'disposicionesProvinciales' : form.disposicionesProvinciales
+						} %}{% endembed %}
+					</div>
+					<div class="tab-pane fade" id="v-pills-impacto-ambiental" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+						<h4>Editar Impactos Ambientales</h4>
+						{% embed "impactos_ambientales/table.html.twig" with {
+							'impactosAmbientales' : form.impactosAmbientales
+						} %}{% endembed %}
+					</div>
+					<div class="tab-pane fade" id="v-pills-analisis-area-contable" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+						<h4>Editar Análisis del Área Contable</h4>
+						{% embed "historial_contable/table.html.twig" with {
+							'historialContables' : form.historialContables
+						} %}{% endembed %}
+					</div>
+					<div class="tab-pane fade" id="v-pills-beneficio-fiscal" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+						<h4>Beneficio Fiscal - Análisis</h4>
+						{% embed "beneficios_fiscales/table.html.twig" with {
+							'beneficiosFiscales' : form.beneficiosFiscales
+						} %}{% endembed %}
+					</div>
+					<div class="tab-pane fade" id="v-pills-garantias-presentadas" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+						<h4>Garantías Presentadas</h4>
+						{% embed "garantias_presentadas/table.html.twig" with {
+							'garantias' : form.garantias
+						} %}{% endembed %}
+					</div>
+					<div class="tab-pane fade" id="v-pills-estabilidad-fiscal" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+						<h4>Estabilidad Fiscal</h4>
+						{% embed "estabilidad_fiscal/table.html.twig" with {
+							'estabilidadFiscales' : form.estabilidadFiscales
+						} %}{% endembed %}
+					</div>
+					{% if form.declaracionesIvas is defined %}
+						<div class="tab-pane fade" id="v-pills-declaracion-iva" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+							<h4>Impuesto al valor agregado</h4>
+							{% embed "declaracion_iva/table.html.twig" with {
+								'declaracionesIva' : form.declaracionesIvas
+							} %}{% endembed %}
+						</div>
+					{% endif %}
+					{% if form.declaracionIvaResoluciones is defined %}
+						<div class="tab-pane fade" id="v-pills-declaracion-iva-resolucion" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+							<h4>IVA por resolucion</h4>
+							{% embed "declaracion_iva_resoluciones/table.html.twig" with {
+								'declaracionesIvaResoluciones' : form.declaracionIvaResoluciones
+							} %}{% endembed %}
+						</div>
+					{% endif %}
+					{% if form.historialLegales is defined %}
+						<div class="tab-pane fade" id="v-pills-analisis-area-legal" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+							<h4>Análisis Área Contable</h4>
+							{% embed "historial_legales/table.html.twig" with {
+								'historialLegales' : form.historialLegales
+							} %}{% endembed %}
+						</div>
+					{% endif %}
+					{% if form.resoluciones is defined %}
+						<div class="tab-pane fade" id="v-pills-resoluciones" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+							<h4>Resoluciones</h4>
+							{% embed "resoluciones/table.html.twig" with {
+								'resoluciones' : form.resoluciones
+							} %}{% endembed %}
+						</div>
+					{% endif %}
+					{% if form.historialPromociones is defined %}
+						<div class="tab-pane fade" id="v-pills-analisis-area-promocion" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+							<h4>Análisis Área Promoción</h4>
+							{% embed "historial_promocion/table.html.twig" with {
+								'historialPromociones' : form.historialPromociones
+							} %}{% endembed %}
+						</div>
+					{% endif %}
+					{% if form.actividadesAprobadas is defined %}
+						<div class="tab-pane fade" id="v-pills-actividades-aprobadas" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+							<h4>Aprobación Promoción</h4>
+							{% embed "actividadesaprobadas/table.html.twig" with {
+								'actividadesAprobadas' : form.actividadesAprobadas
+							} %}{% endembed %}
+						</div>
+					{% endif %}
+					{% if form.actividadesAprobadas is defined %}
+						<div class="tab-pane fade" id="v-pills-analisis-area-foresto-industrial" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+							<h4>Análisis del área Forestoindustrial</h4>
+							{% embed "historial_foresto_industrial/table.html.twig" with {
+								'historialForestoIndustriales' : form.historialForestoIndustriales
+							} %}{% endembed %}
+						</div>
+					{% endif %}
+					{% if form.produccionesVolumetricas is defined %}
+						<div class="tab-pane fade" id="v-pills-producciones-volumetricas" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+							<h4>Producciones Volumétricas</h4>
+							{% embed "producciones_volumetricas/table.html.twig" with {
+								'produccionesVolumetricas' : form.produccionesVolumetricas
+							} %}{% endembed %}
+						</div>
+					{% endif %}
+					{% if form.cronogramaPlantaciones is defined %}
+						<div class="tab-pane fade" id="v-pills-cronograma-plantacion" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+							<h4>Producciones Volumétricas</h4>
+							{% embed "abastecimiento_aproximado/table.html.twig" with {
+								'cronogramaPlantaciones' : form.cronogramaPlantaciones
+							} %}{% endembed %}
+						</div>
+					{% endif %}
+					{% if form.historialSigs is defined %}
+						<div class="tab-pane fade" id="v-pills-analisis-area-sig" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+							<h4>Análisis Historial Sig</h4>
+							{% embed "historial_sig/table.html.twig" with {
+								'historialSigs' : form.historialSigs
+							} %}{% endembed %}
+						</div>
+					{% endif %}
 					<div class="tab-pane fade" id="v-pills-sig" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-						<h4>Editar Actividades SIG</h4>
+						<h4>Aprobación SIG</h4>
 						{% embed "actividadessig/table.html.twig" with {
 							'actividadesSig' : form.actividadesSig
 						} %}{% endembed %}
