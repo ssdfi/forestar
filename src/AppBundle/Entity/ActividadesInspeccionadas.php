@@ -495,4 +495,28 @@ class ActividadesInspeccionadas
     {
         return $this->inspeccionRelacionadaId;
     }
+
+    /**
+     * Set $etapa
+     *
+     * @param integer $etapa
+     *
+     * @return Etapa
+     */
+    public function setEtapa($etapa)
+    {
+        $this->etapa = $etapa;
+
+        return $this;
+    }
+
+    /**
+     * Get superficieHa
+     *
+     * @return integer
+     */
+    public function getEtapa()
+    {
+        return $this->etapa;
+    }
 }

@@ -20,6 +20,18 @@ td.icon-lg span {
     border-color: #428bca!important;
 }
 
+.btn-primary {
+    color: #fff;
+    background-color: #20558e;
+    border-color: #20558e;
+}
+a {
+  color: #0a4f9a;
+}
+.page-item.active .page-link {
+  background-color: #20558e;
+  border-color: #20558e;
+}
 .panel {
     background-color: white;
     border: 1px solid transparent;

@@ -1637,6 +1637,8 @@ ALTER TABLE inspeccion RENAME TO actividades_inspeccionadas;
 ALTER TABLE actividades_presentadas ADD COLUMN etapa integer;
 ALTER TABLE actividades_certificadas ADD COLUMN etapa integer;
 ALTER TABLE actividades_inspeccionadas ADD COLUMN etapa integer;
+ALTER TABLE actividades_aprobadas ADD COLUMN etapa integer;
+UPDATE actividades_aprobadas ap SET etapa = substring(e.numero_interno from 15 for 16)::integer FROM expedientes e WHERE ap.expediente_id = e.id AND length(e.numero_interno) > 15;
 UPDATE actividades_presentadas ap SET etapa = substring(e.numero_interno from 15 for 16)::integer FROM expedientes e WHERE ap.expediente_id = e.id AND length(e.numero_interno) > 15;
 UPDATE actividades_certificadas ac SET etapa = substring(e.numero_interno from 15 for 16)::integer FROM expedientes e WHERE ac.expediente_id = e.id AND length(e.numero_interno) > 15;
 UPDATE actividades_inspeccionadas ai SET etapa = substring(e.numero_interno from 15 for 16)::integer FROM expedientes e WHERE ai.expediente_id = e.id AND length(e.numero_interno) > 15;

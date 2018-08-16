@@ -97,12 +97,12 @@ class ActividadesAprobadas
      */
     private $departamento;
 
-    // /**
-    //  * @var integer
-    //  *
-    //  * @ORM\Column(name="etapa", type="integer", nullable=true)
-    //  */
-    // private $etapa;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="etapa", type="integer", nullable=true)
+     */
+    private $etapa;
 
 
 
@@ -335,5 +335,29 @@ class ActividadesAprobadas
     public function getDepartamento()
     {
         return $this->departamento;
+    }
+
+    /**
+     * Set $etapa
+     *
+     * @param integer $etapa
+     *
+     * @return Etapa
+     */
+    public function setEtapa($etapa)
+    {
+        $this->etapa = $etapa;
+
+        return $this;
+    }
+
+    /**
+     * Get superficieHa
+     *
+     * @return integer
+     */
+    public function getEtapa()
+    {
+        return $this->etapa;
     }
 }
