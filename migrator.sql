@@ -1751,3 +1751,7 @@ INSERT INTO public.tipos_estados_legales(id, nombre, estado_general) VALUES (4, 
 UPDATE expedientes SET profesional_cargo_id = null where profesional_cargo_id not in (select id from profesionales);
 update expedientes set departamento_id = null where departamento_id = 0;
 UPDATE profesionales SET localidad_id = null WHERE localidad_id = 0;
+UPDATE resoluciones SET especie_id = null WHERE especie_id = 0;
+UPDATE resoluciones SET departamento_id = null WHERE departamento_id = 0;
+UPDATE actividades_inspeccionadas SET especie_id = null where especie_id = 0;
+UPDATE actividades_inspeccionadas SET actividad_id = null where actividad_id = 0;
