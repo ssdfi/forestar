@@ -13,11 +13,69 @@
 		</div>
 	</div>
 	<div class="form-group row">
+		{{ form_label(search_form.fechaPresentacionDesde, null, {'label_attr': {'class': 'control-label col-sm-5'}}) }}
+		<div class="col-sm-7">
+			{{ form_errors(search_form.fechaPresentacionDesde) }}
+			{{ form_widget(search_form.fechaPresentacionDesde) }}
+		</div>
+	</div>
+	<div class="form-group row">
+		{{ form_label(search_form.fechaPresentacionHasta, null, {'label_attr': {'class': 'control-label col-sm-5'}}) }}
+		<div class="col-sm-7">
+			{{ form_errors(search_form.fechaPresentacionHasta) }}
+			{{ form_widget(search_form.fechaPresentacionHasta) }}
+		</div>
+	</div>
+	<div class="form-group row">
+		{{ form_label(search_form.fechaIngresoDesde, null, {'label_attr': {'class': 'control-label col-sm-5'}}) }}
+		<div class="col-sm-7">
+			{{ form_errors(search_form.fechaIngresoDesde) }}
+			{{ form_widget(search_form.fechaIngresoDesde) }}
+		</div>
+	</div>
+	<div class="form-group row">
+		{{ form_label(search_form.fechaIngresoHasta, null, {'label_attr': {'class': 'control-label col-sm-5'}}) }}
+		<div class="col-sm-7">
+			{{ form_errors(search_form.fechaIngresoHasta) }}
+			{{ form_widget(search_form.fechaIngresoHasta) }}
+		</div>
+	</div>
+	<div class="form-group row">
+		{{ form_label(search_form.fechaFin, null, {'label_attr': {'class': 'control-label col-sm-5'}}) }}
+		<div class="col-sm-7">
+			{{ form_errors(search_form.fechaFin) }}
+			{{ form_widget(search_form.fechaFin) }}
+		</div>
+	</div>
+	<div class="form-group row">
+		{{ form_label(search_form.profesional, null, {'label_attr': {'class': 'control-label col-sm-5'}}) }}
+		<div class="col-sm-7">
+			{{ form_errors(search_form.profesional) }}
+			{{ form_widget(search_form.profesional) }}
+		</div>
+	</div>
+	<div class="form-group row">
+		{{ form_label(search_form.estado, null, {'label_attr': {'class': 'control-label col-sm-5'}}) }}
+		<div class="col-sm-7">
+			{{ form_errors(search_form.estado) }}
+			{{ form_widget(search_form.estado) }}
+		</div>
+	</div>
+	<div class="form-group row">
+		{{ form_label(search_form.areaEncuentraExpediente, null, {'label_attr': {'class': 'control-label col-sm-5'}}) }}
+		<div class="col-sm-7">
+			{{ form_errors(search_form.areaEncuentraExpediente) }}
+			{{ form_widget(search_form.areaEncuentraExpediente) }}
+		</div>
+	</div>
+	<div class="form-group row">
 		{{ form_label(search_form.solicita_adelanto, null, {'label_attr': {'class': 'control-label col-sm-5'}}) }}
 		<div class="col-sm-7">
 			{% for child in search_form.solicita_adelanto %}
-				{{ form_widget(child, {'attr': { 'class': 'required form-check-input form-check-inline', 'value': child.vars.value  } }) }}
-				{{ form_label(child, null, {'attr' : { 'label_attr': {'class': 'form-check-label form-check-inline'}}}) }}
+				<div class="form-check-inline">
+					{{ form_widget(child, {'attr': { 'class': 'form-check-inline', 'value': child.vars.value  } }) }}
+					{{ form_label(child, null, {'attr' : { 'label_attr': {'class': 'form-check-label'}}}) }}
+				</div>
 			{% endfor %}
 		</div>
 	</div>

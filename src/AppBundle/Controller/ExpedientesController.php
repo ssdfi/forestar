@@ -39,7 +39,6 @@ class ExpedientesController extends Controller
 
         $dql->select('a')
              ->from('AppBundle:Expedientes','a');
-        $query = $em->createQuery($dql);
 
         if(array_key_exists('numeroInterno',$param) && $param['numeroInterno']){
           $dql->andwhere($dql->expr()->like('UPPER(a.numeroInterno)', $dql->expr()->literal('%'.strtoupper($param['numeroInterno']).'%')));
@@ -49,6 +48,36 @@ class ExpedientesController extends Controller
           $dql->andwhere($dql->expr()->like('UPPER(a.numeroExpediente)', $dql->expr()->literal('%'.strtoupper($param['numeroExpediente']).'%')));
         }
 
+        if(array_key_exists('fechaPresentacionDesde',$param) && $param['fechaPresentacionDesde']){
+          $dql->andwhere('a.fechaPresentacion >  :fechaPresentacionDesde');
+          $dql->setParameters(['fechaPresentacionDesde'=> $param['fechaPresentacionDesde']]);
+        }
+        if(array_key_exists('fechaPresentacionHasta',$param) && $param['fechaPresentacionHasta']){
+          $dql->andwhere('a.fechaPresentacion <=  :fechaPresentacionHasta');
+          $dql->setParameter('fechaPresentacionHasta', $param['fechaPresentacionHasta']);
+        }
+        if(array_key_exists('fechaIngresoDesde',$param) && $param['fechaIngresoDesde']){
+          $dql->andwhere('a.fechaIngreso >  :fechaIngresoDesde');
+          $dql->setParameter('fechaIngresoDesde',$param['fechaIngresoDesde']);
+        }
+        if(array_key_exists('fechaIngresoHasta',$param) && $param['fechaIngresoHasta']){
+          $dql->andwhere('a.fechaIngreso <=  :fechaIngresoHasta');
+          $dql->setParameter('fechaIngresoHasta', $param['fechaIngresoHasta']);
+        }
+        if(array_key_exists('profesional',$param) && $param['profesional']){
+          $dql->andwhere('a.profesionalCargo = :profesional');
+          $dql->setParameter('profesional', $param['profesional']);
+        }
+        if(array_key_exists('estado',$param) && $param['estado']){
+          $dql->andwhere('a.estado = :estado');
+          $dql->setParameter('estado', $param['estado']);
+        }
+        if(array_key_exists('areaEncuentraExpediente',$param) && $param['areaEncuentraExpediente']){
+          $dql->andwhere('a.areaEncuentraExpediente = :areaEncuentraExpediente');
+          $dql->setParameter('areaEncuentraExpediente', $param['areaEncuentraExpediente']);
+        }
+
+
         if(array_key_exists('solicita_adelanto',$param) && $param['solicita_adelanto']) {
           $activo = $param['solicita_adelanto'] == 1 ? 'TRUE' : 'FALSE';
           $dql->andwhere('a.solicitaAdelanto ='.$activo);
@@ -56,11 +85,12 @@ class ExpedientesController extends Controller
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-            $query,
+            $dql,
             $request->query->getInt('page', 1),
             15,
             array('distinct' => true, 'defaultSortFieldName' => 'a.id', 'defaultSortDirection' => 'desc')
         );
+        $search_form->handleRequest($request);
 
         return $this->render('expedientes/index.html.twig', array(
             'expedientes' => $pagination,
