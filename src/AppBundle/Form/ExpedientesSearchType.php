@@ -44,7 +44,7 @@ class ExpedientesSearchType extends AbstractType
           ->add('fechaIngresoHasta', DateType::class, array('label' => 'Fecha de Ingreso','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD"),'mapped'=>false))
           ->add('fechaFin', DateType::class, array('label' => 'Fecha de Fin','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
           ->add('profesional', EntityType::class, array("attr"=> array("class"=>"form-control"),'class'=>'AppBundle\Entity\Profesionales','placeholder' => "",'mapped'=>false))
-          ->add('estado', EntityType::class, array("attr"=> array("class"=>"form-control"),'class'=>'AppBundle\Entity\TipoEstado','placeholder' => "",'mapped'=>false))
+          ->add('estado', EntityType::class, array("attr"=> array("class"=>"form-control"),'class'=>'AppBundle\Entity\TiposEstadosPrincipales','placeholder' => "",'mapped'=>false))
           ->add('areaEncuentraExpediente', EntityType::class, array("attr"=> array("class"=>"form-control"),'class'=>'AppBundle\Entity\Areas','placeholder' => "",'mapped'=>false))
           ->add('solicita_adelanto', ChoiceType::class, array('choices'=>array('Todos'=>null,'Sí'=>true, 'No'=>false),"attr"=> array("class"=>"form-control form-check-inline"),'expanded'=>true, 'multiple'=>false,'empty_data'=>false, 'mapped'=>false))
           // ->add('exportar', SubmitType::class)
