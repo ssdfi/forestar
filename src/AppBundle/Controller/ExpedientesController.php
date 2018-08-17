@@ -79,8 +79,9 @@ class ExpedientesController extends Controller
 
 
         if(array_key_exists('solicita_adelanto',$param) && $param['solicita_adelanto']) {
-          $activo = $param['solicita_adelanto'] == 1 ? 'TRUE' : 'FALSE';
-          $dql->andwhere('a.solicitaAdelanto ='.$activo);
+          $solicitaAdelanto = $param['solicita_adelanto'] == 1 ? 'TRUE' : 'FALSE';
+          $dql->andwhere('a.solicitaAdelanto = :solicitaAdelanto');
+          $dql->setParameter('solicitaAdelanto', $solicitaAdelanto);
         }
 
         $paginator  = $this->get('knp_paginator');
