@@ -7,7 +7,12 @@
         var ctx = document.getElementById("myChart");
         var myChart = new Chart(ctx, {
           type: 'bar',
-          data: data
+          data: data,
+          options: {
+                legend: {
+                    display: false
+                }
+            }
         });
       }
     });
