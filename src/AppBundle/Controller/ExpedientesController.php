@@ -49,7 +49,7 @@ class ExpedientesController extends Controller
         }
 
         if(array_key_exists('fechaPresentacionDesde',$param) && $param['fechaPresentacionDesde']){
-          $dql->andwhere('a.fechaPresentacion >  :fechaPresentacionDesde');
+          $dql->andwhere('a.fechaPresentacion >=  :fechaPresentacionDesde');
           $dql->setParameters(['fechaPresentacionDesde'=> $param['fechaPresentacionDesde']]);
         }
         if(array_key_exists('fechaPresentacionHasta',$param) && $param['fechaPresentacionHasta']){
@@ -57,7 +57,7 @@ class ExpedientesController extends Controller
           $dql->setParameter('fechaPresentacionHasta', $param['fechaPresentacionHasta']);
         }
         if(array_key_exists('fechaIngresoDesde',$param) && $param['fechaIngresoDesde']){
-          $dql->andwhere('a.fechaIngreso >  :fechaIngresoDesde');
+          $dql->andwhere('a.fechaIngreso >=  :fechaIngresoDesde');
           $dql->setParameter('fechaIngresoDesde',$param['fechaIngresoDesde']);
         }
         if(array_key_exists('fechaIngresoHasta',$param) && $param['fechaIngresoHasta']){
