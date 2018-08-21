@@ -31,7 +31,8 @@ class LdapUserProvider extends SymfonyLdapUserProvider
         if (count($roles) == 0) {
           $roles = ['ROLE_USER'];
         }
-        return new User($username, '', $roles);
+        $user = new User($username, null, $roles);
+        return $user;
     }
     /**
      * Get the group name from the DN

@@ -8,5 +8,8 @@ class LdapCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
+        $definition = $container->getDefinition('security.user.provider.ldap');
+        $definition->setClass('AppBundle\Security\LdapUserProvider');
+
     }
 }
