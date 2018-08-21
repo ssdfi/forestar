@@ -29,6 +29,7 @@ framework:
         save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
         cookie_lifetime: 28800
         name: FORESTARID
+        gc_maxlifetime: 28800
     fragments: ~
     http_method_override: true
     assets: ~
