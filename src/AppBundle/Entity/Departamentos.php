@@ -41,7 +41,7 @@ class Departamentos
      *
      * @ORM\Column(name="provincia_expediente_id", type="string", length=2, nullable=true)
      */
-    private $provinciaExpedienteId;
+    private $provincia;
 
 
 
@@ -104,27 +104,27 @@ class Departamentos
     }
 
     /**
-     * Set provinciaExpedienteId
+     * Set provincia
      *
-     * @param string $provinciaExpedienteId
+     * @param string $provincia
      *
      * @return Departamentos
      */
-    public function setProvinciaExpedienteId($provinciaExpedienteId)
+    public function setProvincia($provincia)
     {
-        $this->provinciaExpedienteId = $provinciaExpedienteId;
+        $this->provincia = $provincia;
 
         return $this;
     }
 
     /**
-     * Get provinciaExpedienteId
+     * Get provincia
      *
      * @return string
      */
-    public function getProvinciaExpedienteId()
+    public function getProvincia()
     {
-        return $this->provinciaExpedienteId;
+        return $this->provincia;
     }
 
     public function __toString(){

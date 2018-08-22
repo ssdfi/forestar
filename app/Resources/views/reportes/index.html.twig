@@ -1,0 +1,139 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}} - Generador de Reportes{% endblock %}
+
+{% block navbarRight %}
+  {{parent()}}
+{% endblock %}
+
+{% block body %}
+<div class="row">
+  <div class="col-md-12 bg-light">
+  <h2>Generar Reporte</h2>
+  {{ form_start(search_form, {'attr':{'class':'form-row'}}) }}
+  	<div class="form-group col-md-5">
+  		<div class="col-sm-12">
+  			{{ form_widget(search_form.provincia, {'attr': {'class': 'form-control'}}) }}
+  		</div>
+  	</div>
+    <div class="form-group col-md-5">
+  		<div class="col-sm-12">
+  			{{ form_widget(search_form.departamento, {'attr': {'class': 'form-control'}}) }}
+  		</div>
+  	</div>
+    <div class="form-group col-md-2">
+  		<div class="col-sm-12">
+  			{{ form_widget(search_form.anio, {'attr': {'class': 'form-control'}}) }}
+  		</div>
+  	</div>
+    <div class="from-group col-md-12 row">
+      <div class="col-sm-6">
+      </div>
+      <div class="col-sm-6 pull-right">
+        {{ form_widget(search_form.buscar) }}
+      </div>
+      <div class="form-group">
+      </div>
+    </div>
+  {{ form_widget(search_form) }}
+  <input type="hidden" name="_csrf_token" value="{{ csrf_token('search_form') }}">
+  {{ form_end(search_form) }}
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-2">
+        <div class="card" >
+          <h5 class="card-header text-white bg-secondary"> Expedientes</h5>
+          <div class="card-body">
+            <p class="card-text"><h1>{{pagination.getTotalItemCount}}</h1></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="card" >
+          <h5 class="card-header text-white bg-secondary"> Planes Presentados</h5>
+          <div class="card-body">
+            <p class="card-text"><h1>{{data.actividadPresentada}}</h1></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="card" >
+          <h5 class="card-header text-white bg-secondary"> Planes Certificados</h5>
+          <div class="card-body">
+            <p class="card-text"><h1>{{data.actividadCertificada}}</h1></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="card" >
+          <h5 class="card-header text-white bg-secondary"> Planes Inspeccionados</h5>
+          <div class="card-body">
+            <p class="card-text"><h1>{{data.actividadInspeccionada}}</h1></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="card" >
+          <h5 class="card-header text-white bg-secondary"> Planes Pagados</h5>
+          <div class="card-body">
+            <p class="card-text"><h1>{{data.actividadPagada}}</h1></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="card" >
+          <h5 class="card-header text-white bg-secondary">Monto Total Pagado</h5>
+          <div class="card-body">
+            <p class="card-text"><h3>$  {{data.montoPagado|round(0 , 'floor')|number_format}}</h3></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Numero Interno</th>
+          <th scope="col">Numero Expediente</th>
+          <th scope="col">Titular</th>
+          <th scope="col">Representante Legal</th>
+          <th scope="col">Profesional a Cargo</th>
+          <th scope="col">Fecha Ingreso</th>
+          <th scope="col">Area</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for expediente in pagination %}
+        <tr data-link="{{ path('expedientes_show', { 'id': expediente.id }) }}">
+          <td><a href="{{ path('expedientes_show', { 'id': expediente.id }) }}">{{ expediente.id }}</a></td>
+          <td>{{ expediente.numeroInterno }}</td>
+          <td>{{ expediente.numeroExpediente }}</td>
+          <td>
+            {% for titular in expediente.titulares %}
+                <a href="{{path('titulares_show', { 'id': titular.id })}}"><abbr title="{{titular}}" data-length="10">{{titular}}</abbr></a>{% if loop.last == false %} | {% endif %}
+            {% endfor %}
+          </td>
+          <td>{{ expediente.representanteLegal }}</td>
+          <td><abbr title="{{ expediente.profesionalCargo }}" data-length="10">{{ expediente.profesionalCargo }}</abbr></td>
+          <td>{% if expediente.fechaIngreso %}{{ expediente.fechaIngreso|date('Y-m-d') }}{% endif %}</td>
+          <td>{{expediente.areaEncuentraExpediente}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {{ include('paginator/index.html.twig', {'items': pagination}) }}
+  </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+  {{parent()}}
+  <script src="{{ asset('js/reportes.js') }}"></script>
+{% endblock %}

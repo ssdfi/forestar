@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use AppBundle\Entity\Expedientes;
 
 /**
  * Expediente controller.
@@ -17,6 +18,118 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
  */
 class ReportesController extends Controller
 {
+    /**
+     * @Route("/", name="reportes_index")
+     */
+    public function indexAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $expediente = new Expedientes();
+        $search_form = $this->createForm('AppBundle\Form\ReportesType', $expediente, array(
+          'action' => '/reportes/',
+          'method' => 'get',
+          'user' => $this->getUser()
+        ));
+        $param=($request->query->get('reportes'))? $request->query->get('reportes'):[];
+
+
+        $dql = $em->createQueryBuilder();
+        $dql->select('a')
+             ->from('AppBundle:Expedientes','a')
+             ->leftJoin('AppBundle:Departamentos','d',\Doctrine\ORM\Query\Expr\Join::WITH,'a.departamento = d.id')
+             ->leftJoin('AppBundle:Provincias','p',\Doctrine\ORM\Query\Expr\Join::WITH,'d.provincia = p.id');
+
+         $data['actividadPresentada'] = 0;
+         $data['actividadCertificada'] = 0;
+         $data['actividadInspeccionada'] = 0;
+         $data['actividadPagada'] = 0;
+         $data['montoPagado'] = 0;
+
+         $dqlcountPresentada = $em->createQueryBuilder();
+         $dqlcountCertificada = $em->createQueryBuilder();
+         $dqlcountInspeccionada = $em->createQueryBuilder();
+         $dqlcountPagada = $em->createQueryBuilder();
+         $dqlcountPresentada->select('count(ap.expediente) as actividadPresentada')
+              ->from('AppBundle:Expedientes','e')
+              ->leftJoin('AppBundle:ActividadesPresentadas','ap',\Doctrine\ORM\Query\Expr\Join::WITH,'ap.expediente = e.id')
+              ->leftJoin('AppBundle:Departamentos','d',\Doctrine\ORM\Query\Expr\Join::WITH,'e.departamento = d.id')
+              ->leftJoin('AppBundle:Provincias','p',\Doctrine\ORM\Query\Expr\Join::WITH,'d.provincia = p.id');
+        $dqlcountCertificada->select('count(ac.expediente) as actividadCertificada')
+             ->from('AppBundle:Expedientes','e')
+             ->leftJoin('AppBundle:ActividadesCertificadas','ac',\Doctrine\ORM\Query\Expr\Join::WITH,'ac.expediente = e.id')
+             ->leftJoin('AppBundle:Departamentos','d',\Doctrine\ORM\Query\Expr\Join::WITH,'e.departamento = d.id')
+             ->leftJoin('AppBundle:Provincias','p',\Doctrine\ORM\Query\Expr\Join::WITH,'d.provincia = p.id');
+         $dqlcountInspeccionada->select('count(ai.expediente) as actividadInspeccionada')
+              ->from('AppBundle:Expedientes','e')
+              ->leftJoin('AppBundle:ActividadesInspeccionadas','ai',\Doctrine\ORM\Query\Expr\Join::WITH,'ai.expediente = e.id')
+              ->leftJoin('AppBundle:Departamentos','d',\Doctrine\ORM\Query\Expr\Join::WITH,'e.departamento = d.id')
+              ->leftJoin('AppBundle:Provincias','p',\Doctrine\ORM\Query\Expr\Join::WITH,'d.provincia = p.id');
+          $dqlcountPagada->select('count(r.expediente) as actividadPagada, sum(r.montoPago) as montoPagado')
+               ->from('AppBundle:Expedientes','e')
+               ->leftJoin('AppBundle:Resoluciones','r',\Doctrine\ORM\Query\Expr\Join::WITH,'r.expediente = e.id')
+               ->leftJoin('AppBundle:Departamentos','d',\Doctrine\ORM\Query\Expr\Join::WITH,'e.departamento = d.id')
+               ->leftJoin('AppBundle:Provincias','p',\Doctrine\ORM\Query\Expr\Join::WITH,'d.provincia = p.id');
+
+        if(array_key_exists('provincia',$param) && $param['provincia']){
+          $dql->andwhere('p.id = :provincia');
+          $dql->setParameter('provincia', $param['provincia']);
+          $dqlcountPresentada->andwhere('p.id = :provincia');
+          $dqlcountPresentada->setParameter('provincia', $param['provincia']);
+          $dqlcountCertificada->andwhere('p.id = :provincia');
+          $dqlcountCertificada->setParameter('provincia', $param['provincia']);
+          $dqlcountInspeccionada->andwhere('p.id = :provincia');
+          $dqlcountInspeccionada->setParameter('provincia', $param['provincia']);
+          $dqlcountPagada->andwhere('p.id = :provincia');
+          $dqlcountPagada->setParameter('provincia', $param['provincia']);
+        }
+
+        if(array_key_exists('departamento',$param) && $param['departamento']){
+          $dql->andwhere('a.departamento = :departamento');
+          $dql->setParameter('departamento', $param['departamento']);
+          $dqlcountPresentada->andwhere('e.departamento = :departamento');
+          $dqlcountPresentada->setParameter('departamento', $param['departamento']);
+          $dqlcountCertificada->andwhere('e.departamento = :departamento');
+          $dqlcountCertificada->setParameter('departamento', $param['departamento']);
+          $dqlcountInspeccionada->andwhere('e.departamento = :departamento');
+          $dqlcountInspeccionada->setParameter('departamento', $param['departamento']);
+          $dqlcountPagada->andwhere('e.departamento = :departamento');
+          $dqlcountPagada->setParameter('departamento', $param['departamento']);
+        }
+
+        if(array_key_exists('anio',$param) && $param['anio']){
+          $dql->andwhere('a.anio =  :anio');
+          $dql->setParameter('anio',substr($param['anio'], 2, 4));
+          $dqlcountPresentada->andwhere('e.anio =  :anio');
+          $dqlcountPresentada->setParameter('anio',substr($param['anio'], 2, 4));
+          $dqlcountCertificada->andwhere('e.anio =  :anio');
+          $dqlcountCertificada->setParameter('anio',substr($param['anio'], 2, 4));
+          $dqlcountInspeccionada->andwhere('e.anio =  :anio');
+          $dqlcountInspeccionada->setParameter('anio',substr($param['anio'], 2, 4));
+          $dqlcountPagada->andwhere('e.anio =  :anio');
+          $dqlcountPagada->setParameter('anio',substr($param['anio'], 2, 4));
+        }
+
+        $data['actividadPresentada'] = $dqlcountPresentada->getQuery()->getSingleResult()['actividadPresentada'];
+        $data['actividadCertificada'] = $dqlcountCertificada->getQuery()->getSingleResult()['actividadCertificada'];
+        $data['actividadInspeccionada'] = $dqlcountInspeccionada->getQuery()->getSingleResult()['actividadInspeccionada'];
+        $data['actividadPagada'] = $dqlcountPagada->getQuery()->getSingleResult()['actividadPagada'];
+        $data['montoPagado'] = $dqlcountPagada->getQuery()->getSingleResult()['montoPagado'];
+
+        $search_form->handleRequest($request);
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+              $dql,
+              $request->query->getInt('page',1),
+              15,
+              array('distinct' => true, 'defaultSortDirection' => 'desc')
+          );
+        return $this->render('reportes/index.html.twig', array(
+            'pagination' => $pagination,
+            'data' => $data,
+            'search_form'=>$search_form->createView(),
+            'param' => $param
+        ));
+    }
     /**
      * Finds and displays a AREAS.
      *
@@ -114,7 +227,5 @@ class ReportesController extends Controller
         default:
           return '';
       }
-
     }
-
 }

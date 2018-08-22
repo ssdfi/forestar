@@ -30,11 +30,10 @@ class ExpedientesController extends Controller
         $em = $this->getDoctrine()->getManager();
         $dql = $em->createQueryBuilder();
         $expediente = new Expedientes();
-        $user = $this->get('security.token_storage')->getToken()->getUser();
         $search_form = $this->createForm('AppBundle\Form\ExpedientesSearchType', $expediente, array(
           'action' => '/expedientes/',
           'method' => 'get',
-          'user' => $user
+          'user' => $this->getUser()
         ));
         $param=($request->query->get('expedientes_search'))? $request->query->get('expedientes_search'):[];
 
@@ -110,7 +109,12 @@ class ExpedientesController extends Controller
     public function newAction(Request $request)
     {
         $expediente = new Expedientes();
-        $form = $this->createForm('AppBundle\Form\ExpedientesType', $expediente);
+        $hierarchy = $this->container->getParameter('security.role_hierarchy.roles');
+        $roles = array();
+        array_walk_recursive($hierarchy, function($role) use (&$roles) {
+            $roles[] = $role;
+        });
+        $form = $this->createForm('AppBundle\Form\ExpedientesType', $expediente, ['roles' => $roles]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -155,7 +159,12 @@ class ExpedientesController extends Controller
     public function editAction(Request $request, Expedientes $expediente)
     {
         $deleteForm = $this->createDeleteForm($expediente);
-        $editForm = $this->createForm('AppBundle\Form\ExpedientesType', $expediente);
+        $hierarchy = $this->container->getParameter('security.role_hierarchy.roles');
+        $roles = array();
+        array_walk_recursive($hierarchy, function($role) use (&$roles) {
+            $roles[] = $role;
+        });
+        $editForm = $this->createForm('AppBundle\Form\ExpedientesType', $expediente, ['roles' => $roles]);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
