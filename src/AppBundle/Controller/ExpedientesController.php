@@ -77,7 +77,6 @@ class ExpedientesController extends Controller
           $dql->setParameter('areaEncuentraExpediente', $param['areaEncuentraExpediente']);
         }
 
-
         if(array_key_exists('solicita_adelanto',$param) && $param['solicita_adelanto']) {
           $solicitaAdelanto = $param['solicita_adelanto'] == 1 ? 'TRUE' : 'FALSE';
           $dql->andwhere('a.solicitaAdelanto = :solicitaAdelanto');
