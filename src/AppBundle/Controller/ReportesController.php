@@ -69,7 +69,24 @@ class ReportesController extends Controller
                ->leftJoin('AppBundle:Resoluciones','r',\Doctrine\ORM\Query\Expr\Join::WITH,'r.expediente = e.id')
                ->leftJoin('AppBundle:Departamentos','d',\Doctrine\ORM\Query\Expr\Join::WITH,'e.departamento = d.id')
                ->leftJoin('AppBundle:Provincias','p',\Doctrine\ORM\Query\Expr\Join::WITH,'d.provincia = p.id');
+         $dqlProvincia = $em->createQueryBuilder();
 
+         if(array_key_exists('provincia',$param) && $param['provincia']){
+           $dqlProvincia->select('d.nombre, count(d.id) as cantidad, \'Departamento\' as tipo')
+                        ->from('AppBundle:Expedientes','a')
+                        ->leftJoin('AppBundle:Departamentos','d',\Doctrine\ORM\Query\Expr\Join::WITH,'a.departamento = d.id')
+                        ->leftJoin('AppBundle:Provincias','p',\Doctrine\ORM\Query\Expr\Join::WITH,'d.provincia = p.id');
+
+           $dqlProvincia->orderBy('cantidad','desc');
+           $dqlProvincia->groupBy('d.id');
+         } else {
+           $dqlProvincia->select('p.nombre, count(p.id) as cantidad, \'Provincia\' as tipo')
+                        ->from('AppBundle:Expedientes','a')
+                        ->leftJoin('AppBundle:Departamentos','d',\Doctrine\ORM\Query\Expr\Join::WITH,'a.departamento = d.id')
+                        ->leftJoin('AppBundle:Provincias','p',\Doctrine\ORM\Query\Expr\Join::WITH,'d.provincia = p.id');
+           $dqlProvincia->orderBy('cantidad','desc');
+           $dqlProvincia->groupBy('p.id');
+         }
         if(array_key_exists('provincia',$param) && $param['provincia']){
           $dql->andwhere('p.id = :provincia');
           $dql->setParameter('provincia', $param['provincia']);
@@ -81,6 +98,8 @@ class ReportesController extends Controller
           $dqlcountInspeccionada->setParameter('provincia', $param['provincia']);
           $dqlcountPagada->andwhere('p.id = :provincia');
           $dqlcountPagada->setParameter('provincia', $param['provincia']);
+          $dqlProvincia->andwhere('p.id = :provincia');
+          $dqlProvincia->setParameter('provincia', $param['provincia']);
         }
 
         if(array_key_exists('departamento',$param) && $param['departamento']){
@@ -94,6 +113,8 @@ class ReportesController extends Controller
           $dqlcountInspeccionada->setParameter('departamento', $param['departamento']);
           $dqlcountPagada->andwhere('e.departamento = :departamento');
           $dqlcountPagada->setParameter('departamento', $param['departamento']);
+          $dqlProvincia->andwhere('a.departamento = :departamento');
+          $dqlProvincia->setParameter('departamento', $param['departamento']);
         }
 
         if(array_key_exists('anio',$param) && $param['anio']){
@@ -107,6 +128,8 @@ class ReportesController extends Controller
           $dqlcountInspeccionada->setParameter('anio',substr($param['anio'], 2, 4));
           $dqlcountPagada->andwhere('e.anio =  :anio');
           $dqlcountPagada->setParameter('anio',substr($param['anio'], 2, 4));
+          $dqlProvincia->andwhere('a.anio =  :anio');
+          $dqlProvincia->setParameter('anio',substr($param['anio'], 2, 4));
         }
 
         $data['actividadPresentada'] = $dqlcountPresentada->getQuery()->getSingleResult()['actividadPresentada'];
@@ -114,6 +137,7 @@ class ReportesController extends Controller
         $data['actividadInspeccionada'] = $dqlcountInspeccionada->getQuery()->getSingleResult()['actividadInspeccionada'];
         $data['actividadPagada'] = $dqlcountPagada->getQuery()->getSingleResult()['actividadPagada'];
         $data['montoPagado'] = $dqlcountPagada->getQuery()->getSingleResult()['montoPagado'];
+        $data['provincia'] = $dqlProvincia->getQuery()->getResult();
 
         $search_form->handleRequest($request);
         $paginator = $this->get('knp_paginator');
@@ -227,5 +251,136 @@ class ReportesController extends Controller
         default:
           return '';
       }
+    }
+
+    /**
+     * Finds and displays a AREAS.
+     *
+     * @Route("/superficies_expediente/{provincia}/{departamento}/{anio}", name="json_superficies_expediente")
+     * @Method("GET")
+     */
+    public function jsonSuperficiesAction($provincia, $departamento = 0, $anio = 0)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $dqlsumPresentada = $em->createQueryBuilder();
+        $dqlsumCertificada = $em->createQueryBuilder();
+        $dqlsumInspeccionada = $em->createQueryBuilder();
+        $dqlsumPagada = $em->createQueryBuilder();
+
+      $dqlsumPresentada->select('sum(ap.superficieHa) as actividadPresentada')
+             ->from('AppBundle:Expedientes','e')
+             ->leftJoin('AppBundle:ActividadesPresentadas','ap',\Doctrine\ORM\Query\Expr\Join::WITH,'ap.expediente = e.id')
+             ->leftJoin('AppBundle:Departamentos','d',\Doctrine\ORM\Query\Expr\Join::WITH,'e.departamento = d.id')
+             ->leftJoin('AppBundle:Provincias','p',\Doctrine\ORM\Query\Expr\Join::WITH,'d.provincia = p.id');
+      $dqlsumCertificada->select('sum(ac.superficieHa) as actividadCertificada')
+            ->from('AppBundle:Expedientes','e')
+            ->leftJoin('AppBundle:ActividadesCertificadas','ac',\Doctrine\ORM\Query\Expr\Join::WITH,'ac.expediente = e.id')
+            ->leftJoin('AppBundle:Departamentos','d',\Doctrine\ORM\Query\Expr\Join::WITH,'e.departamento = d.id')
+            ->leftJoin('AppBundle:Provincias','p',\Doctrine\ORM\Query\Expr\Join::WITH,'d.provincia = p.id');
+      $dqlsumInspeccionada->select('sum(ai.superficieHa) as actividadInspeccionada')
+            ->from('AppBundle:Expedientes','e')
+            ->leftJoin('AppBundle:ActividadesInspeccionadas','ai',\Doctrine\ORM\Query\Expr\Join::WITH,'ai.expediente = e.id')
+            ->leftJoin('AppBundle:Departamentos','d',\Doctrine\ORM\Query\Expr\Join::WITH,'e.departamento = d.id')
+            ->leftJoin('AppBundle:Provincias','p',\Doctrine\ORM\Query\Expr\Join::WITH,'d.provincia = p.id');
+      $dqlsumPagada->select('sum(r.superficieHa) as actividadPagada')
+            ->from('AppBundle:Expedientes','e')
+            ->leftJoin('AppBundle:Resoluciones','r',\Doctrine\ORM\Query\Expr\Join::WITH,'r.expediente = e.id')
+            ->leftJoin('AppBundle:Departamentos','d',\Doctrine\ORM\Query\Expr\Join::WITH,'e.departamento = d.id')
+            ->leftJoin('AppBundle:Provincias','p',\Doctrine\ORM\Query\Expr\Join::WITH,'d.provincia = p.id');
+
+        if ($provincia != 0) {
+          $dqlsumPresentada->andwhere('p.id = '."'$provincia'");
+          $dqlsumCertificada->andwhere('p.id = '."'$provincia'");
+          $dqlsumInspeccionada->andwhere('p.id = '."'$provincia'");
+          $dqlsumPagada->andwhere('p.id = '."'$provincia'");
+        }
+        if ($departamento != 0) {
+          $dqlsumPresentada->andwhere('d.id = ' . $departamento);
+          $dqlsumCertificada->andwhere('d.id = ' . $departamento);
+          $dqlsumInspeccionada->andwhere('d.id = ' . $departamento);
+          $dqlsumPagada->andwhere('d.id = ' . $departamento);
+        }
+        if ($anio != 0) {
+          $anio = substr($anio, 2, 4);
+          $dqlsumPresentada->andwhere('e.anio = '."'$anio'");
+          $dqlsumCertificada->andwhere('e.anio = '."'$anio'");
+          $dqlsumInspeccionada->andwhere('e.anio = '."'$anio'");
+          $dqlsumPagada->andwhere('e.anio = '."'$anio'");
+        }
+        $sumPresentada=$em->createQuery($dqlsumPresentada)->getResult()[0]['actividadPresentada'];
+        $sumCertificada=$em->createQuery($dqlsumCertificada)->getResult()[0]['actividadCertificada'];
+        $sumInspeccionada=$em->createQuery($dqlsumInspeccionada)->getResult()[0]['actividadInspeccionada'];
+        $sumPagada=$em->createQuery($dqlsumPagada)->getResult()[0]['actividadPagada'];
+        $data['labels'][] = 'Presentada';
+        $data['datasets'][0]['label'] = 'Superficie Ha';
+        $data['datasets'][0]['data'][] = $sumPresentada;
+        $data['datasets'][0]['backgroundColor'][]= $this->rand_color();
+
+        $data['labels'][] = 'Certificada';
+        $data['datasets'][0]['label'] = 'Superficie Ha';
+        $data['datasets'][0]['data'][] = $sumCertificada;
+        $data['datasets'][0]['backgroundColor'][]= $this->rand_color();
+
+        $data['labels'][] = 'Inspeccionada';
+        $data['datasets'][0]['label'] = 'Superficie Ha';
+        $data['datasets'][0]['data'][] = $sumInspeccionada;
+        $data['datasets'][0]['backgroundColor'][]= $this->rand_color();
+
+        $data['labels'][] = 'Pagada';
+        $data['datasets'][0]['label'] = 'Superficie Ha';
+        $data['datasets'][0]['data'][] = $sumPagada;
+        $data['datasets'][0]['backgroundColor'][]= $this->rand_color();
+
+        $response = new Response();
+        $response->setContent(json_encode($data));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+
+    /**
+     * Finds and displays a AREAS.
+     *
+     * @Route("/tipos_actividad/{provincia}/{departamento}/{anio}", name="json_tipos_actividad")
+     * @Method("GET")
+     */
+    public function jsonTiposActividadPresentadaAction($provincia, $departamento = 0, $anio = 0)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $dqlCountPresentada = $em->createQueryBuilder();
+
+        $dqlCountPresentada->select('ta.nombreActividad, count(ta.id) as actividadPresentada')
+             ->from('AppBundle:Expedientes','e')
+             ->leftJoin('AppBundle:ActividadesPresentadas','ap',\Doctrine\ORM\Query\Expr\Join::WITH,'ap.expediente = e.id')
+             ->leftJoin('AppBundle:TiposActividades','ta',\Doctrine\ORM\Query\Expr\Join::WITH,'ap.tipoActividad = ta.id')
+             ->leftJoin('AppBundle:Departamentos','d',\Doctrine\ORM\Query\Expr\Join::WITH,'e.departamento = d.id')
+             ->leftJoin('AppBundle:Provincias','p',\Doctrine\ORM\Query\Expr\Join::WITH,'d.provincia = p.id')
+             ->groupBy('ta.nombreActividad')
+             ->orderBy('ta.nombreActividad','asc');
+
+        if ($provincia != 0) {
+          $dqlCountPresentada->andwhere('p.id = '."'$provincia'");
+        }
+        if ($departamento != 0) {
+          $dqlCountPresentada->andwhere('d.id = ' . $departamento);
+        }
+        if ($anio != 0) {
+          $anio = substr($anio, 2, 4);
+          $dqlCountPresentada->andwhere('e.anio = '."'$anio'");
+        }
+        $results = $em->createQuery($dqlCountPresentada)->getResult();
+        $data=[];
+        foreach ($results as $key => $value) {
+          if ($value['nombreActividad'] <> null) {
+            $data['labels'][] = $value['nombreActividad'];
+            $data['datasets'][0]['label'] = 'Actividades';
+            $data['datasets'][0]['data'][] = $value['actividadPresentada'];
+            $data['datasets'][0]['backgroundColor'][]= $this->rand_color();
+          }
+        }
+
+        $response = new Response();
+        $response->setContent(json_encode($data));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
 }

@@ -1,4 +1,5 @@
-$(document).ready(function () {
+(function() {
+  $(document).ready(function() {
   $("#reportes_provincia").change(function() {
       $("#reportes_departamento").prop('disabled', true);
       $("#reportes_departamento").empty();
@@ -19,4 +20,37 @@ $(document).ready(function () {
         return $("#reportes_departamento").prop('disabled', false);
       }
     });
-});
+
+    var provincia = ($('#data').data('provincia')? '/' + $("#data").data("provincia"):'/'+0);
+    var departamento = ($('#data').data('departamento'))? '/' + $("#data").data("departamento"):'/'+0;
+    var anio = ($('#data').data('anio')? '/' + $("#data").data("anio"):'/'+0);
+    var url = provincia + departamento + anio;
+    $.ajax({
+      url: "/reportes/superficies_expediente"+url
+    }).done(function(data) {
+      if (data) {
+        var ctx = document.getElementById("superficieHa");
+        var myChart = new Chart(ctx, {
+          type: 'bar',
+          data: data,
+          options: {
+                legend: {
+                    display: false
+                }
+            }
+        });
+      }
+    });
+    $.ajax({
+      url: "/reportes/tipos_actividad"+url
+    }).done(function(data) {
+      if (data) {
+        var ctx = document.getElementById("tiposActividades");
+        var myChart = new Chart(ctx, {
+          type: 'pie',
+          data: data,
+        });
+      }
+    });
+  });
+}).call(this);

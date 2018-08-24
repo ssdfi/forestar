@@ -63,4 +63,27 @@ class ExportController extends Controller
     }
   }
 
+  /**
+   * Finds and exports all documentaciones entity.
+   *
+   * @Route("/csv", name="exports_csv")
+   * @Method("GET")
+   */
+  public function exportsCsv() {
+    // $json_str = "{'aintlist':[4,3,2,1], 'astringlist':['str1','str2']}";
+    // for ($i=1; $i < 31; $i++) {
+    //   $json_str = file_get_contents('/home/martin/Escritorio/poch/pagina'.$i.'.json');
+    //   // dump($json_str);
+    //   $json_obj = json_decode($json_str,true);
+    //
+    //   $fp = fopen('/home/martin/Escritorio/poch/csv/'.$i.'.csv', 'w');
+    //
+    //   foreach ($json_obj['data'] as $key => $value) {
+    //     fputcsv($fp, $value);
+    //   }
+    //
+    //   fclose($fp);
+    // }
+  }
+
 }

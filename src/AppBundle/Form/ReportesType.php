@@ -35,7 +35,6 @@ class ReportesType extends AbstractType
                                                                                                                   ->orderBy('p.nombre', 'ASC');
                                                                                                           },'choice_label' => 'nombre','placeholder' => "Seleccione una Provincia",'required'=>false, 'mapped'=>false))
           ->add('departamento', EntityType::class, array('class'=>'AppBundle\Entity\Departamentos', 'placeholder' => "Seleccione un Departamento",'required'=>false))
-          // ->add('localidad', EntityType::class, array('class'=>'AppBundle\Entity\Localidades', 'placeholder' => "Seleccione una Localidad",'required'=>false, 'mapped'=>false))
           ->add('anio', IntegerType::class, array('required'=>false, 'attr' => array('class' => 'form-control','placeholder'=>"AAAA")))
           ->add('buscar', SubmitType::class, array('attr'=>array('class'=>'btn btn-primary pull-right')));
 
