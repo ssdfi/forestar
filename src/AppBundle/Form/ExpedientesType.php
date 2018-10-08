@@ -27,11 +27,6 @@ class ExpedientesType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        // dump($options);
-        // dump($this->get('security.context')->isGranted('ROLE_ADMIN'));
-        dump($options['roles']);
-        // $options['user']->getReachableRoles([new Role('ROLE_USER')]);
-        // dump($options['user']->getReachableRoles([new Role('ROLE_ADMIN')]));
         $expediente = $builder->getData() ? $builder->getData()->getId() : '';
         $builder
           ->add('numeroExpediente', TextType::class, array('attr'=>array('pattern' => '.*')))
