@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{parent()}} - Expedientes{% endblock %}
-
 {% block navbarRight %}
-  <li class="nav-item active">
-    <a class="nav-link" href="{{path('expedientes_new')}}"><span class="fa fa-plus" aria-hidden="true"></span> Nuevo Expediente</a>
-  </li>
+  {% if (is_granted('ROLE_ADMIN') or is_granted('ROLE_DATA_ENTRY')) %}
+    <li class="nav-item active">
+      <a class="nav-link" href="{{path('expedientes_new')}}"><span class="fa fa-plus" aria-hidden="true"></span> Nuevo Expediente</a>
+    </li>
+  {% endif %}
   {{parent()}}
 {% endblock %}
 
