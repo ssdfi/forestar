@@ -3,9 +3,11 @@
 {% block title %}{{parent()}} - Profesionales{% endblock %}
 
 {% block navbarRight %}
-  <li class="nav-item active">
-    <a class="nav-link" href="{{path('profesionales_new')}}"><span class="fa fa-plus" aria-hidden="true"></span> Nuevo Profesional</a>
-  </li>
+  {% if (is_granted('ROLE_ADMIN') or is_granted('ROLE_DATA_ENTRY') or is_granted('ROLE_LEGALES')) %}
+    <li class="nav-item active">
+      <a class="nav-link" href="{{path('profesionales_new')}}"><span class="fa fa-plus" aria-hidden="true"></span> Nuevo Profesional</a>
+    </li>
+  {% endif %}
   {{parent()}}
 {% endblock %}
 
@@ -33,9 +35,6 @@
                 <th scope="col">CUIT</th>
                 <th scope="col">Apellido Nombre</th>
                 <th scope="col">Email</th>
-                <th scope="col">Telefono</th>
-                <th scope="col">Domicilio</th>
-                <th scope="col">Cp</th>
                 <th scope="col">Localidad</th>
             </tr>
         </thead>
@@ -48,9 +47,6 @@
                 <td>{{ profesionale.cuit }}</td>
                 <td>{{ profesionale.apellidoNombre }}</td>
                 <td>{{ profesionale.emailTitular|lower }}</td>
-                <td>{{ profesionale.telefono }}</td>
-                <td>{{ profesionale.domicilio }}</td>
-                <td>{{ profesionale.cp }}</td>
                 <td>{{ profesionale.localidadId }}</td>
             </tr>
         {% endfor %}

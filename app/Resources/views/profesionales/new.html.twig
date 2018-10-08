@@ -1,16 +1,15 @@
 {% extends 'base.html.twig' %}
-
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
 {% block body %}
-    <h1>Profesionale creation</h1>
-
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('profesionales_index') }}">Back to the list</a>
-        </li>
-    </ul>
+<div class="col-md-12">
+  <div class="row">
+    <div class="col-md-5">
+      <h1>Nuevo Profesional</h1>
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button type="submit" class="btn btn-primary pull-right">Crear</button>
+        {{ form_end(form) }}
+    </div>
+  </div>
+</div>
 {% endblock %}
