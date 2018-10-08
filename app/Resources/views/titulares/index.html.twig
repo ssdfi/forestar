@@ -3,9 +3,11 @@
 {% block title %}{{parent()}} - Titulares{% endblock %}
 
 {% block navbarRight %}
+  {% if (is_granted('ROLE_ADMIN') or is_granted('ROLE_DATA_ENTRY') or is_granted('ROLE_LEGALES')) %}
   <li class="nav-item active">
     <a class="nav-link" href="{{path('titulares_new')}}"><span class="fa fa-plus" aria-hidden="true"></span> Nuevo Titular</a>
   </li>
+  {% endif %}
   {{parent()}}
 {% endblock %}
 
