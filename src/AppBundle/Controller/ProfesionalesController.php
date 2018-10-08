@@ -74,7 +74,7 @@ class ProfesionalesController extends Controller
      */
     public function newAction(Request $request)
     {
-        $profesionale = new Profesionale();
+        $profesionale = new Profesionales();
         $form = $this->createForm('AppBundle\Form\ProfesionalesType', $profesionale);
         $form->handleRequest($request);
 
