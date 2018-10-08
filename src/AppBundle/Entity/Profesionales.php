@@ -733,7 +733,7 @@ class Profesionales
       return $this->expedientes;
     }
     public function __toString() {
-      return $this->apellidoNombre;
+      return (string)$this->apellidoNombre;
     }
 
 }
