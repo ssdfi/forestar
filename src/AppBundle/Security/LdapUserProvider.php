@@ -11,9 +11,17 @@ use Symfony\Component\Security\Core\User\User;
 class LdapUserProvider extends SymfonyLdapUserProvider
 {
     private $groupMapping = [
-        'forestapp_editor' => 'ROLE_EDITOR',
-        'forestapp_admin' => 'ROLE_ADMIN',
-        'forestapp_tecnicoregional' => 'ROLE_TECNICO_REGIONAL'
+        'forestar_admin' => 'ROLE_ADMIN',
+        'forestar_admin_consulta'=> 'ROLE_ADMIN_CONSULTA',
+        'forestar_economia'=> 'ROLE_ECONOMIA',
+        'forestar_consulta'=> 'ROLE_CONSULTA',
+        'forestar_legales_consulta'=> 'ROLE_LEGALES',
+        'forestar_contable'=> 'ROLE_CONTABLE',
+        'forestar_legales'=> 'ROLE_LEGALES',
+        'forestar_sig'=> 'ROLE_SIG',
+        'forestar_promocion'=> 'ROLE_PROMOCION',
+        'forestar_liquidaciones'=> 'ROLE_LIQUIDACIONES',
+        'forestar_data_entry'=> 'ROLE_DATA_ENTRY'
     ];
     private $groupNameRegExp = '/^CN=(?P<group>[^,]+),ou.*$/i';
     protected function loadUser($username, Entry $entry)
