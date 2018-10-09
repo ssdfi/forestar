@@ -110,7 +110,7 @@ class ExpedientesController extends Controller
         $expediente = new Expedientes();
         $hierarchy = $this->container->getParameter('security.role_hierarchy.roles');
         $roles = array();
-        array_walk_recursive($hierarchy, function($role) use (&$roles) {
+        array_walk_recursive($hierarchy[$this->getUser()->getRoles()[0]], function($role) use (&$roles) {
             $roles[] = $role;
         });
         $form = $this->createForm('AppBundle\Form\ExpedientesType', $expediente, ['roles' => $roles]);
@@ -160,7 +160,7 @@ class ExpedientesController extends Controller
         $deleteForm = $this->createDeleteForm($expediente);
         $hierarchy = $this->container->getParameter('security.role_hierarchy.roles');
         $roles = array();
-        array_walk_recursive($hierarchy, function($role) use (&$roles) {
+        array_walk_recursive($hierarchy[$this->getUser()->getRoles()[0]], function($role) use (&$roles) {
             $roles[] = $role;
         });
         $editForm = $this->createForm('AppBundle\Form\ExpedientesType', $expediente, ['roles' => $roles]);
