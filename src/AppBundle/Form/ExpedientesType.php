@@ -28,6 +28,7 @@ class ExpedientesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $expediente = $builder->getData() ? $builder->getData()->getId() : '';
+        if (in_array('expediente', $options['roles'])) {
         $builder
           ->add('numeroExpediente', TextType::class, array('attr'=>array('pattern' => '.*')))
           ->add('numeroInterno', TextType::class, array('attr'=>array('pattern' => '.*')))
@@ -67,6 +68,7 @@ class ExpedientesType extends AbstractType
           ->add('departamento')
           ->add('anio', TextType::class, array('label'=>'Año', 'required'=>false))
           ->add('solicitaAdelanto', CheckboxType::class, array('attr' => array('data-label' => 'Solicita Adelanto'), 'label' => false, 'required'=>false));
+          }
           if (in_array('cobroBeneficios', $options['roles'])) {
             $builder->add('cobroBeneficios', CollectionType::class, array(
               'entry_type'    => CobrosBeneficiosType::class,
@@ -346,9 +348,11 @@ class ExpedientesType extends AbstractType
                 )
               );
             }
-          $builder->addEventSubscriber(new AddTitularesListener());
-          $builder->addEventSubscriber(new AddProfesionalesListener());
-          $builder->addEventSubscriber(new AddRepresentanteLegalListener());
+            if (in_array('expediente', $options['roles'])) {
+              $builder->addEventSubscriber(new AddTitularesListener());
+              $builder->addEventSubscriber(new AddProfesionalesListener());
+              $builder->addEventSubscriber(new AddRepresentanteLegalListener());
+            }
     }/**
      * {@inheritdoc}
      */
