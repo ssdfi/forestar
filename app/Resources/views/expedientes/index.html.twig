@@ -31,7 +31,6 @@
                 <th scope="col">Numero Interno</th>
                 <th scope="col">Numero Expediente</th>
                 <th scope="col">Titular</th>
-                <th scope="col">Representante Legal</th>
                 <th scope="col">Profesional a Cargo</th>
                 <th scope="col">Fecha Ingreso</th>
                 <th scope="col">Area</th>
@@ -48,7 +47,6 @@
                       <a href="{{path('titulares_show', { 'id': titular.id })}}"><abbr title="{{titular}}" data-length="10">{{titular}}</abbr></a>{% if loop.last == false %} | {% endif %}
                   {% endfor %}
                 </td>
-                <td>{{ expediente.representanteLegal }}</td>
                 <td><abbr title="{{ expediente.profesionalCargo }}" data-length="10">{{ expediente.profesionalCargo }}</abbr></td>
                 <td>{% if expediente.fechaIngreso %}{{ expediente.fechaIngreso|date('Y-m-d') }}{% endif %}</td>
                 <td>{{expediente.areaEncuentraExpediente}}</td>

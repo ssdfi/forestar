@@ -118,6 +118,11 @@ class ExpedientesController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $arr = explode("-", $expediente->getNumeroInterno());
+            $dpto = $em->getRepository('AppBundle:Departamentos')->findOneBy(array('provincia' => $arr[0], 'codigoPostal'=>$arr[1]));;
+            if($dpto){
+              $expediente->setDepartamento($dpto);
+            }
             $em->persist($expediente);
             $em->flush();
 
@@ -167,6 +172,12 @@ class ExpedientesController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $arr = explode("-", $expediente->getNumeroInterno());
+            $dpto = $em->getRepository('AppBundle:Departamentos')->findOneBy(array('provincia' => $arr[0], 'codigoPostal'=>$arr[1]));;
+            if($dpto){
+              $expediente->setDepartamento($dpto);
+            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->render('expedientes/show.html.twig', array(
