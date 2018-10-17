@@ -36,11 +36,14 @@ class Departamentos
      */
     private $nombre;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="provincia_expediente_id", type="string", length=2, nullable=true)
-     */
+     /**
+      * @var \Estado
+      *
+      * @ORM\ManyToOne(targetEntity="Provincias")
+      * @ORM\JoinColumns({
+      *   @ORM\JoinColumn(name="provincia_expediente_id", referencedColumnName="id")
+      * })
+      */
     private $provincia;
 
 

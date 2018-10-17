@@ -23,14 +23,5 @@
       $("#appbundle_expedientes_representanteLegal").val('');
       return $("#appbundle_expedientes_representante_legal_id").val('');
     });
-
-    $( "#appbundle_expedientes_numeroInterno" ).change(function() {
-      var last = 0;
-      if( this.value.length == 13 ) {
-        last = Number(this.value.substr(11,13));
-        $("#appbundle_expedientes_anio").val(2000+last);
-      }
-    });
-
   });
 }).call(this);
