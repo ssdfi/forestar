@@ -1757,3 +1757,4 @@ UPDATE resoluciones SET departamento_id = null WHERE departamento_id = 0;
 UPDATE actividades_inspeccionadas SET especie_id = null where especie_id = 0;
 UPDATE actividades_inspeccionadas SET actividad_id = null where actividad_id = 0;
 select setval('cobros_beneficios_id_seq', 21760, true);
+UPDATE actividades_inspeccionadas SET responsable_id = null where responsable_id = 0;

@@ -99,11 +99,14 @@ class ActividadesInspeccionadas
     private $departamento;
 
     /**
-     * @var integer
+     * @var \Especie
      *
-     * @ORM\Column(name="responsable_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Responsables")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="responsable_id", referencedColumnName="id")
+     * })
      */
-    private $responsableId;
+    private $responsable;
 
     /**
      * @var \DateTime
@@ -377,27 +380,27 @@ class ActividadesInspeccionadas
     }
 
     /**
-     * Set responsableId
+     * Set responsable
      *
-     * @param integer $responsableId
+     * @param integer $responsable
      *
      * @return ActividadesInspeccionadas
      */
-    public function setResponsableId($responsableId)
+    public function setResponsable($responsable)
     {
-        $this->responsableId = $responsableId;
+        $this->responsable = $responsable;
 
         return $this;
     }
 
     /**
-     * Get responsableId
+     * Get responsable
      *
      * @return integer
      */
-    public function getResponsableId()
+    public function getResponsable()
     {
-        return $this->responsableId;
+        return $this->responsable;
     }
 
     /**

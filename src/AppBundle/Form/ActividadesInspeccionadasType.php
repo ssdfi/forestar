@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -27,7 +28,7 @@ class ActividadesInspeccionadasType extends AbstractType
           ->add('fechaInicio', DateType::class, array('label' => false,'widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
           ->add('fechaFin', DateType::class, array('label' => false,'widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
           ->add('departamento',EntityType::class, array('class'=>'AppBundle\Entity\Departamentos','required'=>true,'label' => false))
-          ->add('responsableId', IntegerType::class, array('label'=>false,'required'=>false))
+          ->add('responsable',EntityType::class, array('class'=>'AppBundle\Entity\Responsables','placeholder' => '', 'query_builder' => function (EntityRepository $er) { return $er->createQueryBuilder('p')->OrderBy('p.apellidoNombre','ASC');},'required'=>true,'label' => false))
           ->add('fechaInspeccion', DateType::class, array('label' => false,'widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
           ->add('tipoActividad',EntityType::class, array('class'=>'AppBundle\Entity\TiposActividades','required'=>true,'label' => false))
           ->add('tipoInspeccion',EntityType::class, array('class'=>'AppBundle\Entity\TiposInspeccion','required'=>true,'label' => false))
