@@ -1,12 +1,11 @@
 <table id="actividades-presentadas" class="table table-striped">
   <thead>
     <tr>
+      <th>Tipo</th>
       <th>Especie</th>
       <th>Superficie</th>
       <th>Densidad</th>
-      <th>Inicio</th>
-      <th>Fin</th>
-      <th>Tipo</th>
+      <th>Fecha Realización</th>
       <th>Observaciones</th>
       <th></th>
     </tr>
@@ -41,14 +40,8 @@
         </td>
         <td>
         		<div class="col-sm-12">
-        			{{ form_widget(tag.fechaInicio) }}
-              {{ form_errors(tag.fechaInicio) }}
-        		</div>
-        </td>
-        <td>
-        		<div class="col-sm-12">
-        			{{ form_widget(tag.fechaFinActividad) }}
-              {{ form_errors(tag.fechaFinActividad) }}
+        			{{ form_widget(tag.fechaRealizacion) }}
+              {{ form_errors(tag.fechaRealizacion) }}
         		</div>
         </td>
         <td>

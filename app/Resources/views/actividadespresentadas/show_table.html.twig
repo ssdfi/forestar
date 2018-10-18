@@ -6,8 +6,7 @@
       <th scope="col">Especie</th>
       <th scope="col">Superficie(ha).</th>
       <th scope="col">Densidad</th>
-      <th scope="col">Fecha de Inicio</th>
-      <th scope="col">Fecha Fin de Actividad</th>
+      <th scope="col">Fecha de Realización</th>
     </tr>
   </thead>
   <tbody>
@@ -18,8 +17,7 @@
       <td>{{ actividadPresentada.especie }}</td>
       <td>{{ actividadPresentada.superficieHa }}</td>
       <td>{{ actividadPresentada.densidad }}</td>
-      <td>{% if actividadPresentada.fechaInicio %}{{ actividadPresentada.fechaInicio|date('d-m-Y') }}{% endif %}</td>
-      <td>{% if actividadPresentada.fechaFinActividad %}{{ actividadPresentada.fechaFinActividad|date('d-m-Y') }}{% endif %}</td>
+      <td>{% if actividadPresentada.fechaRealizacion %}{{ actividadPresentada.fechaRealizacion|date('m/Y') }}{% endif %}</td>
     </tr>
     {% endfor %}
   </tbody>

@@ -251,7 +251,7 @@ class Expedientes
      /**
      * One Expediente has Many Actividades.
      * @ORM\OneToMany(targetEntity="ActividadesPresentadas", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
-     * @ORM\OrderBy({"aviFecRea" = "ASC"})
+     * @ORM\OrderBy({"fechaRealizacion" = "ASC"})
      */
     private $actividadesPresentadas;
 

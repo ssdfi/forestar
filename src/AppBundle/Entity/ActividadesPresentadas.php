@@ -100,9 +100,9 @@ class ActividadesPresentadas
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="avi_fec_rea", type="date", nullable=true)
+     * @ORM\Column(name="fecha_realizacion", type="date", nullable=true)
      */
-    private $aviFecRea;
+    private $fechaRealizacion;
 
     /**
      * @var integer
@@ -352,27 +352,27 @@ class ActividadesPresentadas
     }
 
     /**
-     * Set aviFecRea
+     * Set fechaRealizacion
      *
-     * @param \DateTime $aviFecRea
+     * @param \DateTime $fechaRealizacion
      *
      * @return ActividadesPresentadas
      */
-    public function setAviFecRea($aviFecRea)
+    public function setFechaRealizacion($fechaRealizacion)
     {
-        $this->aviFecRea = $aviFecRea;
+        $this->fechaRealizacion = $fechaRealizacion;
 
         return $this;
     }
 
     /**
-     * Get aviFecRea
+     * Get fechaRealizacion
      *
      * @return \DateTime
      */
-    public function getAviFecRea()
+    public function getFechaRealizacion()
     {
-        return $this->aviFecRea;
+        return $this->fechaRealizacion;
     }
 
     /**
