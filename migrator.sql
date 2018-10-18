@@ -1759,3 +1759,5 @@ UPDATE actividades_inspeccionadas SET actividad_id = null where actividad_id = 0
 select setval('cobros_beneficios_id_seq', 21760, true);
 UPDATE actividades_inspeccionadas SET responsable_id = null where responsable_id = 0;
 ALTER TABLE actividades_presentadas RENAME COLUMN avi_fec_rea TO fecha_realizacion;
+ALTER TABLE expedientes ADD COLUMN plurianual boolean;
+UPDATE expedientes e SET plurianual = true WHERE id IN (SELECT expediente_id from actividades_presentadas where etapa is not null);
