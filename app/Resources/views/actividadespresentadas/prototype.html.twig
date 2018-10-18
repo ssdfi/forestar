@@ -1,5 +1,11 @@
 {% block actividadPresentadaPrototype %}
   <td>
+      <div class="col-sm-12">
+        {{ form_widget(form.tipoActividad) }}
+        {{ form_errors(form.tipoActividad) }}
+      </div>
+  </td>
+  <td>
     <div class="col-sm-12">
       {{ form_widget(form.especie) }}
       {{ form_errors(form.especie) }}
@@ -27,18 +33,6 @@
       <div class="col-sm-12">
         {{ form_widget(form.fechaFinActividad) }}
         {{ form_errors(form.fechaFinActividad) }}
-      </div>
-  </td>
-  <td>
-      <div class="col-sm-12">
-        {{ form_widget(form.departamento) }}
-        {{ form_errors(form.departamento) }}
-      </div>
-  </td>
-  <td>
-      <div class="col-sm-12">
-        {{ form_widget(form.tipoActividad) }}
-        {{ form_errors(form.tipoActividad) }}
       </div>
   </td>
   <td>
