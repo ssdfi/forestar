@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -43,7 +44,7 @@ class ExpedientesSearchType extends AbstractType
           ->add('fechaIngresoDesde', DateType::class, array('label' => 'Fecha de Ingreso Desde','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD"),'mapped'=>false))
           ->add('fechaIngresoHasta', DateType::class, array('label' => 'Fecha de Ingreso Hasta','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD"),'mapped'=>false))
           ->add('fechaFin', DateType::class, array('label' => 'Fecha de Fin','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
-          ->add('profesional', EntityType::class, array("attr"=> array("class"=>"form-control"),'class'=>'AppBundle\Entity\Profesionales','placeholder' => "",'mapped'=>false))
+          ->add('profesional', EntityType::class, array("attr"=> array("class"=>"form-control"),'class'=>'AppBundle\Entity\Profesionales'  ,'placeholder' => '', 'query_builder' => function (EntityRepository $er) { return $er->createQueryBuilder('p')->OrderBy('p.apellidoNombre','ASC');},'mapped'=>false))
           ->add('estado', EntityType::class, array("attr"=> array("class"=>"form-control"),'class'=>'AppBundle\Entity\TiposEstadosPrincipales','placeholder' => "",'mapped'=>false))
           ->add('areaEncuentraExpediente', EntityType::class, array("attr"=> array("class"=>"form-control"),'class'=>'AppBundle\Entity\Areas','placeholder' => "",'mapped'=>false))
           ->add('solicita_adelanto', ChoiceType::class, array('choices'=>array('Todos'=>null,'Sí'=>true, 'No'=>false),"attr"=> array("class"=>"form-control form-check-inline"),'expanded'=>true, 'multiple'=>false,'empty_data'=>false, 'mapped'=>false))
