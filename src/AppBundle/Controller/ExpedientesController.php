@@ -48,14 +48,6 @@ class ExpedientesController extends Controller
           $dql->andwhere($dql->expr()->like('UPPER(a.numeroExpediente)', $dql->expr()->literal('%'.strtoupper($param['numeroExpediente']).'%')));
         }
 
-        if(array_key_exists('fechaPresentacionDesde',$param) && $param['fechaPresentacionDesde']){
-          $dql->andwhere('a.fechaPresentacion >=  :fechaPresentacionDesde');
-          $dql->setParameters(['fechaPresentacionDesde'=> $param['fechaPresentacionDesde']]);
-        }
-        if(array_key_exists('fechaPresentacionHasta',$param) && $param['fechaPresentacionHasta']){
-          $dql->andwhere('a.fechaPresentacion <=  :fechaPresentacionHasta');
-          $dql->setParameter('fechaPresentacionHasta', $param['fechaPresentacionHasta']);
-        }
         if(array_key_exists('fechaIngresoDesde',$param) && $param['fechaIngresoDesde']){
           $dql->andwhere('a.fechaIngreso >=  :fechaIngresoDesde');
           $dql->setParameter('fechaIngresoDesde',$param['fechaIngresoDesde']);
@@ -81,6 +73,12 @@ class ExpedientesController extends Controller
           $solicitaAdelanto = $param['solicita_adelanto'] == 1 ? 'TRUE' : 'FALSE';
           $dql->andwhere('a.solicitaAdelanto = :solicitaAdelanto');
           $dql->setParameter('solicitaAdelanto', $solicitaAdelanto);
+        }
+
+        if(array_key_exists('plurianual',$param) && $param['plurianual']) {
+          $plurianual = $param['plurianual'] == 1 ? 'TRUE' : 'FALSE';
+          $dql->andwhere('a.plurianual = :plurianual');
+          $dql->setParameter('plurianual', $plurianual);
         }
 
         $paginator  = $this->get('knp_paginator');

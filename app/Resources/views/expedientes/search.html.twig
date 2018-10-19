@@ -13,20 +13,6 @@
 		</div>
 	</div>
 	<div class="form-group row">
-		{{ form_label(search_form.fechaPresentacionDesde, null, {'label_attr': {'class': 'control-label col-sm-5'}}) }}
-		<div class="col-sm-7">
-			{{ form_errors(search_form.fechaPresentacionDesde) }}
-			{{ form_widget(search_form.fechaPresentacionDesde) }}
-		</div>
-	</div>
-	<div class="form-group row">
-		{{ form_label(search_form.fechaPresentacionHasta, null, {'label_attr': {'class': 'control-label col-sm-5'}}) }}
-		<div class="col-sm-7">
-			{{ form_errors(search_form.fechaPresentacionHasta) }}
-			{{ form_widget(search_form.fechaPresentacionHasta) }}
-		</div>
-	</div>
-	<div class="form-group row">
 		{{ form_label(search_form.fechaIngresoDesde, null, {'label_attr': {'class': 'control-label col-sm-5'}}) }}
 		<div class="col-sm-7">
 			{{ form_errors(search_form.fechaIngresoDesde) }}
@@ -38,13 +24,6 @@
 		<div class="col-sm-7">
 			{{ form_errors(search_form.fechaIngresoHasta) }}
 			{{ form_widget(search_form.fechaIngresoHasta) }}
-		</div>
-	</div>
-	<div class="form-group row">
-		{{ form_label(search_form.fechaFin, null, {'label_attr': {'class': 'control-label col-sm-5'}}) }}
-		<div class="col-sm-7">
-			{{ form_errors(search_form.fechaFin) }}
-			{{ form_widget(search_form.fechaFin) }}
 		</div>
 	</div>
 	<div class="form-group row">
@@ -72,6 +51,17 @@
 		{{ form_label(search_form.solicita_adelanto, null, {'label_attr': {'class': 'control-label col-sm-5'}}) }}
 		<div class="col-sm-7">
 			{% for child in search_form.solicita_adelanto %}
+				<div class="form-check-inline">
+					{{ form_widget(child, {'attr': { 'class': 'form-check-inline', 'value': child.vars.value  } }) }}
+					{{ form_label(child, null, {'attr' : { 'label_attr': {'class': 'form-check-label'}}}) }}
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+	<div class="form-group row">
+		{{ form_label(search_form.plurianual, null, {'label_attr': {'class': 'control-label col-sm-5'}}) }}
+		<div class="col-sm-7">
+			{% for child in search_form.plurianual %}
 				<div class="form-check-inline">
 					{{ form_widget(child, {'attr': { 'class': 'form-check-inline', 'value': child.vars.value  } }) }}
 					{{ form_label(child, null, {'attr' : { 'label_attr': {'class': 'form-check-label'}}}) }}

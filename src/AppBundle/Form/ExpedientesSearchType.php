@@ -39,15 +39,13 @@ class ExpedientesSearchType extends AbstractType
           $builder
           ->add('numeroInterno', TextType::class, array("attr"=> array("class"=>"form-control"),'required'=>false))
           ->add('numeroExpediente', TextType::class, array("attr"=> array("class"=>"form-control"),'required'=>false))
-          ->add('fechaPresentacionDesde', DateType::class, array('label' => 'Fecha de Presentación Desde','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD"),'mapped'=>false))
-          ->add('fechaPresentacionHasta', DateType::class, array('label' => 'Fecha de Presentación Hasta','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD"),'mapped'=>false))
           ->add('fechaIngresoDesde', DateType::class, array('label' => 'Fecha de Ingreso Desde','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD"),'mapped'=>false))
           ->add('fechaIngresoHasta', DateType::class, array('label' => 'Fecha de Ingreso Hasta','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD"),'mapped'=>false))
-          ->add('fechaFin', DateType::class, array('label' => 'Fecha de Fin','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
           ->add('profesional', EntityType::class, array("attr"=> array("class"=>"form-control"),'class'=>'AppBundle\Entity\Profesionales'  ,'placeholder' => '', 'query_builder' => function (EntityRepository $er) { return $er->createQueryBuilder('p')->OrderBy('p.apellidoNombre','ASC');},'mapped'=>false))
           ->add('estado', EntityType::class, array("attr"=> array("class"=>"form-control"),'class'=>'AppBundle\Entity\TiposEstadosPrincipales','placeholder' => "",'mapped'=>false))
           ->add('areaEncuentraExpediente', EntityType::class, array("attr"=> array("class"=>"form-control"),'class'=>'AppBundle\Entity\Areas','placeholder' => "",'mapped'=>false))
           ->add('solicita_adelanto', ChoiceType::class, array('choices'=>array('Todos'=>null,'Sí'=>true, 'No'=>false),"attr"=> array("class"=>"form-control form-check-inline"),'expanded'=>true, 'multiple'=>false,'empty_data'=>false, 'mapped'=>false))
+          ->add('plurianual', ChoiceType::class, array('choices'=>array('Todos'=>null,'Sí'=>true, 'No'=>false),"attr"=> array("class"=>"form-control form-check-inline"),'expanded'=>true, 'multiple'=>false,'empty_data'=>false, 'mapped'=>false))
           // ->add('exportar', SubmitType::class)
           ->add('buscar', SubmitType::class, array('attr'=>array('class'=>'btn btn-primary pull-right')));
 

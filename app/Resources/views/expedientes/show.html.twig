@@ -61,6 +61,12 @@
                 <dd class="col-6">{{ expediente.numeroInterno }}</dd>
                 <dt class="col-6">Numero Expediente</dt>
                 <dd class="col-6">{{ expediente.numeroExpediente }}</dd>
+                <dt class="col-6">Provincia</dt>
+                <dd class="col-6">{{ expediente.departamento.provincia.nombre }}</dd>
+                <dt class="col-6">Departamento</dt>
+                <dd class="col-6">{{ expediente.departamento }}</dd>
+                <dt class="col-6">Año del expediente</dt>
+                <dd class="col-6">{{ expediente.anio }}</dd>
                 <dt class="col-6">Titulares</dt>
                 <dd class="col-6">
                   {% for titular in expediente.titulares %}
@@ -76,10 +82,14 @@
                 <dd class="col-6">{% if expediente.fechaPresentacion %}{{ expediente.fechaPresentacion|date('d-m-Y') }}{% endif %}</dd>
                 <dt class="col-6">Fecha Ingreso</dt>
                 <dd class="col-6">{% if expediente.fechaIngreso %}{{ expediente.fechaIngreso|date('d-m-Y') }}{% endif %}</dd>
-                <dt class="col-6">Fecha Fin</dt>
-                <dd class="col-6">{% if expediente.fechaFin %}{{ expediente.fechaFin|date('d-m-Y') }}{% endif %}</dd>
                 <dt class="col-6">Estado</dt>
                 <dd class="col-6">{{ expediente.estado }}</dd>
+                <dt class="col-6">Solicita Adelanto</dt>
+                <dd class="col-6">{% if expediente.solicitaAdelanto %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</dd>
+                <dt class="col-6">Plurianual</dt>
+                <dd class="col-6">{% if expediente.plurianual %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</dd>
+                <dt class="col-6">Área donde se encuentra Expediente</dt>
+                <dd class="col-6">{{ expediente.areaEncuentraExpediente }}</dd>
                 <dt class="col-6">Estado Área Contable</dt>
                 <dd class="col-6">{{ expediente.estadoAreaContable }}</dd>
                 <dt class="col-6">Estado Área Legales</dt>
@@ -90,18 +100,6 @@
                 <dd class="col-6">{{ expediente.estadoAreaSig }}</dd>
                 <dt class="col-6">Estado Foresto Industrial</dt>
                 <dd class="col-6">{{ expediente.estadoForestoIndustriales }}</dd>
-                <dt class="col-6">Área donde se encuentra Expediente</dt>
-                <dd class="col-6">{{ expediente.areaEncuentraExpediente }}</dd>
-                <dt class="col-6">Provincia</dt>
-                <dd class="col-6">{{ expediente.departamento.provincia.nombre }}</dd>
-                <dt class="col-6">Departamento</dt>
-                <dd class="col-6">{{ expediente.departamento }}</dd>
-                <dt class="col-6">Año del expediente</dt>
-                <dd class="col-6">{{ expediente.anio }}</dd>
-                <dt class="col-6">Solicita Adelanto</dt>
-                <dd class="col-6">{% if expediente.solicitaAdelanto %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</dd>
-                <dt class="col-6">Creado</dt>
-                <dd class="col-6">{% if expediente.createdAt %}{{ expediente.createdAt|date('d-m-Y') }}{% endif %}</dd>
               </dl>
             </div>
           </div>

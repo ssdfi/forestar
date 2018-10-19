@@ -65,7 +65,8 @@ class ExpedientesType extends AbstractType
           ->add('estadoAreaSig')
           ->add('estadoForestoIndustriales')
           ->add('areaEncuentraExpediente')
-          ->add('solicitaAdelanto', CheckboxType::class, array('attr' => array('data-label' => 'Solicita Adelanto'), 'label' => false, 'required'=>false));
+          ->add('solicitaAdelanto', CheckboxType::class, array('attr' => array('data-label' => 'Solicita Adelanto'), 'label' => false, 'required'=>false))
+          ->add('plurianual', CheckboxType::class, array('attr' => array('data-label' => 'Plurianual'), 'label' => false, 'required'=>false));
           }
           if (in_array('cobroBeneficios', $options['roles'])) {
             $builder->add('cobroBeneficios', CollectionType::class, array(

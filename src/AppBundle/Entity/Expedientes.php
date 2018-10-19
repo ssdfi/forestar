@@ -366,6 +366,13 @@ class Expedientes
     private $solicitaAdelanto;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="plurianual", type="boolean", nullable=true)
+     */
+    private $plurianual;
+
+    /**
     * One Expediente has Many Documentacion.
     * @ORM\OneToMany(targetEntity="DocumentosLegales", mappedBy="expediente")
     */
@@ -1431,6 +1438,18 @@ class Expedientes
     public function getSolicitaAdelanto()
     {
         return $this->solicitaAdelanto;
+    }
+
+    public function setPlurianual($plurianual)
+    {
+        $this->plurianual = $plurianual;
+
+        return $this;
+    }
+
+    public function getPlurianual()
+    {
+        return $this->plurianual;
     }
 
     public function getTitulares()
