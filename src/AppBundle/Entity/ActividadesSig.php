@@ -55,7 +55,7 @@ class ActividadesSig
     /**
      * @var integer
      *
-     * @ORM\Column(name="superficie_ha", type="bigint", nullable=true)
+     * @ORM\Column(name="superficie_ha", type="float", nullable=true)
      */
     private $superficieHa;
 

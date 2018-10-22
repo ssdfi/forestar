@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ActividadesPresentadasType extends AbstractType
@@ -19,8 +19,8 @@ class ActividadesPresentadasType extends AbstractType
     {
         $builder
           ->add('especie', EntityType::class, array('class'=>'AppBundle\Entity\Especies','required'=>true,'label' => false))
-          ->add('superficieHa', IntegerType::class, array('label'=>false,'required'=>false))
-          ->add('densidad', IntegerType::class, array('label'=>false,'required'=>false))
+          ->add('superficieHa', NumberType::class, array('label'=>false,'required'=>false))
+          ->add('densidad', NumberType::class, array('label'=>false,'required'=>false))
           ->add('fechaRealizacion', DateType::class, array('label' => false,'widget'=>'single_text','format' => 'yyyy-MM','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM")))
           // ->add('fechaInicio', DateType::class, array('label' => false,'widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
           // ->add('fechaFinActividad', DateType::class, array('label' => false,'widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))

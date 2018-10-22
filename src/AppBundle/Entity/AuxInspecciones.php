@@ -60,7 +60,7 @@ class AuxInspecciones
     /**
      * @var integer
      *
-     * @ORM\Column(name="ins_sup", type="bigint", nullable=true)
+     * @ORM\Column(name="ins_sup", type="floar", nullable=true)
      */
     private $insSup;
 

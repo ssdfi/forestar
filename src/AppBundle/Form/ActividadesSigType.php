@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ActividadesSigType extends AbstractType
@@ -19,7 +19,7 @@ class ActividadesSigType extends AbstractType
     {
         $builder
           ->add('especie', EntityType::class, array('class'=>'AppBundle\Entity\Especies','required'=>true,'label' => false))
-          ->add('superficieHa', IntegerType::class, array('label'=>false,'required'=>false))
+          ->add('superficieHa', NumberType::class, array('label'=>false,'required'=>false))
           ->add('departamento',EntityType::class, array('class'=>'AppBundle\Entity\Departamentos','required'=>true,'label' => false))
           // ->add('historialSigId')
           // ->add('fechaRegistro')

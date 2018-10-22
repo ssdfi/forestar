@@ -53,14 +53,14 @@ class Ingreso
     /**
      * @var integer
      *
-     * @ORM\Column(name="ing_sup", type="bigint", nullable=true)
+     * @ORM\Column(name="ing_sup", type="float", nullable=true)
      */
     private $ingSup;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="ing_den", type="bigint", nullable=true)
+     * @ORM\Column(name="ing_den", type="float", nullable=true)
      */
     private $ingDen;
 

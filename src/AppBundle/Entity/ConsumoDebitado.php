@@ -134,7 +134,7 @@ class ConsumoDebitado
     /**
      * @var integer
      *
-     * @ORM\Column(name="coeficiente_conversion", type="bigint", nullable=true)
+     * @ORM\Column(name="coeficiente_conversion", type="float", nullable=true)
      */
     private $coeficienteConversion;
 

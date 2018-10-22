@@ -39,7 +39,7 @@ class AuxActividades
     /**
      * @var integer
      *
-     * @ORM\Column(name="superficie_afectada", type="bigint", nullable=true)
+     * @ORM\Column(name="superficie_afectada", type="float", nullable=true)
      */
     private $superficieAfectada;
 
@@ -53,7 +53,7 @@ class AuxActividades
     /**
      * @var integer
      *
-     * @ORM\Column(name="densidad", type="bigint", nullable=true)
+     * @ORM\Column(name="densidad", type="float", nullable=true)
      */
     private $densidad;
 

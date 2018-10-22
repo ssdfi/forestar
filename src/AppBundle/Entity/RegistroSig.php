@@ -109,140 +109,140 @@ class RegistroSig
     /**
      * @var integer
      *
-     * @ORM\Column(name="superficie_presentada", type="integer", nullable=true)
+     * @ORM\Column(name="superficie_presentada", type="float", nullable=true)
      */
     private $superficiePresentada;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="superficie_poda_presentada", type="integer", nullable=true)
+     * @ORM\Column(name="superficie_poda_presentada", type="float", nullable=true)
      */
     private $superficiePodaPresentada;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="superficie_poda_raleo", type="integer", nullable=true)
+     * @ORM\Column(name="superficie_poda_raleo", type="float", nullable=true)
      */
     private $superficiePodaRaleo;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="superficie_poda_rebrote", type="integer", nullable=true)
+     * @ORM\Column(name="superficie_poda_rebrote", type="float", nullable=true)
      */
     private $superficiePodaRebrote;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="superficie_poda_bosque_nativo", type="integer", nullable=true)
+     * @ORM\Column(name="superficie_poda_bosque_nativo", type="float", nullable=true)
      */
     private $superficiePodaBosqueNativo;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="certificacion_plantacion", type="integer", nullable=true)
+     * @ORM\Column(name="certificacion_plantacion", type="float", nullable=true)
      */
     private $certificacionPlantacion;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="certificacion_poda", type="integer", nullable=true)
+     * @ORM\Column(name="certificacion_poda", type="float", nullable=true)
      */
     private $certificacionPoda;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="certificacion_raleo", type="integer", nullable=true)
+     * @ORM\Column(name="certificacion_raleo", type="float", nullable=true)
      */
     private $certificacionRaleo;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="certificacion_rebrote", type="integer", nullable=true)
+     * @ORM\Column(name="certificacion_rebrote", type="float", nullable=true)
      */
     private $certificacionRebrote;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="certificacion_bosque_nativo", type="integer", nullable=true)
+     * @ORM\Column(name="certificacion_bosque_nativo", type="float", nullable=true)
      */
     private $certificacionBosqueNativo;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="inspeccion_plantacion", type="integer", nullable=true)
+     * @ORM\Column(name="inspeccion_plantacion", type="float", nullable=true)
      */
     private $inspeccionPlantacion;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="inspeccion_poda", type="integer", nullable=true)
+     * @ORM\Column(name="inspeccion_poda", type="float", nullable=true)
      */
     private $inspeccionPoda;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="inspeccion_raleo", type="integer", nullable=true)
+     * @ORM\Column(name="inspeccion_raleo", type="float", nullable=true)
      */
     private $inspeccionRaleo;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="inspeccion_rebrote", type="integer", nullable=true)
+     * @ORM\Column(name="inspeccion_rebrote", type="float", nullable=true)
      */
     private $inspeccionRebrote;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="inspeccion_bosque_nativo", type="integer", nullable=true)
+     * @ORM\Column(name="inspeccion_bosque_nativo", type="float", nullable=true)
      */
     private $inspeccionBosqueNativo;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="registrado_plantacion", type="integer", nullable=true)
+     * @ORM\Column(name="registrado_plantacion", type="float", nullable=true)
      */
     private $registradoPlantacion;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="registrado_poda", type="integer", nullable=true)
+     * @ORM\Column(name="registrado_poda", type="float", nullable=true)
      */
     private $registradoPoda;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="registrado_raleo", type="integer", nullable=true)
+     * @ORM\Column(name="registrado_raleo", type="float", nullable=true)
      */
     private $registradoRaleo;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="registrado_rebrote", type="integer", nullable=true)
+     * @ORM\Column(name="registrado_rebrote", type="float", nullable=true)
      */
     private $registradoRebrote;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="registrado_bosque_nativo", type="integer", nullable=true)
+     * @ORM\Column(name="registrado_bosque_nativo", type="float", nullable=true)
      */
     private $registradoBosqueNativo;
 

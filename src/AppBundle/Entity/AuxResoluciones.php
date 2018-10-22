@@ -60,14 +60,14 @@ class AuxResoluciones
     /**
      * @var integer
      *
-     * @ORM\Column(name="superficie", type="bigint", nullable=true)
+     * @ORM\Column(name="superficie", type="float", nullable=true)
      */
     private $superficie;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="monto", type="bigint", nullable=true)
+     * @ORM\Column(name="monto", type="float", nullable=true)
      */
     private $monto;
 

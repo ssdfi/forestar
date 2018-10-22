@@ -68,7 +68,7 @@ class MovimientoExpedienteVivero
     /**
      * @var integer
      *
-     * @ORM\Column(name="superficie", type="bigint", nullable=true)
+     * @ORM\Column(name="superficie", type="float", nullable=true)
      */
     private $superficie;
 

@@ -32,105 +32,105 @@ class Sumsup
     /**
      * @var integer
      *
-     * @ORM\Column(name="pre_plantacion", type="bigint", nullable=true)
+     * @ORM\Column(name="pre_plantacion", type="float", nullable=true)
      */
     private $prePlantacion;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="pre_poda", type="bigint", nullable=true)
+     * @ORM\Column(name="pre_poda", type="float", nullable=true)
      */
     private $prePoda;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="pre_raleo", type="bigint", nullable=true)
+     * @ORM\Column(name="pre_raleo", type="float", nullable=true)
      */
     private $preRaleo;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="pre_m_rebrote", type="bigint", nullable=true)
+     * @ORM\Column(name="pre_m_rebrote", type="float", nullable=true)
      */
     private $preMRebrote;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="pre_b_nativo", type="bigint", nullable=true)
+     * @ORM\Column(name="pre_b_nativo", type="float", nullable=true)
      */
     private $preBNativo;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="cer_plantacion", type="bigint", nullable=true)
+     * @ORM\Column(name="cer_plantacion", type="float", nullable=true)
      */
     private $cerPlantacion;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="cer_poda", type="bigint", nullable=true)
+     * @ORM\Column(name="cer_poda", type="float", nullable=true)
      */
     private $cerPoda;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="cer_raleo", type="bigint", nullable=true)
+     * @ORM\Column(name="cer_raleo", type="float", nullable=true)
      */
     private $cerRaleo;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="cer_m_rebrote", type="bigint", nullable=true)
+     * @ORM\Column(name="cer_m_rebrote", type="float", nullable=true)
      */
     private $cerMRebrote;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="cer_b_nativo", type="bigint", nullable=true)
+     * @ORM\Column(name="cer_b_nativo", type="float", nullable=true)
      */
     private $cerBNativo;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="ins_plantacion", type="bigint", nullable=true)
+     * @ORM\Column(name="ins_plantacion", type="float", nullable=true)
      */
     private $insPlantacion;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="ins_poda", type="bigint", nullable=true)
+     * @ORM\Column(name="ins_poda", type="float", nullable=true)
      */
     private $insPoda;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="ins_raleo", type="bigint", nullable=true)
+     * @ORM\Column(name="ins_raleo", type="float", nullable=true)
      */
     private $insRaleo;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="ins_m_rebrote", type="bigint", nullable=true)
+     * @ORM\Column(name="ins_m_rebrote", type="float", nullable=true)
      */
     private $insMRebrote;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="ins_b_nativo", type="bigint", nullable=true)
+     * @ORM\Column(name="ins_b_nativo", type="float", nullable=true)
      */
     private $insBNativo;
 

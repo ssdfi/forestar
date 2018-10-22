@@ -46,7 +46,7 @@ class Avisocosecha
     /**
      * @var integer
      *
-     * @ORM\Column(name="kilos", type="bigint", nullable=true)
+     * @ORM\Column(name="kilos", type="float", nullable=true)
      */
     private $kilos;
 
@@ -60,7 +60,7 @@ class Avisocosecha
     /**
      * @var integer
      *
-     * @ORM\Column(name="metros", type="bigint", nullable=true)
+     * @ORM\Column(name="metros", type="float", nullable=true)
      */
     private $metros;
 
