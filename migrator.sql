@@ -1704,7 +1704,7 @@ UPDATE registro_sig aa SET expediente_id = att.expediente_id FROM actividades_ti
 UPDATE resoluciones aa SET expediente_id = att.expediente_id FROM actividades_titulares att WHERE aa.expediente_id = att.old_expediente_id AND att.expediente_id is not null;
 UPDATE aux_actividades aa SET exp_id = att.expediente_id FROM actividades_titulares att WHERE aa.exp_id = att.old_expediente_id AND att.expediente_id is not null;
 
---UPDATE actividades_titulares SET expediente_id = null WHERE expediente_id = old_expediente_id
+--UPDATE actividades_titulares SET expediente_id = null WHERE expediente_id = old_expediente_id 
 DELETE from expedientes e where e.id in (select old_expediente_id from actividades_titulares);
 
 UPDATE titulares t set pequenio_productor = true where t.id in (select titular_id from actividades_titulares);
