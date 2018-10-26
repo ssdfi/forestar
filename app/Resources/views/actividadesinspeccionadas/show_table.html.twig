@@ -13,8 +13,8 @@
   </thead>
   <tbody>
     {% for actividadInspeccionada in expediente.actividadesInspeccionadas %}
-    <tr data-link="{{ path('expedientes_show', { 'id': actividadInspeccionada.id }) }}">
-      <td><a href="{{ path('expedientes_show', { 'id': actividadInspeccionada.id }) }}">{{ actividadInspeccionada.id }}</a></td>
+    <tr>
+      <td>{{ actividadInspeccionada.id }}</a></td>
       <td><abbr title="{{ actividadInspeccionada.tipoActividad }}" data-length="10">{{ actividadInspeccionada.tipoActividad }}</abbr></td>
       <td>{{ actividadInspeccionada.especie }}</td>
       <td>{{ actividadInspeccionada.superficieHa }}</td>

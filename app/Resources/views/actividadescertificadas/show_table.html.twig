@@ -12,8 +12,8 @@
   </thead>
   <tbody>
     {% for actividadCertificada in actividadesCertificadas %}
-    <tr data-link="{{ path('expedientes_show', { 'id': actividadCertificada.id }) }}">
-      <td><a href="{{ path('expedientes_show', { 'id': actividadCertificada.id }) }}">{{ actividadCertificada.id }}</a></td>
+    <tr>
+      <td>{{ actividadCertificada.id }}</a></td>
       <td>{{ actividadCertificada.tipoActividad }}</td>
       <td>{{ actividadCertificada.especie }}</td>
       <td>{{ actividadCertificada.superficieHa }}</td>

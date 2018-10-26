@@ -11,8 +11,8 @@
   </thead>
   <tbody>
     {% for actividadPresentada in actividadesPresentadas %}
-    <tr data-link="{{ path('expedientes_show', { 'id': actividadPresentada.id }) }}">
-      <td><a href="{{ path('expedientes_show', { 'id': actividadPresentada.id }) }}">{{ actividadPresentada.id }}</a></td>
+    <tr>
+      <td>{{ actividadPresentada.id }}</a></td>
       <td>{{ actividadPresentada.tipoActividad }}</td>
       <td>{{ actividadPresentada.especie }}</td>
       <td>{{ actividadPresentada.superficieHa }}</td>
