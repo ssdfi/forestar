@@ -58,15 +58,27 @@ class ExpedientesType extends AbstractType
           ->add('fechaPresentacion', DateType::class, array('label' => 'Fecha de Presentación','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
           ->add('fechaIngreso', DateType::class, array('label' => 'Fecha de Ingreso','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
           ->add('fechaFin',DateType::class, array('label' => 'Fecha Fin','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
-          ->add('estado')
-          ->add('estadoAreaContable')
-          ->add('estadoAreaLegales')
-          ->add('estadoAreaPromocion')
-          ->add('estadoAreaSig')
-          ->add('estadoForestoIndustriales')
           ->add('areaEncuentraExpediente')
           ->add('solicitaAdelanto', CheckboxType::class, array('attr' => array('data-label' => 'Solicita Adelanto'), 'label' => false, 'required'=>false))
           ->add('plurianual', CheckboxType::class, array('attr' => array('data-label' => 'Plurianual'), 'label' => false, 'required'=>false));
+          }
+          if (in_array('estado', $options['roles'])) {
+            $builder->add('estado');
+          }
+          if (in_array('estadoAreaContable', $options['roles'])) {
+            $builder->add('estadoAreaContable');
+          }
+          if (in_array('estadoAreaLegales', $options['roles'])) {
+            $builder->add('estadoAreaLegales');
+          }
+          if (in_array('estadoAreaPromocion', $options['roles'])) {
+            $builder->add('estadoAreaPromocion');
+          }
+          if (in_array('estadoAreaSig', $options['roles'])) {
+            $builder->add('estadoAreaSig');
+          }
+          if (in_array('estadoForestoIndustriales', $options['roles'])) {
+            $builder->add('estadoForestoIndustriales');
           }
           if (in_array('cobroBeneficios', $options['roles'])) {
             $builder->add('cobroBeneficios', CollectionType::class, array(

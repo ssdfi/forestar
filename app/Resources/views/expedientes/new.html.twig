@@ -15,10 +15,7 @@
 			<div class="col-md-12">
 				<div class="nav nav-pills flex-column flex-sm-row nav-fill bg-light">
 					{% if (is_granted('ROLE_ADMIN') or is_granted('ROLE_DATA_ENTRY')) %}
-						<a class="nav-item nav-link active border" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-expediente" role="tab" aria-controls="v-pills-home" aria-selected="true">Expediente</a>
-					{% endif %}
-					{% if form.actividadesPresentadas is defined %}
-						<a class="nav-item nav-link border" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-presentacion" role="tab" aria-controls="v-pills-profile" aria-selected="false">Presentación</a>
+						<a class="nav-item nav-link active border" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-expediente" role="tab" aria-controls="v-pills-home" aria-selected="true">Presentación</a>
 					{% endif %}
 					{% if form.actividadesCertificadas is defined %}
 						<a class="nav-item nav-link border" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-certificacion" role="tab" aria-controls="v-pills-profile" aria-selected="false">Certificación</a>
@@ -168,25 +165,35 @@
 							{{form_row(form.fechaPresentacion)}}
 							{{form_row(form.fechaIngreso)}}
 							{{form_row(form.fechaFin)}}
-							{{form_row(form.estado)}}
-							{{form_row(form.estadoAreaContable)}}
-							{{form_row(form.estadoAreaLegales)}}
-							{{form_row(form.estadoAreaPromocion)}}
-							{{form_row(form.estadoAreaSig)}}
-							{{form_row(form.estadoForestoIndustriales)}}
+							{% if form.estado is defined %}
+								{{form_row(form.estado)}}
+							{% endif %}
+							{% if form.estadoAreaContable is defined %}
+								{{form_row(form.estadoAreaContable)}}
+							{% endif %}
+							{% if form.estadoAreaLegales is defined %}
+								{{form_row(form.estadoAreaLegales)}}
+							{% endif %}
+							{% if form.estadoAreaPromocion is defined %}
+								{{form_row(form.estadoAreaPromocion)}}
+							{% endif %}
+							{% if form.estadoAreaSig is defined %}
+								{{form_row(form.estadoAreaSig)}}
+							{% endif %}
+							{% if form.estadoForestoIndustriales is defined %}
+								{{form_row(form.estadoForestoIndustriales)}}
+							{% endif %}
 							{{form_row(form.areaEncuentraExpediente)}}
 							{{form_row(form.solicitaAdelanto)}}
 							{{form_row(form.plurianual)}}
+							{% if form.actividadesPresentadas is defined %}
+									<h4>Actividades Presentadas</h4>
+									{% embed "actividadespresentadas/table.html.twig" with {
+										'actividadesPresentadas' : form.actividadesPresentadas
+									} %}{% endembed %}
+							{% endif %}
 						</div>
 					</div>
-					{% endif %}
-					{% if form.actividadesPresentadas is defined %}
-						<div class="tab-pane fade" id="v-pills-presentacion" role="tabpanel" aria-labelledby="v-pills-presentacion-tab">
-							<h4>Editar Actividades Presentadas</h4>
-							{% embed "actividadespresentadas/table.html.twig" with {
-								'actividadesPresentadas' : form.actividadesPresentadas
-							} %}{% endembed %}
-						</div>
 					{% endif %}
 					{% if form.actividadesCertificadas is defined %}
 					<div class="tab-pane fade" id="v-pills-certificacion" role="tabpanel" aria-labelledby="v-pills-profile-tab">
