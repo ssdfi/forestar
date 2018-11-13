@@ -35,6 +35,7 @@
             <th scope="col">Documento</th>
             <th scope="col">Sexo</th>
             <th scope="col">Tipo de documento</th>
+            <th scope="col">Condicional</th>
           </tr>
         </thead>
         <tbody>
@@ -47,6 +48,7 @@
                   <td>{{ titulare.documento }}</td>
                   <td>{{ titulare.sexo }}</td>
                   <td>{{ titulare.tipoDocumento }}</td>
+                  <td>{% if titulare.condicional %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</td>
               </tr>
           {% endfor %}
         </tbody>

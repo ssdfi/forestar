@@ -57,8 +57,13 @@ class ExpedientesType extends AbstractType
               )
           ->add('fechaPresentacion', DateType::class, array('label' => 'Fecha de Presentación','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
           ->add('fechaIngreso', DateType::class, array('label' => 'Fecha de Ingreso','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
-          ->add('fechaFin',DateType::class, array('label' => 'Fecha Fin','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
-          ->add('areaEncuentraExpediente')
+          ->add('areaEncuentraExpediente',EntityType::class, array('class'=>'AppBundle\Entity\Areas','query_builder' => function (EntityRepository $er) {
+                                                                      return $er->createQueryBuilder('b')
+                                                                                ->where('b.id <> 7')
+                                                                                ->andWhere('b.id <> 8')
+                                                                                ->andWhere('b.id <> 9')
+                                                                                ->orderBy('b.nombre','asc');
+                                                                   }))
           ->add('solicitaAdelanto', CheckboxType::class, array('attr' => array('data-label' => 'Solicita Adelanto'), 'label' => false, 'required'=>false))
           ->add('plurianual', CheckboxType::class, array('attr' => array('data-label' => 'Plurianual'), 'label' => false, 'required'=>false));
           }

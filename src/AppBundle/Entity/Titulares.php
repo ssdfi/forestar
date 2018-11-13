@@ -148,6 +148,13 @@ class Titulares
      */
     private $pequenioProductor;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="condicional", type="boolean", nullable=true)
+     */
+    private $condicional;
+
     public function __construct(){
       $this->emails = new ArrayCollection();
       $this->telefonos = new ArrayCollection();
@@ -521,5 +528,29 @@ class Titulares
     public function addExpediente($exp)
     {
         $this->expedientes = $exp;
+    }
+
+    /**
+     * Set condicional
+     *
+     * @param boolean $condicional
+     *
+     * @return Titulares
+     */
+    public function setCondicional($condicional)
+    {
+        $this->condicional = $condicional;
+
+        return $this;
+    }
+
+    /**
+     * Get condicional
+     *
+     * @return boolean
+     */
+    public function getCondicional()
+    {
+        return $this->condicional;
     }
 }

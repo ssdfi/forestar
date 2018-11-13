@@ -6,8 +6,7 @@
       <th scope="col">Especie</th>
       <th scope="col">Superficie(ha).</th>
       <th scope="col">Densidad</th>
-      <th scope="col">Fecha de Inicio</th>
-      <th scope="col">Fecha Fin de Actividad</th>
+      <th scope="col">Fecha de Realización</th>
     </tr>
   </thead>
   <tbody>
@@ -18,8 +17,7 @@
       <td>{{ actividadCertificada.especie }}</td>
       <td>{{ actividadCertificada.superficieHa }}</td>
       <td>{{ actividadCertificada.densidad }}</td>
-      <td>{% if actividadCertificada.fechaInicio %}{{ actividadCertificada.fechaInicio|date('d-m-Y') }}{% endif %}</td>
-      <td>{% if actividadCertificada.fechaFinActividad %}{{ actividadCertificada.fechaFinActividad|date('d-m-Y') }}{% endif %}</td>
+      <td>{% if actividadCertificada.fechaInicio %}{{ actividadCertificada.fechaInicio|date('m-Y') }}{% endif %}</td>
     </tr>
     {% endfor %}
   </tbody>

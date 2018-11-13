@@ -21,11 +21,12 @@ class TitularesType extends AbstractType
           ->add('tipoDocumento')
           ->add('cuit')
           ->add('documento')
-          ->add('fechaNacimiento', DateType::class, array('label' => 'Fecha de Presentación','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
+          ->add('fechaNacimiento', DateType::class, array('label' => 'Fecha de Nacimiento','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
           ->add('sexo')
           ->add('aprobado', CheckboxType::class, array('attr' => array('data-label' => 'Aprobado'), 'label' => false, 'required'=>false))
           ->add('numeroRegistro')
-          ->add('pequenio_productor', CheckboxType::class, array('attr' => array('data-label' => 'Pequeño Productor'), 'label' => false, 'required'=>false));
+          ->add('pequenio_productor', CheckboxType::class, array('attr' => array('data-label' => 'Pequeño Productor'), 'label' => false, 'required'=>false))
+          ->add('condicional', CheckboxType::class, array('attr' => array('data-label' => 'Titular Condicional'), 'label' => false, 'required'=>false));
     }/**
      * {@inheritdoc}
      */

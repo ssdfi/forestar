@@ -172,7 +172,9 @@ class TitularesController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('titulares_edit', array('id' => $titulare->getId()));
+            return $this->render('titulares/show.html.twig', array(
+                'titulare' => $titulare
+            ));
         }
 
         return $this->render('titulares/edit.html.twig', array(

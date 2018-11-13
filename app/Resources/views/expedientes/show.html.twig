@@ -48,7 +48,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
           <div class="card border-info">
             <div class="card-header bg-info text-white">
               Expediente
@@ -90,21 +90,34 @@
                 <dd class="col-6">{% if expediente.plurianual %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</dd>
                 <dt class="col-6">Área donde se encuentra Expediente</dt>
                 <dd class="col-6">{{ expediente.areaEncuentraExpediente }}</dd>
-                <dt class="col-6">Estado Área Contable</dt>
-                <dd class="col-6">{{ expediente.estadoAreaContable }}</dd>
-                <dt class="col-6">Estado Área Legales</dt>
-                <dd class="col-6">{{ expediente.estadoAreaLegales }}</dd>
-                <dt class="col-6">Estado Área Promocion</dt>
-                <dd class="col-6">{{ expediente.estadoAreaPromocion }}</dd>
-                <dt class="col-6">Estado Área SIG</dt>
-                <dd class="col-6">{{ expediente.estadoAreaSig }}</dd>
-                <dt class="col-6">Estado Foresto Industrial</dt>
-                <dd class="col-6">{{ expediente.estadoForestoIndustriales }}</dd>
+                <dt class="col-12"><a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Estados por Área</a></dt>
+                <dd class="col-12">
+                  <div class="row">
+                    <div class="col">
+                      <div class="collapse multi-collapse" id="multiCollapseExample1">
+                        <div class="card card-body">
+                          <dl class="row">
+                            <dt class="col-12">Contable</dt>
+                            <dd class="col-12">{{ expediente.estadoAreaContable }}</dd>
+                            <dt class="col-12">Legales</dt>
+                            <dd class="col-12">{{ expediente.estadoAreaLegales }}</dd>
+                            <dt class="col-12">Promocion</dt>
+                            <dd class="col-12">{{ expediente.estadoAreaPromocion }}</dd>
+                            <dt class="col-12">SIG</dt>
+                            <dd class="col-12">{{ expediente.estadoAreaSig }}</dd>
+                            <dt class="col-12">Foresto Industrial</dt>
+                            <dd class="col-12">{{ expediente.estadoForestoIndustriales }}</dd>
+                          </dl>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </dd>
               </dl>
             </div>
           </div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-8">
           <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-presentacion" role="tabpanel" aria-labelledby="nav-home-tab">
               {% embed "actividadespresentadas/show_table.html.twig" with { 'actividadesPresentadas': expediente.actividadesPresentadas} %}

@@ -33,9 +33,10 @@ class ProfesionalesType extends AbstractType
           ->add('cp')
           ->add('localidadId')
           ->add('foto')
-          ->add('idBudaf')
+          // ->add('idBudaf')
           ->add('tipoDocumento')
-          ->add('aprobado', CheckboxType::class, array('attr' => array('data-label' => 'Aprobado'), 'label' => false, 'required'=>false));
+          ->add('aprobado', CheckboxType::class, array('attr' => array('data-label' => 'Aprobado'), 'label' => false, 'required'=>false))
+          ->add('condicional', CheckboxType::class, array('attr' => array('data-label' => 'Titular Condicional'), 'label' => false, 'required'=>false));
     }/**
      * {@inheritdoc}
      */

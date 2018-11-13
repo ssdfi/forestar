@@ -186,6 +186,13 @@ class Profesionales
     */
     private $expedientes;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="condicional", type="boolean", nullable=true)
+     */
+    private $condicional;
+
     public function __construct(){
       $this->expedientes = new ArrayCollection();
     }
@@ -729,9 +736,34 @@ class Profesionales
         return $this->eliminado;
     }
 
-    public function getExpedientes(){
+    /**
+     * Set condicional
+     *
+     * @param boolean $condicional
+     *
+     * @return Titulares
+     */
+    public function setCondicional($condicional)
+    {
+        $this->condicional = $condicional;
+
+        return $this;
+    }
+
+    /**
+     * Get agrupador
+     *
+     * @return boolean
+     */
+    public function getCondicional()
+    {
+        return $this->condicional;
+    }
+
+    public function getExpedientes() {
       return $this->expedientes;
     }
+
     public function __toString() {
       return (string)$this->apellidoNombre;
     }

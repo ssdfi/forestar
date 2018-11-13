@@ -36,6 +36,7 @@
                 <th scope="col">Apellido Nombre</th>
                 <th scope="col">Email</th>
                 <th scope="col">Localidad</th>
+                <th scope="col">Condicional</th>
             </tr>
         </thead>
         <tbody>
@@ -48,6 +49,7 @@
                 <td>{{ profesionale.apellidoNombre }}</td>
                 <td>{{ profesionale.emailTitular|lower }}</td>
                 <td>{{ profesionale.localidadId }}</td>
+                <td>{% if profesionale.condicional %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</td>
             </tr>
         {% endfor %}
         </tbody>

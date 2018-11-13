@@ -44,6 +44,8 @@
               <dd class="col-8">{% if titulare.aprobado %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</dd>
               <dt class="col-4">Número de Registro</dt>
               <dd class="col-8">{{ titulare.numeroRegistro }}</dd>
+              <dt class="col-4">Condicional</dt>
+              <dd class="col-8">{% if titulare.condicional %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</dd>
             </dl>
           </div>
         </div>
@@ -60,7 +62,6 @@
               <th scope="col">Profesional a Cargo</th>
               <th scope="col">Fecha Presentacion</th>
               <th scope="col">Fecha Ingreso</th>
-              <th scope="col">Fecha Fin</th>
             </tr>
           </thead>
           <tbody>
@@ -73,7 +74,6 @@
               <td><abbr title="{{ expediente.profesionalCargo }}" data-length="10">{{ expediente.profesionalCargo }}</abbr></td>
               <td>{% if expediente.fechaPresentacion %}{{ expediente.fechaPresentacion|date('Y-m-d') }}{% endif %}</td>
               <td>{% if expediente.fechaIngreso %}{{ expediente.fechaIngreso|date('Y-m-d') }}{% endif %}</td>
-              <td>{% if expediente.fechaFin %}{{ expediente.fechaFin|date('Y-m-d') }}{% endif %}</td>
             </tr>
             {% endfor %}
           </tbody>
@@ -90,7 +90,6 @@
                  <th scope="col">Profesional a Cargo</th>
                  <th scope="col">Fecha Presentacion</th>
                  <th scope="col">Fecha Ingreso</th>
-                 <th scope="col">Fecha Fin</th>
                </tr>
              </thead>
              <tbody>
@@ -104,7 +103,6 @@
                      <td><abbr title="{{ item.expediente.profesionalCargo }}" data-length="10">{{ item.expediente.profesionalCargo }}</abbr></td>
                      <td>{% if item.expediente.fechaPresentacion %}{{ item.expediente.fechaPresentacion|date('Y-m-d') }}{% endif %}</td>
                      <td>{% if item.expediente.fechaIngreso %}{{ item.expediente.fechaIngreso|date('Y-m-d') }}{% endif %}</td>
-                     <td>{% if item.expediente.fechaFin %}{{ item.expediente.fechaFin|date('Y-m-d') }}{% endif %}</td>
                    </tr>
                  {% endif %}
                {% endfor %}

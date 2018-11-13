@@ -17,7 +17,10 @@
 					{% if (is_granted('ROLE_ADMIN') or is_granted('ROLE_DATA_ENTRY')) %}
 						<a class="nav-item nav-link active border" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-expediente" role="tab" aria-controls="v-pills-home" aria-selected="true">Presentación</a>
 					{% endif %}
-					{% if form.actividadesCertificadas is defined %}
+					{% if form.disposicionesProvinciales is defined and form.impactosAmbientales is defined %}
+						<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-evaluacion-provincial" role="tab" aria-controls="v-pills-messages" aria-selected="false">Evaluación Provincial</a>
+					{% endif %}
+					{% if form.actividadesCertificadas is defined and form.predios is defined%}
 						<a class="nav-item nav-link border" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-certificacion" role="tab" aria-controls="v-pills-profile" aria-selected="false">Certificación</a>
 					{% endif %}
 					{% if form.actividadesInspeccionadas is defined %}
@@ -31,15 +34,6 @@
 					{% endif %}
 					{% if form.beneficiosFiscalesSolicitados is defined %}
 						<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-beneficio-fiscal-solicitado" role="tab" aria-controls="v-pills-messages" aria-selected="false">Beneficio Fiscal Carga</a>
-					{% endif %}
-					{% if form.predios is defined %}
-						<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-predios" role="tab" aria-controls="v-pills-messages" aria-selected="false">Predios</a>
-					{% endif %}
-					{% if form.disposicionesProvinciales is defined %}
-						<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-disposiciones-provinciales" role="tab" aria-controls="v-pills-messages" aria-selected="false">Disposiciones Provinciales</a>
-					{% endif %}
-					{% if form.impactosAmbientales is defined %}
-						<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-impacto-ambiental" role="tab" aria-controls="v-pills-messages" aria-selected="false">Impacto Ambiental</a>
 					{% endif %}
 					{% if form.historialContables is defined %}
 						<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-analisis-area-contable" role="tab" aria-controls="v-pills-messages" aria-selected="false">Análisis Área Contable</a>
@@ -157,14 +151,8 @@
 									</div>
 								</div>
 							</div>
-							{% if form.cobroBeneficios is defined %}
-								{% embed "cobros_beneficios/table.html.twig" with {
-									'cobrosBeneficios' : form.cobroBeneficios
-								} %}{% endembed %}
-							{% endif %}
 							{{form_row(form.fechaPresentacion)}}
 							{{form_row(form.fechaIngreso)}}
-							{{form_row(form.fechaFin)}}
 							{% if form.estado is defined %}
 								{{form_row(form.estado)}}
 							{% endif %}
@@ -195,11 +183,16 @@
 						</div>
 					</div>
 					{% endif %}
-					{% if form.actividadesCertificadas is defined %}
+					{% if form.actividadesCertificadas is defined and form.predios is defined %}
 					<div class="tab-pane fade" id="v-pills-certificacion" role="tabpanel" aria-labelledby="v-pills-profile-tab">
 						<h4>Editar Actividades Certificadas</h4>
 						{% embed "actividadescertificadas/table.html.twig" with {
 							'actividadesCertificadas' : form.actividadesCertificadas
+						} %}{% endembed %}
+						<hr>
+						<h4>Editar Predios</h4>
+						{% embed "predios/table.html.twig" with {
+							'predios' : form.predios
 						} %}{% endembed %}
 					</div>
 					{% endif %}
@@ -235,28 +228,45 @@
 							} %}{% endembed %}
 						</div>
 					{% endif %}
-					{% if form.predios is defined %}
-						<div class="tab-pane fade" id="v-pills-predios" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-							<h4>Editar Predios</h4>
-							{% embed "predios/table.html.twig" with {
-								'predios' : form.predios
-							} %}{% endembed %}
-						</div>
-					{% endif %}
-					{% if form.disposicionesProvinciales is defined %}
-						<div class="tab-pane fade" id="v-pills-disposiciones-provinciales" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-							<h4>Editar Disposiciones Provinciales</h4>
-							{% embed "disposiciones_provinciales/table.html.twig" with {
-								'disposicionesProvinciales' : form.disposicionesProvinciales
-							} %}{% endembed %}
-						</div>
-					{% endif %}
-					{% if form.impactosAmbientales is defined %}
-						<div class="tab-pane fade" id="v-pills-impacto-ambiental" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-							<h4>Editar Impactos Ambientales</h4>
-							{% embed "impactos_ambientales/table.html.twig" with {
-								'impactosAmbientales' : form.impactosAmbientales
-							} %}{% endembed %}
+					{% if form.disposicionesProvinciales is defined and form.impactosAmbientales is defined %}
+						<div class="tab-pane fade" id="v-pills-evaluacion-provincial" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+							<h4>Editar Evaluación Provincial</h4>
+							<div id="accordion">
+								<div class="card">
+									<div class="card-header" id="headingOne">
+										<h5 class="mb-0">
+											<a class="btn" data-toggle="collapse" role="button" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+												<b> >> Disposiciones Provinciales</b>
+											</a>
+										</h5>
+									</div>
+									<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+										<div class="card-body">
+											<h4>Agregar Disposiciones Provinciales</h4>
+											{% embed "disposiciones_provinciales/table.html.twig" with {
+												'disposicionesProvinciales' : form.disposicionesProvinciales
+											} %}{% endembed %}
+										</div>
+									</div>
+								</div>
+								<div class="card">
+									<div class="card-header" id="headingTwo">
+										<h5 class="mb-0">
+											<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+												<b> >> Impactos Ambientales</b>
+											</a>
+										</h5>
+									</div>
+									<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+										<div class="card-body">
+											<h4>Agregar Impactos Ambientales</h4>
+											{% embed "impactos_ambientales/table.html.twig" with {
+											'impactosAmbientales' : form.impactosAmbientales
+											} %}{% endembed %}
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					{% endif %}
 					{% if form.historialContables is defined %}
