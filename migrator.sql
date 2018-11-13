@@ -1764,3 +1764,4 @@ UPDATE expedientes e SET plurianual = true WHERE id IN (SELECT expediente_id fro
 ALTER TABLE titulares ADD COLUMN condicional boolean;
 ALTER TABLE profesionales ADD COLUMN condicional boolean;
 INSERT INTO public.areas(id, nombre)VALUES (12,'MESA DE ENTRADA');
+ALTER TABLE historial_promocion ADD COLUMN valiosas boolean;
