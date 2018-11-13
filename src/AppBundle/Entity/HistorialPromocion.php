@@ -144,7 +144,12 @@ class HistorialPromocion
      */
     private $estadoViverosId;
 
-
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="valiosas", type="boolean", nullable=true)
+     */
+    private $valiosas;
 
     /**
      * Get id
@@ -495,5 +500,29 @@ class HistorialPromocion
     public function addExpediente($exp)
     {
         $this->expediente = $exp;
+    }
+
+    /**
+     * Set esForestoIndustrial
+     *
+     * @param boolean valiosa
+     *
+     * @return 10% valiosa
+     */
+    public function setValiosas($valiosas)
+    {
+        $this->valiosas = $valiosas;
+
+        return $this;
+    }
+
+    /**
+     * Get esForestoIndustrial
+     *
+     * @return boolean
+     */
+    public function getValiosas()
+    {
+        return $this->valiosas;
     }
 }

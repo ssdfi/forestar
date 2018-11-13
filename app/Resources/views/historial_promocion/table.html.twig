@@ -4,14 +4,8 @@
       <tr>
         <th>Fecha Inicio</th>
         <th>Fecha Fin</th>
-        <th>Area Enviado Expediente</th>
-        <th>Estado Contable</th>
-        <th>Estado Legales</th>
-        <th>Estado Promocion</th>
-        <th>Estado SIG</th>
-        <th>Estado Principal</th>
-        <th>Estado ForestoIndustrial</th>
         <th>Estado Viveros</th>
+        <th>10% valiosa</th>
         <th>Observacion</th>
         <th></th>
       </tr>
@@ -33,51 +27,15 @@
           		</div>
           </td>
           <td>
-            <div class="col-sm-12">
-              {{ form_widget(tag.areaEnviadoExpediente) }}
-              {{ form_errors(tag.areaEnviadoExpediente) }}
-            </div>
-          </td>
-          <td>
-          		<div class="col-sm-12">
-          			{{ form_widget(tag.estadoAreaContable) }}
-                {{ form_errors(tag.estadoAreaContable) }}
-          		</div>
-          </td>
-          <td>
-          		<div class="col-sm-12">
-          			{{ form_widget(tag.estadoAreaLegales) }}
-                {{ form_errors(tag.estadoAreaLegales) }}
-          		</div>
-          </td>
-          <td>
-          		<div class="col-sm-12">
-          			{{ form_widget(tag.estadoAreaPromocion) }}
-                {{ form_errors(tag.estadoAreaPromocion) }}
-          		</div>
-          </td>
-          <td>
-            	<div class="col-sm-12">
-          			{{ form_widget(tag.estadoAreaSig) }}
-                {{ form_errors(tag.estadoAreaSig) }}
-          		</div>
-          </td>
-          <td>
-              <div class="col-sm-12">
-                {{ form_widget(tag.estadoPrincipal) }}
-                {{ form_errors(tag.estadoPrincipal) }}
-              </div>
-          </td>
-          <td>
-              <div class="col-sm-12">
-                {{ form_widget(tag.estadoForestoIndustriales) }}
-                {{ form_errors(tag.estadoForestoIndustriales) }}
-              </div>
-          </td>
-          <td>
               <div class="col-sm-12">
                 {{ form_widget(tag.estadoViverosId) }}
                 {{ form_errors(tag.estadoViverosId) }}
+              </div>
+          </td>
+          <td>
+              <div class="col-sm-12">
+                {{ form_widget(tag.valiosas) }}
+                {{ form_errors(tag.valiosas) }}
               </div>
           </td>
           <td>

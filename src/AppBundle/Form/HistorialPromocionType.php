@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class HistorialPromocionType extends AbstractType
 {
@@ -20,14 +21,8 @@ class HistorialPromocionType extends AbstractType
           ->add('fechaInicio', DateType::class, array('label' => 'Fecha de Presentación','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
           ->add('fechaFin', DateType::class, array('label' => 'Fecha de Presentación','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
           ->add('observacion', TextareaType::class, array('required'=>false))
-          ->add('estadoViverosId')
-          ->add('areaEnviadoExpediente')
-          ->add('estadoAreaContable')
-          ->add('estadoAreaLegales')
-          ->add('estadoAreaPromocion')
-          ->add('estadoAreaSig')
-          ->add('estadoPrincipal')
-          ->add('estadoForestoIndustriales');
+          ->add('valiosas', CheckboxType::class, array('attr' => array('data-label' => '10% valiosa'), 'label' => false, 'required'=>false))
+          ->add('estadoViverosId');
     }/**
      * {@inheritdoc}
      */
