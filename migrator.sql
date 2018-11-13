@@ -1704,7 +1704,7 @@ UPDATE registro_sig aa SET expediente_id = att.expediente_id FROM actividades_ti
 UPDATE resoluciones aa SET expediente_id = att.expediente_id FROM actividades_titulares att WHERE aa.expediente_id = att.old_expediente_id AND att.expediente_id is not null;
 UPDATE aux_actividades aa SET exp_id = att.expediente_id FROM actividades_titulares att WHERE aa.exp_id = att.old_expediente_id AND att.expediente_id is not null;
 
---UPDATE actividades_titulares SET expediente_id = null WHERE expediente_id = old_expediente_id 
+--UPDATE actividades_titulares SET expediente_id = null WHERE expediente_id = old_expediente_id
 DELETE from expedientes e where e.id in (select old_expediente_id from actividades_titulares);
 
 UPDATE titulares t set pequenio_productor = true where t.id in (select titular_id from actividades_titulares);
@@ -1761,3 +1761,6 @@ UPDATE actividades_inspeccionadas SET responsable_id = null where responsable_id
 ALTER TABLE actividades_presentadas RENAME COLUMN avi_fec_rea TO fecha_realizacion;
 ALTER TABLE expedientes ADD COLUMN plurianual boolean;
 UPDATE expedientes e SET plurianual = true WHERE id IN (SELECT expediente_id from actividades_presentadas where etapa is not null);
+ALTER TABLE titulares ADD COLUMN condicional boolean;
+ALTER TABLE profesionales ADD COLUMN condicional boolean;
+INSERT INTO public.areas(id, nombre)VALUES (12,'MESA DE ENTRADA');
