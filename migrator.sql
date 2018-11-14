@@ -1763,5 +1763,5 @@ ALTER TABLE expedientes ADD COLUMN plurianual boolean;
 UPDATE expedientes e SET plurianual = true WHERE id IN (SELECT expediente_id from actividades_presentadas where etapa is not null);
 ALTER TABLE titulares ADD COLUMN condicional boolean;
 ALTER TABLE profesionales ADD COLUMN condicional boolean;
-INSERT INTO public.areas(id, nombre)VALUES (12,'MESA DE ENTRADA');
+INSERT INTO public.areas(id, nombre)VALUES (12,'MESA DE ENTRADAS');
 ALTER TABLE historial_promocion ADD COLUMN valiosas boolean;
