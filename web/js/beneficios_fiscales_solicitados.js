@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+  $('.combobox').combobox();
   $('#add-beneficio-fiscal-solicitado').click(function (e) {
     e.preventDefault();
     beneficioFiscalSolicitadoAdd();
@@ -20,6 +20,7 @@ $(document).ready(function () {
       prototipo = prototipo.replace(/__name__/g, collectionCount);
       collectionCount++;
       var newLi = jQuery('<tr class="fields"></tr>').html(prototipo);
+      newLi.find('.combobox').combobox();
       newLi.appendTo(collectionHolder).trigger('create');
       return;
   }

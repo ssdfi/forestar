@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+  $('.combobox').combobox();
   $('#add-actividad-inspeccionada').click(function (e) {
     e.preventDefault();
     actividadInspeccionadaAdd();
@@ -20,6 +20,7 @@ $(document).ready(function () {
       prototipo = prototipo.replace(/__name__/g, collectionCount);
       collectionCount++;
       var newLi = jQuery('<tr class="fields"></tr>').html(prototipo);
+      newLi.find('.combobox').combobox();
       newLi.appendTo(collectionHolder).trigger('create');
       return;
   }

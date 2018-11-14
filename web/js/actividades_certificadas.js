@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  $('.combobox').combobox();
 
   $('#add-actividad-certificada').click(function (e) {
     e.preventDefault();
@@ -20,6 +21,7 @@ $(document).ready(function () {
       prototipo = prototipo.replace(/__name__/g, collectionCount);
       collectionCount++;
       var newLi = jQuery('<tr class="fields"></tr>').html(prototipo);
+      newLi.find('.combobox').combobox();
       newLi.appendTo(collectionHolder).trigger('create');
       return;
   }
