@@ -80,6 +80,9 @@
 					{% if form.actividadesSig is defined %}
 						<a class="nav-item nav-link border" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-sig" role="tab" aria-controls="v-pills-settings" aria-selected="false">Aprobación SIG</a>
 					{% endif %}
+					{% if (is_granted('ROLE_PROMOCION') or is_granted('ROLE_LEGALES')) %}
+						<a class="nav-item nav-link border" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-estado" role="tab" aria-controls="v-pills-home" aria-selected="true">Estado</a>
+					{% endif %}
 				</div>
 			</div>
 		</div>
@@ -387,6 +390,23 @@
 							{% embed "actividadessig/table.html.twig" with {
 								'actividadesSig' : form.actividadesSig
 							} %}{% endembed %}
+						</div>
+					{% endif %}
+					{% if (is_granted('ROLE_PROMOCION') or is_granted('ROLE_LEGALES')) %}
+						<div class="tab-pane fade" id="v-pills-estado" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+							<h4>Estados</h4>
+							{% if form.estado is defined %}
+								{{form_row(form.estado)}}
+							{% endif %}
+							{% if form.estadoAreaPromocion is defined %}
+								{{form_row(form.estadoAreaPromocion)}}
+							{% endif %}
+							{% if form.estadoAreaLegales is defined %}
+								{{form_row(form.estadoAreaLegales)}}
+							{% endif %}
+							{% if form.areaEncuentraExpediente is defined %}
+								{{form_row(form.areaEncuentraExpediente)}}
+							{% endif %}
 						</div>
 					{% endif %}
 				</div>

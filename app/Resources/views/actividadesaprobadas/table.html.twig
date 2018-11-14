@@ -1,13 +1,12 @@
 <table id="actividades-aprobadas" class="table table-striped">
   <thead>
     <tr>
+      <th>Actividad</th>
       <th>Especie</th>
       <th>Superficie</th>
       <th>Densidad</th>
       <th>Inicio</th>
       <th>Fin</th>
-      <th>Departamento</th>
-      <th>Tipo</th>
       <th>Observaciones</th>
       <th></th>
     </tr>
@@ -16,6 +15,12 @@
     {% if actividadesAprobadas %}
       {% for tag in actividadesAprobadas %}
       <tr class="fields">
+        <td>
+          <div class="col-sm-12">
+            {{ form_widget(tag.tipoActividad) }}
+            {{ form_errors(tag.tipoActividad) }}
+          </div>
+        </td>
         <td>
         	<div class="col-sm-12">
         		{{ form_widget(tag.especie) }}
@@ -44,18 +49,6 @@
         		<div class="col-sm-12">
         			{{ form_widget(tag.fechaFinActividad) }}
               {{ form_errors(tag.fechaFinActividad) }}
-        		</div>
-        </td>
-        <td>
-        		<div class="col-sm-12">
-        			{{ form_widget(tag.departamento) }}
-              {{ form_errors(tag.departamento) }}
-        		</div>
-        </td>
-        <td>
-          	<div class="col-sm-12">
-        			{{ form_widget(tag.tipoActividad) }}
-              {{ form_errors(tag.tipoActividad) }}
         		</div>
         </td>
         <td>

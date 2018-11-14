@@ -21,6 +21,13 @@ $(document).ready(function () {
       collectionCount++;
       var newLi = jQuery('<tr class="fields"></tr>').html(prototipo);
       newLi.appendTo(collectionHolder).trigger('create');
+      $("input[data-label]").each(function() {
+          $(this).bootstrapSwitch({
+              labelText: this.dataset.label,
+              onText: "SI",
+              offText: "NO"
+          });
+      });
       return;
   }
 

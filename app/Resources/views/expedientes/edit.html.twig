@@ -80,6 +80,9 @@
 					{% if edit_form.actividadesSig is defined %}
 						<a class="nav-item nav-link border" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-sig" role="tab" aria-controls="v-pills-settings" aria-selected="false">Aprobación SIG</a>
 					{% endif %}
+					{% if (is_granted('ROLE_PROMOCION') or is_granted('ROLE_LEGALES') or is_granted('ROLE_CONTABLE') or is_granted('ROLE_LIQUIDACIONES')) %}
+						<a class="nav-item nav-link border" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-estado" role="tab" aria-controls="v-pills-home" aria-selected="true">Estado</a>
+					{% endif %}
 				</div>
 			</div>
 		</div>
@@ -354,7 +357,7 @@
 							} %}{% endembed %}
 						</div>
 					{% endif %}
-					{% if edit_form.actividadesAprobadas is defined %}
+					{% if edit_form.historialForestoIndustriales is defined %}
 						<div class="tab-pane fade" id="v-pills-analisis-area-foresto-industrial" role="tabpanel" aria-labelledby="v-pills-messages-tab">
 							<h4>Análisis del área Forestoindustrial</h4>
 							{% embed "historial_foresto_industrial/table.html.twig" with {
@@ -392,6 +395,26 @@
 							{% embed "actividadessig/table.html.twig" with {
 								'actividadesSig' : edit_form.actividadesSig
 							} %}{% endembed %}
+						</div>
+					{% endif %}
+					{% if (is_granted('ROLE_PROMOCION') or is_granted('ROLE_LEGALES') or is_granted('ROLE_CONTABLE') or is_granted('ROLE_LIQUIDACIONES')) %}
+						<div class="tab-pane fade" id="v-pills-estado" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+							<h4>Estados</h4>
+							{% if edit_form.estado is defined %}
+								{{form_row(edit_form.estado)}}
+							{% endif %}
+							{% if edit_form.estadoAreaPromocion is defined %}
+								{{form_row(edit_form.estadoAreaPromocion)}}
+							{% endif %}
+							{% if edit_form.estadoAreaLegales is defined %}
+								{{form_row(edit_form.estadoAreaLegales)}}
+							{% endif %}
+							{% if edit_form.estadoAreaContable is defined %}
+								{{form_row(edit_form.estadoAreaContable)}}
+							{% endif %}
+							{% if edit_form.areaEncuentraExpediente is defined %}
+								{{form_row(edit_form.areaEncuentraExpediente)}}
+							{% endif %}
 						</div>
 					{% endif %}
 				</div>
