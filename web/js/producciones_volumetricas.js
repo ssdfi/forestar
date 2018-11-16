@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  $('.combobox').combobox();
+
   $('#add-produccion-volumetrica').click(function (e) {
     e.preventDefault();
     produccionVolumetricaAdd();

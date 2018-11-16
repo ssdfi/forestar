@@ -1,6 +1,12 @@
 {% block actividadInspeccionadaPrototype %}
   <td>
     <div class="col-sm-12">
+      {{ form_widget(form.tipoActividad) }}
+      {{ form_errors(form.tipoActividad) }}
+    </div>
+  </td>
+  <td>
+    <div class="col-sm-12">
       {{ form_widget(form.especie) }}
       {{ form_errors(form.especie) }}
     </div>
@@ -16,30 +22,6 @@
       {{ form_widget(form.densidad) }}
       {{ form_errors(form.densidad) }}
     </div>
-  </td>
-  <td>
-      <div class="col-sm-12">
-        {{ form_widget(form.fechaInicio) }}
-        {{ form_errors(form.fechaInicio) }}
-      </div>
-  </td>
-  <td>
-      <div class="col-sm-12">
-        {{ form_widget(form.fechaFin) }}
-        {{ form_errors(form.fechaFin) }}
-      </div>
-  </td>
-  <td>
-      <div class="col-sm-12">
-        {{ form_widget(form.departamento) }}
-        {{ form_errors(form.departamento) }}
-      </div>
-  </td>
-  <td>
-      <div class="col-sm-12">
-        {{ form_widget(form.tipoActividad) }}
-        {{ form_errors(form.tipoActividad) }}
-      </div>
   </td>
   <td>
       <div class="col-sm-12">

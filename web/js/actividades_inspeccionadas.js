@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  $('.combobox').combobox();
+
   $('#add-actividad-inspeccionada').click(function (e) {
     e.preventDefault();
     actividadInspeccionadaAdd();

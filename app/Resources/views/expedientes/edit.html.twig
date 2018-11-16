@@ -428,4 +428,7 @@
 {% block javascripts %}
 	{{parent()}}
 	<script src="{{ asset('js/expedientes.js') }}"></script>
+	<script type="text/javascript">
+		  $('.combobox').combobox();
+	</script>
 {% endblock %}

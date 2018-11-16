@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  $('.combobox').combobox();
+
   $('#add-actividad-sig').click(function (e) {
     e.preventDefault();
     actividadSigAdd();

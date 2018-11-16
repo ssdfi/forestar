@@ -20,14 +20,6 @@ class HistorialLegalesType extends AbstractType
         $builder
           ->add('fechaInicio', DateType::class, array('label' => 'Fecha de Presentación','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
           ->add('fechaFin', DateType::class, array('label' => 'Fecha de Presentación','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
-          // ->add('areaEnviadoExpediente')
-          // ->add('estadoAreaContable')
-          // ->add('estadoAreaLegales')
-          // ->add('estadoAreaPromocion')
-          // ->add('estadoAreaSig')
-          // ->add('estadoPrincipal')
-          // ->add('estadoForestoIndustriales')
-          // ->add('estadoViverosId')
           ->add('observacion', TextareaType::class, array('required'=>false))
           ;
     }/**

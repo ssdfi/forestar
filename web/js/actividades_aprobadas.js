@@ -1,5 +1,4 @@
 $(document).ready(function () {
-  $('.combobox').combobox();
 
   $('#add-actividad-aprobada').click(function (e) {
     e.preventDefault();

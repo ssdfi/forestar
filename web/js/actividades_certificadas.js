@@ -1,5 +1,4 @@
 $(document).ready(function () {
-  $('.combobox').combobox();
 
   $('#add-actividad-certificada').click(function (e) {
     e.preventDefault();

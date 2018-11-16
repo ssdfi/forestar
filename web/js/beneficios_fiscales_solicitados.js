@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  $('.combobox').combobox();
+
   $('#add-beneficio-fiscal-solicitado').click(function (e) {
     e.preventDefault();
     beneficioFiscalSolicitadoAdd();
