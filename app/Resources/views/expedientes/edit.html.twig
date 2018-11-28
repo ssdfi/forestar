@@ -243,33 +243,64 @@
 							  <div class="card">
 							    <div class="card-header" id="headingOne">
 							      <h5 class="mb-0">
-							        <a class="btn" data-toggle="collapse" role="button" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-							          <b> >> Disposiciones Provinciales</b>
+							        <a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+							          <b> >> Impacto Ambiental</b>
 							        </a>
 							      </h5>
 							    </div>
 							    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
 							      <div class="card-body">
-											<h4>Editar Disposiciones Provinciales</h4>
-											{% embed "disposiciones_provinciales/table.html.twig" with {
-												'disposicionesProvinciales' : edit_form.disposicionesProvinciales
+							        <h4>Editar Impacto Ambiental</h4>
+											{% embed "impactos_ambientales/table.html.twig" with {
+											'impactosAmbientales' : edit_form.impactosAmbientales
 											} %}{% endembed %}
 							      </div>
 							    </div>
 							  </div>
-							  <div class="card">
+								<div class="card">
 							    <div class="card-header" id="headingTwo">
 							      <h5 class="mb-0">
 							        <a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-							          <b> >> Impactos Ambientales</b>
+							          <b> >> OTBN</b>
 							        </a>
 							      </h5>
 							    </div>
 							    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
 							      <div class="card-body">
-							        <h4>Editar Impactos Ambientales</h4>
-											{% embed "impactos_ambientales/table.html.twig" with {
-											'impactosAmbientales' : edit_form.impactosAmbientales
+											{% embed "otbns/table.html.twig" with {
+											'otbns' : edit_form.otbns
+											} %}{% endembed %}
+							      </div>
+							    </div>
+							  </div>
+								<div class="card">
+							    <div class="card-header" id="headingThree">
+							      <h5 class="mb-0">
+							        <a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+							          <b> >> Técnico</b>
+							        </a>
+							      </h5>
+							    </div>
+							    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+							      <div class="card-body">
+											{% embed "evaluacion_tecnicos/table.html.twig" with {
+											'evaluacionTecnicos' : edit_form.evaluacionTecnicos
+											} %}{% endembed %}
+							      </div>
+							    </div>
+							  </div>
+								<div class="card">
+							    <div class="card-header" id="headingFour">
+							      <h5 class="mb-0">
+							        <a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+							          <b> >> Legal</b>
+							        </a>
+							      </h5>
+							    </div>
+							    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+							      <div class="card-body">
+											{% embed "evaluacion_legales/table.html.twig" with {
+											'evaluacionLegales' : edit_form.evaluacionLegales
 											} %}{% endembed %}
 							      </div>
 							    </div>
