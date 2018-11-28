@@ -432,6 +432,24 @@ class Expedientes
    */
    private $estabilidadFiscales;
 
+   /**
+   * One Expediente has Many EF.
+   * @ORM\OneToMany(targetEntity="Otbn", mappedBy="expediente", cascade={"persist"}, orphanRemoval=true)
+   */
+   private $otbns;
+
+   /**
+   * One Expediente has Many EF.
+   * @ORM\OneToMany(targetEntity="EvaluacionLegal", mappedBy="expediente", cascade={"persist"}, orphanRemoval=true)
+   */
+   private $evaluacionLegales;
+
+   /**
+   * One Expediente has Many EF.
+   * @ORM\OneToMany(targetEntity="EvaluacionTecnico", mappedBy="expediente", cascade={"persist"}, orphanRemoval=true)
+   */
+   private $evaluacionTecnicos;
+
     public function __construct(){
       $this->actividadesPresentadas = new ArrayCollection();
       $this->actividadesCertificadas = new ArrayCollection();
@@ -461,6 +479,9 @@ class Expedientes
       $this->cronogramaPlantaciones = new ArrayCollection();
       $this->beneficiosFiscalesSolicitados = new ArrayCollection();
       $this->estabilidadFiscales = new ArrayCollection();
+      $this->otbns = new ArrayCollection();
+      $this->evaluacionTecnicos = new ArrayCollection();
+      $this->evaluacionLegales = new ArrayCollection();
     }
 
     /**
@@ -1685,6 +1706,75 @@ class Expedientes
            return;
        }
        $this->estabilidadFiscales->removeElement($ap);
+    }
+
+    public function getOtbns()
+    {
+      return $this->otbns;
+    }
+
+    public function addOtbn($ap)
+    {
+        if (true === $this->otbns->contains($ap)) {
+           return;
+       }
+       $this->otbns[] = $ap;
+       $ap->addExpediente($this);
+
+    }
+
+    public function removeOtbn($ap)
+    {
+      if (false === $this->otbns->contains($ap)) {
+           return;
+       }
+       $this->otbns->removeElement($ap);
+    }
+
+    public function getEvaluacionTecnicos()
+    {
+      return $this->evaluacionTecnicos;
+    }
+
+    public function addEvaluacionTecnico($ap)
+    {
+        if (true === $this->evaluacionTecnicos->contains($ap)) {
+           return;
+       }
+       $this->evaluacionTecnicos[] = $ap;
+       $ap->addExpediente($this);
+
+    }
+
+    public function removeEvaluacionTecnico($ap)
+    {
+      if (false === $this->evaluacionTecnicos->contains($ap)) {
+           return;
+       }
+       $this->evaluacionTecnicos->removeElement($ap);
+    }
+
+    public function getEvaluacionLegales()
+    {
+      return $this->evaluacionLegales;
+    }
+
+    public function addEvaluacionLegal($ap)
+    {
+        if (true === $this->evaluacionLegales->contains($ap)) {
+           return;
+       }
+       $this->evaluacionLegales[] = $ap;
+       $ap->addExpediente($this);
+
+    }
+
+    public function removeEvaluacionLegal($ap)
+    {
+      if (false === $this->evaluacionLegales->contains($ap)) {
+           return;
+       }
+       $this->evaluacionLegales->removeElement($ap);
     }
 
     /**

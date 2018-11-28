@@ -74,6 +74,13 @@ class ImpactoAmbiental
      */
     private $observacion;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="aprobado", type="boolean", nullable=true)
+     */
+    private $aprobado;
+
 
 
     /**
@@ -253,7 +260,32 @@ class ImpactoAmbiental
     {
         return $this->observacion;
     }
-    
+
+
+    /**
+     * Set aprobado
+     *
+     * @param boolean $aprobado
+     *
+     * @return aprobado
+     */
+    public function setAprobado($aprobado)
+    {
+        $this->aprobado = $aprobado;
+
+        return $this;
+    }
+
+    /**
+     * Get aprobado
+     *
+     * @return boolean
+     */
+    public function getAprobado()
+    {
+        return $this->aprobado;
+    }
+
     public function addExpediente($exp)
     {
         $this->expediente = $exp;
