@@ -366,6 +366,40 @@ class ExpedientesType extends AbstractType
                 )
               );
             }
+
+            if (in_array('otbn', $options['roles'])) {
+              $builder->add('otbns', CollectionType::class, array(
+                  'entry_type'    => OtbnType::class,
+                  'allow_add'     => true,
+                  'allow_delete'  => true,
+                  'prototype'     => true,
+                  'label'         => false,
+                  'by_reference'  => false,
+                )
+              );
+            }
+            if (in_array('evaluacionTecnico', $options['roles'])) {
+              $builder->add('evaluacionTecnicos', CollectionType::class, array(
+                  'entry_type'    => EvaluacionTecnicoType::class,
+                  'allow_add'     => true,
+                  'allow_delete'  => true,
+                  'prototype'     => true,
+                  'label'         => false,
+                  'by_reference'  => false,
+                )
+              );
+            }
+            if (in_array('evaluacionLegal', $options['roles'])) {
+              $builder->add('evaluacionLegales', CollectionType::class, array(
+                  'entry_type'    => EvaluacionLegalType::class,
+                  'allow_add'     => true,
+                  'allow_delete'  => true,
+                  'prototype'     => true,
+                  'label'         => false,
+                  'by_reference'  => false,
+                )
+              );
+            }
             if (in_array('expediente', $options['roles'])) {
               $builder->addEventSubscriber(new AddTitularesListener());
               $builder->addEventSubscriber(new AddProfesionalesListener());
