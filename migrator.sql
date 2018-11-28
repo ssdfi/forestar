@@ -1779,3 +1779,5 @@ CREATE SEQUENCE public.evaluacion_legal_id_seq INCREMENT 1  MINVALUE 1  MAXVALUE
 ALTER TABLE public.evaluacion_legal_id_seq OWNER TO forestar_test;
 CREATE TABLE public.evaluacion_legal (  id integer NOT NULL DEFAULT nextval('evaluacion_legal_id_seq'::regclass),  expediente_id integer,  aprobado boolean,  resolucion character varying,  fecha date,  observacion character varying,  CONSTRAINT evaluacion_legal_pkey PRIMARY KEY (id),  CONSTRAINT evaluacion_legal_expediente_id_fkey FOREIGN KEY (expediente_id)      REFERENCES public.expedientes (id) MATCH SIMPLE      ON UPDATE NO ACTION ON DELETE NO ACTION) WITH (  OIDS=FALSE);
 ALTER TABLE public.evaluacion_legal  OWNER TO forestar_test;
+ALTER TABLE public.otbn ADD COLUMN fecha date;
+ALTER TABLE public.evaluacion_tecnico ADD COLUMN fecha date;
