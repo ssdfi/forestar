@@ -238,7 +238,7 @@
 					{% endif %}
 					{% if edit_form.disposicionesProvinciales is defined and edit_form.impactosAmbientales is defined %}
 						<div class="tab-pane fade" id="v-pills-evaluacion-provincial" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-							<h4>Editar Evaluación Provincial</h4>
+							<h4>Evaluación Provincial</h4>
 							<div id="accordion">
 							  <div class="card">
 							    <div class="card-header" id="headingOne">
@@ -250,7 +250,6 @@
 							    </div>
 							    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
 							      <div class="card-body">
-							        <h4>Editar Impacto Ambiental</h4>
 											{% embed "impactos_ambientales/table.html.twig" with {
 											'impactosAmbientales' : edit_form.impactosAmbientales
 											} %}{% endembed %}

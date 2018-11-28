@@ -1,8 +1,14 @@
 {% block otbnPrototype %}
   <td>
-    <div class="col-sm-12">
+    <div class="col-sm-5">
       {{ form_widget(form.viable) }}
       {{ form_errors(form.viable) }}
+    </div>
+  </td>
+  <td>
+    <div class="col-sm-5">
+      {{ form_widget(form.fecha) }}
+      {{ form_errors(form.fecha) }}
     </div>
   </td>
   <td>

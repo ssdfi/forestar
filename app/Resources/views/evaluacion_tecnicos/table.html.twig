@@ -2,8 +2,9 @@
   <table id="evaluacion-tecnicos" class="table table-striped">
     <thead>
       <tr>
-        <th>Viable</th>
-        <th></th>
+        <th class="col-sm-5"></th>
+        <th class="col-sm-5">Fecha</th>
+        <th class="col-sm-2"></th>
       </tr>
     </thead>
     <tbody class="evaluacionTecnicos" data-index="{{ evaluacionTecnicos|length }}" data-prototype="{% filter escape %}{% include 'evaluacion_tecnicos/prototype.html.twig' with {'form': evaluacionTecnicos.vars.prototype } %}{% endfilter %}">
@@ -11,9 +12,15 @@
         {% for tag in evaluacionTecnicos %}
         <tr class="fields">
           <td>
-          	<div class="col-sm-12">
+          	<div class="col-sm-5">
           		{{ form_widget(tag.viable) }}
               {{ form_errors(tag.viable) }}
+          	</div>
+          </td>
+          <td>
+          	<div class="col-sm-5">
+          		{{ form_widget(tag.fecha) }}
+              {{ form_errors(tag.fecha) }}
           	</div>
           </td>
           <td>

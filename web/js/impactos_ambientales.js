@@ -48,11 +48,9 @@ $(document).ready(function () {
   function hideColumn(number, state){
     if (state === false) {
       $('#appbundle_expedientes_impactosAmbientales_'+number+'_resolucionNumero').hide();
-      $('#appbundle_expedientes_impactosAmbientales_'+number+'_fechaEntrada').hide();
       $('#appbundle_expedientes_impactosAmbientales_'+number+'_observacion').hide();
     } else {
       $('#appbundle_expedientes_impactosAmbientales_'+number+'_resolucionNumero').show();
-      $('#appbundle_expedientes_impactosAmbientales_'+number+'_fechaEntrada').show();
       $('#appbundle_expedientes_impactosAmbientales_'+number+'_observacion').show();
     }
   }

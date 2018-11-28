@@ -48,11 +48,9 @@ $(document).ready(function () {
   function hideColumn(number, state){
     if (state === false) {
       $('#appbundle_expedientes_evaluacionLegales_'+number+'_resolucion').hide();
-      $('#appbundle_expedientes_evaluacionLegales_'+number+'_fecha').hide();
       $('#appbundle_expedientes_evaluacionLegales_'+number+'_observacion').hide();
     } else {
       $('#appbundle_expedientes_evaluacionLegales_'+number+'_resolucion').show();
-      $('#appbundle_expedientes_evaluacionLegales_'+number+'_fecha').show();
       $('#appbundle_expedientes_evaluacionLegales_'+number+'_observacion').show();
     }
   }
