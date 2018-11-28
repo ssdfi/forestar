@@ -1,0 +1,37 @@
+<div class="table-responsive">
+  <table id="otbns" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Viable</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class="otbns" data-index="{{ otbns|length }}" data-prototype="{% filter escape %}{% include 'otbns/prototype.html.twig' with {'form': otbns.vars.prototype } %}{% endfilter %}">
+      {% if otbns %}
+        {% for tag in otbns %}
+        <tr class="fields">
+          <td>
+          	<div class="col-sm-12">
+          		{{ form_widget(tag.viable) }}
+              {{ form_errors(tag.viable) }}
+          	</div>
+          </td>
+          <td>
+          	<a class="btn btn-danger btn-sm pull-right remove-otbn remove_nested_fields" data-association="otbns">
+              <span class="fa fa-remove text-white" aria-hidden="true"></span>
+          	</a>
+          </td>
+        </tr>
+      {% endfor %}
+    {% endif %}
+    </tbody>
+  </table>
+  <a id="add-otbn" class="btn btn-primary btn-sm add_nested_fields" data-target="#otbn" href="javascript:void(0)">
+    <span class="fa fa-plus" aria-hidden="true"></span>
+    Agregar OTBN
+  </a>
+</div>
+
+{% block javascripts %}
+  <script src="{{ asset('js/otbns.js') }}"></script>
+{% endblock %}

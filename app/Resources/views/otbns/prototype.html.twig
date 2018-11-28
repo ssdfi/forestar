@@ -1,0 +1,13 @@
+{% block otbnPrototype %}
+  <td>
+    <div class="col-sm-12">
+      {{ form_widget(form.viable) }}
+      {{ form_errors(form.viable) }}
+    </div>
+  </td>
+  <td>
+    <a class="btn btn-danger btn-sm pull-right remove-otbn remove_nested_fields" data-association="otbns">
+      <span class="fa fa-remove text-white" aria-hidden="true"></span>
+    </a>
+  </td>
+{% endblock %}
