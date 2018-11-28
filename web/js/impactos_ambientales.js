@@ -13,6 +13,15 @@ $(document).ready(function () {
     return;
   });
 
+  /* cuando se edita y hay items se ocultan columnas */
+  $(".impactosAmbientales input[data-label]").each(function(number,obj) {
+    $(obj).bootstrapSwitch({labelText: obj.dataset.label, onText: "SI", offText: "NO"});
+    hideColumn(number,$("#appbundle_expedientes_impactosAmbientales_"+(number)+"_aprobado").bootstrapSwitch('state'));
+    $("#appbundle_expedientes_impactosAmbientales_"+(number)+"_aprobado").on('switchChange.bootstrapSwitch', function (event, state) {
+      hideColumn(number, state);
+    });
+  });
+
   function impactoAmbientalAdd() {
       var collectionHolder = $('.impactosAmbientales');
       var collectionCount = collectionHolder.children().length;
@@ -21,7 +30,31 @@ $(document).ready(function () {
       collectionCount++;
       var newLi = jQuery('<tr class="fields"></tr>').html(prototipo);
       newLi.appendTo(collectionHolder).trigger('create');
+      $("input[data-label]").each(function() {
+          $(this).bootstrapSwitch({
+              labelText: this.dataset.label,
+              onText: "SI",
+              offText: "NO"
+          });
+      });
+      hideColumn(collectionCount-1, false);
+      $("#appbundle_expedientes_impactosAmbientales_"+(collectionCount-1)+"_aprobado").on('switchChange.bootstrapSwitch', function (event, state) {
+        hideColumn(collectionCount-1, state);
+      });
+
       return;
+  }
+
+  function hideColumn(number, state){
+    if (state === false) {
+      $('#appbundle_expedientes_impactosAmbientales_'+number+'_resolucionNumero').hide();
+      $('#appbundle_expedientes_impactosAmbientales_'+number+'_fechaEntrada').hide();
+      $('#appbundle_expedientes_impactosAmbientales_'+number+'_observacion').hide();
+    } else {
+      $('#appbundle_expedientes_impactosAmbientales_'+number+'_resolucionNumero').show();
+      $('#appbundle_expedientes_impactosAmbientales_'+number+'_fechaEntrada').show();
+      $('#appbundle_expedientes_impactosAmbientales_'+number+'_observacion').show();
+    }
   }
 
   function impactoAmbientalRemove(btn) {
