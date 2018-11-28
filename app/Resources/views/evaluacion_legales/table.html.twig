@@ -1,0 +1,58 @@
+<div class="table-responsive">
+  <table id="evaluacion_legales" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Aprobado</th>
+        <th>Resolución Número</th>
+        <th>Fecha</th>
+        <th>Observacion</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class="evaluacionLegales" data-index="{{ evaluacionLegales|length }}" data-prototype="{% filter escape %}{% include 'evaluacion_legales/prototype.html.twig' with {'form': evaluacionLegales.vars.prototype } %}{% endfilter %}">
+      {% if evaluacionLegales %}
+        {% for tag in evaluacionLegales %}
+        <tr class="fields">
+          <td>
+          	<div class="col-sm-12">
+          		{{ form_widget(tag.aprobado) }}
+              {{ form_errors(tag.aprobado) }}
+          	</div>
+          </td>
+          <td>
+          	<div class="col-sm-12">
+          		{{ form_widget(tag.resolucion) }}
+              {{ form_errors(tag.resolucion) }}
+          	</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.fecha) }}
+                {{ form_errors(tag.fecha) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.observacion) }}
+                {{ form_errors(tag.observacion) }}
+          		</div>
+          </td>
+          <td>
+          	<a class="btn btn-danger btn-sm pull-right remove-evaluacion-legal remove_nested_fields" data-association="evaluacion_legales">
+              <span class="fa fa-remove text-white" aria-hidden="true"></span>
+          	</a>
+          </td>
+        </tr>
+      {% endfor %}
+    {% endif %}
+    </tbody>
+  </table>
+  <a id="add-evaluacion-legal" class="btn btn-primary btn-sm add_nested_fields" data-target="#evaluacion_legal" href="javascript:void(0)">
+    <span class="fa fa-plus" aria-hidden="true"></span>
+    Agregar
+  </a>
+</div>
+
+{% block javascripts %}
+  <script src="{{ asset('js/evaluacion_legales.js') }}"></script>
+{% endblock %}
