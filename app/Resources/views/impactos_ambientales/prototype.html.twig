@@ -1,6 +1,12 @@
 {% block impactoAmbientalPrototype %}
 <td>
   <div class="col-sm-12">
+    {{ form_widget(form.aprobado) }}
+    {{ form_errors(form.aprobado) }}
+  </div>
+</td>
+<td>
+  <div class="col-sm-12">
     {{ form_widget(form.resolucionNumero) }}
     {{ form_errors(form.resolucionNumero) }}
   </div>
@@ -10,12 +16,6 @@
       {{ form_widget(form.fechaEntrada) }}
       {{ form_errors(form.fechaEntrada) }}
     </div>
-</td>
-<td>
-  <div class="col-sm-12">
-    {{ form_widget(form.fechaSalida) }}
-    {{ form_errors(form.fechaSalida) }}
-  </div>
 </td>
 <td>
     <div class="col-sm-12">

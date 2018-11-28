@@ -2,9 +2,9 @@
   <table id="impactos_ambientales" class="table table-striped">
     <thead>
       <tr>
+        <th>Aprobado</th>
         <th>Resolución Número</th>
-        <th>Fecha Entrada</th>
-        <th>Fecha Salida</th>
+        <th>Fecha</th>
         <th>Observacion</th>
         <th></th>
       </tr>
@@ -13,6 +13,12 @@
       {% if impactosAmbientales %}
         {% for tag in impactosAmbientales %}
         <tr class="fields">
+          <td>
+          	<div class="col-sm-12">
+          		{{ form_widget(tag.aprobado) }}
+              {{ form_errors(tag.aprobado) }}
+          	</div>
+          </td>
           <td>
           	<div class="col-sm-12">
           		{{ form_widget(tag.resolucionNumero) }}
@@ -24,12 +30,6 @@
           			{{ form_widget(tag.fechaEntrada) }}
                 {{ form_errors(tag.fechaEntrada) }}
           		</div>
-          </td>
-          <td>
-            <div class="col-sm-12">
-              {{ form_widget(tag.fechaSalida) }}
-              {{ form_errors(tag.fechaSalida) }}
-            </div>
           </td>
           <td>
           		<div class="col-sm-12">
