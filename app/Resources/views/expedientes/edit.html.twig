@@ -193,7 +193,6 @@
 					{% endif %}
 					{% if edit_form.actividadesCertificadas is defined and edit_form.predios is defined %}
 					<div class="tab-pane fade" id="v-pills-certificacion" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-						<h4>Editar Actividades Certificadas</h4>
 						{% embed "actividadescertificadas/table.html.twig" with {
 							'actividadesCertificadas' : edit_form.actividadesCertificadas
 						} %}{% endembed %}
