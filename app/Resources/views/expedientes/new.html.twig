@@ -188,12 +188,12 @@
 					{% endif %}
 					{% if form.actividadesCertificadas is defined and form.predios is defined %}
 					<div class="tab-pane fade" id="v-pills-certificacion" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-						<h4>Editar Actividades Certificadas</h4>
+						<h4>Actividades Certificadas</h4>
 						{% embed "actividadescertificadas/table.html.twig" with {
 							'actividadesCertificadas' : form.actividadesCertificadas
 						} %}{% endembed %}
 						<hr>
-						<h4>Editar Predios</h4>
+						<h4>Predios</h4>
 						{% embed "predios/table.html.twig" with {
 							'predios' : form.predios
 						} %}{% endembed %}
@@ -201,7 +201,7 @@
 					{% endif %}
 					{% if form.actividadesInspeccionadas is defined %}
 						<div class="tab-pane fade" id="v-pills-inspeccion" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-							<h4>Editar Actividades Inspeccionadas</h4>
+							<h4>Actividades Inspeccionadas</h4>
 							{% embed "actividadesinspeccionadas/table.html.twig" with {
 								'actividadesInspeccionadas' : form.actividadesInspeccionadas
 							} %}{% endembed %}
@@ -209,7 +209,7 @@
 					{% endif %}
 					{% if form.documentaciones is defined %}
 						<div class="tab-pane fade" id="v-pills-documentacion" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-							<h4>Editar Documentación</h4>
+							<h4>Documentación</h4>
 							{% embed "documentacion/table.html.twig" with {
 								'documentacion' : form.documentaciones
 							} %}{% endembed %}
@@ -217,7 +217,7 @@
 					{% endif %}
 					{% if form.estadoSituaciones is defined %}
 						<div class="tab-pane fade" id="v-pills-estado-situacion" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-							<h4>Editar Estado de Situación</h4>
+							<h4>Estado de Situación</h4>
 							{% embed "estado_situacion/table.html.twig" with {
 								'estadoSituaciones' : form.estadoSituaciones
 							} %}{% endembed %}
@@ -225,7 +225,7 @@
 					{% endif %}
 					{% if form.beneficiosFiscalesSolicitados is defined %}
 						<div class="tab-pane fade" id="v-pills-beneficio-fiscal-solicitado" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-							<h4>Editar Beneficio Fiscal - Carga</h4>
+							<h4>Beneficio Fiscal - Carga</h4>
 							{% embed "beneficios_fiscales_solicitados/table.html.twig" with {
 								'beneficiosFiscalesSolicitados' : form.beneficiosFiscalesSolicitados
 							} %}{% endembed %}
@@ -304,7 +304,7 @@
 					{% endif %}
 					{% if form.historialContables is defined %}
 						<div class="tab-pane fade" id="v-pills-analisis-area-contable" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-							<h4>Editar Análisis del Área Contable</h4>
+							<h4>Análisis del Área Contable</h4>
 							{% embed "historial_contable/table.html.twig" with {
 								'historialContables' : form.historialContables
 							} %}{% endembed %}

@@ -1,55 +1,169 @@
 {% block actividadInspeccionadaPrototype %}
-  <td>
+	<td data-attr='tipoActividad'>
+		<div class="col-sm-12">
+			{{ form_widget(form.tipoActividad) }}
+			{{ form_errors(form.tipoActividad) }}
+		</div>
+	</td>
+	<td data-attr='especie'>
+		<div class="col-sm-12">
+			{{ form_widget(form.especie) }}
+			{{ form_errors(form.especie) }}
+		</div>
+	</td>
+	<td data-attr='fechaInspeccion'>
+		<div class="col-sm-12">
+			{{ form_widget(form.fechaInspeccion) }}
+			{{ form_errors(form.fechaInspeccion) }}
+		</div>
+	</td>
+  <td data-attr='superficieHa'>
     <div class="col-sm-12">
-      {{ form_widget(form.tipoActividad) }}
-      {{ form_errors(form.tipoActividad) }}
+      {{ form_widget(form.superficieHa) }}
+      {{ form_errors(form.superficieHa) }}
     </div>
   </td>
-  <td>
+  <td data-attr='longitudFilas'>
+		<div class="col-sm-12">
+			{{ form_widget(form.longitudFilas) }}
+			{{ form_errors(form.longitudFilas) }}
+		</div>
+	</td>
+	<td data-attr='numeroFilas'>
+		<div class="col-sm-12">
+			{{ form_widget(form.numeroFilas) }}
+			{{ form_errors(form.numeroFilas) }}
+		</div>
+	</td>
+	<td data-attr='distanciaPlantas'>
+		<div class="col-sm-12">
+			{{ form_widget(form.distanciaPlantas) }}
+			{{ form_errors(form.distanciaPlantas) }}
+		</div>
+	</td>
+	<td data-attr='cantidadArboles'>
+		<div class="col-sm-12">
+			{{ form_widget(form.cantidadArboles) }}
+			{{ form_errors(form.cantidadArboles) }}
+		</div>
+	</td>
+	<td data-attr='riego'>
+		<div class="col-sm-12">
+			{{ form_widget(form.riego) }}
+			{{ form_errors(form.riego) }}
+		</div>
+	</td>
+	<td data-attr='turnoCorta'>
+		<div class="col-sm-12">
+			{{ form_widget(form.turnoCorta) }}
+			{{ form_errors(form.turnoCorta) }}
+		</div>
+	</td>
+  <td data-attr='edadPlantacion'>
+		<div class="col-sm-12">
+			{{ form_widget(form.edadPlantacion) }}
+			{{ form_errors(form.edadPlantacion) }}
+		</div>
+	</td>
+	<td data-attr='numeroPoda'>
+		<div class="col-sm-12">
+			{{ form_widget(form.numeroPoda) }}
+			{{ form_errors(form.numeroPoda) }}
+		</div>
+	</td>
+	<td data-attr='cantidadArbolesPodados'>
+		<div class="col-sm-12">
+			{{ form_widget(form.cantidadArbolesPodados) }}
+			{{ form_errors(form.cantidadArbolesPodados) }}
+		</div>
+	</td>
+    <td data-attr='dapPromedio'>
+  		<div class="col-sm-12">
+  			{{ form_widget(form.dapPromedio) }}
+  			{{ form_errors(form.dapPromedio) }}
+  		</div>
+  	</td>
+    <td data-attr='densidadPrevia'>
+  		<div class="col-sm-12">
+  			{{ form_widget(form.densidadPrevia) }}
+  			{{ form_errors(form.densidadPrevia) }}
+  		</div>
+  	</td>
+    <td data-attr='numeroArbolesExtraidos'>
+  		<div class="col-sm-12">
+  			{{ form_widget(form.numeroArbolesExtraidos) }}
+  			{{ form_errors(form.numeroArbolesExtraidos) }}
+  		</div>
+  	</td>
+		<td data-attr='alturaPromedioPlantacion'>
+			<div class="col-sm-12">
+				{{ form_widget(form.alturaPromedioPlantacion) }}
+				{{ form_errors(form.alturaPromedioPlantacion) }}
+			</div>
+		</td>
+    <td data-attr='alturaPoda'>
+  		<div class="col-sm-12">
+  			{{ form_widget(form.alturaPoda) }}
+  			{{ form_errors(form.alturaPoda) }}
+  		</div>
+  	</td>
+    <td data-attr='porcentajeFallas'>
+  		<div class="col-sm-12">
+  			{{ form_widget(form.porcentajeFallas) }}
+  			{{ form_errors(form.porcentajeFallas) }}
+  		</div>
+  	</td>
+    <td data-attr='densidad'>
+  		<div class="col-sm-12">
+  			{{ form_widget(form.densidad) }}
+  			{{ form_errors(form.densidad) }}
+  		</div>
+  	</td>
+    <td data-attr='edadCepa'>
+  		<div class="col-sm-12">
+  			{{ form_widget(form.edadCepa) }}
+  			{{ form_errors(form.edadCepa) }}
+  		</div>
+  	</td>
+    <td data-attr='edadRebrote'>
+  		<div class="col-sm-12">
+  			{{ form_widget(form.edadRebrote) }}
+  			{{ form_errors(form.edadRebrote) }}
+  		</div>
+  	</td>
+    <td data-attr='numeroBrotesCepas'>
+  		<div class="col-sm-12">
+  			{{ form_widget(form.numeroBrotesCepas) }}
+  			{{ form_errors(form.numeroBrotesCepas) }}
+  		</div>
+  	</td>
+		<td data-attr='responsable'>
+			<div class="col-sm-12">
+				{{ form_widget(form.responsable) }}
+				{{ form_errors(form.responsable) }}
+			</div>
+		</td>
+		<td data-attr='tipoInspeccion'>
+			<div class="col-sm-12">
+				{{ form_widget(form.tipoInspeccion) }}
+				{{ form_errors(form.tipoInspeccion) }}
+			</div>
+		</td>
+		<td data-attr='tecnico'>
+			<div class="col-sm-12">
+				{{ form_widget(form.tecnico) }}
+				{{ form_errors(form.tecnico) }}
+			</div>
+		</td>
+  <td data-attr='observacion'>
     <div class="col-sm-12">
-      {{ form_widget(form.especie) }}
-      {{ form_errors(form.especie) }}
+      {{ form_widget(form.observacion) }}
+      {{ form_errors(form.observacion) }}
     </div>
   </td>
-  <td>
-      <div class="col-sm-12">
-        {{ form_widget(form.superficieHa) }}
-        {{ form_errors(form.superficieHa) }}
-      </div>
-  </td>
-  <td>
-    <div class="col-sm-12">
-      {{ form_widget(form.densidad) }}
-      {{ form_errors(form.densidad) }}
-    </div>
-  </td>
-  <td>
-      <div class="col-sm-12">
-        {{ form_widget(form.responsable) }}
-        {{ form_errors(form.responsable) }}
-      </div>
-  </td>
-  <td>
-      <div class="col-sm-12">
-        {{ form_widget(form.fechaInspeccion) }}
-        {{ form_errors(form.fechaInspeccion) }}
-      </div>
-  </td>
-  <td>
-      <div class="col-sm-12">
-        {{ form_widget(form.tipoInspeccion) }}
-        {{ form_errors(form.tipoInspeccion) }}
-      </div>
-  </td>
-  <td>
-      <div class="col-sm-12">
-        {{ form_widget(form.observacion) }}
-        {{ form_errors(form.observacion) }}
-      </div>
-  </td>
-  <td>
-    <a class="btn btn-danger btn-sm pull-right remove-actividad-inspeccionada remove_nested_fields" data-association="actividades_inspeccionadas">
-      <span class="fa fa-remove text-white" aria-hidden="true"></span>
-    </a>
-  </td>
+	<td>
+		<a class="btn btn-danger btn-sm pull-right remove-actividad-inspeccionada remove_nested_fields" data-association="actividades_inspeccionadas">
+			<span class="fa fa-remove text-white" aria-hidden="true"></span>
+		</a>
+	</td>
 {% endblock %}

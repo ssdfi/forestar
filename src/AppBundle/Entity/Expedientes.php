@@ -258,6 +258,7 @@ class Expedientes
       /**
       * One Expediente has Many Actividades cert.
       * @ORM\OneToMany(targetEntity="ActividadesCertificadas", cascade={"persist"}, mappedBy="expediente", orphanRemoval=true)
+      * @ORM\OrderBy({"id"="ASC"})
       */
     private $actividadesCertificadas;
 

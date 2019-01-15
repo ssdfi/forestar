@@ -1,6 +1,6 @@
 
-		{% if actividadesCertificadas %}
-			{% for tag in actividadesCertificadas %}
+		{% if actividadesInspeccionadas %}
+			{% for tag in actividadesInspeccionadas %}
 				{# PLANTACION CORTINA #}
 				{% if tag.tipoActividad.vars.data.id == 6 %}
         <tr class="fields">
@@ -18,8 +18,8 @@
           </td>
           <td>
             <div class="col-sm-12">
-              {{ form_widget(tag.fechaInicio) }}
-              {{ form_errors(tag.fechaInicio) }}
+              {{ form_widget(tag.fechaInspeccion) }}
+              {{ form_errors(tag.fechaInspeccion) }}
             </div>
           </td>
 					<td>
@@ -64,10 +64,28 @@
               {{ form_errors(tag.turnoCorta) }}
             </div>
           </td>
+					<td>
+						<div class="col-sm-12">
+							{{ form_widget(tag.responsable) }}
+							{{ form_errors(tag.responsable) }}
+						</div>
+					</td>
+					<td>
+						<div class="col-sm-12">
+							{{ form_widget(tag.tipoInspeccion) }}
+							{{ form_errors(tag.tipoInspeccion) }}
+						</div>
+					</td>
+					<td>
+						<div class="col-sm-12">
+							{{ form_widget(tag.tecnico) }}
+							{{ form_errors(tag.tecnico) }}
+						</div>
+					</td>
           <td>
             <div class="col-sm-12">
-              {{ form_widget(tag.observaciones) }}
-              {{ form_errors(tag.observaciones) }}
+              {{ form_widget(tag.observacion) }}
+              {{ form_errors(tag.observacion) }}
             </div>
           </td>
           {% do tag.edadPlantacion.setRendered() %}
@@ -84,7 +102,7 @@
           {% do tag.edadRebrote.setRendered() %}
           {% do tag.numeroBrotesCepas.setRendered() %}
           <td>
-            <a class="btn btn-danger btn-sm pull-right remove-actividad-certificada remove_nested_fields" data-association="actividades_certificadas">
+            <a class="btn btn-danger btn-sm pull-right remove-actividad-inspeccionada remove_nested_fields" data-association="actividades_inspeccionadas">
               <span class="fa fa-remove text-white" aria-hidden="true"></span>
             </a>
           </td>

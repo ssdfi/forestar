@@ -1,86 +1,229 @@
-<div class="table-responsive">
-  <table id="actividades-inspeccionadas" class="table table-striped">
-    <thead>
-      <tr>
-        <th>Actividad</th>
-        <th>Especie</th>
-        <th>Superficie</th>
-        <th>Densidad</th>
-        <th>Responsable</th>
-        <th>Fecha Inspeccion</th>
-        <th>Tipo Inspeccion</th>
-        <th>Observacion</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody class="actividadesInspeccionadas" data-index="{{ actividadesInspeccionadas|length }}" data-prototype="{% filter escape %}{% include 'actividadesinspeccionadas/prototype.html.twig' with {'form': actividadesInspeccionadas.vars.prototype } %}{% endfilter %}">
-      {% if actividadesInspeccionadas %}
-        {% for tag in actividadesInspeccionadas %}
-        <tr class="fields">
-          <td>
-            <div class="col-sm-12">
-              {{ form_widget(tag.tipoActividad) }}
-              {{ form_errors(tag.tipoActividad) }}
-            </div>
-          </td>
-          <td>
-          	<div class="col-sm-12">
-          		{{ form_widget(tag.especie) }}
-              {{ form_errors(tag.especie) }}
-          	</div>
-          </td>
-          <td>
-          		<div class="col-sm-12">
-          			{{ form_widget(tag.superficieHa) }}
-                {{ form_errors(tag.superficieHa) }}
-          		</div>
-          </td>
-          <td>
-            <div class="col-sm-12">
-              {{ form_widget(tag.densidad) }}
-              {{ form_errors(tag.densidad) }}
-            </div>
-          </td>
-          <td>
-              <div class="col-sm-12">
-                {{ form_widget(tag.responsable) }}
-                {{ form_errors(tag.responsable) }}
-              </div>
-          </td>
-          <td>
-              <div class="col-sm-12">
-                {{ form_widget(tag.fechaInspeccion) }}
-                {{ form_errors(tag.fechaInspeccion) }}
-              </div>
-          </td>
-          <td>
-              <div class="col-sm-12">
-                {{ form_widget(tag.tipoInspeccion) }}
-                {{ form_errors(tag.tipoInspeccion) }}
-              </div>
-          </td>
-          <td>
-          		<div class="col-sm-12">
-          			{{ form_widget(tag.observacion) }}
-                {{ form_errors(tag.observacion) }}
-          		</div>
-          </td>
-          <td>
-          	<a class="btn btn-danger btn-sm pull-right remove-actividad-inspeccionada remove_nested_fields" data-association="actividades_inspeccionadas">
-              <span class="fa fa-remove text-white" aria-hidden="true"></span>
-          	</a>
-          </td>
-        </tr>
-      {% endfor %}
-    {% endif %}
-    </tbody>
-  </table>
-  <a id="add-actividad-inspeccionada" class="btn btn-primary btn-sm add_nested_fields" data-target="#actividad-inspeccionada" href="javascript:void(0)">
-    <span class="fa fa-plus" aria-hidden="true"></span>
-    Agregar Actividad Inspeccionada
-  </a>
+{% set arr = {} %}
+{% if actividadesInspeccionadas %}
+	{% for key, tag in actividadesInspeccionadas %}
+		{% set arr = arr | merge({
+			(tag.tipoActividad.vars.data.id ~ 'key'): tag.tipoActividad.vars.data.id
+		}) %}
+	{% endfor %}
+{% endif %}
+
+<div
+	class="inspeccionada-prototype"
+	data-index="{{ actividadesInspeccionadas|length }}"
+	data-prototype="{% filter escape %}{% embed 'actividadesinspeccionadas/prototype.html.twig' with {'form': actividadesInspeccionadas.vars.prototype } %}{% endembed %}{% endfilter %}"></div>
+{# Plantacion macizo#}
+<div class="inspeccionadas-macizo" {% if 1 not in arr|keys %} style="display:none" {% endif %}>
+	<h5>Plantación Macizo</h5>
+	<table id="actividades-inspeccionadas-macizo" class="table table-striped">
+		<thead>
+			<tr>
+				<th>Actividad</th>
+				<th>Especie</th>
+				<th>Fecha Realización</th>
+				<th>Superficie</th>
+				<th>Riego</th>
+				<th>Turno de Corta</th>
+				<th>Porcentaje Fallas</th>
+				<th>Densidad</th>
+				<th>Responsable</th>
+				<th>Tipo Inspección</th>
+				<th>Técnico</th>
+				<th>Observaciones</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody class="actividadesInspeccionadas_inspeccionadas-macizo">
+			{% if 1 in arr | keys %}
+				{% embed "actividadesinspeccionadas/plantacion_macizo/table.html.twig" with {
+					'actividadesInspeccionadas' : actividadesInspeccionadas
+				} %}{% endembed %}
+			{% endif %}
+		</tbody>
+	</table>
+</div>
+
+{# Plantacion Cortina #}
+<div class="inspeccionadas-cortina" {% if 6 not in arr|keys %} style="display:none" {% endif %}>
+	<h5>Plantación Cortina</h5>
+	<table id="actividades-inspeccionadas-cortina" class="table table-responsive table-striped">
+		<thead>
+			<tr>
+				<th>Actividad</th>
+				<th>Especie</th>
+				<th>Fecha Realización</th>
+				<th>Superficie Equivalente</th>
+				<th>Longitud Filas</th>
+				<th>Numero de Filas</th>
+				<th>Distancia entre Plantas</th>
+				<th>Cantidad de Arboles</th>
+				<th>Riego</th>
+				<th>Turno Corta</th>
+				<th>Responsable</th>
+				<th>Tipo Inspección</th>
+				<th>Técnico</th>
+				<th>Observaciones</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody class="actividadesInspeccionadas_inspeccionadas-cortina">
+			{% if 6 in arr | keys %}
+				{% embed "actividadesinspeccionadas/plantacion_cortina/table.html.twig" with {
+					'actividadesInspeccionadas' : actividadesInspeccionadas
+				} %}{% endembed %}
+			{% endif %}
+		</tbody>
+	</table>
+</div>
+
+{# PODA #}
+<div class="inspeccionadas-poda" {% if 2 not in arr|keys %} style="display:none" {% endif %}>
+	<h5>Poda</h5>
+	<table id="actividades-inspeccionadas-poda" class="table table-responsive table-striped">
+		<thead>
+			<tr>
+				<th>Actividad</th>
+				<th>Especie</th>
+				<th>Fecha Realización</th>
+				<th>Superficie</th>
+				<th>Edad Plantación</th>
+				<th>Nro. Poda</th>
+				<th>Cant. Arboles Podados</th>
+				<th>DAP promedio</th>
+				<th>Altura promedio Plantación</th>
+				<th>Altura Poda</th>
+				<th>Responsable</th>
+				<th>Tipo Inspección</th>
+				<th>Técnico</th>
+				<th>Observaciones</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody class="actividadesInspeccionadas_inspeccionadas-poda">
+			{% if 2 in arr | keys %}
+				{% embed "actividadesinspeccionadas/poda/table.html.twig" with {
+					'actividadesInspeccionadas' : actividadesInspeccionadas
+				} %}{% endembed %}
+			{% endif %}
+		</tbody>
+	</table>
+</div>
+
+{# RALEO #}
+<div class="inspeccionadas-raleo" {% if 3 not in arr|keys %} style="display:none" {% endif %}>
+	<h5>Raleo</h5>
+	<table id="actividades-inspeccionadas-raleo" class="table table-striped table-responsive">
+		<thead>
+			<tr>
+				<th>Actividad</th>
+				<th>Especie</th>
+				<th>Fecha</th>
+				<th>Superficie</th>
+				<th>Edad Plantacion</th>
+				<th>DAP promedio</th>
+				<th>Densidad Previa</th>
+				<th>Nros Arboles Extraidos</th>
+				<th>Densidad Final</th>
+				<th>Responsable</th>
+				<th>Tipo Inspección</th>
+				<th>Técnico</th>
+				<th>Observaciones</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody class="actividadesInspeccionadas_inspeccionadas-raleo">
+			{% if 3 in arr | keys %}
+				{% embed "actividadesinspeccionadas/raleo/table.html.twig" with {
+					'actividadesInspeccionadas' : actividadesInspeccionadas
+				} %}{% endembed %}
+			{% endif %}
+		</tbody>
+	</table>
+</div>
+
+{# Manejo Rebrote #}
+<div class="inspeccionadas-manejoRebrote" {% if 4 not in arr|keys %} style="display:none" {% endif %}>
+	<h5>Manejo de Rebrote</h5>
+	<table id="actividades-inspeccionadas-manejo-rebrote" class="table table-striped">
+		<thead>
+			<tr>
+				<th>Actividad</th>
+				<th>Especie</th>
+				<th>Fecha Realización</th>
+				<th>Superficie</th>
+				<th>Edad de la cepa</th>
+				<th>Edad del rebrote</th>
+				<th>Nro. de brotes/cepa después del manejo</th>
+				<th>Responsable</th>
+				<th>Tipo Inspección</th>
+				<th>Técnico</th>
+				<th>Observaciones</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody class="actividadesInspeccionadas_inspeccionadas-manejoRebrote">
+			{% if 4 in arr | keys %}
+				{% embed "actividadesinspeccionadas/manejo_rebrote/table.html.twig" with {
+					'actividadesInspeccionadas' : actividadesInspeccionadas
+				} %}{% endembed %}
+			{% endif %}
+		</tbody>
+	</table>
+</div>
+
+{# Enriquecimiento del BN #}
+<div class="inspeccionadas-enriquecimientoBN" {% if 5 not in arr|keys %} style="display:none" {% endif %}>
+	<h5>Enriquecimiento Bosque Nativo</h5>
+	<table id="actividades-inspeccionadas-enriquecimiento-bn" class="table table-striped">
+		<thead>
+			<tr>
+				<th>Actividad</th>
+				<th>Especie</th>
+				<th>Fecha Realización</th>
+				<th>Superficie</th>
+				<th>Densidad (plantas/ha)</th>
+				<th>Responsable</th>
+				<th>Tipo Inspección</th>
+				<th>Técnico</th>
+				<th>Observaciones</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody class="actividadesInspeccionadas_inspeccionadas-enriquecimientoBN">
+			{% if 5 in arr | keys %}
+				{% embed "actividadesinspeccionadas/enriquecimiento_bn/table.html.twig" with {
+					'actividadesInspeccionadas' : actividadesInspeccionadas
+				} %}{% endembed %}
+			{% endif %}
+		</tbody>
+	</table>
+</div>
+
+<div class="btn-group" role="group">
+	<button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<span class="fa fa-plus" aria-hidden="true"></span> Agregar Actividad Inspeccionada
+	</button>
+	<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+		<a data-type="inspeccionadas-macizo" class="add-actividad-inspeccionada dropdown-item" href="javascript:void(0)">
+			<span class="fa fa-plus" aria-hidden="true"></span>
+			Plantación Macizo</a>
+		<a data-type="inspeccionadas-cortina" class="add-actividad-inspeccionada dropdown-item" href="javascript:void(0)">
+			<span class="fa fa-plus" aria-hidden="true"></span>
+			Plantación Cortina</a>
+		<a data-type="inspeccionadas-poda" class="add-actividad-inspeccionada dropdown-item" href="javascript:void(0)">
+			<span class="fa fa-plus" aria-hidden="true"></span>
+			Poda</a>
+		<a data-type="inspeccionadas-raleo" class="add-actividad-inspeccionada dropdown-item" href="javascript:void(0)">
+			<span class="fa fa-plus" aria-hidden="true"></span>
+			Raleo</a>
+		<a data-type="inspeccionadas-manejoRebrote" class="add-actividad-inspeccionada dropdown-item" href="javascript:void(0)">
+			<span class="fa fa-plus" aria-hidden="true"></span>
+			Manejo de Rebrotes</a>
+		<a data-type="inspeccionadas-enriquecimientoBN" class="add-actividad-inspeccionada dropdown-item" href="javascript:void(0)">
+			<span class="fa fa-plus" aria-hidden="true"></span>
+			Enriquecimiento de Bosque Nativo</a>
+	</div>
 </div>
 
 {% block javascripts %}
-  <script src="{{ asset('js/actividades_inspeccionadas.js') }}"></script>
+	<script src="{{ asset('js/actividades_inspeccionadas.js') }}"></script>
 {% endblock %}

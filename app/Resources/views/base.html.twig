@@ -59,13 +59,13 @@
 			</div>
 		</div>
 		{% block javascripts %}
+			<script src="/js/popper.min.js"></script>
 			{% javascripts '@jquery' '@bootstrap_js' %}
 			<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
 			<script type="text/javascript" src="{{ asset_url }}"></script>
 			<script src="/js/bootstrap-switch.js"></script>
 			<script src="/js/application.js"></script>
 			<script src="/js/bootstrap-combobox.js"></script>
-			<script src="/js/popper.min.js"></script>
 			{% endjavascripts %}
 		{% endblock %}
 	</body>

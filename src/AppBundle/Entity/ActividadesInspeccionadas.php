@@ -19,7 +19,7 @@ class ActividadesInspeccionadas
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="inspeccion_id_seq", allocationSize=1, initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="actividades_inspeccionadas_id_seq", allocationSize=1, initialValue=1)
      */
     private $id;
 
@@ -99,12 +99,9 @@ class ActividadesInspeccionadas
     private $departamento;
 
     /**
-     * @var \Especie
+     * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="Responsables")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="responsable_id", referencedColumnName="id")
-     * })
+     * @ORM\Column(name="responsable", type="string", nullable=true)
      */
     private $responsable;
 
@@ -145,6 +142,141 @@ class ActividadesInspeccionadas
      * @ORM\Column(name="etapa", type="integer", nullable=true)
      */
     private $etapa;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="porcentaje_fallas", type="integer", nullable=true)
+     */
+    private $porcentajeFallas;
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="riego", type="boolean", nullable=true)
+     */
+    private $riego;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="turno_corta", type="date", nullable=true)
+     */
+    private $turnoCorta;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="longitud_filas", type="integer", nullable=true)
+     */
+    private $longitudFilas;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="numero_filas", type="integer", nullable=true)
+     */
+    private $numeroFilas;
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="distancia_plantas", type="float", nullable=true)
+     */
+    private $distanciaPlantas;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cantidad_arboles", type="integer", nullable=true)
+     */
+    private $cantidadArboles;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="edad_plantacion", type="integer", nullable=true)
+     */
+    private $edadPlantacion;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="numero_poda", type="integer", nullable=true)
+     */
+    private $numeroPoda;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="dap_promedio", type="float", nullable=true)
+     */
+    private $dapPromedio;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="altura_promedio_plantacion", type="integer", nullable=true)
+     */
+    private $alturaPromedioPlantacion;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="altura_poda", type="integer", nullable=true)
+     */
+    private $alturaPoda;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="densidad_previa", type="integer", nullable=true)
+     */
+    private $densidadPrevia;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="numero_arboles_extraidos", type="integer", nullable=true)
+     */
+    private $numeroArbolesExtraidos;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="edad_cepa", type="integer", nullable=true)
+     */
+    private $edadCepa;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="edad_rebrote", type="integer", nullable=true)
+     */
+    private $edadRebrote;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="numero_brotes_cepas", type="integer", nullable=true)
+     */
+    private $numeroBrotesCepas;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cantidad_arboles_podados", type="integer", nullable=true)
+     */
+    private $cantidadArbolesPodados;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="usuario", type="string", nullable=true)
+     */
+    private $usuario;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="tecnico", type="string", nullable=true)
+     */
+    private $tecnico;
 
 
 
@@ -521,5 +653,485 @@ class ActividadesInspeccionadas
     public function getEtapa()
     {
         return $this->etapa;
+    }
+
+    /**
+     * Set porcentajeFallas
+     *
+     * @param integer porcentajeFallas
+     *
+     * @return porcentajeFallas
+     */
+    public function setPorcentajeFallas($porcentajeFallas)
+    {
+        $this->porcentajeFallas = $porcentajeFallas;
+
+        return $this;
+    }
+
+    /**
+     * Get superficieHa
+     *
+     * @return integer
+     */
+    public function getPorcentajeFallas()
+    {
+        return $this->porcentajeFallas;
+    }
+    //
+    /**
+     * Set $riego
+     *
+     * @param integer $riego
+     *
+     * @return $riego
+     */
+    public function setRiego($riego)
+    {
+        $this->riego = $riego;
+
+        return $this;
+    }
+
+    /**
+     * Get riego
+     *
+     * @return integer
+     */
+    public function getRiego()
+    {
+        return $this->riego;
+    }
+
+    /**
+     * Set $turnoCorta
+     *
+     * @param integer $turnoCorta
+     *
+     * @return $turnoCorta
+     */
+    public function setTurnoCorta($turnoCorta)
+    {
+        $this->turnoCorta = $turnoCorta;
+
+        return $this;
+    }
+
+    /**
+     * Get $turnoCorta
+     *
+     * @return integer
+     */
+    public function getTurnoCorta()
+    {
+        return $this->turnoCorta;
+    }
+
+    /**
+     * Set $longitudFilas
+     *
+     * @param integer $longitudFilas
+     *
+     * @return $longitudFilas
+     */
+    public function setLongitudFilas($longitudFilas)
+    {
+        $this->longitudFilas = $longitudFilas;
+
+        return $this;
+    }
+
+    /**
+     * Get $longitudFilas
+     *
+     * @return integer
+     */
+    public function getLongitudFilas()
+    {
+        return $this->longitudFilas;
+    }
+
+    /**
+     * Set $numeroFilas
+     *
+     * @param integer $numeroFilas
+     *
+     * @return $numeroFilas
+     */
+    public function setNumeroFilas($numeroFilas)
+    {
+        $this->numeroFilas = $numeroFilas;
+
+        return $this;
+    }
+
+    /**
+     * Get NumeroFilas
+     *
+     * @return integer
+     */
+    public function getNumeroFilas()
+    {
+        return $this->numeroFilas;
+    }
+
+    /**
+     * Set $distanciaPlantas
+     *
+     * @param integer $distanciaPlantas
+     *
+     * @return $distanciaPlantas
+     */
+    public function setDistanciaPlantas($distanciaPlantas)
+    {
+        $this->distanciaPlantas = $distanciaPlantas;
+
+        return $this;
+    }
+
+    /**
+     * Get $distanciaPlantas
+     *
+     * @return integer
+     */
+    public function getDistanciaPlantas()
+    {
+        return $this->distanciaPlantas;
+    }
+
+    /**
+     * Set $cantidadArboles
+     *
+     * @param integer $cantidadArboles
+     *
+     * @return $cantidadArboles
+     */
+    public function setCantidadArboles($cantidadArboles)
+    {
+        $this->cantidadArboles = $cantidadArboles;
+
+        return $this;
+    }
+
+    /**
+     * Get $cantidadArboles
+     *
+     * @return integer
+     */
+    public function getCantidadArboles()
+    {
+        return $this->cantidadArboles;
+    }
+
+    /**
+     * Set $edadPlantacion
+     *
+     * @param integer $edadPlantacion
+     *
+     * @return $edadPlantacion
+     */
+    public function setEdadPlantacion($edadPlantacion)
+    {
+        $this->edadPlantacion = $edadPlantacion;
+
+        return $this;
+    }
+
+    /**
+     * Get $edadPlantacion
+     *
+     * @return integer
+     */
+    public function getEdadPlantacion()
+    {
+        return $this->edadPlantacion;
+    }
+
+    /**
+     * Set $numeroPoda
+     *
+     * @param integer $numeroPoda
+     *
+     * @return $numeroPoda
+     */
+    public function setNumeroPoda($numeroPoda)
+    {
+        $this->numeroPoda = $numeroPoda;
+
+        return $this;
+    }
+
+    /**
+     * Get superficieHa
+     *
+     * @return integer
+     */
+    public function getNumeroPoda()
+    {
+        return $this->numeroPoda;
+    }
+
+    /**
+     * Set $cantidadArbolesPodados
+     *
+     * @param integer $cantidadArbolesPodados
+     *
+     * @return $cantidadArbolesPodados
+     */
+    public function setCantidadArbolesPodados($cantidadArbolesPodados)
+    {
+        $this->cantidadArbolesPodados = $cantidadArbolesPodados;
+
+        return $this;
+    }
+
+    /**
+     * Get $cantidadArbolesPodados
+     *
+     * @return integer
+     */
+    public function getCantidadArbolesPodados()
+    {
+        return $this->cantidadArbolesPodados;
+    }
+
+    /**
+     * Set $dapPromedio
+     *
+     * @param integer $dapPromedio
+     *
+     * @return $dapPromedio
+     */
+    public function setDapPromedio($dapPromedio)
+    {
+        $this->dapPromedio = $dapPromedio;
+
+        return $this;
+    }
+
+    /**
+     * Get $dapPromedio
+     *
+     * @return integer
+     */
+    public function getDapPromedio()
+    {
+        return $this->dapPromedio;
+    }
+
+    /**
+     * Set $alturaPromedioPlantacion
+     *
+     * @param integer $alturaPromedioPlantacion
+     *
+     * @return $alturaPromedioPlantacion
+     */
+    public function setAlturaPromedioPlantacion($alturaPromedioPlantacion)
+    {
+        $this->alturaPromedioPlantacion = $alturaPromedioPlantacion;
+
+        return $this;
+    }
+
+    /**
+     * Get $alturaPromedioPlantacion
+     *
+     * @return integer
+     */
+    public function getAlturaPromedioPlantacion()
+    {
+        return $this->alturaPromedioPlantacion;
+    }
+
+    /**
+     * Set $alturaPoda
+     *
+     * @param integer $alturaPoda
+     *
+     * @return Etapa
+     */
+    public function setAlturaPoda($alturaPoda)
+    {
+        $this->alturaPoda = $alturaPoda;
+
+        return $this;
+    }
+
+    /**
+     * Get $alturaPoda
+     *
+     * @return integer
+     */
+    public function getAlturaPoda()
+    {
+        return $this->alturaPoda;
+    }
+
+    /**
+     * Set $densidadPrevia
+     *
+     * @param integer $densidadPrevia
+     *
+     * @return Etapa
+     */
+    public function setDensidadPrevia($densidadPrevia)
+    {
+        $this->densidadPrevia = $densidadPrevia;
+
+        return $this;
+    }
+
+    /**
+     * Get $densidadPrevia
+     *
+     * @return integer
+     */
+    public function getDensidadPrevia()
+    {
+        return $this->densidadPrevia;
+    }
+
+    /**
+     * Set $numeroArbolesExtraidos
+     *
+     * @param integer $numeroArbolesExtraidos
+     *
+     * @return $numeroArbolesExtraidos
+     */
+    public function setNumeroArbolesExtraidos($numeroArbolesExtraidos)
+    {
+        $this->numeroArbolesExtraidos = $numeroArbolesExtraidos;
+
+        return $this;
+    }
+
+    /**
+     * Get $numeroArbolesExtraidos
+     *
+     * @return integer
+     */
+    public function getNumeroArbolesExtraidos()
+    {
+        return $this->numeroArbolesExtraidos;
+    }
+
+    /**
+     * Set $edadCepa
+     *
+     * @param integer $edadCepa
+     *
+     * @return $edadCepa
+     */
+    public function setEdadCepa($edadCepa)
+    {
+        $this->edadCepa = $edadCepa;
+
+        return $this;
+    }
+
+    /**
+     * Get EdadCepa
+     *
+     * @return integer
+     */
+    public function getEdadCepa()
+    {
+        return $this->edadCepa;
+    }
+
+    /**
+     * Set $edadRebrote
+     *
+     * @param integer $edadRebrote
+     *
+     * @return $edadRebrote
+     */
+    public function setEdadRebrote($edadRebrote)
+    {
+        $this->edadRebrote = $edadRebrote;
+
+        return $this;
+    }
+
+    /**
+     * Get $edadRebrote
+     *
+     * @return integer
+     */
+    public function getEdadRebrote()
+    {
+        return $this->edadRebrote;
+    }
+
+    /**
+     * Set $numeroBrotesCepas
+     *
+     * @param integer $numeroBrotesCepas
+     *
+     * @return $numeroBrotesCepas
+     */
+    public function setNumeroBrotesCepas($numeroBrotesCepas)
+    {
+        $this->numeroBrotesCepas = $numeroBrotesCepas;
+
+        return $this;
+    }
+
+    /**
+     * Get $numeroBrotesCepas
+     *
+     * @return integer
+     */
+    public function getNumeroBrotesCepas()
+    {
+        return $this->numeroBrotesCepas;
+    }
+
+    /**
+     * Set $usuario
+     *
+     * @param integer $usuario
+     *
+     * @return $usuario
+     */
+    public function setUsuario($usuario)
+    {
+        $this->usuario = $usuario;
+
+        return $this;
+    }
+
+    /**
+     * Get superficieHa
+     *
+     * @return integer
+     */
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
+
+    /**
+     * Set tecnico
+     *
+     * @param integer tecnico
+     *
+     * @return tecnico
+     */
+    public function setTecnico($tecnico)
+    {
+        $this->tecnico = $tecnico;
+
+        return $this;
+    }
+
+    /**
+     * Get tecnico
+     *
+     * @return integer
+     */
+    public function getTecnico()
+    {
+        return $this->tecnico;
     }
 }

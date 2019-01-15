@@ -7,56 +7,182 @@
 	{% endfor %}
 {% endif %}
 
-<div class="prototype" data-index="{{ actividadesCertificadas|length }}" data-prototype="{% filter escape %}{% embed 'actividadescertificadas/prototype.html.twig' with {'form': actividadesCertificadas.vars.prototype } %}{% endembed %}{% endfilter %}">	
+<div
+	class="prototype"
+	data-index="{{ actividadesCertificadas|length }}"
+	data-prototype="{% filter escape %}{% embed 'actividadescertificadas/prototype.html.twig' with {'form': actividadesCertificadas.vars.prototype } %}{% endembed %}{% endfilter %}"></div>
+{# Plantacion macizo#}
+<div class="macizo" {% if 1 not in arr|keys %} style="display:none" {% endif %}>
+	<h5>Plantación Macizo</h5>
+	<table id="actividades-certificadas-macizo" class="table table-striped">
+		<thead>
+			<tr>
+				<th>Actividad</th>
+				<th>Especie</th>
+				<th>Fecha Realización</th>
+				<th>Superficie</th>
+				<th>Riego</th>
+				<th>Turno de Corta</th>
+				<th>Porcentaje Fallas</th>
+				<th>Densidad</th>
+				<th>Observaciones</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody class="actividadesCertificadas_macizo">
+			{% if 1 in arr | keys %}
+				{% embed "actividadescertificadas/plantacion_macizo/table.html.twig" with {
+					'actividadesCertificadas' : actividadesCertificadas
+				} %}{% endembed %}
+			{% endif %}
+		</tbody>
+	</table>
 </div>
 
-{% for id in arr %}
-	{# Plantacion macizo#}
-	{% if id == 1 %}
-		{% embed "actividadescertificadas/plantacion_macizo/table.html.twig" with {
-			'actividadesCertificadas' : actividadesCertificadas
-		} %}{% endembed %}
-	{% endif %}
+{# Plantacion Cortina #}
+<div class="cortina" {% if 6 not in arr|keys %} style="display:none" {% endif %}>
+	<h5>Plantación Cortina</h5>
+	<table id="actividades-certificadas-cortina" class="table table-responsive table-striped">
+		<thead>
+			<tr>
+				<th>Actividad</th>
+				<th>Especie</th>
+				<th>Fecha Realización</th>
+				<th>Superficie Equivalente</th>
+				<th>Longitud Filas</th>
+				<th>Numero de Filas</th>
+				<th>Distancia entre Plantas</th>
+				<th>Cantidad de Arboles</th>
+				<th>Riego</th>
+				<th>Turno Corta</th>
+				<th>Observaciones</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody class="actividadesCertificadas_cortina">
+			{% if 6 in arr | keys %}
+				{% embed "actividadescertificadas/plantacion_cortina/table.html.twig" with {
+					'actividadesCertificadas' : actividadesCertificadas
+				} %}{% endembed %}
+			{% endif %}
+		</tbody>
+	</table>
+</div>
 
-	{# Plantacion Cortina #}
-	{% if id == 6 %}
-		{% embed "actividadescertificadas/plantacion_cortina/table.html.twig" with {
-			'actividadesCertificadas' : actividadesCertificadas
-		} %}{% endembed %}
-	{% endif %}
+{# PODA #}
+<div class="poda" {% if 2 not in arr|keys %} style="display:none" {% endif %}>
+	<h5>Poda</h5>
+	<table id="actividades-certificadas-poda" class="table table-responsive table-striped">
+		<thead>
+			<tr>
+				<th>Actividad</th>
+				<th>Especie</th>
+				<th>Fecha Realización</th>
+				<th>Superficie</th>
+				<th>Edad Plantación</th>
+				<th>Nro. Poda</th>
+				<th>Cant. Arboles Podados</th>
+				<th>DAP promedio</th>
+				<th>Altura promedio Plantación</th>
+				<th>Altura Poda</th>
+				<th>Observaciones</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody class="actividadesCertificadas_poda">
+			{% if 2 in arr | keys %}
+				{% embed "actividadescertificadas/poda/table.html.twig" with {
+					'actividadesCertificadas' : actividadesCertificadas
+				} %}{% endembed %}
+			{% endif %}
+		</tbody>
+	</table>
+</div>
 
-	{# PODA #}
-	{% if id == 2 %}
-		{% embed "actividadescertificadas/poda/table.html.twig" with {
-			'actividadesCertificadas' : actividadesCertificadas
-		} %}{% endembed %}
-	{% endif %}
+{# RALEO #}
+<div class="raleo" {% if 3 not in arr|keys %} style="display:none" {% endif %}>
+	<h5>Raleo</h5>
+	<table id="actividades-certificadas-raleo" class="table table-striped table-responsive">
+		<thead>
+			<tr>
+				<th>Actividad</th>
+				<th>Especie</th>
+				<th>Fecha</th>
+				<th>Superficie</th>
+				<th>Edad Plantacion</th>
+				<th>DAP promedio</th>
+				<th>Densidad Previa</th>
+				<th>Nros Arboles Extraidos</th>
+				<th>Densidad Final</th>
+				<th>Observaciones</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody class="actividadesCertificadas_raleo">
+			{% if 3 in arr | keys %}
+				{% embed "actividadescertificadas/raleo/table.html.twig" with {
+					'actividadesCertificadas' : actividadesCertificadas
+				} %}{% endembed %}
+			{% endif %}
+		</tbody>
+	</table>
+</div>
 
-	{# RALEO #}
-	{% if id == 3 %}
-		{% embed "actividadescertificadas/raleo/table.html.twig" with {
-			'actividadesCertificadas' : actividadesCertificadas
-		} %}{% endembed %}
-	{% endif %}
+{# Manejo Rebrote #}
+<div class="manejoRebrote" {% if 4 not in arr|keys %} style="display:none" {% endif %}>
+	<h5>Manejo de Rebrote</h5>
+	<table id="actividades-certificadas-manejo-rebrote" class="table table-striped">
+		<thead>
+			<tr>
+				<th>Actividad</th>
+				<th>Especie</th>
+				<th>Fecha Realización</th>
+				<th>Superficie</th>
+				<th>Edad de la cepa</th>
+				<th>Edad del rebrote</th>
+				<th>Nro. de brotes/cepa después del manejo</th>
+				<th>Observaciones</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody class="actividadesCertificadas_manejoRebrote">
+			{% if 4 in arr | keys %}
+				{% embed "actividadescertificadas/manejo_rebrote/table.html.twig" with {
+					'actividadesCertificadas' : actividadesCertificadas
+				} %}{% endembed %}
+			{% endif %}
+		</tbody>
+	</table>
+</div>
 
-	{# Manejo Rebrote #}
-	{% if id == 4 %}
-		{% embed "actividadescertificadas/manejo_rebrote/table.html.twig" with {
-			'actividadesCertificadas' : actividadesCertificadas
-		} %}{% endembed %}
-	{% endif %}
+{# Enriquecimiento del BN #}
+<div class="enriquecimientoBN" {% if 5 not in arr|keys %} style="display:none" {% endif %}>
+	<h5>Enriquecimiento Bosque Nativo</h5>
+	<table id="actividades-certificadas-enriquecimiento-bn" class="table table-striped">
+		<thead>
+			<tr>
+				<th>Actividad</th>
+				<th>Especie</th>
+				<th>Fecha Realización</th>
+				<th>Superficie</th>
+				<th>Densidad (plantas/ha)</th>
+				<th>Observaciones</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody class="actividadesCertificadas_enriquecimientoBN">
+			{% if 5 in arr | keys %}
+				{% embed "actividadescertificadas/enriquecimiento_bn/table.html.twig" with {
+					'actividadesCertificadas' : actividadesCertificadas
+				} %}{% endembed %}
+			{% endif %}
+		</tbody>
+	</table>
+</div>
 
-	{# Enriquecimiento del BN #}
-	{% if id == 5 %}
-		{% embed "actividadescertificadas/enriquecimiento_bn/table.html.twig" with {
-			'actividadesCertificadas' : actividadesCertificadas
-		} %}{% endembed %}
-	{% endif %}
-
-{% endfor %}
 <div class="btn-group" role="group">
 	<button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		Agregar Actividad Certificada
+		<span class="fa fa-plus" aria-hidden="true"></span> Agregar Actividad Certificada
 	</button>
 	<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
 		<a data-type="macizo" class="add-actividad-certificada dropdown-item" href="javascript:void(0)">
@@ -65,7 +191,7 @@
 		<a data-type="cortina" class="add-actividad-certificada dropdown-item" href="javascript:void(0)">
 			<span class="fa fa-plus" aria-hidden="true"></span>
 			Plantación Cortina</a>
-		<a  data-type="poda" class="add-actividad-certificada dropdown-item" href="javascript:void(0)">
+		<a data-type="poda" class="add-actividad-certificada dropdown-item" href="javascript:void(0)">
 			<span class="fa fa-plus" aria-hidden="true"></span>
 			Poda</a>
 		<a data-type="raleo" class="add-actividad-certificada dropdown-item" href="javascript:void(0)">

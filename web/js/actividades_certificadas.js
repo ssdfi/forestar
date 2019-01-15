@@ -13,13 +13,16 @@ $(document).ready(function () {
     return;
   });
 
+    $("form[name='appbundle_expedientes']").on('submit', function() {
+      $('input, select').prop('disabled', false);
+    });
+
   function actividadCertificadaAdd(type) {
       var collectionHolder = $('.prototype');
       var table = $('.actividadesCertificadas_'+type);
       var collectionCount = $('.prototype').data('index');
       var prototipo = collectionHolder.attr('data-prototype');
       prototipo = prototipo.replace(/__name__/g, collectionCount);
-      $('.prototype').attr('index', (collectionCount+1))
       var newLi = $('<tr class="fields"></tr>').html(prototipo);
       newLi.find('.combobox').combobox();
       hideFields(type, collectionCount, newLi);
@@ -31,6 +34,9 @@ $(document).ready(function () {
               offText: "NO"
           });
       });
+      setTipoActividad(type,collectionCount);
+      collectionCount+=1;
+      $('.prototype').data('index', collectionCount);
       return;
   }
 
@@ -39,6 +45,34 @@ $(document).ready(function () {
     row.remove();
     return false;
   }
+
+  function setTipoActividad(type, count){
+    if ($('.'+type).is(":visible") === false) {
+      $('.'+type).show();
+    }
+    switch (type) {
+      case 'raleo':
+        $('#appbundle_expedientes_actividadesCertificadas_'+count+'_tipoActividad').val(3);
+        break;
+      case 'poda':
+        $('#appbundle_expedientes_actividadesCertificadas_'+count+'_tipoActividad').val(2);
+        break;
+      case 'macizo':
+        $('#appbundle_expedientes_actividadesCertificadas_'+count+'_tipoActividad').val(1);
+        break;
+      case 'cortina':
+        $('#appbundle_expedientes_actividadesCertificadas_'+count+'_tipoActividad').val(6);
+        break;
+      case 'manejoRebrote':
+        $('#appbundle_expedientes_actividadesCertificadas_'+count+'_tipoActividad').val(4);
+        break;
+      case 'enriquecimientoBN':
+        $('#appbundle_expedientes_actividadesCertificadas_'+count+'_tipoActividad').val(5);
+        break;
+      default:
+    }
+  }
+
   function hideFields(type, count, tr){
     switch (type) {
       case 'raleo':
@@ -141,12 +175,8 @@ $(document).ready(function () {
         $(tr).find(`[data-attr='numeroFilas']`).remove();
         $(tr).find(`[data-attr='distanciaPlantas']`).remove();
         $(tr).find(`[data-attr='cantidadArboles']`).remove();
-        $(tr).find(`[data-attr='tuvietan']`).remove();
-        $(tr).find(`[data-attr='tuvietan']`).remove();
-        $(tr).find(`[data-attr='tuvietan']`).remove();
         break;
       default:
-
     }
   }
 });

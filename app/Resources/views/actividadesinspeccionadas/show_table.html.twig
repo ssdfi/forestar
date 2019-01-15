@@ -6,22 +6,18 @@
       <th scope="col">Especie</th>
       <th scope="col">Superficie(ha).</th>
       <th scope="col">Densidad</th>
-      <th scope="col">Tipo ActividadesInspeccionadas</th>
-      <th scope="col">Fecha de Inicio</th>
-      <th scope="col">Fecha Fin</th>
+      <th scope="col">Fecha de Realización</th>
     </tr>
   </thead>
   <tbody>
-    {% for actividadInspeccionada in expediente.actividadesInspeccionadas %}
+    {% for actividadInspeccionada in actividadesInspeccionadas %}
     <tr>
       <td>{{ actividadInspeccionada.id }}</a></td>
-      <td><abbr title="{{ actividadInspeccionada.tipoActividad }}" data-length="10">{{ actividadInspeccionada.tipoActividad }}</abbr></td>
+      <td>{{ actividadInspeccionada.tipoActividad }}</td>
       <td>{{ actividadInspeccionada.especie }}</td>
       <td>{{ actividadInspeccionada.superficieHa }}</td>
       <td>{{ actividadInspeccionada.densidad }}</td>
-      <td>{{ actividadInspeccionada.tipoInspeccion }}</td>
-      <td>{% if actividadInspeccionada.fechaInicio %}{{ actividadInspeccionada.fechaInicio|date('d-m-Y') }}{% endif %}</td>
-      <td>{% if actividadInspeccionada.fechaFin %}{{ actividadInspeccionada.fechaFin|date('d-m-Y') }}{% endif %}</td>
+      <td>{% if actividadInspeccionada.fechaInspeccion %}{{ actividadInspeccionada.fechaInspeccion|date('m-Y') }}{% endif %}</td>
     </tr>
     {% endfor %}
   </tbody>

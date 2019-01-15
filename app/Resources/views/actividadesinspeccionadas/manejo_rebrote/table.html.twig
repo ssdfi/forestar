@@ -1,7 +1,7 @@
-{% if actividadesCertificadas %}
-	{% for tag in actividadesCertificadas %}
-		{# RALEO #}
-		{% if tag.tipoActividad.vars.data.id == 3 %}
+{% if actividadesInspeccionadas %}
+	{% for tag in actividadesInspeccionadas %}
+		{# MANEJO REBROTE #}
+		{% if tag.tipoActividad.vars.data.id == 4 %}
 			<tr class="fields">
 				<td>
 					<div class="col-sm-12">
@@ -17,8 +17,8 @@
 				</td>
 				<td>
 					<div class="col-sm-12">
-						{{ form_widget(tag.fechaInicio) }}
-						{{ form_errors(tag.fechaInicio) }}
+						{{ form_widget(tag.fechaInspeccion) }}
+						{{ form_errors(tag.fechaInspeccion) }}
 					</div>
 				</td>
 				<td>
@@ -29,40 +29,54 @@
 				</td>
 				<td>
 					<div class="col-sm-12">
-						{{ form_widget(tag.edadPlantacion) }}
-						{{ form_errors(tag.edadPlantacion) }}
+						{{ form_widget(tag.edadCepa) }}
+						{{ form_errors(tag.edadCepa) }}
 					</div>
 				</td>
 				<td>
 					<div class="col-sm-12">
-						{{ form_widget(tag.dapPromedio) }}
-						{{ form_errors(tag.dapPromedio) }}
+						{{ form_widget(tag.edadRebrote) }}
+						{{ form_errors(tag.edadRebrote) }}
 					</div>
 				</td>
 				<td>
 					<div class="col-sm-12">
-						{{ form_widget(tag.densidadPrevia) }}
-						{{ form_errors(tag.densidadPrevia) }}
+						{{ form_widget(tag.numeroBrotesCepas) }}
+						{{ form_errors(tag.numeroBrotesCepas) }}
 					</div>
 				</td>
 				<td>
 					<div class="col-sm-12">
-						{{ form_widget(tag.numeroArbolesExtraidos) }}
-						{{ form_errors(tag.numeroArbolesExtraidos) }}
+						{{ form_widget(tag.responsable) }}
+						{{ form_errors(tag.responsable) }}
 					</div>
 				</td>
 				<td>
 					<div class="col-sm-12">
-						{{ form_widget(tag.densidad) }}
-						{{ form_errors(tag.densidad) }}
+						{{ form_widget(tag.tipoInspeccion) }}
+						{{ form_errors(tag.tipoInspeccion) }}
 					</div>
 				</td>
 				<td>
 					<div class="col-sm-12">
-						{{ form_widget(tag.observaciones) }}
-						{{ form_errors(tag.observaciones) }}
+						{{ form_widget(tag.tecnico) }}
+						{{ form_errors(tag.tecnico) }}
 					</div>
 				</td>
+				<td>
+					<div class="col-sm-12">
+						{{ form_widget(tag.observacion) }}
+						{{ form_errors(tag.observacion) }}
+					</div>
+				</td>
+				{% do
+					tag.edadPlantacion.setRendered() %}
+				{% do
+					tag.dapPromedio.setRendered() %}
+				{% do
+					tag.densidadPrevia.setRendered() %}
+				{% do
+					tag.numeroArbolesExtraidos.setRendered() %}
 				{% do
 					tag.alturaPoda.setRendered() %}
 				{% do
@@ -72,27 +86,23 @@
 				{% do
 					tag.numeroPoda.setRendered() %}
 				{% do
+					tag.densidad.setRendered() %}
+				{% do
 					tag.porcentajeFallas.setRendered() %}
 				{% do
 					tag.turnoCorta.setRendered() %}
 				{% do
 					tag.riego.setRendered() %}
 				{% do
-					tag.edadCepa.setRendered() %}
-				{% do
-					tag.edadRebrote.setRendered() %}
-				{% do
-					tag.numeroBrotesCepas.setRendered() %}
-				{% do
 					tag.longitudFilas.setRendered() %}
 				{% do
 					tag.numeroFilas.setRendered() %}
-				{% do 
+				{% do
 					tag.distanciaPlantas.setRendered() %}
 				{% do
 					tag.cantidadArboles.setRendered() %}
 				<td>
-					<a class="btn btn-danger btn-sm pull-right remove-actividad-certificada remove_nested_fields" data-association="actividades_certificadas">
+					<a class="btn btn-danger btn-sm pull-right remove-actividad-inspeccionada remove_nested_fields" data-association="actividades_inspeccionadas">
 						<span class="fa fa-remove text-white" aria-hidden="true"></span>
 					</a>
 				</td>
