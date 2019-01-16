@@ -38,7 +38,7 @@ class ActividadesInspeccionadasType extends AbstractType
         ->add('alturaPromedioPlantacion', NumberType::class, array('label'=>false,'required'=>false))
         ->add('alturaPoda', NumberType::class, array('label'=>false,'required'=>false))
         ->add('porcentajeFallas', NumberType::class, array('label'=>false,'required'=>false))
-        ->add('turnoCorta', DateType::class, array('label' => false,'widget'=>'single_text','format' => 'MM/yyyy','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"MM-AAAA")))
+        ->add('turnoCorta', DateType::class, array('label' => false,'widget'=>'single_text','format' => 'yyyy','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA")))
         ->add('riego', CheckboxType::class, array('attr' => array('data-label' => 'Riego'), 'label' => false, 'required'=>false))
         ->add('edadCepa', NumberType::class, array('label'=>false,'required'=>false))
         ->add('edadRebrote', NumberType::class, array('label'=>false,'required'=>false))
