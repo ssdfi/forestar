@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @ORM\Table(name="titulares")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  */
 class Titulares
 {
@@ -144,16 +145,107 @@ class Titulares
     /**
      * @var boolean
      *
+     * @ORM\Column(name="condicional", type="boolean", nullable=true)
+     */
+    private $condicional;
+
+    /**
+     * @var boolean
+     *
      * @ORM\Column(name="pequenio_productor", type="boolean", nullable=true)
      */
     private $pequenioProductor;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="personeria", type="string", nullable=true)
+     */
+    private $personeria;
+
+    /**
      * @var boolean
      *
-     * @ORM\Column(name="condicional", type="boolean", nullable=true)
+     * @ORM\Column(name="agricultura_familiar", type="boolean", nullable=true)
      */
-    private $condicional;
+    private $agriculturaFamiliar;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nro_renaf", type="string", nullable=true)
+     */
+    private $nroRenaf;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="domicilio", type="string", nullable=true)
+     */
+    private $domicilio;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="razon_social", type="string", nullable=true)
+     */
+    private $razonSocial;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="comunidad_indigena", type="boolean", nullable=true)
+     */
+    private $comunidadIndigena;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tipo_comunidad_indigena", type="string", nullable=true)
+     */
+    private $tipoComunidadIndigena;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="renaci_renoaf", type="string", nullable=true)
+     */
+    private $renaciRenoaf;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cargo", type="string", nullable=true)
+     */
+    private $cargo;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="date", nullable=true)
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="date", nullable=true)
+     */
+    private $updatedAt;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="created_by", type="string", length=50, nullable=true)
+     */
+    private $createdBy;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="updated_by", type="string", length=50, nullable=true)
+     */
+    private $updatedBy;
 
     public function __construct(){
       $this->emails = new ArrayCollection();
@@ -522,6 +614,9 @@ class Titulares
     }
 
     public function __toString(){
+      if ($this->agrupador == true) {
+        return (string)$this->apellidoNombre . ' (A)';
+      }
       return (string)$this->apellidoNombre;
     }
 
@@ -552,5 +647,337 @@ class Titulares
     public function getCondicional()
     {
         return $this->condicional;
+    }
+
+    /**
+     * Set $personeria
+     *
+     * @param boolean $personeria
+     *
+     * @return $personeria
+     */
+    public function setPersoneria($personeria)
+    {
+        $this->personeria = $personeria;
+
+        return $this;
+    }
+
+    /**
+     * Get $personeria
+     *
+     * @return boolean
+     */
+    public function getPersoneria()
+    {
+        return $this->personeria;
+    }
+
+    /**
+     * Set $agriculturaFamiliar
+     *
+     * @param boolean $agriculturaFamiliar
+     *
+     * @return $agriculturaFamiliar
+     */
+    public function setAgriculturaFamiliar($agriculturaFamiliar)
+    {
+        $this->agriculturaFamiliar = $agriculturaFamiliar;
+
+        return $this;
+    }
+
+    /**
+     * Get $agriculturaFamiliar
+     *
+     * @return boolean
+     */
+    public function getAgriculturaFamiliar()
+    {
+        return $this->agriculturaFamiliar;
+    }
+
+    /**
+     * Set $nroRenaf
+     *
+     * @param boolean $nroRenaf
+     *
+     * @return $nroRenaf
+     */
+    public function setNroRenaf($nroRenaf)
+    {
+        $this->nroRenaf = $nroRenaf;
+
+        return $this;
+    }
+
+    /**
+     * Get $nroRenaf
+     *
+     * @return boolean
+     */
+    public function getNroRenaf()
+    {
+        return $this->nroRenaf;
+    }
+
+    /**
+     * Set $domicilio
+     *
+     * @param boolean $domicilio
+     *
+     * @return $domicilio
+     */
+    public function setDomicilio($domicilio)
+    {
+        $this->domicilio = $domicilio;
+
+        return $this;
+    }
+
+    /**
+     * Get condicional
+     *
+     * @return boolean
+     */
+    public function getDomicilio()
+    {
+        return $this->domicilio;
+    }
+
+    /**
+     * Set $razonSocial
+     *
+     * @param boolean $razonSocial
+     *
+     * @return $razonSocial
+     */
+    public function setRazonSocial($razonSocial)
+    {
+        $this->razonSocial = $razonSocial;
+
+        return $this;
+    }
+
+    /**
+     * Get $razonSocial
+     *
+     * @return boolean
+     */
+    public function getRazonSocial()
+    {
+        return $this->razonSocial;
+    }
+
+    /**
+     * Set $comunidadIndigena
+     *
+     * @param boolean $comunidadIndigena
+     *
+     * @return $comunidadIndigena
+     */
+    public function setComunidadIndigena($comunidadIndigena)
+    {
+        $this->comunidadIndigena = $comunidadIndigena;
+
+        return $this;
+    }
+
+    /**
+     * Get $comunidadIndigena
+     *
+     * @return boolean
+     */
+    public function getComunidadIndigena()
+    {
+        return $this->comunidadIndigena;
+    }
+
+    /**
+     * Set $tipoComunidadIndigena
+     *
+     * @param boolean $tipoComunidadIndigena
+     *
+     * @return $tipoComunidadIndigena
+     */
+    public function setTipoComunidadIndigena($tipoComunidadIndigena)
+    {
+        $this->tipoComunidadIndigena = $tipoComunidadIndigena;
+
+        return $this;
+    }
+
+    /**
+     * Get $tipoComunidadIndigena
+     *
+     * @return boolean
+     */
+    public function getTipoComunidadIndigena()
+    {
+        return $this->tipoComunidadIndigena;
+    }
+
+    /**
+     * Set $renaciRenoaf
+     *
+     * @param boolean $renaciRenoaf
+     *
+     * @return $renaciRenoaf
+     */
+    public function setRenaciRenoaf($renaciRenoaf)
+    {
+        $this->renaciRenoaf = $renaciRenoaf;
+
+        return $this;
+    }
+
+    /**
+     * Get $renaciRenoaf
+     *
+     * @return boolean
+     */
+    public function getRenaciRenoaf()
+    {
+        return $this->renaciRenoaf;
+    }
+
+    /**
+     * Set $cargo
+     *
+     * @param boolean $cargo
+     *
+     * @return $cargo
+     */
+    public function setCargo($cargo)
+    {
+        $this->cargo = $cargo;
+
+        return $this;
+    }
+
+    /**
+     * Get $cargo
+     *
+     * @return boolean
+     */
+    public function getCargo()
+    {
+        return $this->cargo;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Expedientes
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime updatedAt
+     *
+     * @return Expedientes
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set $updatedBy
+     *
+     * @param \DateTime $updatedBy
+     *
+     * @return Expedientes
+     */
+    public function setUpdatedBy($updatedBy)
+    {
+        $this->updatedBy = $updatedBy;
+
+        return $this;
+    }
+
+    /**
+     * Get $updatedBy
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedBy()
+    {
+        return $this->updatedBy;
+    }
+
+    /**
+     * Set $createdBy
+     *
+     * @param \DateTime $createdBy
+     *
+     * @return Expedientes
+     */
+    public function setCreatedBy($createdBy)
+    {
+        $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    /**
+     * Get $createdBy
+     *
+     * @return \DateTime
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+
+    /**
+     * Gets triggered only on insert
+
+     * @ORM\PrePersist
+     */
+    public function onPrePersist()
+    {
+        $this->createdAt = new \DateTime("now");
+    }
+
+    /**
+     * Gets triggered only on update
+
+     * @ORM\PreUpdate
+     */
+    public function onPreUpdate()
+    {
+        $this->updatedAt = new \DateTime("now");
     }
 }

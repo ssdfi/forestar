@@ -14,3 +14,7 @@
     </div>
   </div>
 {% endblock %}
+{% block javascripts %}
+  {{parent()}}
+  <script src="{{ asset('js/titulares_form.js') }}"></script>
+{% endblock %}

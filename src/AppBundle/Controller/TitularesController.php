@@ -83,6 +83,7 @@ class TitularesController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $titulare->setCreatedBy($this->getUser()->getUsername());
             $em->persist($titulare);
             $em->flush();
 
@@ -170,6 +171,7 @@ class TitularesController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $titulare->setUpdatedBy($this->getUser()->getUsername());
             $this->getDoctrine()->getManager()->flush();
 
             return $this->render('titulares/show.html.twig', array(

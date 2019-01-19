@@ -26,6 +26,9 @@
 					{% if edit_form.actividadesInspeccionadas is defined %}
 						<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-inspeccion" role="tab" aria-controls="v-pills-messages" aria-selected="false">Inspección</a>
 					{% endif %}
+					{% if (is_granted('ROLE_LEGALES')) %}
+						<a class="nav-item nav-link active border" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-titulares" role="tab" aria-controls="v-pills-home" aria-selected="true">Registro de Titulares</a>
+					{% endif %}
 					{% if edit_form.documentaciones is defined %}
 						<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-documentacion" role="tab" aria-controls="v-pills-messages" aria-selected="false">Documentación</a>
 					{% endif %}
@@ -211,6 +214,29 @@
 								'actividadesInspeccionadas' : edit_form.actividadesInspeccionadas
 							} %}{% endembed %}
 						</div>
+					{% endif %}
+					{% if (is_granted('ROLE_LEGALES')) %}
+					<div class="tab-pane show active" id="v-pills-titulares" role="tabpanel" aria-labelledby="v-pills-titulares-tab">
+						<h4>Editar Titulares asociados al expediente.</h4>
+						<div class="form-group row">
+							{{ form_label(edit_form.titulares, null, {'label_attr': {'class': 'col-sm-2 form-control-label'}}) }}
+							<div class="col-sm-10">
+								{{form_widget(edit_form.titulares)}}
+								<div class="row pull-right">
+									<div class="pull-right">
+										<button type="button" class="btn btn-secondary btn-xs" data-toggle="modal" data-target="#titulares-modal" id="add-titular">
+											<span class="fa fa-plus" aria-hidden="true"></span>
+											Asociar
+										</button>
+										<button type="button" class="btn btn-secondary btn-xs" id="remove-titular">
+											<span class="fa fa-remove" aria-hidden="true"></span>
+											Eliminar
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 					{% endif %}
 					{% if edit_form.documentaciones is defined %}
 						<div class="tab-pane fade" id="v-pills-documentacion" role="tabpanel" aria-labelledby="v-pills-messages-tab">

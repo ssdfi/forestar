@@ -32,29 +32,6 @@ class ExpedientesType extends AbstractType
         $builder
           ->add('numeroExpediente', TextType::class, array('attr'=>array('pattern' => '.*')))
           ->add('numeroInterno', TextType::class, array('attr'=>array('pattern' => '.*')))
-          ->add
-              (
-                $builder->create
-                (
-                  'titulares', EntityType::class, array(
-                  'class' =>  \AppBundle\Entity\Titulares::class,
-                  'multiple'=>true,
-                  'required'=>false,
-                  'compound'=>false,
-                  'error_bubbling' => true,
-                  'query_builder' =>
-                    function (EntityRepository $er) use ($expediente) {
-                                return $er->createQueryBuilder('p')
-                                ->leftJoin('p.expedientes', 'e')
-                                ->where('e.id = :expediente_id')
-                                ->setParameter('expediente_id', $expediente);
-                      },
-                  'choice_value'=>function ($data) {
-                        return $data->getId();
-                   },
-                  )
-                )
-              )
           ->add('fechaPresentacion', DateType::class, array('label' => 'Fecha de Presentación','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
           ->add('fechaIngreso', DateType::class, array('label' => 'Fecha de Ingreso','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
           ->add('solicitaAdelanto', CheckboxType::class, array('attr' => array('data-label' => 'Solicita Adelanto'), 'label' => false, 'required'=>false))
@@ -68,6 +45,31 @@ class ExpedientesType extends AbstractType
                                                                                   ->andWhere('b.id <> 9')
                                                                                   ->orderBy('b.nombre','asc');
                                                                      }));
+          }
+          if (in_array('titulares', $options['roles'])) {
+            $builder->add
+            (
+              $builder->create
+              (
+                'titulares', EntityType::class, array(
+                  'class' =>  \AppBundle\Entity\Titulares::class,
+                  'multiple'=>true,
+                  'required'=>false,
+                  'compound'=>false,
+                  'error_bubbling' => true,
+                  'query_builder' =>
+                  function (EntityRepository $er) use ($expediente) {
+                    return $er->createQueryBuilder('p')
+                    ->leftJoin('p.expedientes', 'e')
+                    ->where('e.id = :expediente_id')
+                    ->setParameter('expediente_id', $expediente);
+                  },
+                  'choice_value'=>function ($data) {
+                    return $data->getId();
+                  },
+                  )
+              )
+            );
           }
           if (in_array('estado', $options['roles'])) {
             $builder->add('estado');

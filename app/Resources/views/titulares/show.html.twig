@@ -16,36 +16,84 @@
           </div>
           <div class="card-body">
             <dl class="row">
-              <dt class="col-4">Id</dt>
-              <dd class="col-8">{{ titulare.id }}</dd>
-              <dt class="col-4">Apellido y Nombre</dt>
-              <dd class="col-8">{{ titulare.apellidoNombre }}</dd>
-              <dt class="col-4">Agrupador</dt>
-              <dd class="col-8">{% if titulare.agrupador %}Yes{% else %}No{% endif %}</dd>
-              <dt class="col-4">CUIT</dt>
-              <dd class="col-8">{{ titulare.cuit }}</dd>
-              <dt class="col-4">Tipo Documento</dt>
-              <dd class="col-8">{{ titulare.tipoDocumento }}</dd>
-              <dt class="col-4">Documento</dt>
-              <dd class="col-8">{{ titulare.documento }}</dd>
-              <dt class="col-4">Fecha de Nacimiento</dt>
-              <dd class="col-8">{% if titulare.fechaNacimiento %}{{ titulare.fechaNacimiento|date('d-m-Y') }}{% endif %}</dd>
-              <dt class="col-4">Sexo</dt>
-              <dd class="col-8">{{ titulare.sexo }}</dd>
-              <dt class="col-4">Email/s</dt>
-              <dd class="col-8">{{ titulare.emails|join(' | ')|lower }}</dd>
-              <dt class="col-4">Teléfono/s</dt>
-              <dd class="col-8">{{ titulare.telefonos|join(' | ') }}</dd>
-              <dt class="col-4">Domicilio/s</dt>
-              <dd class="col-8">{{ titulare.domicilios|join(' | ') }}</dd>
-              <dt class="col-4">Pequeño Productor</dt>
-              <dd class="col-8">{% if titulare.pequenioProductor %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</dd>
-              <dt class="col-4">Aprobado</dt>
-              <dd class="col-8">{% if titulare.aprobado %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</dd>
-              <dt class="col-4">Número de Registro</dt>
-              <dd class="col-8">{{ titulare.numeroRegistro }}</dd>
-              <dt class="col-4">Condicional</dt>
-              <dd class="col-8">{% if titulare.condicional %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</dd>
+              {% if titulare.personeria == 'Física' %}
+                <dt class="col-4">Id</dt>
+                <dd class="col-8">{{ titulare.id }}</dd>
+                <dt class="col-4">Apellido y Nombre</dt>
+                <dd class="col-8">{{ titulare.apellidoNombre }}</dd>
+                <dt class="col-4">CUIT/CUIL</dt>
+                <dd class="col-8">{{ titulare.cuit }}</dd>
+                <dt class="col-4">Tipo Documento</dt>
+                <dd class="col-8">{{ titulare.tipoDocumento }}</dd>
+                <dt class="col-4">Documento</dt>
+                <dd class="col-8">{{ titulare.documento }}</dd>
+                <dt class="col-4">Fecha de Nacimiento</dt>
+                <dd class="col-8">{% if titulare.fechaNacimiento %}{{ titulare.fechaNacimiento|date('d-m-Y') }}{% endif %}</dd>
+                <dt class="col-4">Sexo</dt>
+                <dd class="col-8">{{ titulare.sexo }}</dd>
+                <dt class="col-4">Email/s</dt>
+                <dd class="col-8">{{ titulare.emails|join(' | ')|lower }}</dd>
+                <dt class="col-4">Teléfono/s</dt>
+                <dd class="col-8">{{ titulare.telefonos|join(' | ') }}</dd>
+                <dt class="col-4">Domicilio/s</dt>
+                <dd class="col-8">{{ titulare.domicilios|join(' | ') }}</dd>
+                <dt class="col-4">Pequeño Productor</dt>
+                <dd class="col-8">{% if titulare.pequenioProductor %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</dd>
+                <dt class="col-4">Aprobado</dt>
+                <dd class="col-8">{% if titulare.aprobado %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</dd>
+                <dt class="col-4">Número de Registro</dt>
+                <dd class="col-8">{{ titulare.numeroRegistro }}</dd>
+                <dt class="col-4">Condicional</dt>
+                <dd class="col-8">{% if titulare.condicional %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</dd>
+                {% if titulare.agriculturaFamiliar %}
+                  <dt class="col-4">Nro. RENAF</dt>
+                  <dd class="col-8">{{titulare.nroRenaf}}</dd>
+                {% endif %}
+              {% else %}
+                <!-- juridica -->
+                <dt class="col-4">Id</dt>
+                <dd class="col-8">{{ titulare.id }}</dd>
+                <dt class="col-4">Razón Social</dt>
+                <dd class="col-8">{{ titulare.razonSocial }}</dd>
+                <dt class="col-4">Entidad Agrupante</dt>
+                <dd class="col-8">{% if titulare.agrupador %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</dd>
+                <dt class="col-4">Comunidad Indígena</dt>
+                <dd class="col-8">{% if titulare.comunidadIndigena %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</dd>
+                {% if titulare.comunidadIndigena %}
+                  <dt class="col-4">Tipo</dt>
+                  <dd class="col-8">{{titulare.tipoComunidadIndigena}}</dd>
+                  <dt class="col-4">Número</dt>
+                  <dd class="col-8">{{titulare.renaciRenoaf}}</dd>
+                {% endif %}
+                <dt class="col-4">CUIT</dt>
+                <dd class="col-8">{{ titulare.cuit }}</dd>
+                <dt class="col-4">Email/s</dt>
+                <dd class="col-8">{{ titulare.emails|join(' | ')|lower }}</dd>
+                <dt class="col-4">Teléfono/s</dt>
+                <dd class="col-8">{{ titulare.telefonos|join(' | ') }}</dd>
+                <dt class="col-4">Domicilio/s</dt>
+                <dd class="col-8">{{ titulare.domicilios|join(' | ') }}</dd>
+                <dt class="col-4">Pequeño Productor</dt>
+                <dd class="col-8">{% if titulare.pequenioProductor %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</dd>
+                <dt class="col-4">Aprobado</dt>
+                <dd class="col-8">{% if titulare.aprobado %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</dd>
+                <dt class="col-4">Número de Registro</dt>
+                <dd class="col-8">{{ titulare.numeroRegistro }}</dd>
+                <dt class="col-4">Condicional</dt>
+                <dd class="col-8">{% if titulare.condicional %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</dd>
+              {% endif %}
+              {% if titulare.createdAt %}
+                <dt class="col-4">Fecha Creación</dt>
+                <dd class="col-8">{{titulare.createdAt|date('d-m-Y')}}</dd>
+                <dt class="col-4">Creado Por:</dt>
+                <dd class="col-8">{{titulare.createdBy}}</dd>
+              {% endif %}
+              {% if titulare.updatedAt %}
+                <dt class="col-4">Fecha Actualización</dt>
+                <dd class="col-8">{{titulare.updatedAt|date('d-m-Y')}}</dd>
+                <dt class="col-4">Actualizado Por:</dt>
+                <dd class="col-8">{{titulare.updatedBy}}</dd>
+              {% endif %}
             </dl>
           </div>
         </div>

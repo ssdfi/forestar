@@ -18,7 +18,6 @@ $(document).ready(function () {
     });
 
   function actividadInspeccionadaAdd(type) {
-    console.log(type);
       var collectionHolder = $('.inspeccionada-prototype');
       var table = $('.actividadesInspeccionadas_'+type);
       var collectionCount = $('.inspeccionada-prototype').data('index');
