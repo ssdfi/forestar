@@ -1,0 +1,58 @@
+{% extends 'javascripts.html.twig' %}
+{% block content %}
+	<div id="localidades-modal" tabindex="-1" class="modal fade" data-id="" role="dialog" data-dismiss="modal">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="localidades-modal-label">Asociar localidad a Expediente</h5>
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12">
+							<form action="{{path('json_localidades')}}" class="form-inline" data-remote="true" method="get" role="form">
+								<div style="display:none"></div>
+								<div class="form-group mx-sm-3 mb-2">
+                  <select class="form-control" id="provincias" name="idProv">
+                    <option>Cargando..</option>
+                  </select>
+								</div>
+								<div class="form-group mx-sm-3 mb-2">
+                  <input class="form-control" id="localidad" name="localidad" placeholder="Localidad" type="text">
+								</div>
+								<div class="form-group mx-sm-3 mb-2">
+									<input class="btn btn-secondary" id="localidades-modal-search" name="commit" type="submit" value="Buscar"/>
+								</div>
+							</form>
+						</div>
+					</div>
+					<hr/>
+					<div class="row">
+						<div class="col-md-12">
+							<table class="table" id="localidades-list">
+								<thead>
+									<tr>
+										<th></th>
+										<th>Nombre</th>
+										<th>Codig Postal</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button id="localidades-modal-add" type="button" class="btn btn-primary">Asociar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+	<script type="text/javascript" src="{{ asset('/assetic/jquery.js') }}"></script>
+	<script src="{{ asset('js/localidades_search.js') }}"></script>
+{% endblock %}

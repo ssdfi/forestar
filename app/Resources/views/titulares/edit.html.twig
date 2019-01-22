@@ -1,20 +1,43 @@
 {% extends 'base.html.twig' %}
-{% block title %}{{parent()}} - Editar Titular{% endblock %}
-{% form_theme edit_form 'bootstrap_4_layout.html.twig' %}
+{% block title %}{{parent()}}
+	- Editar Titular{% endblock %}
+	{% form_theme edit_form 'bootstrap_4_horizontal_layout.html.twig' %}
 {% block body %}
-  <div class="col-md-12">
-    <div class="row">
-      <div class="col-md-5">
-        <h1>Editar Titular</h1>
-          {{ form_start(edit_form) }}
-              {{ form_widget(edit_form) }}
-              <button type="submit" class="btn btn-primary pull-right">Editar</button>
-          {{ form_end(edit_form) }}
-      </div>
-    </div>
-  </div>
+	{% embed "localidades/modal_search.html.twig" %}
+	{% endembed %}
+	<div class="col-md-12">
+		<div class="row">
+			<div class="col-md-10">
+				<h1>Editar Titular</h1>
+				{{ form_start(edit_form) }}
+				{{form_row(edit_form.personeria)}}
+				{{form_row(edit_form.agriculturaFamiliar)}}
+				{{form_row(edit_form.nroRenaf)}}
+				{{form_row(edit_form.apellidoNombre)}}
+				{{form_row(edit_form.agrupador)}}
+				{{form_row(edit_form.comunidadIndigena)}}
+				{{form_row(edit_form.tipoComunidadIndigena)}}
+				{{form_row(edit_form.renaciRenoaf)}}
+				{{form_row(edit_form.cuit)}}
+				{{form_row(edit_form.tipoDocumento)}}
+				{{form_row(edit_form.documento)}}
+				{{form_row(edit_form.fechaNacimiento)}}
+				{{form_row(edit_form.sexo)}}
+				{{form_row(edit_form.aprobado)}}
+				{{form_row(edit_form.numeroRegistro)}}
+				{{form_row(edit_form.pequenio_productor)}}
+				{{form_row(edit_form.condicional)}}
+				{% embed "titulares/domicilios/table.html.twig" with {
+					'domicilios' : edit_form.domicilios
+				} %}{% endembed %}
+				<button type="submit" class="btn btn-primary pull-right">Editar</button>
+				{{ form_end(edit_form) }}
+			</div>
+		</div>
+	</div>
 {% endblock %}
 {% block javascripts %}
-  {{parent()}}
-  <script src="{{ asset('js/titulares_form.js') }}"></script>
+	{{parent()}}
+	<script src="{{ asset('js/titulares_form.js') }}"></script>
+	<script src="{{ asset('js/domicilios.js') }}"></script>
 {% endblock %}

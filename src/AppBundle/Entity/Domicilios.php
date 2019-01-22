@@ -27,7 +27,7 @@ class Domicilios
      * @ORM\ManyToOne(targetEntity="Titulares", inversedBy="domicilios")
      * @ORM\JoinColumn(name="titular_id", referencedColumnName="id")
      */
-    private $titularId;
+    private $titular;
 
     /**
      * @var string
@@ -44,11 +44,14 @@ class Domicilios
     private $codigoPostal;
 
     /**
-     * @var integer
+     * @var \Localidades
      *
-     * @ORM\Column(name="localidad_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Localidades")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="localidad_id", referencedColumnName="id")
+     * })
      */
-    private $localidadId;
+    private $localidad;
 
 
 
@@ -63,27 +66,27 @@ class Domicilios
     }
 
     /**
-     * Set titularId
+     * Set titular
      *
-     * @param integer $titularId
+     * @param integer $titular
      *
      * @return Domicilios
      */
-    public function setTitularId($titularId)
+    public function setTitular($titular)
     {
-        $this->titularId = $titularId;
+        $this->titular = $titular;
 
         return $this;
     }
 
     /**
-     * Get titularId
+     * Get titular
      *
      * @return integer
      */
-    public function getTitularId()
+    public function getTitular()
     {
-        return $this->titularId;
+        return $this->titular;
     }
 
     /**
@@ -135,30 +138,35 @@ class Domicilios
     }
 
     /**
-     * Set localidadId
+     * Set localidad
      *
-     * @param integer $localidadId
+     * @param integer $localidad
      *
      * @return Domicilios
      */
-    public function setLocalidadId($localidadId)
+    public function setLocalidad($localidad)
     {
-        $this->localidadId = $localidadId;
+        $this->localidad = $localidad;
 
         return $this;
     }
 
     /**
-     * Get localidadId
+     * Get localidad
      *
      * @return integer
      */
-    public function getLocalidadId()
+    public function getLocalidad()
     {
-        return $this->localidadId;
+        return $this->localidad;
     }
 
     public function __toString() {
-      return $this->domicilio;
+      return (string)$this->domicilio;
+    }
+
+    public function addTitular($tit)
+    {
+        $this->titular = $tit;
     }
 }

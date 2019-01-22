@@ -126,7 +126,7 @@ class Titulares
     private $telefonos;
 
     /**
-    * @ORM\OneToMany(targetEntity="Domicilios", mappedBy="titularId")
+    * @ORM\OneToMany(targetEntity="Domicilios", mappedBy="titular",cascade={"all"}, orphanRemoval=true)
     */
     private $domicilios;
 
@@ -176,20 +176,6 @@ class Titulares
      * @ORM\Column(name="nro_renaf", type="string", nullable=true)
      */
     private $nroRenaf;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="domicilio", type="string", nullable=true)
-     */
-    private $domicilio;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="razon_social", type="string", nullable=true)
-     */
-    private $razonSocial;
 
     /**
      * @var boolean
@@ -250,6 +236,7 @@ class Titulares
     public function __construct(){
       $this->emails = new ArrayCollection();
       $this->telefonos = new ArrayCollection();
+      $this->domicilios = new ArrayCollection();
       $this->expedientes = new ArrayCollection();
       $this->actividadesTitulares = new ArrayCollection();
     }
@@ -584,9 +571,28 @@ class Titulares
       return $this->telefonos;
     }
 
+
+    public function addDomicilio($ap)
+    {
+        if (true === $this->domicilios->contains($ap)) {
+           return;
+       }
+       $this->domicilios[] = $ap;
+       $ap->addTitular($this);
+    }
+
+    public function removeDomicilio($ap)
+    {
+      if (false === $this->domicilios->contains($ap)) {
+        return;
+      }
+      $this->domicilios->removeElement($ap);
+    }
+
     public function getDomicilios (){
       return $this->domicilios;
     }
+
 
     public function getExpedientes(){
       return $this->expedientes;
@@ -614,7 +620,7 @@ class Titulares
     }
 
     public function __toString(){
-      if ($this->agrupador == true) {
+      if ($this->agrupador) {
         return (string)$this->apellidoNombre . ' (A)';
       }
       return (string)$this->apellidoNombre;
@@ -719,54 +725,6 @@ class Titulares
     public function getNroRenaf()
     {
         return $this->nroRenaf;
-    }
-
-    /**
-     * Set $domicilio
-     *
-     * @param boolean $domicilio
-     *
-     * @return $domicilio
-     */
-    public function setDomicilio($domicilio)
-    {
-        $this->domicilio = $domicilio;
-
-        return $this;
-    }
-
-    /**
-     * Get condicional
-     *
-     * @return boolean
-     */
-    public function getDomicilio()
-    {
-        return $this->domicilio;
-    }
-
-    /**
-     * Set $razonSocial
-     *
-     * @param boolean $razonSocial
-     *
-     * @return $razonSocial
-     */
-    public function setRazonSocial($razonSocial)
-    {
-        $this->razonSocial = $razonSocial;
-
-        return $this;
-    }
-
-    /**
-     * Get $razonSocial
-     *
-     * @return boolean
-     */
-    public function getRazonSocial()
-    {
-        return $this->razonSocial;
     }
 
     /**

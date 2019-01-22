@@ -1,16 +1,43 @@
 {% extends 'base.html.twig' %}
-{% block title %}{{parent()}} - Nuevo Titular{% endblock %}
-{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block title %}{{parent()}}
+	- Nuevo Titular{% endblock %}
+	{% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
 {% block body %}
-<div class="col-md-12">
-  <div class="row">
-    <div class="col-md-5">
-      <h1>Nuevo Titular</h1>
-        {{ form_start(form) }}
-            {{ form_widget(form) }}
-            <button type="submit" class="btn btn-primary pull-right">Crear</button>
-        {{ form_end(form) }}
-    </div>
-  </div>
-</div>
+	{% embed "localidades/modal_search.html.twig" %}
+	{% endembed %}
+	<div class="col-md-12">
+		<div class="row">
+			<div class="col-md-10">
+				<h1>Nuevo Titular</h1>
+				{{ form_start(form) }}
+				{{form_row(form.personeria)}}
+				{{form_row(form.agriculturaFamiliar)}}
+				{{form_row(form.nroRenaf)}}
+				{{form_row(form.apellidoNombre)}}
+				{{form_row(form.agrupador)}}
+				{{form_row(form.comunidadIndigena)}}
+				{{form_row(form.tipoComunidadIndigena)}}
+				{{form_row(form.renaciRenoaf)}}
+				{{form_row(form.cuit)}}
+				{{form_row(form.tipoDocumento)}}
+				{{form_row(form.documento)}}
+				{{form_row(form.fechaNacimiento)}}
+				{{form_row(form.sexo)}}
+				{{form_row(form.aprobado)}}
+				{{form_row(form.numeroRegistro)}}
+				{{form_row(form.pequenio_productor)}}
+				{{form_row(form.condicional)}}
+				{% embed "titulares/domicilios/table.html.twig" with {
+					'domicilios' : form.domicilios
+				} %}{% endembed %}
+				<button type="submit" class="btn btn-primary pull-right">Editar</button>
+				{{ form_end(form) }}
+			</div>
+		</div>
+	</div>
+{% endblock %}
+{% block javascripts %}
+	{{parent()}}
+	<script src="{{ asset('js/titulares_form.js') }}"></script>
+	<script src="{{ asset('js/domicilios.js') }}"></script>
 {% endblock %}

@@ -1,0 +1,34 @@
+{% block domiciliosPrototype %}
+  <td>
+    <div class="col-sm-12">
+      {{ form_widget(form.domicilio) }}
+      {{ form_errors(form.domicilio) }}
+    </div>
+  </td>
+  <td>
+    <div class="col-sm-12">
+      {{ form_widget(form.codigoPostal) }}
+      {{ form_errors(form.codigoPostal) }}
+    </div>
+  </td>
+  <td>
+      <div class="col-sm-12">
+        {{ form_widget(form.localidad) }}
+        {{ form_errors(form.localidad) }}
+      </div>
+  </td>
+  {{ form_widget(form.localidad_id) }}
+  {{ form_errors(form.localidad_id) }}
+  <td>
+    <div class="col-sm-12">
+      <button id="add-localidad" class="btn btn-default add-localidad" type="button" data-toggle="modal" data-id='{{form.vars.name}}' data-target="#localidades-modal">
+        <span class="fa fa-search" aria-hidden="true"></span>
+      </button>
+    </div>
+  </td>
+  <td>
+    <a class="btn btn-danger btn-sm pull-right remove-domicilio remove_nested_fields" data-association="domicilios">
+      <span class="fa fa-remove text-white" aria-hidden="true"></span>
+    </a>
+  </td>
+{% endblock %}

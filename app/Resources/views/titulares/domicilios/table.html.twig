@@ -1,0 +1,54 @@
+<table id="domicilios" class="table table-striped">
+  <thead>
+    <tr>
+      <th>Domicilio</th>
+      <th>Codigo Postal</th>
+      <th>Localidad</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody class="domicilios" data-index="{{ domicilios|length }}" data-prototype="{% filter escape %}{% include 'titulares/domicilios/prototype.html.twig' with {'form': domicilios.vars.prototype } %}{% endfilter %}">
+    {% if domicilios %}
+      {% for tag in domicilios %}
+      <tr class="fields">
+        <td>
+          <div class="col-sm-12">
+            {{ form_widget(tag.domicilio) }}
+            {{ form_errors(tag.domicilio) }}
+          </div>
+        </td>
+        <td>
+        	<div class="col-sm-12">
+        		{{ form_widget(tag.codigoPostal) }}
+            {{ form_errors(tag.codigoPostal) }}
+        	</div>
+        </td>
+        <td>
+        		<div class="col-sm-12">
+        			{{ form_widget(tag.localidad) }}
+              {{ form_errors(tag.localidad) }}
+        		</div>
+        </td>
+        <td>
+          <div class="col-sm-12">
+            <button id="add-localidad" class="btn btn-default add-localidad" type="button" data-toggle="modal" data-id='{{tag.vars.name}}' data-target="#localidades-modal">
+              <span class="fa fa-search" aria-hidden="true"></span>
+            </button>
+          </div>
+        </td>
+        {{ form_widget(tag.localidad_id) }}
+        {{ form_errors(tag.localidad_id) }}
+        <td>
+        	<a class="btn btn-danger btn-sm pull-right remove-domicilio remove_nested_fields" data-association="actividades_aprobadas">
+            <span class="fa fa-remove text-white" aria-hidden="true"></span>
+        	</a>
+        </td>
+      </tr>
+    {% endfor %}
+  {% endif %}
+  </tbody>
+</table>
+<a id="add-domicilio" class="btn btn-primary btn-sm add_nested_fields" data-target="#actividad-aprobada" href="javascript:void(0)">
+  <span class="fa fa-plus" aria-hidden="true"></span>
+  Agregar Domicilio
+</a>

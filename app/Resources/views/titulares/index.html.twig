@@ -42,8 +42,7 @@
           {% for titulare in titulares %}
               <tr data-link="{{ path('titulares_show', { 'id': titulare.id }) }}">
                   <td><a href="{{ path('titulares_show', { 'id': titulare.id }) }}">{{ titulare.id }}</a></td>
-                  <td>{% if titulare.apellidoNombre %}{{ titulare.apellidoNombre }}
-                  {% else %}{{ titulare.razonSocial }}{% endif %}</td>
+                  <td>{{ titulare.apellidoNombre }}</td>
                   <td>{% if titulare.agrupador %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</td>
                   <td>{{ titulare.cuit }}</td>
                   <td>{{ titulare.documento }}</td>

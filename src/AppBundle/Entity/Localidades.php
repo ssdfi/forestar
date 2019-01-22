@@ -43,6 +43,13 @@ class Localidades
      */
     private $codigoPostal;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="provincia_updated", type="string", length=100, nullable=true)
+     */
+    private $provinciaUpdated;
+
 
 
     /**
@@ -125,6 +132,30 @@ class Localidades
     public function getCodigoPostal()
     {
         return $this->codigoPostal;
+    }
+
+    /**
+     * Set nombre
+     *
+     * @param string $nombre
+     *
+     * @return Localidades
+     */
+    public function setProvinciaUpdated($provincia)
+    {
+        $this->provincia = $provincia;
+
+        return $this;
+    }
+
+    /**
+     * Get nombre
+     *
+     * @return string
+     */
+    public function getProvinciaUpdated()
+    {
+        return $this->provincia;
     }
 
     public function __toString(){
