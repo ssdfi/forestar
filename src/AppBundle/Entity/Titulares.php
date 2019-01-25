@@ -116,12 +116,12 @@ class Titulares
     private $idok;
 
     /**
-    * @ORM\OneToMany(targetEntity="Emails", mappedBy="titularId")
+    * @ORM\OneToMany(targetEntity="Emails", mappedBy="titular",cascade={"all"}, orphanRemoval=true)
     */
     private $emails;
 
     /**
-    * @ORM\OneToMany(targetEntity="TelefonosTitulares", mappedBy="titularId")
+    * @ORM\OneToMany(targetEntity="TelefonosTitulares", mappedBy="titular",cascade={"all"}, orphanRemoval=true)
     */
     private $telefonos;
 
@@ -563,14 +563,26 @@ class Titulares
         return $this->idok;
     }
 
+    public function addEmail($ap)
+    {
+        if (true === $this->emails->contains($ap)) {
+           return;
+       }
+       $this->emails[] = $ap;
+       $ap->addTitular($this);
+    }
+
+    public function removeEmail($ap)
+    {
+      if (false === $this->emails->contains($ap)) {
+        return;
+      }
+      $this->emails->removeElement($ap);
+    }
+
     public function getEmails (){
       return $this->emails;
     }
-
-    public function getTelefonos (){
-      return $this->telefonos;
-    }
-
 
     public function addDomicilio($ap)
     {
@@ -592,6 +604,28 @@ class Titulares
     public function getDomicilios (){
       return $this->domicilios;
     }
+
+    public function addTelefono($ap)
+    {
+        if (true === $this->telefonos->contains($ap)) {
+           return;
+       }
+       $this->telefonos[] = $ap;
+       $ap->addTitular($this);
+    }
+
+    public function removeTelefono($ap)
+    {
+      if (false === $this->telefonos->contains($ap)) {
+        return;
+      }
+      $this->telefonos->removeElement($ap);
+    }
+
+    public function getTelefonos (){
+      return $this->telefonos;
+    }
+
 
 
     public function getExpedientes(){

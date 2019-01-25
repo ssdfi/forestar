@@ -5,7 +5,7 @@
 {% block body %}
 	{% embed "localidades/modal_search.html.twig" %}
 	{% endembed %}
-	<div class="col-md-12">
+	<div class="col-md-12 mx-auto">
 		<div class="row">
 			<div class="col-md-10">
 				<h1>Editar Titular</h1>
@@ -27,8 +27,18 @@
 				{{form_row(edit_form.numeroRegistro)}}
 				{{form_row(edit_form.pequenio_productor)}}
 				{{form_row(edit_form.condicional)}}
+				<hr>
+				{% embed "titulares/emails/table.html.twig" with {
+					'emails' : edit_form.emails
+				} %}{% endembed %}
+				<hr>
+				<hr>
 				{% embed "titulares/domicilios/table.html.twig" with {
 					'domicilios' : edit_form.domicilios
+				} %}{% endembed %}
+				<hr>
+				{% embed "titulares/telefonos/table.html.twig" with {
+					'telefonos' : edit_form.telefonos
 				} %}{% endembed %}
 				<button type="submit" class="btn btn-primary pull-right">Editar</button>
 				{{ form_end(edit_form) }}
@@ -40,4 +50,6 @@
 	{{parent()}}
 	<script src="{{ asset('js/titulares_form.js') }}"></script>
 	<script src="{{ asset('js/domicilios.js') }}"></script>
+	<script src="{{ asset('js/telefonos.js') }}"></script>
+	<script src="{{ asset('js/emails.js') }}"></script>
 {% endblock %}

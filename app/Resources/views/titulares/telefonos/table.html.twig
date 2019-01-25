@@ -1,0 +1,67 @@
+<h4>Teléfonos</h4>
+<table id="telefonos" class="table table-striped">
+  <thead>
+    <tr>
+      <th>DDI</th>
+      <th>DDN</th>
+      <th>Número</th>
+      <th>Interno</th>
+      <th>Activo</th>
+      <th>Observación</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody class="telefonos" data-index="{{ telefonos|length }}" data-prototype="{% filter escape %}{% include 'titulares/telefonos/prototype.html.twig' with {'form': telefonos.vars.prototype } %}{% endfilter %}">
+    {% if telefonos %}
+      {% for tag in telefonos %}
+      <tr class="fields">
+        <td>
+          <div class="col-sm-12">
+            {{ form_widget(tag.ddi) }}
+            {{ form_errors(tag.ddi) }}
+          </div>
+        </td>
+        <td>
+        	<div class="col-sm-12">
+        		{{ form_widget(tag.ddn) }}
+            {{ form_errors(tag.ddn) }}
+        	</div>
+        </td>
+        <td>
+        		<div class="col-sm-12">
+        			{{ form_widget(tag.numero) }}
+              {{ form_errors(tag.numero) }}
+        		</div>
+        </td>
+        <td>
+        		<div class="col-sm-12">
+        			{{ form_widget(tag.int) }}
+              {{ form_errors(tag.int) }}
+        		</div>
+        </td>
+        <td>
+          <div class="col-sm-12">
+            {{ form_widget(tag.activado) }}
+            {{ form_errors(tag.activado) }}
+          </div>
+        </td>
+        <td>
+        		<div class="col-sm-12">
+        			{{ form_widget(tag.observacion) }}
+              {{ form_errors(tag.observacion) }}
+        		</div>
+        </td>
+        <td>
+        	<a class="btn btn-danger btn-sm pull-right remove-telefono remove_nested_fields" data-association="telefonos">
+            <span class="fa fa-remove text-white" aria-hidden="true"></span>
+        	</a>
+        </td>
+      </tr>
+    {% endfor %}
+  {% endif %}
+  </tbody>
+</table>
+<a id="add-telefono" class="btn btn-primary btn-sm add_nested_fields" data-target="#telefono" href="javascript:void(0)">
+  <span class="fa fa-plus" aria-hidden="true"></span>
+  Agregar Teléfono
+</a>

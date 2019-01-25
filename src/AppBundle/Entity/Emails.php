@@ -28,7 +28,7 @@ class Emails
      * @ORM\ManyToOne(targetEntity="Titulares", inversedBy="emails")
      * @ORM\JoinColumn(name="titular_id", referencedColumnName="id")
      */
-    private $titularId;
+    private $titular;
 
     /**
      * @var string
@@ -50,27 +50,27 @@ class Emails
     }
 
     /**
-     * Set titularId
+     * Set titular
      *
-     * @param integer $titularId
+     * @param integer $titular
      *
      * @return Emails
      */
-    public function setTitularId($titularId)
+    public function setTitular($titular)
     {
-        $this->titularId = $titularId;
+        $this->titular = $titular;
 
         return $this;
     }
 
     /**
-     * Get titularId
+     * Get titular
      *
      * @return integer
      */
-    public function getTitularId()
+    public function getTitular()
     {
-        return $this->titularId;
+        return $this->titular;
     }
 
     /**
@@ -99,5 +99,11 @@ class Emails
 
     public function __toString(){
       return $this->mail;
+    }
+
+
+    public function addTitular($tit)
+    {
+        $this->titular = $tit;
     }
 }

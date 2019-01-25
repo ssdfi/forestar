@@ -37,8 +37,36 @@ class TitularesType extends AbstractType
           ->add('numeroRegistro', TextType::class, array('label'=>'Número de Registro','required'=>false))
           ->add('pequenio_productor', CheckboxType::class, array('attr' => array('data-label' => 'Pequeño Productor', 'tipo-personeria'=>'Física'), 'label' => false, 'required'=>false))
           ->add('condicional', CheckboxType::class, array('attr' => array('data-label' => 'Titular Condicional'), 'label' => false, 'required'=>false));
+
+          $builder->add('emails', CollectionType::class, array(
+              'entry_type'    => EmailsType::class,
+              'allow_add'     => true,
+              'allow_delete'  => true,
+              'prototype'     => true,
+              'label'         => false,
+              'required'      => false,
+              'by_reference'  => false,
+              'entry_options' => array(
+                  'label' => false,
+              )
+            )
+          );
           $builder->add('domicilios', CollectionType::class, array(
               'entry_type'    => DomiciliosType::class,
+              'allow_add'     => true,
+              'allow_delete'  => true,
+              'prototype'     => true,
+              'label'         => false,
+              'required'      => false,
+              'by_reference'  => false,
+              'entry_options' => array(
+                  'label' => false,
+              )
+            )
+          );
+
+          $builder->add('telefonos', CollectionType::class, array(
+              'entry_type'    => TelefonosTitularesType::class,
               'allow_add'     => true,
               'allow_delete'  => true,
               'prototype'     => true,

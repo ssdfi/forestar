@@ -27,7 +27,7 @@ class TelefonosTitulares
      * @ORM\ManyToOne(targetEntity="Titulares", inversedBy="telefonos")
      * @ORM\JoinColumn(name="titular_id", referencedColumnName="id")
      */
-    private $titularId;
+    private $titular;
 
     /**
      * @var string
@@ -84,29 +84,33 @@ class TelefonosTitulares
     }
 
     /**
-     * Set titularId
+     * Set titular
      *
-     * @param integer $titularId
+     * @param integer $titular
      *
      * @return TelefonosTitulares
      */
-    public function setTitularId($titularId)
+    public function setTitular($titular)
     {
-        $this->titularId = $titularId;
+        $this->titular = $titular;
 
         return $this;
     }
 
     /**
-     * Get titularId
+     * Get titular
      *
      * @return integer
      */
-    public function getTitularId()
+    public function getTitular()
     {
-        return $this->titularId;
+        return $this->titular;
     }
 
+    public function addTitular($tit)
+    {
+        $this->titular = $tit;
+    }
     /**
      * Set ddi
      *

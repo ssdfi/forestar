@@ -1915,3 +1915,4 @@ UPDATE localidades SET provincia_updated = '10' WHERE provincia_id = 21;
 UPDATE localidades SET provincia_updated = '15' WHERE provincia_id = 22;
 UPDATE localidades SET provincia_updated = '19' WHERE provincia_id = 23;
 UPDATE localidades SET provincia_updated = '22' WHERE provincia_id = 24;
+ALTER TABLE titulares DROP COLUMN domicilio;

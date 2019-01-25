@@ -1,0 +1,43 @@
+{% block telefonosPrototype %}
+	<td>
+		<div class="col-sm-12">
+			{{ form_widget(form.ddi) }}
+			{{ form_errors(form.ddi) }}
+		</div>
+	</td>
+	<td>
+		<div class="col-sm-12">
+			{{ form_widget(form.ddn) }}
+			{{ form_errors(form.ddn) }}
+		</div>
+	</td>
+	<td>
+		<div class="col-sm-12">
+			{{ form_widget(form.numero) }}
+			{{ form_errors(form.numero) }}
+		</div>
+	</td>
+	<td>
+		<div class="col-sm-12">
+			{{ form_widget(form.int) }}
+			{{ form_errors(form.int) }}
+		</div>
+	</td>
+	<td>
+		<div class="col-sm-12">
+			{{ form_widget(form.activado) }}
+			{{ form_errors(form.activado) }}
+		</div>
+	</td>
+	<td>
+		<div class="col-sm-12">
+			{{ form_widget(form.observacion) }}
+			{{ form_errors(form.observacion) }}
+		</div>
+	</td>
+	<td>
+		<a class="btn btn-danger btn-sm pull-right remove-telefono remove_nested_fields" data-association="telefonos">
+			<span class="fa fa-remove text-white" aria-hidden="true"></span>
+		</a>
+	</td>
+{% endblock %}

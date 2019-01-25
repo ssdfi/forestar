@@ -1,0 +1,32 @@
+<h4>Emails</h4>
+<table id="emails" class="table table-striped">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody class="emails" data-index="{{ emails|length }}" data-prototype="{% filter escape %}{% include 'titulares/emails/prototype.html.twig' with {'form': emails.vars.prototype } %}{% endfilter %}">
+    {% if emails %}
+      {% for tag in emails %}
+      <tr class="fields">
+        <td>
+          <div class="col-sm-12">
+            {{ form_widget(tag.mail) }}
+            {{ form_errors(tag.mail) }}
+          </div>
+        </td>
+        <td>
+        	<a class="btn btn-danger btn-sm pull-right remove-email remove_nested_fields" data-association="emails">
+            <span class="fa fa-remove text-white" aria-hidden="true"></span>
+        	</a>
+        </td>
+      </tr>
+    {% endfor %}
+  {% endif %}
+  </tbody>
+</table>
+<a id="add-email" class="btn btn-primary btn-sm add_nested_fields" data-target="#email" href="javascript:void(0)">
+  <span class="fa fa-plus" aria-hidden="true"></span>
+  Agregar Email
+</a>
