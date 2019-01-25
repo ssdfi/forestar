@@ -21,7 +21,7 @@ class ActividadesPresentadasType extends AbstractType
           ->add('especie', EntityType::class, array('class'=>'AppBundle\Entity\Especies','required'=>true,'label' => false, 'attr'=>array('class'=>'combobox')))
           ->add('superficieHa', NumberType::class, array('label'=>false,'required'=>false))
           ->add('densidad', NumberType::class, array('label'=>false,'required'=>false))
-          ->add('fechaRealizacion', DateType::class, array('label' => false,'widget'=>'single_text','format' => 'yyyy-MM','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM")))
+          ->add('fechaRealizacion', DateType::class, array('label' => false,'widget'=>'single_text','format' => 'MM-yyyy','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"MM-AAAA")))
           ->add('tipoActividad',EntityType::class, array('class'=>'AppBundle\Entity\TiposActividades','required'=>true,'label' => false, 'attr'=>array('class'=>'combobox')))
           ->add('observaciones',TextareaType::class,array('label' => false,'required'=>false,'attr' => array('class' => 'form-control')));
     }/**

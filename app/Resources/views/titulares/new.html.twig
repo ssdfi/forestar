@@ -27,8 +27,17 @@
 				{{form_row(form.numeroRegistro)}}
 				{{form_row(form.pequenio_productor)}}
 				{{form_row(form.condicional)}}
+				<hr>
+				{% embed "titulares/emails/table.html.twig" with {
+					'emails' : form.emails
+				} %}{% endembed %}
+				<hr>
 				{% embed "titulares/domicilios/table.html.twig" with {
 					'domicilios' : form.domicilios
+				} %}{% endembed %}
+				<hr>
+				{% embed "titulares/telefonos/table.html.twig" with {
+					'telefonos' : form.telefonos
 				} %}{% endembed %}
 				<button type="submit" class="btn btn-primary pull-right">Editar</button>
 				{{ form_end(form) }}
@@ -40,4 +49,6 @@
 	{{parent()}}
 	<script src="{{ asset('js/titulares_form.js') }}"></script>
 	<script src="{{ asset('js/domicilios.js') }}"></script>
+	<script src="{{ asset('js/telefonos.js') }}"></script>
+	<script src="{{ asset('js/emails.js') }}"></script>
 {% endblock %}
