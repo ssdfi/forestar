@@ -12,7 +12,6 @@
 
     $(document).on( "click",'.add-localidad',function (e) {
       e.preventDefault();
-      console.log('entra');
       var id = $(this).data('id');
       $('#localidades-modal').data('id',id);
       return;

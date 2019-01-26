@@ -58,3 +58,7 @@
         </div>
     </div>
 {% endblock %}
+{% block javascripts %}
+  {{parent()}}
+  <script src="{{ asset('js/expedientes_search.js') }}"></script>
+{% endblock %}

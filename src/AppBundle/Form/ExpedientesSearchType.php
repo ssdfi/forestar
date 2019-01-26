@@ -51,6 +51,11 @@ class ExpedientesSearchType extends AbstractType
                                                                                 ->orderBy('b.nombre','asc');
                                                                    },'placeholder' => "",'mapped'=>false))
           ->add('solicita_adelanto', ChoiceType::class, array('choices'=>array('Todos'=>null,'Sí'=>true, 'No'=>false),"attr"=> array("class"=>"form-control form-check-inline"),'expanded'=>true, 'multiple'=>false,'empty_data'=>false, 'mapped'=>false))
+          ->add('provincia', EntityType::class, array('class'=>'AppBundle\Entity\Provincias','query_builder' => function (EntityRepository $er) {
+                                                                                                              return $er->createQueryBuilder('p')
+                                                                                                                  ->orderBy('p.nombre', 'ASC');
+                                                                                                          },'choice_label' => 'nombre','placeholder' => "Seleccione una Provincia",'required'=>false, 'mapped'=>false))
+          ->add('departamento', ChoiceType::class, array('choices'=>array('Seleccione Provincia'=>'0')))
           ->add('plurianual', ChoiceType::class, array('choices'=>array('Todos'=>null,'Sí'=>true, 'No'=>false),"attr"=> array("class"=>"form-control form-check-inline"),'expanded'=>true, 'multiple'=>false,'empty_data'=>false, 'mapped'=>false))
           // ->add('exportar', SubmitType::class)
           ->add('buscar', SubmitType::class, array('attr'=>array('class'=>'btn btn-primary pull-right')));

@@ -46,7 +46,6 @@ class DivisionAdministrativaController extends Controller
       */
       public function jsonDepartamentosAction(Request $request, $id) {
       $em = $this->getDoctrine()->getManager();
-      $departamentos = $em->getRepository('AppBundle:Departamentos')->findByProvincia($id);
       $query = $em->createQueryBuilder()
                   ->select('d')
                   ->from('AppBundle:Departamentos','d')

@@ -48,6 +48,16 @@ class ExpedientesController extends Controller
           $dql->andwhere($dql->expr()->like('UPPER(a.numeroExpediente)', $dql->expr()->literal('%'.strtoupper($param['numeroExpediente']).'%')));
         }
 
+        if(array_key_exists('provincia',$param) && $param['provincia']){
+          $dql->andwhere($dql->expr()->like($dql->expr()->substring('a.numeroInterno',0,3), $dql->expr()->literal('%'.strtoupper($param['provincia']).'%')));
+
+        }
+
+        if(array_key_exists('departamento',$param) && $param['departamento']){
+          $dql->andwhere('a.departamento =  :departamento');
+          $dql->setParameter('departamento',$param['departamento']);
+        }
+
         if(array_key_exists('fechaIngresoDesde',$param) && $param['fechaIngresoDesde']){
           $dql->andwhere('a.fechaIngreso >=  :fechaIngresoDesde');
           $dql->setParameter('fechaIngresoDesde',$param['fechaIngresoDesde']);
@@ -145,7 +155,6 @@ class ExpedientesController extends Controller
         $deleteForm = $this->createDeleteForm($expediente);
 
         //SI EN OBSERVACIONES TIENE ALGO QUE DICE SEGUNDO TITULAR PONERLO COMO POSIBLE ERROR PARA SOLUCIONAR
-        // dump($expediente);
 
         return $this->render('expedientes/show.html.twig', array(
             'expediente' => $expediente,
