@@ -50,7 +50,6 @@ class ExpedientesController extends Controller
 
         if(array_key_exists('provincia',$param) && $param['provincia']){
           $dql->andwhere($dql->expr()->like($dql->expr()->substring('a.numeroInterno',0,3), $dql->expr()->literal('%'.strtoupper($param['provincia']).'%')));
-
         }
 
         if(array_key_exists('departamento',$param) && $param['departamento']){
@@ -74,6 +73,12 @@ class ExpedientesController extends Controller
           $dql->andwhere('a.estado = :estado');
           $dql->setParameter('estado', $param['estado']);
         }
+        // filtro para ver el expediente de su area
+        // if (!$this->isGranted('ROLE_ADMIN')) {
+        //   $role = substr($this->getUser()->getRoles()[0],5);
+        //   $dql->leftJoin('AppBundle:Areas','d',\Doctrine\ORM\Query\Expr\Join::WITH,'a.areaEncuentraExpediente = d.id');
+        //   $dql->andwhere($dql->expr()->like('UPPER(d.nombre)', $dql->expr()->literal('%'.strtoupper($role).'%')));
+        // }
         if(array_key_exists('areaEncuentraExpediente',$param) && $param['areaEncuentraExpediente']){
           $dql->andwhere('a.areaEncuentraExpediente = :areaEncuentraExpediente');
           $dql->setParameter('areaEncuentraExpediente', $param['areaEncuentraExpediente']);

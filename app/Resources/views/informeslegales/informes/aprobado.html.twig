@@ -1,0 +1,39 @@
+{% extends 'print.html.twig' %}
+
+{% block body %}
+<section>
+  <h2>Informe Legal</h2>
+  <div class="block">
+    <div class="row">
+      <div class="col-xs-6">
+        <p><strong>Expediente: </strong>{{informeLegal.numeroExpediente}}</p>
+        <p><strong>Número Interno: </strong>{{informeLegal.numeroInterno}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="block">
+    <div class="row">
+      <div class="col-xs-12 text-justify">
+        <p>
+          En las actuaciones mencionadas en la referencia tramita una solicitud de acogimiento al Régimen de Promoción de Plantaciones Forestales instituido por la Ley N| 25.080, el Decreto N° 133/99 y sus resoluciones reglamentarias, presentada por <b>{{informeLegal.titular}}</b>, con inscripción en el Registro de Titulares bajo el N° <b>{{informeLegal.numeroRegistroTitular}}</b>.
+        </p>
+        <p>
+          La documentación jurídica agregada a fs. {{informeLegal.fs1}} al plan de referencia cumple con los requerimientos exigidos por la normativa vigente; por lo que el presente expediente se encuentra en condiciones de ser <b>APROBADO</b> en sus aspectos legales.
+        </p>
+        <p>
+          Pasen las presentes actuaciones al área {{informeLegal.areaEnviar}} para la prosecución de su trámite.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="block">
+    <div class="row">
+      <div class="col-xs-6">
+        <p><strong>INFORME LEGAL N° {{informeLegal.informeLegalNumero}} </strong></p>
+        <p><strong>BUENOS AIRES, {{informeLegal.fechaCreacion|date('d-m-Y')}} </strong></p>
+      </div>
+    </div>
+  </div>
+
+</section>
+{% endblock %}

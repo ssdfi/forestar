@@ -1,0 +1,39 @@
+{% extends 'print.html.twig' %}
+
+{% block body %}
+<section>
+  <h2>Informe Legal</h2>
+  <div class="block">
+    <div class="row">
+      <div class="col-xs-6">
+        <p><strong>Expediente Interno: </strong>{{informeLegal.numeroInterno}}</p>
+        <p><strong>CUDAP: </strong>{{informeLegal.numeroExpediente}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="block">
+    <div class="row">
+      <div class="col-xs-12 text-justify">
+        <p>
+          En las actuaciones mencionadas en la referencia tramita una solicitud de acogimiento al Régimen de Promoción de Plantaciones Forestales para Pequeños Productores en Forma Agrupada, instituido por la Ley N° 25.080, el Decreto N° 133/99 y sus Resoluciones reglamentarias, presentada por  <b>{{informeLegal.titular}}</b>, con inscripción en el Registro de Titulares bajo el N° <b>{{informeLegal.numeroRegistroTitular}}</b>.
+        </p>
+        <p>
+          De  conformidad con la aprobación técnica y legal dictada por la Autoridad de Aplicación provincial, a los fines de lo previsto en el artículo 20 inc. b) de la Resolución SAGyP N° 810/2011 y en virtud de lo dispuesto por el artículo 9° de la Resolución n° 810/2011, esta Asesoría Legal entiende que la solicitud de acogimiento al régimen previsto por la Ley N° 25.080, modificada por su similar N° 26.432 se encuentra en condiciones de ser <b>APROBADA</b> en sus aspectos legales, respecto de los productores individualizados en el Anexo I de la citada disposición.
+        </p>
+        <p>
+          Pasen las presentes actuaciones al área {{informeLegal.areaEnviar}} para la prosecución de su trámite.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="block">
+    <div class="row">
+      <div class="col-xs-6">
+        <p><strong>INFORME LEGAL N° {{informeLegal.informeLegalNumero}} </strong></p>
+        <p><strong>BUENOS AIRES, {{informeLegal.fechaCreacion|date('d-m-Y')}} </strong></p>
+      </div>
+    </div>
+  </div>
+
+</section>
+{% endblock %}

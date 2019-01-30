@@ -43,6 +43,12 @@
 				</ul>
 			</div>
 			<ul class="nav navbar-nav navbar-right">
+				<li class="nav-item active">
+					<a class="nav-link">
+						{% block numeroExpediente %}
+						{% endblock %}
+					</a>
+				</li>
         {% block navbarRight %}
 					<li class="nav-item navbar-danger">
 						<a id="nav-logout" class="nav-link btn-outline-danger  text-white" href="{{path('logout')}}" data-confirm="¿Está seguro que desea cerrar la sesión?">

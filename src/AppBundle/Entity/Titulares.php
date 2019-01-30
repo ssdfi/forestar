@@ -655,7 +655,13 @@ class Titulares
 
     public function __toString(){
       if ($this->agrupador) {
+        if ($this->numeroRegistro) {
+          return (string)$this->apellidoNombre. '(N° R. '. $this->numeroRegistro. ')' . ' (A)';
+        }
         return (string)$this->apellidoNombre . ' (A)';
+      }
+      if ($this->numeroRegistro) {
+        return (string)$this->apellidoNombre . '(N° R. '. $this->numeroRegistro. ')';
       }
       return (string)$this->apellidoNombre;
     }

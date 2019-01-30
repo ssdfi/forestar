@@ -1,0 +1,44 @@
+{% extends 'print.html.twig' %}
+
+{% block body %}
+<section>
+  <h2>Informe Legal</h2>
+  <div class="block">
+    <div class="row">
+      <div class="col-xs-6">
+        <p><strong>Expediente Interno N°: </strong>{{informeLegal.numeroInterno}}</p>
+        <p><strong>Titular: </strong>{{informeLegal.titular}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="block">
+    <div class="row">
+      <div class="col-xs-12 text-justify">
+        <p>
+          En el expediente mencionado en la referencia, tramita una presentación de un Proyecto de Plantación y Actividades Silvícolas de Especies Forestales en Bosques Cultivados y Enriquecimiento de Bosque Nativo para Pequeños Productores, cuya reglamentación proviene de la Resolución SAGyP N° 33/2013, en el marco del Régimen de Promoción de Plantaciones Forestales instituido por la Ley N° 25.080, el Decreto N° 133/1999 y demás resoluciones reglamentarias, inscripto en el Registro de Titulares bajo el N° <b>{{informeLegal.numeroRegistroTitular}}</b>.
+        </p>
+        <p>
+          <b>
+            De acuerdo al análisis efectuado, teniendo en cuenta los Certificados de Obra e Inspección obrante a fs. {{informeLegal.fs1}} conjuntamente con la Disposición Provincial N° {{informeLegal.disposicionProvincialNro}} obrante a fs. {{informeLegal.fs2}}.
+          </b>
+        </p>
+        <p>
+          De conformidad con lo expuesto, corresponde señalar que el presente expediente se encuentra <b>APROBADO en esta etapa</b>, a los fines del pago de la <b>SEGUNDA</b> cuota del Apoyo Económico No Reintegrable.
+        </p>
+        <p>
+          Pasen las presentes actuaciones al área {{informeLegal.areaEnviar}} para la prosecución de su trámite.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="block">
+    <div class="row">
+      <div class="col-xs-6">
+        <p><strong>INFORME LEGAL N° {{informeLegal.informeLegalNumero}} </strong></p>
+        <p><strong>BUENOS AIRES, {{informeLegal.fechaCreacion|date('d-m-Y')}} </strong></p>
+      </div>
+    </div>
+  </div>
+
+</section>
+{% endblock %}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ForestAr - Informe Legal</title>
+  <link rel="stylesheet" href="{{ asset('css/print.css') }}" />
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="row">
+        <div class="col-xs-6 image">
+          <img src="{{ asset('assets/images/magyp.png') }}"></img>
+        </div>
+        <div class="col-xs-6 title">
+          <p>Dirección Nacional de Desarrollo Foresto Industrial</p>
+          <p>Área Legal</p>
+        </div>
+      </div>
+    </div>
+    {% block body %} {% endblock %}
+  </div>
+</body>
+</html>

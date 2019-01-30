@@ -6,6 +6,9 @@
           }
       })
 
+    $("#appbundle_expedientes_titulares").click(function(){
+      window.open('../../titulares/'+$(this).val(), '_blank');
+    });
     /* Ejecuta la peticion ajax */
     $("#titulares-modal form").submit(function() {
       $.ajax({

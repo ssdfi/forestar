@@ -2,7 +2,9 @@
 {% block title %}{{parent()}}
 	- Editar Expediente{% endblock %}
 {% form_theme edit_form 'bootstrap_4_horizontal_layout.html.twig' %}
-
+{% block numeroExpediente %}
+	<b>{{ edit_form.vars.value.numeroInterno }}</b>
+{% endblock %}
 {% block body %}
 	{% embed "titulares/modal_search.html.twig" %}
 	{% endembed %}

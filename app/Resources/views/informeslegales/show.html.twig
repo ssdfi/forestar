@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Informeslegale</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ informesLegale.id }}</td>
+            </tr>
+            <tr>
+                <th>Representantelegalid</th>
+                <td>{{ informesLegale.representanteLegalId }}</td>
+            </tr>
+            <tr>
+                <th>Numerointerno</th>
+                <td>{{ informesLegale.numeroInterno }}</td>
+            </tr>
+            <tr>
+                <th>Numeroexpediente</th>
+                <td>{{ informesLegale.numeroExpediente }}</td>
+            </tr>
+            <tr>
+                <th>Titular</th>
+                <td>{{ informesLegale.titular }}</td>
+            </tr>
+            <tr>
+                <th>Representantelegal</th>
+                <td>{{ informesLegale.representanteLegal }}</td>
+            </tr>
+            <tr>
+                <th>Numeroregistrotitular</th>
+                <td>{{ informesLegale.numeroRegistroTitular }}</td>
+            </tr>
+            <tr>
+                <th>Fs1</th>
+                <td>{{ informesLegale.fs1 }}</td>
+            </tr>
+            <tr>
+                <th>Fs2</th>
+                <td>{{ informesLegale.fs2 }}</td>
+            </tr>
+            <tr>
+                <th>Disposicionprovincialnro</th>
+                <td>{{ informesLegale.disposicionProvincialNro }}</td>
+            </tr>
+            <tr>
+                <th>Observacion</th>
+                <td>{{ informesLegale.observacion }}</td>
+            </tr>
+            <tr>
+                <th>Numerorenaf</th>
+                <td>{{ informesLegale.numeroRenaf }}</td>
+            </tr>
+            <tr>
+                <th>Areaenviar</th>
+                <td>{{ informesLegale.areaEnviar }}</td>
+            </tr>
+            <tr>
+                <th>Informelegalnumero</th>
+                <td>{{ informesLegale.informeLegalNumero }}</td>
+            </tr>
+            <tr>
+                <th>Fechacreacion</th>
+                <td>{% if informesLegale.fechaCreacion %}{{ informesLegale.fechaCreacion|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Abogadofirmante</th>
+                <td>{{ informesLegale.abogadoFirmante }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('informeslegales_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('informeslegales_edit', { 'id': informesLegale.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

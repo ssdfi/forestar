@@ -321,6 +321,7 @@ class Expedientes
     /**
     * One Expediente has Many HistorialLegales.
     * @ORM\OneToMany(targetEntity="HistorialLegales", mappedBy="expediente", mappedBy="expediente", cascade={"persist"}, orphanRemoval=true)
+    * @ORM\OrderBy({"fechaFin" = "ASC"})
     */
     private $historialLegales;
 

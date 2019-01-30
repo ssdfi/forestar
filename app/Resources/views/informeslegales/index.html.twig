@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Informeslegales list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Representantelegalid</th>
+                <th>Numerointerno</th>
+                <th>Numeroexpediente</th>
+                <th>Titular</th>
+                <th>Representantelegal</th>
+                <th>Numeroregistrotitular</th>
+                <th>Fs1</th>
+                <th>Fs2</th>
+                <th>Disposicionprovincialnro</th>
+                <th>Observacion</th>
+                <th>Numerorenaf</th>
+                <th>Areaenviar</th>
+                <th>Informelegalnumero</th>
+                <th>Fechacreacion</th>
+                <th>Abogadofirmante</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for informesLegale in informesLegales %}
+            <tr>
+                <td><a>{{ informesLegale.id }}</a></td>
+                <td>{{ informesLegale.representanteLegalId }}</td>
+                <td>{{ informesLegale.numeroInterno }}</td>
+                <td>{{ informesLegale.numeroExpediente }}</td>
+                <td>{{ informesLegale.titular }}</td>
+                <td>{{ informesLegale.representanteLegal }}</td>
+                <td>{{ informesLegale.numeroRegistroTitular }}</td>
+                <td>{{ informesLegale.fs1 }}</td>
+                <td>{{ informesLegale.fs2 }}</td>
+                <td>{{ informesLegale.disposicionProvincialNro }}</td>
+                <td>{{ informesLegale.observacion }}</td>
+                <td>{{ informesLegale.numeroRenaf }}</td>
+                <td>{{ informesLegale.areaEnviar }}</td>
+                <td>{{ informesLegale.informeLegalNumero }}</td>
+                <td>{% if informesLegale.fechaCreacion %}{{ informesLegale.fechaCreacion|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ informesLegale.abogadoFirmante }}</td>
+                <td>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+
+    </ul>
+{% endblock %}

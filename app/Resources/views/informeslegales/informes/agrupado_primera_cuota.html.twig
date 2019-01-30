@@ -1,0 +1,49 @@
+{% extends 'print.html.twig' %}
+
+{% block body %}
+<section>
+  <h2>Informe Legal</h2>
+  <div class="block">
+    <div class="row">
+      <div class="col-xs-6">
+        <p><strong>Titular: </strong>{{informeLegal.titular}}</p>
+        <p><strong>Expediente Interno: </strong>{{informeLegal.numeroInterno}}</p>
+        <p><strong>CUDAP: </strong>{{informeLegal.numeroExpediente}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="block">
+    <div class="row">
+      <div class="col-xs-12 text-justify">
+        <p>
+          En el expediente mencionado en la referencia, tramita una presentación de un Proyecto de Plantación y Actividades Silvícolas de Especies Forestales en Bosques Cultivados y Enriquecimiento de Bosque Nativo para Pequeños Productores en Forma Agrupada, en el marco del Régimen de Promoción de Plantaciones Forestales instituido por la Ley N° 25.080, el Decreto N° 133/1999 y demás resoluciones reglamentarias.
+        </p>
+        <p>
+          Luego de analizar la presente solicitud, es dable destacar que la entidad presentante ha cumplimentado lo requerido por la normativa vigente, por haber presentado la documentación agregada al <b>Registro de Titulares N° {{informeLegal.numeroRegistroTitular}}</b>, a saber:
+          <ul>
+            <b>
+              <li>Copia certificada del Acta de Asamblea actualizada, de la que surge la designación de sus autoridades y las facultades de representación vigentes; y</li>
+              <li>Copia certificada del Poder que acredita la representación legal de la entidad agrupante, con facultades específicamente delegadas en el representante.</li>
+            </b>
+          </ul>
+        </p>
+        <p>
+          De conformidad con lo expuesto, el presente expediente se encuentra en condiciones de ser <b>aprobado</b> en esta etapa, a los fines del pago de la primera cuota del Apoyo Económico No Reintegrable (arts. 17° y 20 inc. a, Res. SAGyP N° 810/2011)
+        </p>
+        <p>
+          Pasen las presentes actuaciones al área {{informeLegal.areaEnviar}} para la prosecución de su trámite.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="block">
+    <div class="row">
+      <div class="col-xs-6">
+        <p><strong>INFORME LEGAL N° {{informeLegal.informeLegalNumero}} </strong></p>
+        <p><strong>BUENOS AIRES, {{informeLegal.fechaCreacion|date('d-m-Y')}} </strong></p>
+      </div>
+    </div>
+  </div>
+
+</section>
+{% endblock %}

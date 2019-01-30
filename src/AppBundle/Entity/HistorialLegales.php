@@ -1,7 +1,7 @@
 <?php
 
 namespace AppBundle\Entity;
-
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -144,8 +144,15 @@ class HistorialLegales
      */
     private $estadoViverosId;
 
+    /**
+     * One product has many features. This is the inverse side.
+     * @ORM\OneToMany(targetEntity="InformesLegales", mappedBy="actividadLegal")
+     */
+     private $informes;
 
-
+     public function __construct() {
+       $this->informes = new ArrayCollection();
+     }
     /**
      * Get id
      *
@@ -495,5 +502,9 @@ class HistorialLegales
     public function addExpediente($exp)
     {
         $this->expediente = $exp;
+    }
+
+    public function getInformes(){
+      return $this->informes;
     }
 }
