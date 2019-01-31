@@ -129,6 +129,34 @@ class InformesLegales
     private $abogadoFirmante;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="parrafo_1", type="string", nullable=true)
+     */
+    private $parrafo1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="parrafo_2", type="string", nullable=true)
+     */
+    private $parrafo2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="parrafo_3", type="string", nullable=true)
+     */
+    private $parrafo3;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="parrafo_4", type="string", nullable=true)
+     */
+    private $parrafo4;
+
+    /**
      * @var \Titulares
      *
      * @ORM\ManyToOne(targetEntity="Titulares")
@@ -548,6 +576,50 @@ class InformesLegales
     public function getAbogadoFirmante()
     {
         return $this->abogadoFirmante;
+    }
+
+    public function setParrafo1($parrafo)
+    {
+        $this->parrafo1 = $parrafo;
+
+        return $this;
+    }
+    public function getParrafo1()
+    {
+        return $this->parrafo1;
+    }
+
+    public function setParrafo2($parrafo)
+    {
+        $this->parrafo2 = $parrafo;
+
+        return $this;
+    }
+    public function getParrafo2()
+    {
+        return $this->parrafo2;
+    }
+
+    public function setParrafo3($parrafo)
+    {
+        $this->parrafo3 = $parrafo;
+
+        return $this;
+    }
+    public function getParrafo3()
+    {
+        return $this->parrafo3;
+    }
+
+    public function setParrafo4($parrafo)
+    {
+        $this->parrafo4 = $parrafo;
+
+        return $this;
+    }
+    public function getParrafo4()
+    {
+        return $this->parrafo4;
     }
 
     /**

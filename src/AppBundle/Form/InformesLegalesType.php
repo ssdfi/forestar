@@ -41,6 +41,7 @@ class InformesLegalesType extends AbstractType
           ->add('numeroRenaf', TextType::class, array('label'=>'Número RENAF','required'=>false, 'attr'=>array('hidden-field'=>'true')))
           ->add('informeLegalNumero', TextType::class, array('label'=>'Informe Legal Nro.','required'=>true))
           ->add('observacion', TextareaType::class, array('label'=>'Observación','required'=>false, 'attr'=>array('readonly'=>true)))
+          ->add('parrafo1', TextareaType::class, array('label'=>'Texto','required'=>false, 'attr'=>array('class'=>'content','hidden-field'=>'true')))
           ->add('abogadoFirmante');
           // ->add('titularId')
     }/**

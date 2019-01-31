@@ -119,6 +119,10 @@ class InformesLegalesController extends Controller
             return $this->render('informeslegales/informes/pp_observado_falta_disp_provincial.html.twig', array(
                 'informeLegal' => $informe
             ));
+          case 11:
+            return $this->render('informeslegales/informes/otros.html.twig', array(
+                'informeLegal' => $informe
+            ));
           default:
             # code...
             break;
