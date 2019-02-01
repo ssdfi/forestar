@@ -28,11 +28,23 @@
             <thead>
               <tr>
                 <th scope="col">Id</th>
-                <th scope="col">Numero Interno</th>
-                <th scope="col">Numero Expediente</th>
+                <th scope="col"{% if expedientes.isSorted('a.numeroInterno') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(expedientes, 'Número Interno', 'a.numeroInterno') }}
+                  {% if expedientes.isSorted('a.numeroInterno') %}
+                      {% if expedientes.direction() == 'asc' %}<span class="fa fa-angle-up"></span>{% else %}<span class="fa fa-angle-down"></span>{% endif %}
+                    {% endif %}
+                  </th>
+                <th scope="col"{% if expedientes.isSorted('a.numeroExpediente') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(expedientes, 'Número Expediente', 'a.numeroExpediente') }}
+                  {% if expedientes.isSorted('a.numeroExpediente') %}
+                      {% if expedientes.direction() == 'asc' %}<span class="fa fa-angle-up"></span>{% else %}<span class="fa fa-angle-down"></span>{% endif %}
+                    {% endif %}
+                  </th>
                 <th scope="col">Titular</th>
                 <th scope="col">Profesional a Cargo</th>
-                <th scope="col">Fecha Ingreso</th>
+                <th{% if expedientes.isSorted('a.fechaIngreso') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(expedientes, 'Última Entrada', 'a.fechaIngreso') }}
+                    {% if expedientes.isSorted('a.fechaIngreso') %}
+                      {% if expedientes.direction() == 'asc' %}<span class="fa fa-angle-up"></span>{% else %}<span class="fa fa-angle-down"></span>{% endif %}
+                    {% endif %}
+                  </th>
                 <th scope="col">Area</th>
               </tr>
             </thead>
