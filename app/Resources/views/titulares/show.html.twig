@@ -103,17 +103,37 @@
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">Id</th>
-              <th scope="col">Numero Interno</th>
-              <th scope="col">Numero Expediente</th>
+              <th scope="col"{% if expedientes.isSorted('e.id') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(expedientes, 'ID', 'e.id') }}
+                {% if expedientes.isSorted('e.id') %}
+                  {% if expedientes.direction() == 'asc' %}<span class="fa fa-angle-up"></span>{% else %}<span class="fa fa-angle-down"></span>{% endif %}
+                {% endif %}
+              </th>
+              <th scope="col"{% if expedientes.isSorted('e.numeroInterno') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(expedientes, 'Número Interno', 'e.numeroInterno') }}
+                {% if expedientes.isSorted('e.numeroInterno') %}
+                  {% if expedientes.direction() == 'asc' %}<span class="fa fa-angle-up"></span>{% else %}<span class="fa fa-angle-down"></span>{% endif %}
+                {% endif %}
+              </th>
+              <th scope="col"{% if expedientes.isSorted('e.numeroExpediente') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(expedientes, 'Número Expediente', 'e.numeroExpediente') }}
+                {% if expedientes.isSorted('e.numeroExpediente') %}
+                    {% if expedientes.direction() == 'asc' %}<span class="fa fa-angle-up"></span>{% else %}<span class="fa fa-angle-down"></span>{% endif %}
+                {% endif %}
+              </th>
               <th scope="col">Representante Legal</th>
               <th scope="col">Profesional a Cargo</th>
-              <th scope="col">Fecha Presentacion</th>
-              <th scope="col">Fecha Ingreso</th>
+              <th scope="col"{% if expedientes.isSorted('e.fechaPresentacion') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(expedientes, 'Fecha Presentación', 'e.fechaPresentacion') }}
+                {% if expedientes.isSorted('e.fechaPresentacion') %}
+                    {% if expedientes.direction() == 'asc' %}<span class="fa fa-angle-up"></span>{% else %}<span class="fa fa-angle-down"></span>{% endif %}
+                {% endif %}
+              </th>
+              <th scope="col"{% if expedientes.isSorted('e.fechaIngreso') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(expedientes, 'Fecha Ingreso', 'e.fechaIngreso') }}
+                {% if expedientes.isSorted('e.fechaIngreso') %}
+                    {% if expedientes.direction() == 'asc' %}<span class="fa fa-angle-up"></span>{% else %}<span class="fa fa-angle-down"></span>{% endif %}
+                {% endif %}
+              </th>
             </tr>
           </thead>
           <tbody>
-            {% for expediente in titulare.expedientes %}
+            {% for expediente in expedientes %}
             <tr data-link="{{ path('expedientes_show', { 'id': expediente.id }) }}">
               <td><a href="{{ path('expedientes_show', { 'id': expediente.id }) }}">{{ expediente.id }}</a></td>
               <td>{{ expediente.numeroInterno }}</td>

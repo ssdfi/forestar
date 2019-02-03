@@ -148,12 +148,26 @@ class TitularesController extends Controller
      * @Route("/{id}", name="titulares_show")
      * @Method("GET")
      */
-    public function showAction(Titulares $titulare)
+    public function showAction(Titulares $titulare, Request $request)
     {
         $deleteForm = $this->createDeleteForm($titulare);
-
+        $paginator  = $this->get('knp_paginator');
+        $em = $this->getDoctrine()->getManager();
+        $dql = $em->createQueryBuilder();
+        $dql->select('e')
+             ->from('AppBundle:ExpedientesTitulares','et')
+             ->leftJoin('AppBundle:Expedientes','e',\Doctrine\ORM\Query\Expr\Join::WITH,'et.expedienteId = e.id')
+             ->andwhere('et.titularId = :titular')
+             ->setParameter('titular', $titulare->getId());
+        $pagination = $paginator->paginate(
+            $dql,
+            $request->query->getInt('page', 1),
+            1000,
+            array()
+        );
         return $this->render('titulares/show.html.twig', array(
             'titulare' => $titulare,
+            'expedientes' => $pagination,
             'delete_form' => $deleteForm->createView(),
         ));
     }

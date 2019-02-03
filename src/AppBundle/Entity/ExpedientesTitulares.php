@@ -5,27 +5,18 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ExpedientesTitularesSecundarios
+ * ExpedientesTitulares
  *
- * @ORM\Table(name="expedientes_titulares_secundarios")
+ * @ORM\Table(name="expedientes_titulares")
  * @ORM\Entity
  */
-class ExpedientesTitularesSecundarios
+class ExpedientesTitulares
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="expedientes_titulares_secundarios_id_seq", allocationSize=1, initialValue=1)
-     */
-    private $id;
-
-    /**
-     * @var integer
-     *
      * @ORM\Column(name="expediente_id", type="integer", nullable=true)
+     * @ORM\Id
      */
     private $expedienteId;
 
@@ -36,16 +27,10 @@ class ExpedientesTitularesSecundarios
      */
     private $titularId;
 
-
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
+    public function __construct($expediente, $titular)
     {
-        return $this->id;
+        $this->expedienteId = $expediente;
+        $this->titularId = $titular;
     }
 
     /**
