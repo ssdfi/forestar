@@ -204,6 +204,53 @@ class Titulares
      * @ORM\Column(name="cargo", type="string", nullable=true)
      */
     private $cargo;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="presidente", type="string", nullable=true)
+     */
+    private $presidente;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="vicepresidente", type="string", nullable=true)
+     */
+    private $vicepresidente;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="director_titular", type="string", nullable=true)
+     */
+    private $directorTitular;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="director_suplente", type="string", nullable=true)
+     */
+    private $directorSuplente;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="duracion_cargos", type="string", nullable=true)
+     */
+    private $duracionCargos;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="apoderados", type="string", nullable=true)
+     */
+    private $apoderados;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="copia_dni_presentada", type="boolean", nullable=true)
+     */
+    private $copiaDniPresentada;
 
     /**
      * @var \DateTime
@@ -861,6 +908,84 @@ class Titulares
     public function getCargo()
     {
         return $this->cargo;
+    }
+
+
+    public function setPresidente($presidente)
+    {
+        $this->presidente = $presidente;
+
+        return $this;
+    }
+    public function getPresidente()
+    {
+        return $this->presidente;
+    }
+
+    public function setVicepresidente($vicepresidente)
+    {
+        $this->vicepresidente = $vicepresidente;
+
+        return $this;
+    }
+    public function getVicepresidente()
+    {
+        return $this->vicepresidente;
+    }
+
+    public function setDirectorTitular($directorTitular)
+    {
+        $this->directorTitular = $directorTitular;
+
+        return $this;
+    }
+    public function getDirectorTitular()
+    {
+        return $this->directorTitular;
+    }
+
+    public function setDirectorSuplente($directorSuplente)
+    {
+        $this->directorSuplente = $directorSuplente;
+
+        return $this;
+    }
+    public function getDirectorSuplente()
+    {
+        return $this->directorSuplente;
+    }
+
+    public function setDuracionCargos($duracionCargos)
+    {
+        $this->duracionCargos = $duracionCargos;
+
+        return $this;
+    }
+    public function getDuracionCargos()
+    {
+        return $this->duracionCargos;
+    }
+
+    public function setApoderados($apoderados)
+    {
+        $this->apoderados = $apoderados;
+
+        return $this;
+    }
+    public function getApoderados()
+    {
+        return $this->apoderados;
+    }
+
+    public function setCopiaDniPresentada($copiaDniPresentada)
+    {
+        $this->copiaDniPresentada = $copiaDniPresentada;
+
+        return $this;
+    }
+    public function getCopiaDniPresentada()
+    {
+        return $this->copiaDniPresentada;
     }
 
     /**

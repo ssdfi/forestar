@@ -36,7 +36,14 @@ class TitularesType extends AbstractType
           ->add('aprobado', CheckboxType::class, array('attr' => array('data-label' => 'Aprobado'), 'label' => false, 'required'=>false))
           ->add('numeroRegistro', TextType::class, array('label'=>'Número de Registro','required'=>false))
           ->add('pequenio_productor', CheckboxType::class, array('attr' => array('data-label' => 'Pequeño Productor', 'tipo-personeria'=>'Física'), 'label' => false, 'required'=>false))
-          ->add('condicional', CheckboxType::class, array('attr' => array('data-label' => 'Titular Condicional'), 'label' => false, 'required'=>false));
+          ->add('condicional', CheckboxType::class, array('attr' => array('data-label' => 'Titular Condicional'), 'label' => false, 'required'=>false))
+          ->add('presidente', TextType::class, array('label'=>'Presidente','required'=>false, 'attr'=>array('tipo-personeria'=>'Jurídica')))
+          ->add('vicepresidente', TextType::class, array('label'=>'Vicepresidente','required'=>false, 'attr'=>array('tipo-personeria'=>'Jurídica')))
+          ->add('directorTitular', TextType::class, array('label'=>'Director Titular','required'=>false, 'attr'=>array('tipo-personeria'=>'Jurídica')))
+          ->add('directorSuplente', TextType::class, array('label'=>'Director Suplente','required'=>false, 'attr'=>array('tipo-personeria'=>'Jurídica')))
+          ->add('duracionCargos', TextType::class, array('label'=>'Duracion Cargos','required'=>false, 'attr'=>array('tipo-personeria'=>'Jurídica')))
+          ->add('apoderados', TextType::class, array('label'=>'Apoderados','required'=>false, 'attr'=>array('tipo-personeria'=>'Jurídica')))
+          ->add('copiaDniPresentada', CheckboxType::class, array('attr' => array('tipo-personeria'=>'Jurídica', 'data-label' => 'Copia DNI Presentada'), 'label' => false, 'required'=>false));
 
           $builder->add('emails', CollectionType::class, array(
               'entry_type'    => EmailsType::class,

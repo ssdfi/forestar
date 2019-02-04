@@ -81,6 +81,20 @@
                 <dd class="col-8">{{ titulare.numeroRegistro }}</dd>
                 <dt class="col-4">Condicional</dt>
                 <dd class="col-8">{% if titulare.condicional %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</dd>
+                <dt class="col-4">Presidente</dt>
+                <dd class="col-8">{{ titulare.presidente }}</dd>
+                <dt class="col-4">Vicepresidente</dt>
+                <dd class="col-8">{{ titulare.vicepresidente }}</dd>
+                <dt class="col-4">Director Titular</dt>
+                <dd class="col-8">{{ titulare.directorTitular }}</dd>
+                <dt class="col-4">Director Suplente</dt>
+                <dd class="col-8">{{ titulare.directorSuplente }}</dd>
+                <dt class="col-4">Duración de Cargos</dt>
+                <dd class="col-8">{{ titulare.duracionCargos }}</dd>
+                <dt class="col-4">Número de Registro</dt>
+                <dd class="col-8">{{ titulare.apoderados }}</dd>
+                <dt class="col-4">Copia DNI presentada</dt>
+                <dd class="col-8">{% if titulare.copiaDniPresentada %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</dd>
               {% endif %}
               {% if titulare.createdAt %}
                 <dt class="col-4">Fecha Creación</dt>
