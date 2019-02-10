@@ -6,6 +6,9 @@
       <th scope="col">Especie</th>
       <th scope="col">Superficie(ha).</th>
       <th scope="col">Densidad</th>
+      {% if expediente.plurianual %}
+        <th scope="col">Etapa</th>
+      {% endif %}
       <th scope="col">Fecha de Realización</th>
     </tr>
   </thead>
@@ -17,6 +20,9 @@
       <td>{{ actividadPresentada.especie }}</td>
       <td>{{ actividadPresentada.superficieHa }}</td>
       <td>{{ actividadPresentada.densidad }}</td>
+      {% if expediente.plurianual %}
+        <td>{{actividadPresentada.etapa}}</th>
+      {% endif %}
       <td>{% if actividadPresentada.fechaRealizacion %}{{ actividadPresentada.fechaRealizacion|date('m/Y') }}{% endif %}</td>
     </tr>
     {% endfor %}

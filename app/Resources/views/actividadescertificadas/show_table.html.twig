@@ -6,6 +6,9 @@
       <th scope="col">Especie</th>
       <th scope="col">Superficie(ha).</th>
       <th scope="col">Densidad</th>
+      {% if expediente.plurianual %}
+        <th scope="col">Etapa</th>
+      {% endif %}
       <th scope="col">Fecha de Realización</th>
     </tr>
   </thead>
@@ -17,6 +20,9 @@
       <td>{{ actividadCertificada.especie }}</td>
       <td>{{ actividadCertificada.superficieHa }}</td>
       <td>{{ actividadCertificada.densidad }}</td>
+      {% if expediente.plurianual %}
+        <td>{{actividadCertificada.etapa}}</th>
+      {% endif %}
       <td>{% if actividadCertificada.fechaInicio %}{{ actividadCertificada.fechaInicio|date('m-Y') }}{% endif %}</td>
     </tr>
     {% endfor %}
