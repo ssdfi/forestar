@@ -251,7 +251,7 @@ class Expedientes
      /**
      * One Expediente has Many Actividades.
      * @ORM\OneToMany(targetEntity="ActividadesPresentadas", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
-     * @ORM\OrderBy({"fechaRealizacion" = "ASC"})
+     * @ORM\OrderBy({"id" = "ASC"})
      */
     private $actividadesPresentadas;
 
@@ -451,6 +451,13 @@ class Expedientes
    * @ORM\OneToMany(targetEntity="EvaluacionTecnico", mappedBy="expediente", cascade={"persist"}, orphanRemoval=true)
    */
    private $evaluacionTecnicos;
+
+   /**
+    * @var boolean
+    *
+    * @ORM\Column(name="expedientes_agrupados_old", type="json_array", nullable=true)
+    */
+   private $expedientesAgrupadosOld;
 
     public function __construct(){
       $this->actividadesPresentadas = new ArrayCollection();
@@ -1779,6 +1786,19 @@ class Expedientes
        $this->evaluacionLegales->removeElement($ap);
     }
 
+    /**
+    * @inheritDoc
+    */
+    public function getExpedientesAgrupadosOld()
+    {
+        return $this->expedientesAgrupadosOld->toArray();
+    }
+
+    public function setExpedientesAgrupadosOld($expediente)
+    {
+        $this->expedientesAgrupadosOld[] = json_encode($expediente);
+        return $this;
+    }
     /**
      * Gets triggered only on insert
 

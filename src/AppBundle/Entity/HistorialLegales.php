@@ -144,15 +144,46 @@ class HistorialLegales
      */
     private $estadoViverosId;
 
+   /**
+    * One product has many features. This is the inverse side.
+    * @ORM\OneToMany(targetEntity="InformesLegales", mappedBy="actividadLegal")
+    */
+    private $informes;
     /**
-     * One product has many features. This is the inverse side.
-     * @ORM\OneToMany(targetEntity="InformesLegales", mappedBy="actividadLegal")
+     * @var integer
+     *
+     * @ORM\Column(name="etapa", type="integer", nullable=true)
      */
-     private $informes;
+    private $etapa;
 
-     public function __construct() {
-       $this->informes = new ArrayCollection();
-     }
+    public function __construct() {
+      $this->informes = new ArrayCollection();
+    }
+
+    /**
+     * Set $etapa
+     *
+     * @param integer $etapa
+     *
+     * @return Etapa
+     */
+    public function setEtapa($etapa)
+    {
+        $this->etapa = $etapa;
+
+        return $this;
+    }
+
+    /**
+     * Get superficieHa
+     *
+     * @return integer
+     */
+    public function getEtapa()
+    {
+        return $this->etapa;
+    }
+
     /**
      * Get id
      *

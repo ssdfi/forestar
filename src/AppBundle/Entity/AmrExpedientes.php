@@ -57,7 +57,35 @@ class AmrExpedientes
      */
     private $usuarioId;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="etapa", type="integer", nullable=true)
+     */
+    private $etapa;
+    /**
+     * Set $etapa
+     *
+     * @param integer $etapa
+     *
+     * @return Etapa
+     */
+    public function setEtapa($etapa)
+    {
+        $this->etapa = $etapa;
 
+        return $this;
+    }
+
+    /**
+     * Get superficieHa
+     *
+     * @return integer
+     */
+    public function getEtapa()
+    {
+        return $this->etapa;
+    }
 
     /**
      * Get id

@@ -273,6 +273,13 @@ class Predios
     */
     private $controlPlagas;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="etapa", type="integer", nullable=true)
+     */
+    private $etapa;
+
     public function __construct(){
       $this->sistematizaciones = new ArrayCollection();
       $this->preparacionesSuelo = new ArrayCollection();
@@ -283,6 +290,31 @@ class Predios
       $this->controlMalezas = new ArrayCollection();
       $this->controlPlagas = new ArrayCollection();
     }
+
+    /**
+     * Set $etapa
+     *
+     * @param integer $etapa
+     *
+     * @return Etapa
+     */
+    public function setEtapa($etapa)
+    {
+        $this->etapa = $etapa;
+
+        return $this;
+    }
+
+    /**
+     * Get superficieHa
+     *
+     * @return integer
+     */
+    public function getEtapa()
+    {
+        return $this->etapa;
+    }
+
 
     /**
      * Get id

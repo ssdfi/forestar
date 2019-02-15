@@ -4,6 +4,9 @@
       <th scope="col">ID</th>
       <th scope="col">Tipo Documentacion</th>
       <th scope="col">Observacion</th>
+      {% if expediente.plurianual %}
+        <th scope="col">Etapa</th>
+      {% endif %}
       <th scope="col">Fecha Presentacion</th>
       <th scope="col"></th>
     </tr>
@@ -14,6 +17,9 @@
        <td>{{item.id}}</td>
        <td>{{item.tipoDocumentacion}}</td>
        <td>{{item.observacion}}</td>
+       {% if expediente.plurianual %}
+         <td>{{item.etapa}}</th>
+       {% endif %}
        <td>{{item.fechaPresentacion|date('d-m-Y')}}</td>
        <td>{% if item.archivo %}<span class="fa fa-download">{% endif %}</td>
      </tr>
