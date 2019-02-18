@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use AppBundle\Form\EventListener\AddTitularAgrupadoListener;
 
 class BeneficiosFiscalesSolicitadosType extends AbstractType
 {
@@ -20,6 +21,9 @@ class BeneficiosFiscalesSolicitadosType extends AbstractType
           ->add('observaciones', TextareaType::class, array('required'=>false))
           ->add('fechaCarga', DateType::class, array('label' => 'Fecha de Carga','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
           ->add('tipoBeneficio', EntityType::class, array('class'=>'AppBundle\Entity\TiposBeneficiosFiscales','required'=>true,'label' => false, 'attr'=>array('class'=>'combobox')));
+        if ($builder->getOptions()['attr']['agrupador']) {
+          $builder->addEventSubscriber(new AddTitularAgrupadoListener());
+        }
     }/**
      * {@inheritdoc}
      */

@@ -97,7 +97,7 @@ class Expedientes
      *
      * @ORM\Column(name="numero_expediente", type="string", nullable=true)
      * @Assert\Regex(
-     *     pattern     = "/EXP-S05:[0-9]{7}\/[0-9]{4}|EX-20[0-9]{2}-[0-9]{8}\b/",
+     *     pattern     = "/EXP-S05:[0-9]{7}\/[0-9]{4}|EXP-S01:[0-9]{7}\/[0-9]{4}|EX-20[0-9]{2}-[0-9]{8}\b/",
      *     message     = "El formato debe ser EXP-S05:#######/#### o EX-20##-########"
      * )
      * @Assert\Length(min = 16, max=20, exactMessage="El campo debe tener {{ limit }} digitos, EXP-S05:#######/####")
@@ -458,6 +458,13 @@ class Expedientes
     * @ORM\Column(name="expedientes_agrupados_old", type="json_array", nullable=true)
     */
    private $expedientesAgrupadosOld;
+
+   /**
+    * @var boolean
+    *
+    * @ORM\Column(name="agrupador", type="boolean", nullable=true)
+    */
+   private $agrupador;
 
     public function __construct(){
       $this->actividadesPresentadas = new ArrayCollection();
@@ -1798,6 +1805,15 @@ class Expedientes
     {
         $this->expedientesAgrupadosOld[] = json_encode($expediente);
         return $this;
+    }
+
+    public function getAgrupador(){
+      return $this->agrupador;
+    }
+
+    public function setAgrupador($agrupador){
+      $this->agrupador = $agrupador;
+      return $this;
     }
     /**
      * Gets triggered only on insert

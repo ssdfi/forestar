@@ -9,6 +9,9 @@
       {% if expediente.plurianual %}
         <th scope="col">Etapa</th>
       {% endif %}
+      {% if expediente.agrupador %}
+        <th scope="col">Titular Agrupado</th>
+      {% endif %}
       <th scope="col">Fecha de Realización</th>
     </tr>
   </thead>
@@ -22,6 +25,9 @@
       <td>{{ actividadInspeccionada.densidad }}</td>
       {% if expediente.plurianual %}
         <td>{{actividadInspeccionada.etapa}}</th>
+      {% endif %}
+      {% if expediente.agrupador %}
+        <td>{% if actividadInspeccionada.titularAgrupado %}<a href="{{path('titulares_show', { 'id': actividadInspeccionada.titularAgrupado.id })}}">{{actividadInspeccionada.titularAgrupado}}</a>{% endif %}</th>
       {% endif %}
       <td>{% if actividadInspeccionada.fechaInspeccion %}{{ actividadInspeccionada.fechaInspeccion|date('m-Y') }}{% endif %}</td>
     </tr>

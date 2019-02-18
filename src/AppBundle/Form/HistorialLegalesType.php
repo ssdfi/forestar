@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use AppBundle\Form\EventListener\AddTitularAgrupadoListener;
 
 class HistorialLegalesType extends AbstractType
 {
@@ -18,10 +19,12 @@ class HistorialLegalesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-          ->add('fechaInicio', DateType::class, array('label' => 'Fecha de Presentación','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
-          ->add('fechaFin', DateType::class, array('label' => 'Fecha de Presentación','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
+          ->add('fechaInicio', DateType::class, array('label' => 'Fecha de Realización','widget'=>'single_text','format' => 'MM-yyyy','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"MM-YYYY")))
           ->add('observacion', TextareaType::class, array('required'=>false))
           ;
+        if ($builder->getOptions()['attr']['agrupador']) {
+          $builder->addEventSubscriber(new AddTitularAgrupadoListener());
+        }
     }/**
      * {@inheritdoc}
      */

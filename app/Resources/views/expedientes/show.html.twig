@@ -84,6 +84,8 @@
                 <dd class="col-6">{% if expediente.fechaIngreso %}{{ expediente.fechaIngreso|date('d-m-Y') }}{% endif %}</dd>
                 <dt class="col-6">Estado</dt>
                 <dd class="col-6">{{ expediente.estado }}</dd>
+                <dt class="col-6">Agrupador</dt>
+                <dd class="col-6">{% if expediente.agrupador %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</dd>
                 <dt class="col-6">Solicita Adelanto</dt>
                 <dd class="col-6">{% if expediente.solicitaAdelanto %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</dd>
                 <dt class="col-6">Plurianual</dt>

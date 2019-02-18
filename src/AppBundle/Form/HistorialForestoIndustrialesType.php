@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use AppBundle\Form\EventListener\AddTitularAgrupadoListener;
 
 
 class HistorialForestoIndustrialesType extends AbstractType
@@ -20,19 +21,14 @@ class HistorialForestoIndustrialesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-          ->add('fechaInicio', DateType::class, array('label' => 'Fecha de Presentación','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
-          ->add('fechaFin', DateType::class, array('label' => 'Fecha de Presentación','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
-          ->add('areaEnviadoExpediente')
-          ->add('estadoAreaContable')
-          ->add('estadoAreaLegales')
-          ->add('estadoPromocion')
-          ->add('estadoSig')
-          ->add('estadoPrincipal')
-          ->add('estadoForestoIndustriales')
-          ->add('estadoViverosId')
+          ->add('fechaInicio', DateType::class, array('label' => 'Fecha Realización','widget'=>'single_text','format' => 'MM-yyyy','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"MM-AAAA")))
           ->add('esForestoIndustrial', CheckboxType::class, array('attr' => array('data-label' => 'Foresto Industrial'), 'label' => false, 'required'=>false))
           ->add('observacion', TextareaType::class, array('required'=>false))
           ;
+        if ($builder->getOptions()['attr']['agrupador']) {
+          $builder->addEventSubscriber(new AddTitularAgrupadoListener());
+        }
+
     }/**
      * {@inheritdoc}
      */

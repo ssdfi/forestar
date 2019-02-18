@@ -9,6 +9,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use AppBundle\Form\EventListener\AddTitularAgrupadoListener;
 
 class ActividadesSigType extends AbstractType
 {
@@ -26,6 +27,9 @@ class ActividadesSigType extends AbstractType
           ->add('tipoActividad',EntityType::class, array('class'=>'AppBundle\Entity\TiposActividades','required'=>true,'label' => false, 'attr'=>array('class'=>'combobox')))
           ->add('inspeccion')
           ->add('observaciones',TextareaType::class,array('label' => false,'required'=>false,'attr' => array('class' => 'form-control')));
+          if ($builder->getOptions()['attr']['agrupador']) {
+            $builder->addEventSubscriber(new AddTitularAgrupadoListener());
+          }
     }/**
      * {@inheritdoc}
      */

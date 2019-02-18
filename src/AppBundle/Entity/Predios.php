@@ -280,6 +280,16 @@ class Predios
      */
     private $etapa;
 
+    /**
+     * @var \Titulares
+     *
+     * @ORM\ManyToOne(targetEntity="Titulares")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="titular_agrupado", referencedColumnName="id")
+     * })
+     */
+    private $titularAgrupado;
+
     public function __construct(){
       $this->sistematizaciones = new ArrayCollection();
       $this->preparacionesSuelo = new ArrayCollection();
@@ -1185,5 +1195,22 @@ class Predios
            return;
        }
        $this->controlPlagas->removeElement($ap);
+    }
+
+    public function setTitularAgrupado($titular)
+    {
+        $this->titularAgrupado = $titular;
+
+        return $this;
+    }
+
+    /**
+     * Get titularAgrupado
+     *
+     * @return integer
+     */
+    public function getTitularAgrupado()
+    {
+        return $this->titularAgrupado;
     }
 }

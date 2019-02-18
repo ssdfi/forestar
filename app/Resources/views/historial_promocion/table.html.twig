@@ -2,17 +2,19 @@
   <table id="historial-promociones" class="table table-striped">
     <thead>
       <tr>
-        <th>Fecha Inicio</th>
-        <th>Fecha Fin</th>
+        <th>Fecha Realización</th>
         <th>Estado Viveros</th>
         <th>10% valiosa</th>
+        {% if expediente.agrupador  %}
+          <th>Titular Agrupador</th>
+        {% endif %}
         <th>Observacion</th>
         <th></th>
       </tr>
     </thead>
     <tbody class="historialPromociones" data-index="{{ historialPromociones|length }}" data-prototype="{% filter escape %}{% include 'historial_promocion/prototype.html.twig' with {'form': historialPromociones.vars.prototype } %}{% endfilter %}">
       {% if historialPromociones %}
-        {% for tag in historialPromociones %}
+        {% for key, tag in historialPromociones %}
         <tr class="fields">
           <td>
           	<div class="col-sm-12">
@@ -21,23 +23,35 @@
           	</div>
           </td>
           <td>
-          		<div class="col-sm-12">
-          			{{ form_widget(tag.fechaFin) }}
-                {{ form_errors(tag.fechaFin) }}
-          		</div>
-          </td>
-          <td>
-              <div class="col-sm-12">
-                {{ form_widget(tag.estadoViverosId) }}
-                {{ form_errors(tag.estadoViverosId) }}
-              </div>
-          </td>
-          <td>
               <div class="col-sm-12">
                 {{ form_widget(tag.valiosas) }}
                 {{ form_errors(tag.valiosas) }}
               </div>
           </td>
+          {% if expediente.agrupador == true %}
+            <td>
+              <div class="form-row">
+                <div class="col-md-8 mb-3">
+                  {{form_widget(tag.titularAgrupado)}}
+                </div>
+                <div class="col-md-4 mb-3">
+                  <div class="form-row">
+                    <div class="col-md-6">
+                      <button id="add-titular-agrupado" data-index='{{key}}' data-name="appbundle_expedientes_historialPromociones_" class="btn btn-default add-titular-agrupado" type="button" data-toggle="modal" data-target="#titular-agrupado-modal">
+                        <span class="fa fa-search" aria-hidden="true"></span>
+                      </button>
+                    </div>
+                    <div class="col-md-6">
+                      <button id="remove-titular-agrupado" data-index='{{key}}' data-name="appbundle_expedientes_historialPromociones_" class="btn btn-default remove-titular-agrupado" type="button">
+                        <span class="fa fa-remove" aria-hidden="true"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {{form_widget(tag.titular_agrupado_id)}}
+            </td>
+          {% endif %}
           <td>
           		<div class="col-sm-12">
           			{{ form_widget(tag.observacion) }}

@@ -13,6 +13,9 @@
         <th scope="col">Carga Tributaria Nacional</th>
         <th scope="col">Carga Tributaria Provincial</th>
         <th scope="col">Carga Tributaria Municipal</th>
+        {% if expediente.agrupador %}
+          <th scope="col">Titular Agrupado</th>
+        {% endif %}
       </tr>
     </thead>
     <tbody>
@@ -29,6 +32,9 @@
           <td>{{item.cargaTributariaNacional}}</td>
           <td>{{item.cargaTributariaProvincial}}</td>
           <td>{{item.cargaTributariaMunicipal}}</td>
+          {% if expediente.agrupador %}
+            <td>{% if item.titularAgrupado %}<a href="{{path('titulares_show', { 'id': item.titularAgrupado.id })}}">{{item.titularAgrupado}}</a>{% endif %}</th>
+          {% endif %}
         </tr>
       {% endfor %}
     </tbody>

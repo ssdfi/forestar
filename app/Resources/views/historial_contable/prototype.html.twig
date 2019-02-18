@@ -5,54 +5,30 @@
     {{ form_errors(form.fechaInicio) }}
   </div>
 </td>
+{% if expediente.agrupador == true %}
 <td>
-    <div class="col-sm-12">
-      {{ form_widget(form.fechaFin) }}
-      {{ form_errors(form.fechaFin) }}
+  <div class="form-row">
+    <div class="col-md-8 mb-3">
+      {{form_widget(form.titularAgrupado)}}
     </div>
-</td>
-<td>
-    <div class="col-sm-12">
-      {{ form_widget(form.area) }}
-      {{ form_errors(form.area) }}
+    <div class="col-md-4 mb-3">
+      <div class="form-row">
+        <div class="col-md-6">
+          <button id="add-titular-agrupado" data-index='{{form.vars.name}}' data-name="appbundle_expedientes_historialContables_" class="btn btn-default add-titular-agrupado" type="button" data-toggle="modal" data-target="#titular-agrupado-modal">
+            <span class="fa fa-search" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="col-md-6">
+          <button id="remove-titular-agrupado" data-index='{{form.vars.name}}' data-name="appbundle_expedientes_historialContables_" class="btn btn-default remove-titular-agrupado" type="button">
+            <span class="fa fa-remove" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
     </div>
+  </div>
+  {{form_widget(form.titular_agrupado_id)}}
 </td>
-<td>
-    <div class="col-sm-12">
-      {{ form_widget(form.estadoContable) }}
-      {{ form_errors(form.estadoContable) }}
-    </div>
-</td>
-<td>
-    <div class="col-sm-12">
-      {{ form_widget(form.estadoPromocion) }}
-      {{ form_errors(form.estadoPromocion) }}
-    </div>
-</td>
-<td>
-    <div class="col-sm-12">
-      {{ form_widget(form.estadoSig) }}
-      {{ form_errors(form.estadoSig) }}
-    </div>
-</td>
-<td>
-    <div class="col-sm-12">
-      {{ form_widget(form.estadoLegal) }}
-      {{ form_errors(form.estadoLegal) }}
-    </div>
-</td>
-<td>
-    <div class="col-sm-12">
-      {{ form_widget(form.estadoPrincipal) }}
-      {{ form_errors(form.estadoPrincipal) }}
-    </div>
-</td>
-<td>
-    <div class="col-sm-12">
-      {{ form_widget(form.estadoForestoIndustriales) }}
-      {{ form_errors(form.estadoForestoIndustriales) }}
-    </div>
-</td>
+{% endif %}
 <td>
     <div class="col-sm-12">
       {{ form_widget(form.observacion) }}

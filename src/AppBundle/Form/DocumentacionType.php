@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use AppBundle\Form\EventListener\AddTitularAgrupadoListener;
 
 class DocumentacionType extends AbstractType
 {
@@ -21,6 +22,9 @@ class DocumentacionType extends AbstractType
           ->add('observacion', TextareaType::class, array('required'=>false))
           ->add('nombreArchivo', TextType::class, array('required'=>false))
           ->add('fechaPresentacion', DateType::class, array('label' => 'Fecha de Presentación','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")));
+        if ($builder->getOptions()['attr']['agrupador']) {
+          $builder->addEventSubscriber(new AddTitularAgrupadoListener());
+        }
     }/**
      * {@inheritdoc}
      */

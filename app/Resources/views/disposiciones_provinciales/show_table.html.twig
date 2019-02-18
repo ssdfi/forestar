@@ -4,6 +4,9 @@
       <th scope="col">Resolucion</th>
       <th scope="col">Fecha Entrada</th>
       <th scope="col">Fecha Salida</th>
+      {% if expediente.agrupador %}
+        <th scope="col">Titular Agrupado</th>
+      {% endif %}
       <th scope="col">Observacion</th>
     </tr>
   </thead>
@@ -13,6 +16,9 @@
         <td>{{item.resolucionNumero}}</td>
         <td>{{item.fechaEntrada|date('d-m-Y')}}</td>
         <td>{{item.fechaSalida|date('d-m-Y')}}</td>
+        {% if expediente.agrupador %}
+        <td>{% if item.titularAgrupado %}<a href="{{path('titulares_show', { 'id': item.titularAgrupado.id })}}">{{item.titularAgrupado}}</a>{% endif %}</th>
+          {% endif %}
         <td>{{item.observacion}}</td>
       </tr>
     {% endfor %}

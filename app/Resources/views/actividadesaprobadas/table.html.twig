@@ -7,13 +7,16 @@
       <th>Densidad</th>
       <th>Inicio</th>
       <th>Fin</th>
+      {% if expediente.agrupador  %}
+        <th>Titular Agrupador</th>
+      {% endif %}
       <th>Observaciones</th>
       <th></th>
     </tr>
   </thead>
   <tbody class="actividadesAprobadas" data-index="{{ actividadesAprobadas|length }}" data-prototype="{% filter escape %}{% include 'actividadesaprobadas/prototype.html.twig' with {'form': actividadesAprobadas.vars.prototype } %}{% endfilter %}">
     {% if actividadesAprobadas %}
-      {% for tag in actividadesAprobadas %}
+      {% for key, tag in actividadesAprobadas %}
       <tr class="fields">
         <td>
           <div class="col-sm-12">
@@ -51,6 +54,30 @@
               {{ form_errors(tag.fechaFinActividad) }}
         		</div>
         </td>
+        {% if expediente.agrupador == true %}
+          <td>
+            <div class="form-row">
+              <div class="col-md-8 mb-3">
+                {{form_widget(tag.titularAgrupado)}}
+              </div>
+              <div class="col-md-4 mb-3">
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <button id="add-titular-agrupado" data-index='{{key}}' data-name="appbundle_expedientes_actividadesAprobadas_" class="btn btn-default add-titular-agrupado" type="button" data-toggle="modal" data-target="#titular-agrupado-modal">
+                      <span class="fa fa-search" aria-hidden="true"></span>
+                    </button>
+                  </div>
+                  <div class="col-md-6">
+                    <button id="remove-titular-agrupado" data-index='{{key}}' data-name="appbundle_expedientes_actividadesAprobadas_" class="btn btn-default remove-titular-agrupado" type="button">
+                      <span class="fa fa-remove" aria-hidden="true"></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{form_widget(tag.titular_agrupado_id)}}
+          </td>
+        {% endif %}
         <td>
         		<div class="col-sm-12">
         			{{ form_widget(tag.observaciones) }}

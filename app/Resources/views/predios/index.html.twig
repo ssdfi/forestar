@@ -10,6 +10,10 @@
                     <div class="card border-0">
                       <div class="card-body">
                         <dl class="row">
+                          {% if expediente.agrupador %}
+                          <dt class="col-6">Titular Agrupado</dt>
+                          <dd class="col-6">{% if item.titularAgrupado %}<a href="{{path('titulares_show', { 'id': item.titularAgrupado.id })}}">{{item.titularAgrupado}}</a>{% endif %}</th></dd>
+                          {% endif %}
                           <dt class="col-6">Encargado</dt>
                           <dd class="col-6">{{ item.nombreEncargado }}</dd>
                           <dt class="col-6">Telefono</dt>

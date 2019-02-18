@@ -2,10 +2,10 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">Enviado</th>
-        <th scope="col">Fecha Actualización</th>
-        <th scope="col">Inicio</th>
-        <th scope="col">Fin</th>
+        <th scope="col">Fecha Realización</th>
+        {% if expediente.agrupador %}
+          <th scope="col">Titular Agrupado</th>
+        {% endif %}
         <th scope="col">Observaciones</th>
         <th scope="col">Informe</th>
       </tr>
@@ -13,10 +13,10 @@
     <tbody>
       {% for item in historialLegales %}
         <tr>
-          <td>{{item.areaEnviadoExpediente}}</td>
-          <td>{{item.fechaUltimaModificacion|date('d-m-Y')}}</td>
-          <td>{{item.fechaInicio|date('d-m-Y')}}</td>
-          <td>{{item.fechaFin|date('d-m-Y')}}</td>
+          <td>{{item.fechaInicio|date('m-Y')}}</td>
+          {% if expediente.agrupador %}
+            <td>{% if item.titularAgrupado %}<a href="{{path('titulares_show', { 'id': item.titularAgrupado.id })}}">{{item.titularAgrupado}}</a>{% endif %}</th>
+          {% endif %}
           <td>{{item.observacion}}</td>
           <td>
             {% if item.informes.last %}

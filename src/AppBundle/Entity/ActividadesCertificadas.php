@@ -254,6 +254,16 @@ class ActividadesCertificadas
     private $usuario;
 
     /**
+     * @var \Titulares
+     *
+     * @ORM\ManyToOne(targetEntity="Titulares")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="titular_agrupado", referencedColumnName="id")
+     * })
+     */
+    private $titularAgrupado;
+
+    /**
      * Get id
      *
      * @return integer
@@ -1034,5 +1044,22 @@ class ActividadesCertificadas
     public function getUsuario()
     {
         return $this->usuario;
+    }
+
+    public function setTitularAgrupado($titular)
+    {
+        $this->titularAgrupado = $titular;
+
+        return $this;
+    }
+
+    /**
+     * Get titularAgrupado
+     *
+     * @return integer
+     */
+    public function getTitularAgrupado()
+    {
+        return $this->titularAgrupado;
     }
 }

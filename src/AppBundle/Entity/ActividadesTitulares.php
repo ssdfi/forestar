@@ -43,12 +43,6 @@ class ActividadesTitulares
      */
     private $oldExpedienteId;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="expedientes_titulares_secundarios_id", type="integer", nullable=true)
-     */
-    private $expedientesTitularesSecundariosId;
 
     /**
      * @var \Expedientes
@@ -130,15 +124,6 @@ class ActividadesTitulares
      */
     private $entidadAgrupadora;
 
-    /**
-     * @var \BeneficiosFiscalesAnalizados
-     *
-     * @ORM\ManyToOne(targetEntity="BeneficiosFiscalesAnalizados")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="beneficios_analizados_expedientes_id", referencedColumnName="id")
-     * })
-     */
-    private $beneficiosAnalizadosExpedientes;
 
     /**
      * @var \BeneficiosFiscalesSolicitados
@@ -159,46 +144,6 @@ class ActividadesTitulares
      * })
      */
     private $cobrosBeneficios;
-
-    /**
-     * @var \ControlExportaciones
-     *
-     * @ORM\ManyToOne(targetEntity="ControlExportaciones")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="control_exportaciones_id", referencedColumnName="id")
-     * })
-     */
-    private $controlExportaciones;
-
-    /**
-     * @var \ConsumoDebitado
-     *
-     * @ORM\ManyToOne(targetEntity="ConsumoDebitado")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="consumo_debitado_id", referencedColumnName="id")
-     * })
-     */
-    private $consumoDebitado;
-
-    /**
-     * @var \DeclaracionIva
-     *
-     * @ORM\ManyToOne(targetEntity="DeclaracionIva")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="declaracion_iva_id", referencedColumnName="id")
-     * })
-     */
-    private $declaracionIva;
-
-    /**
-     * @var \DeclaracionIvaResolucion
-     *
-     * @ORM\ManyToOne(targetEntity="DeclaracionIvaResolucion")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="declaracion_iva_resolucion_id", referencedColumnName="id")
-     * })
-     */
-    private $declaracionIvaResolucion;
 
     /**
      * @var \DisposicionesProvinciales
@@ -229,16 +174,6 @@ class ActividadesTitulares
      * })
      */
     private $documentacion;
-
-    /**
-     * @var \EstadoSituacion
-     *
-     * @ORM\ManyToOne(targetEntity="EstadoSituacion")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="estado_situacion_id", referencedColumnName="id")
-     * })
-     */
-    private $estadoSituacion;
 
     /**
      * @var \HistorialContable
@@ -300,25 +235,6 @@ class ActividadesTitulares
      */
     private $impactoAmbiental;
 
-    /**
-     * @var \Ingresos
-     *
-     * @ORM\ManyToOne(targetEntity="Ingresos")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ingresos_id", referencedColumnName="id")
-     * })
-     */
-    private $ingresos;
-
-    /**
-     * @var \Inversiones
-     *
-     * @ORM\ManyToOne(targetEntity="Inversiones")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="inversiones_id", referencedColumnName="id")
-     * })
-     */
-    private $inversiones;
 
     /**
      * @var \Predios
@@ -330,25 +246,6 @@ class ActividadesTitulares
      */
     private $predios;
 
-    /**
-     * @var \ProduccionVolumetrica
-     *
-     * @ORM\ManyToOne(targetEntity="ProduccionVolumetrica")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="produccion_volumetrica_id", referencedColumnName="id")
-     * })
-     */
-    private $produccionVolumetrica;
-
-    /**
-     * @var \RamasIndustrialesExpedientes
-     *
-     * @ORM\ManyToOne(targetEntity="RamasIndustrialesExpedientes")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ramas_industriales_expedientes_id", referencedColumnName="id")
-     * })
-     */
-    private $ramasIndustrialesExpedientes;
 
     /**
      * @var \RegistroSig
@@ -781,102 +678,6 @@ class ActividadesTitulares
     }
 
     /**
-     * Set controlExportaciones
-     *
-     * @param \AppBundle\Entity\ControlExportaciones $controlExportaciones
-     *
-     * @return ActividadesTitulares
-     */
-    public function setControlExportaciones(\AppBundle\Entity\ControlExportaciones $controlExportaciones = null)
-    {
-        $this->controlExportaciones = $controlExportaciones;
-
-        return $this;
-    }
-
-    /**
-     * Get controlExportaciones
-     *
-     * @return \AppBundle\Entity\ControlExportaciones
-     */
-    public function getControlExportaciones()
-    {
-        return $this->controlExportaciones;
-    }
-
-    /**
-     * Set consumoDebitado
-     *
-     * @param \AppBundle\Entity\ConsumoDebitado $consumoDebitado
-     *
-     * @return ActividadesTitulares
-     */
-    public function setConsumoDebitado(\AppBundle\Entity\ConsumoDebitado $consumoDebitado = null)
-    {
-        $this->consumoDebitado = $consumoDebitado;
-
-        return $this;
-    }
-
-    /**
-     * Get consumoDebitado
-     *
-     * @return \AppBundle\Entity\ConsumoDebitado
-     */
-    public function getConsumoDebitado()
-    {
-        return $this->consumoDebitado;
-    }
-
-    /**
-     * Set declaracionIva
-     *
-     * @param \AppBundle\Entity\DeclaracionIva $declaracionIva
-     *
-     * @return ActividadesTitulares
-     */
-    public function setDeclaracionIva(\AppBundle\Entity\DeclaracionIva $declaracionIva = null)
-    {
-        $this->declaracionIva = $declaracionIva;
-
-        return $this;
-    }
-
-    /**
-     * Get declaracionIva
-     *
-     * @return \AppBundle\Entity\DeclaracionIva
-     */
-    public function getDeclaracionIva()
-    {
-        return $this->declaracionIva;
-    }
-
-    /**
-     * Set declaracionIvaResolucion
-     *
-     * @param \AppBundle\Entity\DeclaracionIvaResolucion $declaracionIvaResolucion
-     *
-     * @return ActividadesTitulares
-     */
-    public function setDeclaracionIvaResolucion(\AppBundle\Entity\DeclaracionIvaResolucion $declaracionIvaResolucion = null)
-    {
-        $this->declaracionIvaResolucion = $declaracionIvaResolucion;
-
-        return $this;
-    }
-
-    /**
-     * Get declaracionIvaResolucion
-     *
-     * @return \AppBundle\Entity\DeclaracionIvaResolucion
-     */
-    public function getDeclaracionIvaResolucion()
-    {
-        return $this->declaracionIvaResolucion;
-    }
-
-    /**
      * Set disposicionesProvinciales
      *
      * @param \AppBundle\Entity\DisposicionesProvinciales $disposicionesProvinciales
@@ -946,30 +747,6 @@ class ActividadesTitulares
     public function getDocumentacion()
     {
         return $this->documentacion;
-    }
-
-    /**
-     * Set estadoSituacion
-     *
-     * @param \AppBundle\Entity\EstadoSituacion $estadoSituacion
-     *
-     * @return ActividadesTitulares
-     */
-    public function setEstadoSituacion(\AppBundle\Entity\EstadoSituacion $estadoSituacion = null)
-    {
-        $this->estadoSituacion = $estadoSituacion;
-
-        return $this;
-    }
-
-    /**
-     * Get estadoSituacion
-     *
-     * @return \AppBundle\Entity\EstadoSituacion
-     */
-    public function getEstadoSituacion()
-    {
-        return $this->estadoSituacion;
     }
 
     /**
@@ -1117,54 +894,6 @@ class ActividadesTitulares
     }
 
     /**
-     * Set ingresos
-     *
-     * @param \AppBundle\Entity\Ingresos $ingresos
-     *
-     * @return ActividadesTitulares
-     */
-    public function setIngresos(\AppBundle\Entity\Ingresos $ingresos = null)
-    {
-        $this->ingresos = $ingresos;
-
-        return $this;
-    }
-
-    /**
-     * Get ingresos
-     *
-     * @return \AppBundle\Entity\Ingresos
-     */
-    public function getIngresos()
-    {
-        return $this->ingresos;
-    }
-
-    /**
-     * Set inversiones
-     *
-     * @param \AppBundle\Entity\Inversiones $inversiones
-     *
-     * @return ActividadesTitulares
-     */
-    public function setInversiones(\AppBundle\Entity\Inversiones $inversiones = null)
-    {
-        $this->inversiones = $inversiones;
-
-        return $this;
-    }
-
-    /**
-     * Get inversiones
-     *
-     * @return \AppBundle\Entity\Inversiones
-     */
-    public function getInversiones()
-    {
-        return $this->inversiones;
-    }
-
-    /**
      * Set predios
      *
      * @param \AppBundle\Entity\Predios $predios
@@ -1188,53 +917,6 @@ class ActividadesTitulares
         return $this->predios;
     }
 
-    /**
-     * Set produccionVolumetrica
-     *
-     * @param \AppBundle\Entity\ProduccionVolumetrica $produccionVolumetrica
-     *
-     * @return ActividadesTitulares
-     */
-    public function setProduccionVolumetrica(\AppBundle\Entity\ProduccionVolumetrica $produccionVolumetrica = null)
-    {
-        $this->produccionVolumetrica = $produccionVolumetrica;
-
-        return $this;
-    }
-
-    /**
-     * Get produccionVolumetrica
-     *
-     * @return \AppBundle\Entity\ProduccionVolumetrica
-     */
-    public function getProduccionVolumetrica()
-    {
-        return $this->produccionVolumetrica;
-    }
-
-    /**
-     * Set ramasIndustrialesExpedientes
-     *
-     * @param \AppBundle\Entity\RamasIndustrialesExpedientes $ramasIndustrialesExpedientes
-     *
-     * @return ActividadesTitulares
-     */
-    public function setRamasIndustrialesExpedientes(\AppBundle\Entity\RamasIndustrialesExpedientes $ramasIndustrialesExpedientes = null)
-    {
-        $this->ramasIndustrialesExpedientes = $ramasIndustrialesExpedientes;
-
-        return $this;
-    }
-
-    /**
-     * Get ramasIndustrialesExpedientes
-     *
-     * @return \AppBundle\Entity\RamasIndustrialesExpedientes
-     */
-    public function getRamasIndustrialesExpedientes()
-    {
-        return $this->ramasIndustrialesExpedientes;
-    }
 
     /**
      * Set registroSig

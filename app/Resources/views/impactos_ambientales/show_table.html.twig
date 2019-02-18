@@ -5,6 +5,9 @@
       <th scope="col">Fecha Entrada</th>
       <th scope="col">Fecha Salida</th>
       <th scope="col">Fecha Carga</th>
+      {% if expediente.agrupador %}
+        <th scope="col">Titular Agrupado</th>
+      {% endif %}
       <th scope="col">Observación</th>
     </tr>
   </thead>
@@ -15,6 +18,9 @@
         <td>{{item.fechaEntrada|date('d-m-Y')}}</td>
         <td>{{item.fechaSalida|date('d-m-Y')}}</td>
         <td>{{item.fechaRealCarga|date('d-m-Y')}}</td>
+        {% if expediente.agrupador %}
+          <td>{% if item.titularAgrupado %}<a href="{{path('titulares_show', { 'id': item.titularAgrupado.id })}}">{{item.titularAgrupado}}</a>{% endif %}</th>
+        {% endif %}
         <td>{{item.observacion}}</td>
       </tr>
     {% endfor %}

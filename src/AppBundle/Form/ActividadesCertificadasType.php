@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use AppBundle\Form\EventListener\AddTitularAgrupadoListener;
 
 class ActividadesCertificadasType extends AbstractType
 {
@@ -46,6 +47,10 @@ class ActividadesCertificadasType extends AbstractType
         ->add('distanciaPlantas', NumberType::class, array('label'=>false,'required'=>false))
         ->add('cantidadArboles', NumberType::class, array('label'=>false,'required'=>false))
         ->add('observaciones',TextareaType::class,array('label' => false,'required'=>false,'attr' => array('class' => 'form-control')));
+
+        if ($builder->getOptions()['attr']['agrupador']) {
+          $builder->addEventSubscriber(new AddTitularAgrupadoListener());
+        }
     }
 
     /**

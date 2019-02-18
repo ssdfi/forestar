@@ -2,24 +2,18 @@
   <table id="historial-foresto-industriales" class="table table-striped">
     <thead>
       <tr>
-        <th>Fecha Inicio</th>
-        <th>Fecha Fin</th>
-        <th>Area Enviado Expediente</th>
-        <th>Estado Contable</th>
-        <th>Estado Legales</th>
-        <th>Estado Promocion</th>
-        <th>Estado SIG</th>
-        <th>Estado Principal</th>
-        <th>Estado ForestoIndustrial</th>
-        <th>Estado Viveros</th>
+        <th>Fecha Realización</th>
         <th>¿Es Foresto Industrial?</th>
+        {% if expediente.agrupador  %}
+          <th>Titular Agrupador</th>
+        {% endif %}
         <th>Observacion</th>
         <th></th>
       </tr>
     </thead>
     <tbody class="historialForestoIndustriales" data-index="{{ historialForestoIndustriales|length }}" data-prototype="{% filter escape %}{% include 'historial_foresto_industrial/prototype.html.twig' with {'form': historialForestoIndustriales.vars.prototype } %}{% endfilter %}">
       {% if historialForestoIndustriales %}
-        {% for tag in historialForestoIndustriales %}
+        {% for key, tag in historialForestoIndustriales %}
         <tr class="fields">
           <td>
           	<div class="col-sm-12">
@@ -28,65 +22,35 @@
           	</div>
           </td>
           <td>
-          		<div class="col-sm-12">
-          			{{ form_widget(tag.fechaFin) }}
-                {{ form_errors(tag.fechaFin) }}
-          		</div>
-          </td>
-          <td>
-            <div class="col-sm-12">
-              {{ form_widget(tag.areaEnviadoExpediente) }}
-              {{ form_errors(tag.areaEnviadoExpediente) }}
-            </div>
-          </td>
-          <td>
-          		<div class="col-sm-12">
-          			{{ form_widget(tag.estadoAreaContable) }}
-                {{ form_errors(tag.estadoAreaContable) }}
-          		</div>
-          </td>
-          <td>
-          		<div class="col-sm-12">
-          			{{ form_widget(tag.estadoAreaLegales) }}
-                {{ form_errors(tag.estadoAreaLegales) }}
-          		</div>
-          </td>
-          <td>
-          		<div class="col-sm-12">
-          			{{ form_widget(tag.estadoPromocion) }}
-                {{ form_errors(tag.estadoPromocion) }}
-          		</div>
-          </td>
-          <td>
-            	<div class="col-sm-12">
-          			{{ form_widget(tag.estadoSig) }}
-                {{ form_errors(tag.estadoSig) }}
-          		</div>
-          </td>
-          <td>
-              <div class="col-sm-12">
-                {{ form_widget(tag.estadoPrincipal) }}
-                {{ form_errors(tag.estadoPrincipal) }}
-              </div>
-          </td>
-          <td>
-              <div class="col-sm-12">
-                {{ form_widget(tag.estadoForestoIndustriales) }}
-                {{ form_errors(tag.estadoForestoIndustriales) }}
-              </div>
-          </td>
-          <td>
-              <div class="col-sm-12">
-                {{ form_widget(tag.estadoViverosId) }}
-                {{ form_errors(tag.estadoViverosId) }}
-              </div>
-          </td>
-          <td>
               <div class="col-sm-12">
                 {{ form_widget(tag.esForestoIndustrial) }}
                 {{ form_errors(tag.esForestoIndustrial) }}
               </div>
           </td>
+          {% if expediente.agrupador == true %}
+            <td>
+              <div class="form-row">
+                <div class="col-md-8 mb-3">
+                  {{form_widget(tag.titularAgrupado)}}
+                </div>
+                <div class="col-md-4 mb-3">
+                  <div class="form-row">
+                    <div class="col-md-6">
+                      <button id="add-titular-agrupado" data-index='{{key}}' data-name="appbundle_expedientes_historialForestoIndustriales_" class="btn btn-default add-titular-agrupado" type="button" data-toggle="modal" data-target="#titular-agrupado-modal">
+                        <span class="fa fa-search" aria-hidden="true"></span>
+                      </button>
+                    </div>
+                    <div class="col-md-6">
+                      <button id="remove-titular-agrupado" data-index='{{key}}' data-name="appbundle_expedientes_historialForestoIndustriales_" class="btn btn-default remove-titular-agrupado" type="button">
+                        <span class="fa fa-remove" aria-hidden="true"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {{form_widget(tag.titular_agrupado_id)}}
+            </td>
+          {% endif %}
           <td>
           		<div class="col-sm-12">
           			{{ form_widget(tag.observacion) }}

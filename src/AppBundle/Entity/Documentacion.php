@@ -74,6 +74,16 @@ class Documentacion
     private $etapa;
 
     /**
+     * @var \Titulares
+     *
+     * @ORM\ManyToOne(targetEntity="Titulares")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="titular_agrupado", referencedColumnName="id")
+     * })
+     */
+    private $titularAgrupado;
+
+    /**
      * Set $etapa
      *
      * @param integer $etapa
@@ -255,5 +265,22 @@ class Documentacion
     public function addExpediente($exp)
     {
         $this->expediente = $exp;
+    }
+
+    public function setTitularAgrupado($titular)
+    {
+        $this->titularAgrupado = $titular;
+
+        return $this;
+    }
+
+    /**
+     * Get titularAgrupado
+     *
+     * @return integer
+     */
+    public function getTitularAgrupado()
+    {
+        return $this->titularAgrupado;
     }
 }

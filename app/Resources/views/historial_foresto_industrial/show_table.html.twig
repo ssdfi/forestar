@@ -2,32 +2,22 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">Enviado</th>
-        <th scope="col">Estado General</th>
-        <th scope="col">Contable</th>
-        <th scope="col">Fecha</th>
-        <th scope="col">Entrada</th>
-        <th scope="col">Salida</th>
-        <th scope="col">Estado Legales</th>
-        <th scope="col">Estado SIG</th>
-        <th scope="col">Estado Promoción</th>
+        <th scope="col">Fecha Realización</th>
         <th scope="col">Estado Foresto Industria</th>
+        {% if expediente.agrupador %}
+          <th scope="col">Titular Agrupado</th>
+        {% endif %}
         <th scope="col">Observaciones</th>
       </tr>
     </thead>
     <tbody>
       {% for item in historialForestoIndustriales %}
         <tr>
-          <td>{{item.areaEnviadoExpediente}}</td>
-          <td>{{item.estadoPrincipal}}</td>
-          <td>{{item.estadoAreaContable}}</td>
-          <td>{{item.fechaUltimaModificacion|date('d-m-Y')}}</td>
-          <td>{{item.fechaInicio|date('d-m-Y')}}</td>
-          <td>{{item.fechaFin|date('d-m-Y')}}</td>
-          <td>{{item.estadoAreaLegales}}</td>
-          <td>{{item.estadoSig}}</td>
-          <td>{{item.estadoPromocion}}</td>
-          <td>{{item.estadoForestoIndustriales}}</td>
+          <td>{{item.fechaInicio|date('m-Y')}}</td>
+          <td>{% if item.esForestoIndustrial %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</td>
+          {% if expediente.agrupador %}
+            <td>{% if item.titularAgrupado %}<a href="{{path('titulares_show', { 'id': item.titularAgrupado.id })}}">{{item.titularAgrupado}}</a>{% endif %}</th>
+          {% endif %}
           <td>{{item.observacion}}</td>
         </tr>
       {% endfor %}

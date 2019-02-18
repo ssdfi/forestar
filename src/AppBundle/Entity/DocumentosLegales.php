@@ -45,6 +45,17 @@ class DocumentosLegales
      * @ORM\Column(name="etapa", type="integer", nullable=true)
      */
     private $etapa;
+
+    /**
+     * @var \Titulares
+     *
+     * @ORM\ManyToOne(targetEntity="Titulares")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="titular_agrupado", referencedColumnName="id")
+     * })
+     */
+    private $titularAgrupado;
+
     /**
      * Set $etapa
      *
@@ -125,5 +136,22 @@ class DocumentosLegales
     public function getDocumento()
     {
         return $this->documento;
+    }
+
+    public function setTitularAgrupado($titular)
+    {
+        $this->titularAgrupado = $titular;
+
+        return $this;
+    }
+
+    /**
+     * Get titularAgrupado
+     *
+     * @return integer
+     */
+    public function getTitularAgrupado()
+    {
+        return $this->titularAgrupado;
     }
 }

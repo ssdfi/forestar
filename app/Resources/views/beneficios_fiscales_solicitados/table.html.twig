@@ -4,13 +4,16 @@
       <tr>
         <th>Tipo Beneficio</th>
         <th>Fecha Carga</th>
+        {% if expediente.agrupador  %}
+          <th>Titular Agrupador</th>
+        {% endif %}
         <th>Observacion</th>
         <th></th>
       </tr>
     </thead>
     <tbody class="beneficiosFiscalesSolicitados" data-index="{{ beneficiosFiscalesSolicitados|length }}" data-prototype="{% filter escape %}{% include 'beneficios_fiscales_solicitados/prototype.html.twig' with {'form': beneficiosFiscalesSolicitados.vars.prototype } %}{% endfilter %}">
       {% if beneficiosFiscalesSolicitados %}
-        {% for tag in beneficiosFiscalesSolicitados %}
+        {% for key, tag in beneficiosFiscalesSolicitados %}
         <tr class="fields">
           <td>
             <div class="col-sm-12">
@@ -24,6 +27,30 @@
                 {{ form_errors(tag.fechaCarga) }}
           		</div>
           </td>
+          {% if expediente.agrupador == true %}
+            <td>
+              <div class="form-row">
+                <div class="col-md-8 mb-3">
+                  {{form_widget(tag.titularAgrupado)}}
+                </div>
+                <div class="col-md-4 mb-3">
+                  <div class="form-row">
+                    <div class="col-md-6">
+                      <button id="add-titular-agrupado" data-index='{{key}}' data-name="appbundle_expedientes_beneficiosFiscalesSolicitados_" class="btn btn-default add-titular-agrupado" type="button" data-toggle="modal" data-target="#titular-agrupado-modal">
+                        <span class="fa fa-search" aria-hidden="true"></span>
+                      </button>
+                    </div>
+                    <div class="col-md-6">
+                      <button id="remove-titular-agrupado" data-index='{{key}}' data-name="appbundle_expedientes_beneficiosFiscalesSolicitados_" class="btn btn-default remove-titular-agrupado" type="button">
+                        <span class="fa fa-remove" aria-hidden="true"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {{form_widget(tag.titular_agrupado_id)}}
+            </td>
+          {% endif %}
           <td>
             <div class="col-sm-12">
               {{ form_widget(tag.observaciones) }}
