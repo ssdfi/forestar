@@ -2055,3 +2055,13 @@ ALTER TABLE actividades_titulares DROP CONSTRAINT actividades_titulares_activida
 ALTER TABLE actividades_titulares DROP CONSTRAINT actividades_titulares_actividad_inspeccionada_id_fkey;
 ALTER TABLE actividades_titulares DROP CONSTRAINT actividades_titulares_actividad_certificada_id_fkey;
 ALTER TABLE actividades_titulares DROP CONSTRAINT actividades_titulares_actividad_aprobada_id_fkey;
+ALTER TABLE titulares ADD COLUMN socio_gerente character varying;
+ALTER TABLE titulares ADD COLUMN poder character varying;
+ALTER TABLE titulares ADD COLUMN poder_inicio date;
+ALTER TABLE titulares ADD COLUMN poder_fin date;
+ALTER TABLE titulares ADD COLUMN estatuto character varying;
+ALTER TABLE titulares ADD COLUMN estatuto_inicio date;
+ALTER TABLE titulares ADD COLUMN estatuto_fin date;
+ALTER TABLE titulares ADD COLUMN actas_asamblea character varying;
+ALTER TABLE titulares ADD COLUMN actas_asamblea_inicio date;
+ALTER TABLE titulares ADD COLUMN actas_asamblea_fin date;

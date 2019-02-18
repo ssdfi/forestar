@@ -6,42 +6,32 @@
   <div class="block">
     <div class="row">
       <div class="col-xs-6">
-        <p><strong>Expediente: </strong>{{informeLegal.numeroExpediente}}</p>
-        <p><strong>Número Interno: </strong>{{informeLegal.numeroInterno}}</p>
+        <p><strong>Expediente: </strong>{% if informeLegal is defined %}{{informeLegal.numeroExpediente}}{% else %}<span id="numeroExpediente"></span>{% endif %}</p>
+        <p><strong>Número Interno: </strong>{% if informeLegal is defined %}{{informeLegal.numeroInterno}}{% else %}<span id="numeroInterno"></span>{% endif %}</p>
       </div>
     </div>
   </div>
   <div class="block">
     <div class="row">
       <div class="col-xs-12 text-justify">
-        {% if informeLegal.parrafo1 %}
-          <p>
-            {{informeLegal.parrafo1|raw}}
-          </p>
+        {% if informeLegal is defined %}
+          {% if informeLegal.parrafo1 %}
+            <p>
+              {{informeLegal.parrafo1|raw}}
+            </p>
+          {% endif %}
+        {% else %}
+        <p><span id="parrafo1"></span></p>
         {% endif %}
-        {% if informeLegal.parrafo2 %}
-          <p>
-            {{informeLegal.parrafo2|nl2br}}
-          </p>
-        {% endif %}
-        {% if informeLegal.parrafo3 %}
-          <p>
-            {{informeLegal.parrafo3|nl2br}}
-          </p>
-        {% endif %}
-        {% if informeLegal.parrafo4 %}
-          <p>
-            {{informeLegal.parrafo4|nl2br}}
-          </p>
-        {% endif %}
+
       </div>
     </div>
   </div>
   <div class="block">
     <div class="row">
       <div class="col-xs-6">
-        <p><strong>INFORME LEGAL N° {{informeLegal.informeLegalNumero}} </strong></p>
-        <p><strong>BUENOS AIRES, {{informeLegal.fechaCreacion|date('d-m-Y')}} </strong></p>
+        <p><strong>INFORME LEGAL N° </strong></p>
+        <p><strong>BUENOS AIRES, {% if informeLegal is defined %}{{informeLegal.fechaCreacion|date('d-m-Y')}}{% else %}<span id="numeroInterno"></span>{% endif %} </strong></p>
       </div>
     </div>
   </div>

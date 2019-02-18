@@ -43,7 +43,17 @@ class TitularesType extends AbstractType
           ->add('directorSuplente', TextType::class, array('label'=>'Director Suplente','required'=>false, 'attr'=>array('tipo-personeria'=>'Jurídica')))
           ->add('duracionCargos', TextType::class, array('label'=>'Duracion Cargos','required'=>false, 'attr'=>array('tipo-personeria'=>'Jurídica')))
           ->add('apoderados', TextType::class, array('label'=>'Apoderados','required'=>false, 'attr'=>array('tipo-personeria'=>'Jurídica')))
-          ->add('copiaDniPresentada', CheckboxType::class, array('attr' => array('tipo-personeria'=>'Jurídica', 'data-label' => 'Copia DNI Presentada'), 'label' => false, 'required'=>false));
+          ->add('copiaDniPresentada', CheckboxType::class, array('attr' => array('tipo-personeria'=>'Jurídica', 'data-label' => 'Copia DNI Presentada'), 'label' => false, 'required'=>false))
+          ->add('socioGerente', TextType::class, array('label'=>'Apoderados','required'=>false, 'attr'=>array('tipo-personeria'=>'Jurídica')))
+          ->add('poder', TextType::class, array('label'=>'Apoderados','required'=>false, 'attr'=>array('tipo-personeria'=>'Jurídica')))
+          ->add('poderInicio', DateType::class, array('widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD",'tipo-personeria'=>'Jurídica')))
+          ->add('poderFin', DateType::class, array('widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD",'tipo-personeria'=>'Jurídica')))
+          ->add('estatuto', TextType::class, array('label'=>'Apoderados','required'=>false, 'attr'=>array('tipo-personeria'=>'Jurídica')))
+          ->add('estatutoInicio', DateType::class, array('widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD",'tipo-personeria'=>'Jurídica')))
+          ->add('estatutoFin', DateType::class, array('widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD",'tipo-personeria'=>'Jurídica')))
+          ->add('actasAsamblea', TextType::class, array('label'=>'Apoderados','required'=>false, 'attr'=>array('tipo-personeria'=>'Jurídica')))
+          ->add('actasAsambleaInicio', DateType::class, array('widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD",'tipo-personeria'=>'Jurídica')))
+          ->add('actasAsambleaFin', DateType::class, array('widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD", 'tipo-personeria'=>'Jurídica')));
 
           $builder->add('emails', CollectionType::class, array(
               'entry_type'    => EmailsType::class,

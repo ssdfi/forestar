@@ -252,6 +252,77 @@ class Titulares
      */
     private $copiaDniPresentada;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="socio_gerente", type="string", nullable=true)
+     */
+    private $socioGerente;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="poder", type="string", nullable=true)
+     */
+    private $poder;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="poder_inicio", type="date", nullable=true)
+     */
+    private $poderInicio;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="poder_fin", type="date", nullable=true)
+     */
+    private $poderFin;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="estatuto", type="string", nullable=true)
+     */
+    private $estatuto;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="estatuto_inicio", type="date", nullable=true)
+     */
+    private $estatutoInicio;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="estatuto_fin", type="date", nullable=true)
+     */
+    private $estatutoFin;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="actas_asamblea", type="string", nullable=true)
+     */
+    private $actasAsamblea;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="actas_asamblea_inicio", type="date", nullable=true)
+     */
+    private $actasAsambleaInicio;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="actas_asamblea_fin", type="date", nullable=true)
+     */
+    private $actasAsambleaFin;
+
     /**
      * @var \DateTime
      *
@@ -986,6 +1057,116 @@ class Titulares
     public function getCopiaDniPresentada()
     {
         return $this->copiaDniPresentada;
+    }
+
+    public function setSocioGerente($socioGerente)
+    {
+        $this->socioGerente = $socioGerente;
+
+        return $this;
+    }
+    public function getSocioGerente()
+    {
+        return $this->socioGerente;
+    }
+
+    public function setPoder($poder)
+    {
+        $this->poder = $poder;
+
+        return $this;
+    }
+    public function getPoder()
+    {
+        return $this->poder;
+    }
+
+    public function setPoderInicio($poderInicio)
+    {
+        $this->poderInicio = $poderInicio;
+
+        return $this;
+    }
+    public function getPoderInicio()
+    {
+        return $this->poderInicio;
+    }
+
+    public function setPoderFin($poderFin)
+    {
+        $this->poderFin = $poderFin;
+
+        return $this;
+    }
+    public function getPoderFin()
+    {
+        return $this->poderFin;
+    }
+
+    public function setEstatuto($estatuto)
+    {
+        $this->estatuto = $estatuto;
+
+        return $this;
+    }
+    public function getEstatuto()
+    {
+        return $this->estatuto;
+    }
+
+    public function setEstatutoInicio($estatutoInicio)
+    {
+        $this->estatutoInicio = $estatutoInicio;
+
+        return $this;
+    }
+    public function getEstatutoInicio()
+    {
+        return $this->estatutoInicio;
+    }
+
+    public function setEstatutoFin($estatutoFin)
+    {
+        $this->estatutoFin = $estatutoFin;
+
+        return $this;
+    }
+    public function getEstatutoFin()
+    {
+        return $this->estatutoFin;
+    }
+
+    public function setActasAsamblea($actasAsamblea)
+    {
+        $this->actasAsamblea = $actasAsamblea;
+
+        return $this;
+    }
+    public function getActasAsamblea()
+    {
+        return $this->actasAsamblea;
+      }
+
+    public function setActasAsambleaInicio($actasAsambleaInicio)
+    {
+        $this->actasAsambleaInicio = $actasAsambleaInicio;
+
+        return $this;
+    }
+    public function getActasAsambleaInicio()
+    {
+        return $this->actasAsambleaInicio;
+    }
+
+    public function setActasAsambleaFin($actasAsambleaFin)
+    {
+        $this->actasAsambleaFin = $actasAsambleaFin;
+
+        return $this;
+    }
+    public function getActasAsambleaFin()
+    {
+        return $this->actasAsambleaFin;
     }
 
     /**

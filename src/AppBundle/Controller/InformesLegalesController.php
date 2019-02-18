@@ -5,7 +5,9 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\InformesLegales;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Informeslegale controller.
@@ -174,6 +176,45 @@ class InformesLegalesController extends Controller
 
         return $this->redirectToRoute('informeslegales_index');
     }
+
+    /**
+     * Finds and displays a informesLegale entity.
+     *
+     * @Route("/{id}/json_preview", name="informeslegales_show")
+     * @Method("GET")
+     */
+    public function jsonAction($id)
+    {
+        switch ($id) {
+          case 1:
+            return new JsonResponse(['html'=> $this->renderView('informeslegales/informes/aprobado.html.twig'),]);
+          case 2:
+            return new JsonResponse(['html'=> $this->renderView('informeslegales/informes/agrupado_primera_cuota.html.twig'),]);
+          case 3:
+            return new JsonResponse(['html'=> $this->renderView('informeslegales/informes/agrupado_segunda_cuota.html.twig'),]);
+          case 4:
+            return new JsonResponse(['html'=> $this->renderView('informeslegales/informes/aprobado_disposicion_provincial.html.twig'),]);
+          case 5:
+            return new JsonResponse(['html'=> $this->renderView('informeslegales/informes/aprobado_subsana_observacion.html.twig'),]);
+          case 6:
+            return new JsonResponse(['html'=> $this->renderView('informeslegales/informes/observado.html.twig'),]);
+          case 7:
+            return new JsonResponse(['html'=> $this->renderView('informeslegales/informes/observado_falta_disp_provincial.html.twig'),]);
+          case 8:
+            return new JsonResponse(['html'=> $this->renderView('informeslegales/informes/pp_aprobado_primera_etapa.html.twig'),]);
+          case 9:
+            return new JsonResponse(['html'=> $this->renderView('informeslegales/informes/pp_aprobado_segunda_etapa.html.twig'),]);
+          case 10:
+            return new JsonResponse(['html'=> $this->renderView('informeslegales/informes/pp_observado_falta_disp_provincial.html.twig'),]);
+          case 11:
+            return new JsonResponse(['html'=> $this->renderView('informeslegales/informes/otros.html.twig'),]);
+          default:
+            # code...
+            break;
+        }
+
+    }
+
 
     /**
      * Creates a form to delete a informesLegale entity.

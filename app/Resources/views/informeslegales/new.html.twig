@@ -9,12 +9,21 @@
 {% block body %}
 	<div class="col-md-12 mx-auto">
 		<div class="row">
-			<div class="col-md-10">
+			<div class="col-md-12">
 				<h1>Crear Informe</h1>
 				{{ form_start(form) }}
 				{{ form_widget(form) }}
-				<input type="submit" value="Crear"/>
+				<button type="submit" class="btn btn-primary pull-left">Crear</button>
 				{{ form_end(form) }}
+			</div>
+		</div>
+	</div>
+	<div class="col-md-12 mx-auto">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>Vista Previa</h1>
+				<div class="preview">
+				</div>
 			</div>
 		</div>
 	</div>
@@ -23,4 +32,5 @@
 	{{parent()}}
 	<script src="{{ asset('assetic/trumbowyg.min.js') }}"></script>
 	<script src="{{ asset('js/informe.js') }}"></script>
+	<script src="{{ asset('js/informe_preview.js') }}"></script>
 {% endblock %}

@@ -6,9 +6,9 @@
   <div class="block">
     <div class="row">
       <div class="col-xs-6">
-        <p><strong>Titular: </strong>{{informeLegal.titular}}</p>
-        <p><strong>Expediente Interno: </strong>{{informeLegal.numeroInterno}}</p>
-        <p><strong>CUDAP: </strong>{{informeLegal.numeroExpediente}}</p>
+        <p><strong>Titular: </strong>{% if informeLegal is defined %}{{informeLegal.titular}}{% else %}<span id="titular"></span>{% endif %}</p>
+        <p><strong>Expediente Interno: </strong>{% if informeLegal is defined %}{{informeLegal.numeroInterno}}{% else %}<span id="numeroInterno"></span>{% endif %}</p>
+        <p><strong>CUDAP: </strong>{% if informeLegal is defined %}{{informeLegal.numeroExpediente}}{% else %}<span id="numeroExpediente"></span>{% endif %}</p>
       </div>
     </div>
   </div>
@@ -19,7 +19,7 @@
           En el expediente mencionado en la referencia, tramita una presentación de un Proyecto de Plantación y Actividades Silvícolas de Especies Forestales en Bosques Cultivados y Enriquecimiento de Bosque Nativo para Pequeños Productores en Forma Agrupada, en el marco del Régimen de Promoción de Plantaciones Forestales instituido por la Ley N° 25.080, el Decreto N° 133/1999 y demás resoluciones reglamentarias.
         </p>
         <p>
-          Luego de analizar la presente solicitud, es dable destacar que la entidad presentante ha cumplimentado lo requerido por la normativa vigente, por haber presentado la documentación agregada al <b>Registro de Titulares N° {{informeLegal.numeroRegistroTitular}}</b>, a saber:
+          Luego de analizar la presente solicitud, es dable destacar que la entidad presentante ha cumplimentado lo requerido por la normativa vigente, por haber presentado la documentación agregada al <b>Registro de Titulares N° {% if informeLegal is defined %}{{informeLegal.numeroRegistroTitular}}{% else %}<span id="numeroRegistroTitular"></span>{% endif %}</b>, a saber:
           <ul>
             <b>
               <li>Copia certificada del Acta de Asamblea actualizada, de la que surge la designación de sus autoridades y las facultades de representación vigentes; y</li>
@@ -31,7 +31,7 @@
           De conformidad con lo expuesto, el presente expediente se encuentra en condiciones de ser <b>aprobado</b> en esta etapa, a los fines del pago de la primera cuota del Apoyo Económico No Reintegrable (arts. 17° y 20 inc. a, Res. SAGyP N° 810/2011)
         </p>
         <p>
-          Pasen las presentes actuaciones al área {{informeLegal.areaEnviar}} para la prosecución de su trámite.
+          Pasen las presentes actuaciones al área {% if informeLegal is defined %}{{informeLegal.areaEnviar}}{% else %}<span id="areaEnviar"></span>{% endif %} para la prosecución de su trámite.
         </p>
       </div>
     </div>
@@ -39,8 +39,8 @@
   <div class="block">
     <div class="row">
       <div class="col-xs-6">
-        <p><strong>INFORME LEGAL N° {{informeLegal.informeLegalNumero}} </strong></p>
-        <p><strong>BUENOS AIRES, {{informeLegal.fechaCreacion|date('d-m-Y')}} </strong></p>
+        <p><strong>INFORME LEGAL N°</strong></p>
+        <p><strong>BUENOS AIRES, {% if informeLegal is defined %}{{informeLegal.fechaCreacion|date('d-m-Y')}}{% else %}<span id="fechaCreacion"></span>{% endif %} </strong></p>
       </div>
     </div>
   </div>

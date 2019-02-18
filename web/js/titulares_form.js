@@ -25,8 +25,8 @@
           toggleAgriculturaFamiliar(false);
         }
         if (type == 'Física') {
-          $("[tipo-personeria='Jurídica']").parent().closest('.form-group').hide();
           $(this).parent().closest('.form-group').show();
+          $("[tipo-personeria='Jurídica']").parent().closest('.form-group').hide();
           toggleComunidadIndigena(false);
         }
       });
