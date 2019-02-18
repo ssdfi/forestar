@@ -1,6 +1,6 @@
 
 		{% if actividadesInspeccionadas %}
-			{% for tag in actividadesInspeccionadas %}
+			{% for key, tag in actividadesInspeccionadas %}
 				{% if tag.tipoActividad.vars.data.id == 2 or tag.tipoActividad.vars.data.id == 16 or tag.tipoActividad.vars.data.id == 17 or tag.tipoActividad.vars.data.id == 18 %}
         <tr class="fields">
 					<td>
@@ -81,6 +81,30 @@
 							{{ form_errors(tag.tecnico) }}
 						</div>
 					</td>
+					{% if expediente.agrupador == true %}
+						<td>
+							<div class="form-row">
+								<div class="col-md-8 mb-3">
+									{{form_widget(tag.titularAgrupado)}}
+								</div>
+								<div class="col-md-4 mb-3">
+									<div class="form-row">
+										<div class="col-md-6">
+											<button id="add-titular-agrupado" data-index='{{key}}' data-name="appbundle_expedientes_actividadesInspeccionadas_" class="btn btn-default add-titular-agrupado" type="button" data-toggle="modal" data-target="#titular-agrupado-modal">
+												<span class="fa fa-search" aria-hidden="true"></span>
+											</button>
+										</div>
+										<div class="col-md-6">
+											<button id="remove-titular-agrupado" data-index='{{key}}' data-name="appbundle_expedientes_actividadesInspeccionadas_" class="btn btn-default remove-titular-agrupado" type="button">
+												<span class="fa fa-remove" aria-hidden="true"></span>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							{{form_widget(tag.titular_agrupado_id)}}
+						</td>
+					{% endif %}
           <td>
             <div class="col-sm-12">
               {{ form_widget(tag.observacion) }}

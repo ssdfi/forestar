@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use AppBundle\Form\EventListener\AddTitularAgrupadoListener;
 
 class ActividadesInspeccionadasType extends AbstractType
 {
@@ -51,6 +52,10 @@ class ActividadesInspeccionadasType extends AbstractType
         ->add('responsable',ChoiceType::class, array('choices'=>array('Provincia'=>'Provincia', 'DNDFI'=>'DNDFI'), 'label'=>false,'required'=>false))
         ->add('tecnico', TextType::class, array('label'=>false,'required'=>false))
         ->add('observacion',TextareaType::class,array('label' => false,'required'=>false,'attr' => array('class' => 'form-control')));
+
+      if ($builder->getOptions()['attr']['agrupador']) {
+        $builder->addEventSubscriber(new AddTitularAgrupadoListener());
+      }
     }/**
      * {@inheritdoc}
      */

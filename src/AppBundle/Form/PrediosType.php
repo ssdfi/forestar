@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use AppBundle\Form\EventListener\AddTitularAgrupadoListener;
 
 class PrediosType extends AbstractType
 {
@@ -147,6 +148,10 @@ class PrediosType extends AbstractType
               )
           )
           ;
+
+        if ($builder->getOptions()['attr']['agrupador']) {
+          $builder->addEventSubscriber(new AddTitularAgrupadoListener());
+        }
     }
 
     /**

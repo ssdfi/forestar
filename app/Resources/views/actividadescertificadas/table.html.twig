@@ -25,6 +25,9 @@
 				<th>Turno de Corta</th>
 				<th>Porcentaje Fallas</th>
 				<th>Densidad</th>
+				{% if expediente.agrupador  %}
+	        <th>Titular Agrupador</th>
+	      {% endif %}
 				<th>Observaciones</th>
 				<th></th>
 			</tr>
@@ -55,6 +58,9 @@
 				<th>Cantidad de Arboles</th>
 				<th>Riego</th>
 				<th>Turno Corta</th>
+				{% if expediente.agrupador  %}
+	        <th>Titular Agrupador</th>
+	      {% endif %}
 				<th>Observaciones</th>
 				<th></th>
 			</tr>
@@ -85,6 +91,9 @@
 				<th>DAP promedio</th>
 				<th>Altura promedio Plantación</th>
 				<th>Altura Poda</th>
+				{% if expediente.agrupador  %}
+	        <th>Titular Agrupador</th>
+	      {% endif %}
 				<th>Observaciones</th>
 				<th></th>
 			</tr>
@@ -114,6 +123,9 @@
 				<th>Densidad Previa</th>
 				<th>Nros Arboles Extraidos</th>
 				<th>Densidad Final</th>
+				{% if expediente.agrupador  %}
+	        <th>Titular Agrupador</th>
+	      {% endif %}
 				<th>Observaciones</th>
 				<th></th>
 			</tr>
@@ -141,6 +153,9 @@
 				<th>Edad de la cepa</th>
 				<th>Edad del rebrote</th>
 				<th>Nro. de brotes/cepa después del manejo</th>
+				{% if expediente.agrupador  %}
+	        <th>Titular Agrupador</th>
+	      {% endif %}
 				<th>Observaciones</th>
 				<th></th>
 			</tr>
@@ -166,6 +181,9 @@
 				<th>Fecha Realización</th>
 				<th>Superficie</th>
 				<th>Densidad (plantas/ha)</th>
+				{% if expediente.agrupador  %}
+	        <th>Titular Agrupador</th>
+	      {% endif %}
 				<th>Observaciones</th>
 				<th></th>
 			</tr>

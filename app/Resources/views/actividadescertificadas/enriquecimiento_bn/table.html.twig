@@ -1,5 +1,5 @@
 {% if actividadesCertificadas %}
-	{% for tag in actividadesCertificadas %}
+	{% for key, tag in actividadesCertificadas %}
 		{# ENRIQUECIMIENTO BN #}
 		{% if tag.tipoActividad.vars.data.id == 5 %}
 			<tr class="fields">
@@ -33,6 +33,30 @@
 						{{ form_errors(tag.densidad) }}
 					</div>
 				</td>
+				{% if expediente.agrupador == true %}
+          <td>
+            <div class="form-row">
+              <div class="col-md-8 mb-3">
+                {{form_widget(tag.titularAgrupado)}}
+              </div>
+              <div class="col-md-4 mb-3">
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <button id="add-titular-agrupado" data-index='{{key}}' data-name="appbundle_expedientes_actividadesCertificadas_" class="btn btn-default add-titular-agrupado" type="button" data-toggle="modal" data-target="#titular-agrupado-modal">
+                      <span class="fa fa-search" aria-hidden="true"></span>
+                    </button>
+                  </div>
+                  <div class="col-md-6">
+                    <button id="remove-titular-agrupado" data-index='{{key}}' data-name="appbundle_expedientes_actividadesCertificadas_" class="btn btn-default remove-titular-agrupado" type="button">
+                      <span class="fa fa-remove" aria-hidden="true"></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{form_widget(tag.titular_agrupado_id)}}
+          </td>
+        {% endif %}
 				<td>
 					<div class="col-sm-12">
 						{{ form_widget(tag.observaciones) }}
@@ -67,7 +91,7 @@
 					tag.edadRebrote.setRendered() %}
 				{% do
 					tag.numeroBrotesCepas.setRendered() %}
-				{% do 
+				{% do
 					tag.longitudFilas.setRendered() %}
 				{% do
 					tag.numeroFilas.setRendered() %}

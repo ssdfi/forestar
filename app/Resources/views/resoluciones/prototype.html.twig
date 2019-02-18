@@ -25,12 +25,6 @@
 </td>
 <td>
     <div class="col-sm-12">
-      {{ form_widget(form.departamento) }}
-      {{ form_errors(form.departamento) }}
-    </div>
-</td>
-<td>
-    <div class="col-sm-12">
       {{ form_widget(form.tipoActividad) }}
       {{ form_errors(form.tipoActividad) }}
     </div>
@@ -55,18 +49,6 @@
 </td>
 <td>
     <div class="col-sm-12">
-      {{ form_widget(form.fechaInicio) }}
-      {{ form_errors(form.fechaInicio) }}
-    </div>
-</td>
-<td>
-    <div class="col-sm-12">
-      {{ form_widget(form.fechaFin) }}
-      {{ form_errors(form.fechaFin) }}
-    </div>
-</td>
-<td>
-    <div class="col-sm-12">
       {{ form_widget(form.montoPago) }}
       {{ form_errors(form.montoPago) }}
     </div>
@@ -83,6 +65,30 @@
       {{ form_errors(form.aprueba) }}
     </div>
 </td>
+{% if expediente.agrupador == true %}
+<td>
+  <div class="form-row">
+    <div class="col-md-8 mb-3">
+      {{form_widget(form.titularAgrupado)}}
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="form-row">
+        <div class="col-md-6">
+          <button id="add-titular-agrupado" data-index='{{form.vars.name}}' data-name="appbundle_expedientes_resoluciones_" class="btn btn-default add-titular-agrupado" type="button" data-toggle="modal" data-target="#titular-agrupado-modal">
+            <span class="fa fa-search" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="col-md-6">
+          <button id="remove-titular-agrupado" data-index='{{form.vars.name}}' data-name="appbundle_expedientes_resoluciones_" class="btn btn-default remove-titular-agrupado" type="button">
+            <span class="fa fa-remove" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{form_widget(form.titular_agrupado_id)}}
+</td>
+{% endif %}
 <td>
     <div class="col-sm-12">
       {{ form_widget(form.observacion) }}

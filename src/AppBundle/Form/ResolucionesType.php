@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-
+use AppBundle\Form\EventListener\AddTitularAgrupadoListener;
 
 class ResolucionesType extends AbstractType
 {
@@ -25,17 +25,20 @@ class ResolucionesType extends AbstractType
           ->add('numeroResolucion')
           ->add('fechaResolucion', DateType::class, array('label' => 'Fecha de Presentación','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
           ->add('listadoResolucion')
-          ->add('departamento')
+          // ->add('departamento')
           ->add('tipoActividad')
           ->add('superficieHa', NumberType::class, array('required'=>false))
           ->add('densidad', NumberType::class, array('required'=>false))
-          ->add('fechaInicio', DateType::class, array('label' => 'Fecha de Presentación','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
-          ->add('fechaFin', DateType::class, array('label' => 'Fecha de Presentación','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
+          // ->add('fechaInicio', DateType::class, array('label' => 'Fecha de Presentación','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
+          // ->add('fechaFin', DateType::class, array('label' => 'Fecha de Presentación','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
           ->add('montoPago', NumberType::class, array('required'=>false))
           ->add('moneda')
           ->add('especie')
           ->add('aprueba', CheckboxType::class, array('attr' => array('data-label' => 'Aprueba'), 'label' => false, 'required'=>false))
           ->add('observacion', TextareaType::class, array('required'=>false));
+        if ($builder->getOptions()['attr']['agrupador']) {
+          $builder->addEventSubscriber(new AddTitularAgrupadoListener());
+        }
     }/**
      * {@inheritdoc}
      */

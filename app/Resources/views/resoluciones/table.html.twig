@@ -6,23 +6,23 @@
         <th>Número Resolución</th>
         <th>Fecha Resolución</th>
         <th>Listado</th>
-        <th>Departamento</th>
         <th>Tipo Actividad</th>
         <th>Especie</th>
         <th>Superficie</th>
         <th>Densidad</th>
-        <th>Fecha Inicio</th>
-        <th>Fecha Fin</th>
         <th>Monto Pago</th>
         <th>Moneda</th>
         <th>Aprueba</th>
+        {% if expediente.agrupador  %}
+          <th>Titular Agrupador</th>
+        {% endif %}
         <th>Observación</th>
         <th></th>
       </tr>
     </thead>
     <tbody class="resoluciones" data-index="{{ resoluciones|length }}" data-prototype="{% filter escape %}{% include 'resoluciones/prototype.html.twig' with {'form': resoluciones.vars.prototype } %}{% endfilter %}">
       {% if resoluciones %}
-        {% for tag in resoluciones %}
+        {% for key, tag in resoluciones %}
         <tr class="fields">
           <td>
           		<div class="col-sm-12">
@@ -46,12 +46,6 @@
           		<div class="col-sm-12">
           			{{ form_widget(tag.listadoResolucion) }}
                 {{ form_errors(tag.listadoResolucion) }}
-          		</div>
-          </td>
-          <td>
-          		<div class="col-sm-12">
-          			{{ form_widget(tag.departamento) }}
-                {{ form_errors(tag.departamento) }}
           		</div>
           </td>
           <td>
@@ -80,18 +74,6 @@
           </td>
           <td>
           		<div class="col-sm-12">
-          			{{ form_widget(tag.fechaInicio) }}
-                {{ form_errors(tag.fechaInicio) }}
-          		</div>
-          </td>
-          <td>
-          		<div class="col-sm-12">
-          			{{ form_widget(tag.fechaFin) }}
-                {{ form_errors(tag.fechaFin) }}
-          		</div>
-          </td>
-          <td>
-          		<div class="col-sm-12">
           			{{ form_widget(tag.montoPago) }}
                 {{ form_errors(tag.montoPago) }}
           		</div>
@@ -108,6 +90,30 @@
                 {{ form_errors(tag.aprueba) }}
           		</div>
           </td>
+          {% if expediente.agrupador == true %}
+            <td>
+              <div class="form-row">
+                <div class="col-md-8 mb-3">
+                  {{form_widget(tag.titularAgrupado)}}
+                </div>
+                <div class="col-md-4 mb-3">
+                  <div class="form-row">
+                    <div class="col-md-6">
+                      <button id="add-titular-agrupado" data-index='{{key}}' data-name="appbundle_expedientes_resoluciones_" class="btn btn-default add-titular-agrupado" type="button" data-toggle="modal" data-target="#titular-agrupado-modal">
+                        <span class="fa fa-search" aria-hidden="true"></span>
+                      </button>
+                    </div>
+                    <div class="col-md-6">
+                      <button id="remove-titular-agrupado" data-index='{{key}}' data-name="appbundle_expedientes_resoluciones_" class="btn btn-default remove-titular-agrupado" type="button">
+                        <span class="fa fa-remove" aria-hidden="true"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {{form_widget(tag.titular_agrupado_id)}}
+            </td>
+          {% endif %}
           <td>
           		<div class="col-sm-12">
           			{{ form_widget(tag.observacion) }}

@@ -19,9 +19,9 @@
               <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-documentacion" role="tab" aria-controls="nav-contact" aria-selected="false">Documentación ({{expediente.documentaciones|length}})</a>
               <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-cobro-beneficio" role="tab" aria-controls="nav-contact" aria-selected="false">Cobros Beneficios ({{expediente.cobroBeneficios|length}})</a>
               <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-beneficios-fiscales-solicitados" role="tab" aria-controls="nav-contact" aria-selected="false">Beneficios Fiscales - Carga({{expediente.beneficiosFiscalesSolicitados|length}})</a>
-              {% if expediente.actividadesTitulares|length %}
-                <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-actividades-titulares" role="tab" aria-controls="nav-contact" aria-selected="false">Productores Asociados ({{expediente.actividadesTitulares|length}})</a>
-              {% endif %}
+              <!-- { if expediente.actividadesTitulares|length %}
+                <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-actividades-titulares" role="tab" aria-controls="nav-contact" aria-selected="false">Productores Asociados ({expediente.actividadesTitulares|length}})</a>
+              { endif %} -->
               <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-predios" role="tab" aria-controls="nav-contact" aria-selected="false">Predios ({{expediente.predios|length}})</a>
               <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-disposiciones-provinciales" role="tab" aria-controls="nav-contact" aria-selected="false">Disposiciones Prov. ({{expediente.disposicionesProvinciales|length}})</a>
               <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-impacto-ambiental" role="tab" aria-controls="nav-contact" aria-selected="false">Impacto Ambiental ({{expediente.impactosAmbientales|length}})</a>
@@ -153,12 +153,12 @@
               {% embed "beneficios_fiscales_solicitados/show_table.html.twig" with { 'beneficiosFiscalesSolicitados': expediente.BeneficiosFiscalesSolicitados} %}
               {% endembed %}
             </div>
-            {% if expediente.actividadesTitulares|length %}
+            <!-- { if expediente.actividadesTitulares|length %}
               <div class="tab-pane fade" id="nav-actividades-titulares" role="tabpanel" aria-labelledby="nav-contact-tab">
-                {% embed "actividades_titulares/show_table.html.twig" with { 'actividadesTitulares': expediente.actividadesTitulares} %}
-                {% endembed %}
+                { embed "actividades_titulares/show_table.html.twig" with { 'actividadesTitulares': expediente.actividadesTitulares} %}
+                { endembed %}
               </div>
-            {% endif %}
+            { endif %} -->
             <div class="tab-pane fade" id="nav-beneficios-fiscales" role="tabpanel" aria-labelledby="nav-contact-tab">
               {% embed "beneficios_fiscales/show_table.html.twig" with { 'beneficiosFiscales': expediente.beneficiosFiscales} %}
               {% endembed %}

@@ -98,6 +98,10 @@ class ExpedientesType extends AbstractType
               'prototype'     => true,
               'label'         => false,
               'by_reference'  => false,
+              'entry_options' => array(
+                  'label' => false,
+                  'attr'=> array('agrupador'=>$agrupador),
+                )
               )
             );
           }
@@ -213,6 +217,7 @@ class ExpedientesType extends AbstractType
                   'by_reference'  => false,
                   'entry_options' => array(
                       'label' => false,
+                      'attr'=> array('agrupador'=>$agrupador),
                   )
                 )
               );
@@ -325,6 +330,10 @@ class ExpedientesType extends AbstractType
                   'prototype'     => true,
                   'label'         => false,
                   'by_reference'  => false,
+                  'entry_options' => array(
+                      'label' => false,
+                      'attr'=> array('agrupador'=>$agrupador),
+                  )
                 )
               );
             }

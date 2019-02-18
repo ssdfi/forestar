@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use AppBundle\Form\EventListener\AddTitularAgrupadoListener;
 
 class CobrosBeneficiosType extends AbstractType
 {
@@ -27,6 +28,10 @@ class CobrosBeneficiosType extends AbstractType
           ->add('cargaTributariaNacional')
           ->add('cargaTributariaProvincial')
           ->add('cargaTributariaMunicipal');
+
+          if ($builder->getOptions()['attr']['agrupador']) {
+            $builder->addEventSubscriber(new AddTitularAgrupadoListener());
+          }
     }/**
      * {@inheritdoc}
      */
