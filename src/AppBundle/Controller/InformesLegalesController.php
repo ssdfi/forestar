@@ -180,7 +180,7 @@ class InformesLegalesController extends Controller
     /**
      * Finds and displays a informesLegale entity.
      *
-     * @Route("/{id}/json_preview", name="informeslegales_show")
+     * @Route("/{id}/json_preview", name="informeslegales_json")
      * @Method("GET")
      */
     public function jsonAction($id)
