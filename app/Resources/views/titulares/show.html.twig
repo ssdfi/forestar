@@ -114,6 +114,7 @@
       </div>
       <div class="col-md-8">
         <h5>Expedientes asociados al titular</h5>
+        {% if expedientes is defined %}
         <table class="table">
           <thead>
             <tr>
@@ -144,6 +145,7 @@
                     {% if expedientes.direction() == 'asc' %}<span class="fa fa-angle-up"></span>{% else %}<span class="fa fa-angle-down"></span>{% endif %}
                 {% endif %}
               </th>
+
             </tr>
           </thead>
           <tbody>
@@ -160,6 +162,7 @@
             {% endfor %}
           </tbody>
         </table>
+        {% endif %}
         {% if titulare.actividadesTitulares|length > 0 %}
            <h5>Expedientes agrupados al titular</h5>
            <table class="table">
