@@ -6,6 +6,9 @@
         {% if expediente.agrupador %}
           <th scope="col">Titular Agrupado</th>
         {% endif %}
+        {% if expediente.plurianual %}
+          <th scope="col">Etapa</th>
+        {% endif %}
         <th scope="col">Observaciones</th>
       </tr>
     </thead>
@@ -16,6 +19,9 @@
           {% if expediente.agrupador %}
           <td>{% if item.titularAgrupado %}<a href="{{path('titulares_show', { 'id': item.titularAgrupado.id })}}">{{item.titularAgrupado}}</a>{% endif %}</th>
             {% endif %}
+          {% if expediente.plurianual %}
+            <td>{{item.etapa}}</td>
+          {% endif %}
           <td>{{item.observacion}}</td>
         </tr>
       {% endfor %}

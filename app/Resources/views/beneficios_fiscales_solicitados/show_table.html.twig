@@ -7,6 +7,9 @@
       <th scope="col">Titular Agrupado</th>
         {% endif %}
       <th scope="col">Fecha de Carga</th>
+      {% if expediente.plurianual %}
+        <th scope="col">Etapa</th>
+      {% endif %}
       <th scope="col">Observación</th>
     </tr>
   </thead>
@@ -19,6 +22,9 @@
         <td>{% if item.titularAgrupado %}<a href="{{path('titulares_show', { 'id': item.titularAgrupado.id })}}">{{item.titularAgrupado}}</a>{% endif %}</th>
         {% endif %}
         <td>{{item.fechaCarga|date('d-m-Y')}}</td>
+        {% if expediente.plurianual %}
+          <td>{{item.etapa}}</td>
+        {% endif %}
         <td>{{item.observaciones}}</td>
       </tr>
     {% endfor %}

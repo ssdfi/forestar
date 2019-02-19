@@ -12,6 +12,9 @@
       <th scope="col">Observaciones</th>
       <th scope="col">Moneda</th>
       <th scope="col">Certificado</th>
+      {% if expediente.plurianual %}
+        <th scope="col">Etapa</th>
+      {% endif %}
     </tr>
   </thead>
   <tbody>
@@ -28,6 +31,9 @@
         <td>{{item.observaciones}}</td>
         <td>{{item.moneda}}</td>
         <td>{% if item.contieneCertificado %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</td>
+        {% if expediente.plurianual %}
+          <td>{{item.etapa}}</td>
+        {% endif %}
       </tr>
     {% endfor %}
   </tbody>

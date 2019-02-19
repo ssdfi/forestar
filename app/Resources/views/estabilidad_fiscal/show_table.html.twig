@@ -15,6 +15,9 @@
         <th scope="col">Producto</th>
         <th scope="col">Coef. Conversion</th>
         <th scope="col">Observacion</th>
+        {% if expediente.plurianual %}
+          <th scope="col">Etapa</th>
+        {% endif %}
       </tr>
     </thead>
     <tbody>
@@ -33,6 +36,11 @@
         <td>{{ item.producto }}</td>
         <td>{{ item.coeficienteConversion }}</td>
         <td>{{ item.observacion }}</td>
+        {% if expediente.plurianual %}
+          <td>
+            {{item.etapa}}
+          </td>
+        {% endif %}
       </tr>
       {% endfor %}
     </tbody>
