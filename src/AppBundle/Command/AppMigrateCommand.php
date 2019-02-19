@@ -31,7 +31,7 @@ class AppMigrateCommand extends ContainerAwareCommand
                     ->having('count(d.numeroInterno) >= 2')
                     ->getQuery();
         $grouped = $query->getResult(\Doctrine\ORM\AbstractQuery::HYDRATE_ARRAY);
-        $output->writeln('Comenzamos a Migracion');
+        $output->writeln('Comenzamos la Migracion');
         foreach ($grouped as $key => $value) {
           $expedientes = $em->getRepository('AppBundle:Expedientes')->findByNumeroInterno(array($value['numeroInterno']),array('id' => 'ASC'));
           $parent = $expedientes[0];
