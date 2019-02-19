@@ -1,7 +1,7 @@
 <?php
 
 namespace AppBundle\Entity;
-
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -167,6 +167,16 @@ class HistorialPromocion
      * })
      */
     private $titularAgrupado;
+
+    /**
+     * One product has many features. This is the inverse side.
+     * @ORM\OneToMany(targetEntity="InformesPromocion", mappedBy="actividadPromocion")
+     */
+     private $informes;
+
+     public function __construct() {
+       $this->informes = new ArrayCollection();
+     }
 
     /**
      * Set $etapa
@@ -582,5 +592,9 @@ class HistorialPromocion
     public function getTitularAgrupado()
     {
         return $this->titularAgrupado;
+    }
+
+    public function getInformes(){
+      return $this->informes;
     }
 }

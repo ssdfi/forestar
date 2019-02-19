@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Informespromocions list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Parrafo1</th>
+                <th>Numeroexpediente</th>
+                <th>Numerointerno</th>
+                <th>Titular</th>
+                <th>Fechacreacion</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for informesPromocion in informesPromocions %}
+            <tr>
+                <td><a href="{{ path('informespromocion_show', { 'id': informesPromocion.id }) }}">{{ informesPromocion.id }}</a></td>
+                <td>{{ informesPromocion.parrafo1 }}</td>
+                <td>{{ informesPromocion.numeroExpediente }}</td>
+                <td>{{ informesPromocion.numeroInterno }}</td>
+                <td>{{ informesPromocion.titular }}</td>
+                <td>{% if informesPromocion.fechaCreacion %}{{ informesPromocion.fechaCreacion|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('informespromocion_show', { 'id': informesPromocion.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('informespromocion_edit', { 'id': informesPromocion.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('informespromocion_new') }}">Create a new informesPromocion</a>
+        </li>
+    </ul>
+{% endblock %}

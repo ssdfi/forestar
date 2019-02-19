@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Informespromocion</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ informesPromocion.id }}</td>
+            </tr>
+            <tr>
+                <th>Parrafo1</th>
+                <td>{{ informesPromocion.parrafo1 }}</td>
+            </tr>
+            <tr>
+                <th>Numeroexpediente</th>
+                <td>{{ informesPromocion.numeroExpediente }}</td>
+            </tr>
+            <tr>
+                <th>Numerointerno</th>
+                <td>{{ informesPromocion.numeroInterno }}</td>
+            </tr>
+            <tr>
+                <th>Titular</th>
+                <td>{{ informesPromocion.titular }}</td>
+            </tr>
+            <tr>
+                <th>Fechacreacion</th>
+                <td>{% if informesPromocion.fechaCreacion %}{{ informesPromocion.fechaCreacion|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('informespromocion_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('informespromocion_edit', { 'id': informesPromocion.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

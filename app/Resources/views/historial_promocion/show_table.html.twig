@@ -11,6 +11,7 @@
           <th scope="col">Etapa</th>
         {% endif %}
         <th scope="col">Observaciones</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -25,6 +26,15 @@
             <td>{{item.etapa}}</td>
           {% endif %}
           <td>{{item.observacion}}</td>
+          <td>
+            {% if item.informes.last %}
+              <a href="{{path('informespromocion_show', { 'expedienteId': item.expediente.id,'id': item.informes.last.id })}}" target="_blank"><span class="fa fa-file" aria-hidden="true"></span></a>
+            {% else %}
+              {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_PROMOCION') %}
+                <a href="{{path('informespromocion_new', { 'expedienteId': item.expediente.id,'actividadId': item.id })}}" target="_blank"><span class="fa fa-plus" aria-hidden="true"></span></a>
+              {% endif %}
+            {% endif %}
+          </td>
         </tr>
       {% endfor %}
     </tbody>

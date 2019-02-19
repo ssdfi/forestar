@@ -28,7 +28,9 @@
             {% if item.informes.last %}
               <a href="{{path('informeslegales_show', { 'expedienteId': item.expediente.id,'id': item.informes.last.id })}}" target="_blank"><span class="fa fa-file" aria-hidden="true"></span></a>
             {% else %}
-              <a href="{{path('informeslegales_new', { 'expedienteId': item.expediente.id,'actividadId': item.id })}}" target="_blank"><span class="fa fa-plus" aria-hidden="true"></span></a>
+              {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_LEGALES') %}
+                <a href="{{path('informeslegales_new', { 'expedienteId': item.expediente.id,'actividadId': item.id })}}" target="_blank"><span class="fa fa-plus" aria-hidden="true"></span></a>
+              {% endif %}
             {% endif %}
           </td>
         </tr>

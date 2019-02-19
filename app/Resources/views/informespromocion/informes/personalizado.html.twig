@@ -1,0 +1,40 @@
+{% extends 'print.html.twig' %}
+
+{% block body %}
+<section>
+  <h2>Informe Promoción</h2>
+  <div class="block">
+    <div class="row">
+      <div class="col-xs-6">
+        <p><strong>Expediente: </strong>{% if informePromocion is defined %}{{informePromocion.numeroExpediente}}{% else %}<span id="numeroExpediente"></span>{% endif %}</p>
+        <p><strong>Número Interno: </strong>{% if informePromocion is defined %}{{informePromocion.numeroInterno}}{% else %}<span id="numeroInterno"></span>{% endif %}</p>
+        <p><strong>Titular: </strong>{% if informePromocion is defined %}{{informePromocion.titular}}{% else %}<span id="titular"></span>{% endif %}</p>
+      </div>
+    </div>
+  </div>
+  <div class="block">
+    <div class="row">
+      <div class="col-xs-12 text-justify">
+        {% if informePromocion is defined %}
+          {% if informePromocion.parrafo1 %}
+            <p>
+              {{informePromocion.parrafo1|raw}}
+            </p>
+          {% endif %}
+        {% else %}
+        <p><span id="parrafo1"></span></p>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+  <div class="block">
+    <div class="row">
+      <div class="col-xs-6">
+        <p><strong>BUENOS AIRES, {% if informePromocion is defined %}{{informePromocion.fechaCreacion|date('d-m-Y')}}{% else %}<span id="fechaCreacion"></span>{% endif %} </strong></p>
+      </div>
+    </div>
+  </div>
+
+</section>
+{% endblock %}

@@ -2,11 +2,11 @@ DO $$
 DECLARE
 i TEXT;
 BEGIN
-  FOR i IN (SELECT tbls.table_name FROM information_schema.tables AS tbls INNER JOIN information_schema.columns AS cols ON tbls.table_name = cols.table_name WHERE tbls.table_catalog='forestar_febrero' AND tbls.table_schema='public' AND cols.column_name='id') LOOP
+  FOR i IN (SELECT tbls.table_name FROM information_schema.tables AS tbls INNER JOIN information_schema.columns AS cols ON tbls.table_name = cols.table_name WHERE tbls.table_catalog='forestar_test' AND tbls.table_schema='public' AND cols.column_name='id') LOOP
 	raise notice 'Value: %', i|| '_id_seq';
       IF (SELECT count(*) FROM pg_class c WHERE c.relkind = 'S' AND c.relname = i|| '_id_seq')
 	THEN
-	EXECUTE 'SELECT setval(''"' || i || '_id_seq"'', (SELECT MAX(id) FROM ' || quote_ident(i) || '));';
+	EXECUTE 'SELECT setval(''"' || i || '_id_seq"'', (SELECT MAX(id)::integer+1 FROM ' || quote_ident(i) || '));';
 	END IF;
   END LOOP;
 END $$;
