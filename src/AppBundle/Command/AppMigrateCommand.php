@@ -135,8 +135,8 @@ class AppMigrateCommand extends ContainerAwareCommand
                 $parent->setExpedientesAgrupadosOld($expediente->getId());
               }
             }
-            $em->flush();
           }
+          $em->flush();
         }
         $output->writeln('Finalizamos migracion');
     }
