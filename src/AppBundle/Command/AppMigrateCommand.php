@@ -38,6 +38,7 @@ class AppMigrateCommand extends ContainerAwareCommand
           $output->writeln('Expediente '.$expedientes[0]->getNumeroInterno());
           $this->setEtapaParent($parent);
           $parent->setPlurianual(true);
+          $parent->setAgrupador(true);
           foreach ($expedientes as $key => $expediente) {
             if ($key >= 1) {
               $etapa = (int)$expediente->getAnio();
