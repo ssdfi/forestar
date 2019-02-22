@@ -7,7 +7,7 @@
     <div class="row">
       <div class="col-xs-6">
         <p><strong>Expediente Interno: </strong>{% if informeLegal is defined %}{{informeLegal.numeroInterno}}{% else %}<span id="numeroInterno"></span>{% endif %}</p>
-        <p><strong>CUDAP: </strong>{% if informeLegal is defined %}{% endif %}{{informeLegal.numeroExpediente}}{% else %}<span id="numeroExpediente"></span></p>
+        <p><strong>CUDAP: </strong>{% if informeLegal is defined %}{{informeLegal.numeroExpediente}}{% else %}<span id="numeroExpediente">{% endif %}</span></p>
       </div>
     </div>
   </div>
