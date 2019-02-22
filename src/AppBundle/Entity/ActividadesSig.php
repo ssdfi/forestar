@@ -84,9 +84,12 @@ class ActividadesSig
     private $usuarioId;
 
     /**
-     * @var integer
+     * @var \SIG
      *
-     * @ORM\Column(name="inspeccion_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="ActividadesInspeccionadas")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="inspeccion_id", referencedColumnName="id")
+     * })
      */
     private $inspeccion;
 

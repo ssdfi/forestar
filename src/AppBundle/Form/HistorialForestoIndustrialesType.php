@@ -28,6 +28,9 @@ class HistorialForestoIndustrialesType extends AbstractType
         if ($builder->getOptions()['attr']['agrupador']) {
           $builder->addEventSubscriber(new AddTitularAgrupadoListener());
         }
+        if ($builder->getOptions()['attr']['plurianual']) {
+          $builder->add('etapa', NumberType::class, array('label'=>false,'required'=>false));
+        }
 
     }/**
      * {@inheritdoc}

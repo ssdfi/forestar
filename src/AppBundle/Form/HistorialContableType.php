@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use AppBundle\Form\EventListener\AddTitularAgrupadoListener;
-
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class HistorialContableType extends AbstractType
 {
@@ -31,6 +31,9 @@ class HistorialContableType extends AbstractType
           // ->add('estadoForestoIndustriales');
         if ($builder->getOptions()['attr']['agrupador']) {
           $builder->addEventSubscriber(new AddTitularAgrupadoListener());
+        }
+        if ($builder->getOptions()['attr']['plurianual']) {
+          $builder->add('etapa', NumberType::class, array('label'=>false,'required'=>false));
         }
 
     }/**

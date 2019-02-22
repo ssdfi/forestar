@@ -3,11 +3,13 @@
     <tr>
       <th>Especie</th>
       <th>Superficie</th>
-      <th>Departamento</th>
       <th>Tipo</th>
       <th>Inspeccion ID</th>
       {% if expediente.agrupador  %}
         <th>Titular Agrupador</th>
+      {% endif %}
+      {% if expediente.plurianual  %}
+        <th>Etapa</th>
       {% endif %}
       <th>Observaciones</th>
       <th></th>
@@ -27,12 +29,6 @@
         		<div class="col-sm-12">
         			{{ form_widget(tag.superficieHa) }}
               {{ form_errors(tag.superficieHa) }}
-        		</div>
-        </td>
-        <td>
-        		<div class="col-sm-12">
-        			{{ form_widget(tag.departamento) }}
-              {{ form_errors(tag.departamento) }}
         		</div>
         </td>
         <td>
@@ -69,6 +65,14 @@
               </div>
             </div>
             {{form_widget(tag.titular_agrupado_id)}}
+          </td>
+        {% endif %}
+        {% if expediente.plurianual %}
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.etapa) }}
+                {{ form_errors(tag.etapa) }}
+          		</div>
           </td>
         {% endif %}
         <td>

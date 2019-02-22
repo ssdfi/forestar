@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use AppBundle\Form\EventListener\AddTitularAgrupadoListener;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class ImpactoAmbientalType extends AbstractType
 {
@@ -27,6 +28,9 @@ class ImpactoAmbientalType extends AbstractType
 
         if ($builder->getOptions()['attr']['agrupador']) {
           $builder->addEventSubscriber(new AddTitularAgrupadoListener());
+        }
+        if ($builder->getOptions()['attr']['plurianual']) {
+          $builder->add('etapa', NumberType::class, array('label'=>false,'required'=>false));
         }
     }/**
      * {@inheritdoc}

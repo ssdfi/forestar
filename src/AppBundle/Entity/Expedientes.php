@@ -272,6 +272,7 @@ class Expedientes
     /**
     * One Expediente has Many ActividadesSig.
     * @ORM\OneToMany(targetEntity="ActividadesSig", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
+    * @ORM\OrderBy({"id"="ASC"})
     */
     private $actividadesSig;
 
@@ -328,18 +329,21 @@ class Expedientes
     /**
     * One Expediente has Many HistorialForestoIndustriales.
     * @ORM\OneToMany(targetEntity="HistorialForestoIndustriales", mappedBy="expediente", cascade={"persist"}, orphanRemoval=true)
+    * @ORM\OrderBy({"id"="ASC"})
     */
     private $historialForestoIndustriales;
 
     /**
     * One Expediente has Many HistorialPromociones.
     * @ORM\OneToMany(targetEntity="HistorialPromocion", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
+    * @ORM\OrderBy({"id"="ASC"})
     */
     private $historialPromociones;
 
     /**
     * One Expediente has Many HistorialSig.
     * @ORM\OneToMany(targetEntity="HistorialSig", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
+    * @ORM\OrderBy({"id"="ASC"})
     */
     private $historialSigs;
 

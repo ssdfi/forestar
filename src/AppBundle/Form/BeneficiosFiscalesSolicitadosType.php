@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use AppBundle\Form\EventListener\AddTitularAgrupadoListener;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class BeneficiosFiscalesSolicitadosType extends AbstractType
 {
@@ -23,6 +24,9 @@ class BeneficiosFiscalesSolicitadosType extends AbstractType
           ->add('tipoBeneficio', EntityType::class, array('class'=>'AppBundle\Entity\TiposBeneficiosFiscales','required'=>true,'label' => false, 'attr'=>array('class'=>'combobox')));
         if ($builder->getOptions()['attr']['agrupador']) {
           $builder->addEventSubscriber(new AddTitularAgrupadoListener());
+        }
+        if ($builder->getOptions()['attr']['plurianual']) {
+          $builder->add('etapa', NumberType::class, array('label'=>false,'required'=>false));
         }
     }/**
      * {@inheritdoc}

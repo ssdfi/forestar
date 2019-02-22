@@ -13,12 +13,6 @@
   </td>
   <td>
       <div class="col-sm-12">
-        {{ form_widget(form.departamento) }}
-        {{ form_errors(form.departamento) }}
-      </div>
-  </td>
-  <td>
-      <div class="col-sm-12">
         {{ form_widget(form.tipoActividad) }}
         {{ form_errors(form.tipoActividad) }}
       </div>
@@ -52,6 +46,14 @@
     </div>
     {{form_widget(form.titular_agrupado_id)}}
   </td>
+  {% endif %}
+  {% if expediente.plurianual %}
+    <td>
+        <div class="col-sm-12">
+          {{ form_widget(form.etapa) }}
+          {{ form_errors(form.etapa) }}
+        </div>
+    </td>
   {% endif %}
   <td>
       <div class="col-sm-12">

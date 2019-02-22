@@ -29,6 +29,8 @@ class ExpedientesType extends AbstractType
     {
         $expediente = $builder->getData() ? $builder->getData()->getId() : '';
         $agrupador = $builder->getData() ? $builder->getData()->getAgrupador() : '';
+        $plurianual = $builder->getData() ? $builder->getData()->getPlurianual() : '';
+
         if (in_array('expediente', $options['roles'])) {
         $builder
           ->add('numeroExpediente', TextType::class, array('attr'=>array('pattern' => '.*')))
@@ -39,7 +41,7 @@ class ExpedientesType extends AbstractType
           ->add('plurianual', CheckboxType::class, array('attr' => array('data-label' => 'Plurianual'), 'label' => false, 'required'=>false));
           }
           if (in_array('areaEncuentraExpediente', $options['roles'])){
-            $builder->add('areaEncuentraExpediente',EntityType::class, array('class'=>'AppBundle\Entity\Areas','query_builder' => function (EntityRepository $er) {
+            $builder->add('areaEncuentraExpediente',EntityType::class, array('label'=>'Área Destino','class'=>'AppBundle\Entity\Areas','query_builder' => function (EntityRepository $er) {
                                                                         return $er->createQueryBuilder('b')
                                                                                   ->where('b.id <> 7')
                                                                                   ->andWhere('b.id <> 8')
@@ -100,7 +102,7 @@ class ExpedientesType extends AbstractType
               'by_reference'  => false,
               'entry_options' => array(
                   'label' => false,
-                  'attr'=> array('agrupador'=>$agrupador),
+                  'attr'=> array('agrupador'=>$agrupador,'plurianual'=>$plurianual),
                 )
               )
             );
@@ -115,7 +117,7 @@ class ExpedientesType extends AbstractType
                   'by_reference'  => false,
                   'entry_options' => array(
                       'label' => false,
-                      'attr'=> array('agrupador'=>$agrupador),
+                      'attr'=> array('agrupador'=>$agrupador,'plurianual'=>$plurianual),
                   )
                 )
             );
@@ -130,7 +132,7 @@ class ExpedientesType extends AbstractType
                   'by_reference'  => false,
                   'entry_options' => array(
                       'label' => false,
-                      'attr'=> array('agrupador'=>$agrupador),
+                      'attr'=> array('agrupador'=>$agrupador,'plurianual'=>$plurianual),
                   )
                 )
             );
@@ -145,7 +147,7 @@ class ExpedientesType extends AbstractType
                   'by_reference'  => false,
                   'entry_options' => array(
                       'label' => false,
-                      'attr'=> array('agrupador'=>$agrupador),
+                      'attr'=> array('agrupador'=>$agrupador,'plurianual'=>$plurianual),
                   )
                 )
             );
@@ -160,7 +162,7 @@ class ExpedientesType extends AbstractType
                   'by_reference'  => false,
                   'entry_options' => array(
                       'label' => false,
-                      'attr'=> array('agrupador'=>$agrupador),
+                      'attr'=> array('agrupador'=>$agrupador,'plurianual'=>$plurianual),
                   )
                 )
             );
@@ -175,7 +177,7 @@ class ExpedientesType extends AbstractType
                   'by_reference'  => false,
                   'entry_options' => array(
                       'label' => false,
-                      'attr'=> array('agrupador'=>$agrupador),
+                      'attr'=> array('agrupador'=>$agrupador,'plurianual'=>$plurianual,'expedienteId'=>$expediente),
                   )
                 )
             );
@@ -201,7 +203,7 @@ class ExpedientesType extends AbstractType
                   'by_reference'  => false,
                   'entry_options' => array(
                       'label' => false,
-                      'attr'=> array('agrupador'=>$agrupador),
+                      'attr'=> array('agrupador'=>$agrupador,'plurianual'=>$plurianual),
                   )
                 )
               );
@@ -217,7 +219,7 @@ class ExpedientesType extends AbstractType
                   'by_reference'  => false,
                   'entry_options' => array(
                       'label' => false,
-                      'attr'=> array('agrupador'=>$agrupador),
+                      'attr'=> array('agrupador'=>$agrupador,'plurianual'=>$plurianual),
                   )
                 )
               );
@@ -232,7 +234,7 @@ class ExpedientesType extends AbstractType
                     'by_reference'  => false,
                     'entry_options' => array(
                         'label' => false,
-                        'attr'=> array('agrupador'=>$agrupador),
+                        'attr'=> array('agrupador'=>$agrupador,'plurianual'=>$plurianual),
                     )
                   )
               );
@@ -247,7 +249,7 @@ class ExpedientesType extends AbstractType
                     'by_reference'  => false,
                     'entry_options' => array(
                         'label' => false,
-                        'attr'=> array('agrupador'=>$agrupador),
+                        'attr'=> array('agrupador'=>$agrupador,'plurianual'=>$plurianual),
                     )
                   )
                 );
@@ -262,7 +264,7 @@ class ExpedientesType extends AbstractType
                   'by_reference'  => false,
                   'entry_options' => array(
                       'label' => false,
-                      'attr'=> array('agrupador'=>$agrupador),
+                      'attr'=> array('agrupador'=>$agrupador,'plurianual'=>$plurianual),
                   )
                 )
               );
@@ -332,7 +334,7 @@ class ExpedientesType extends AbstractType
                   'by_reference'  => false,
                   'entry_options' => array(
                       'label' => false,
-                      'attr'=> array('agrupador'=>$agrupador),
+                      'attr'=> array('agrupador'=>$agrupador,'plurianual'=>$plurianual),
                   )
                 )
               );
@@ -347,7 +349,7 @@ class ExpedientesType extends AbstractType
                   'by_reference'  => false,
                   'entry_options' => array(
                       'label' => false,
-                      'attr'=> array('agrupador'=>$agrupador),
+                      'attr'=> array('agrupador'=>$agrupador,'plurianual'=>$plurianual),
                   )
                 )
               );
@@ -362,7 +364,7 @@ class ExpedientesType extends AbstractType
                   'by_reference'  => false,
                   'entry_options' => array(
                       'label' => false,
-                      'attr'=> array('agrupador'=>$agrupador),
+                      'attr'=> array('agrupador'=>$agrupador,'plurianual'=>$plurianual),
                   )
                 )
               );
@@ -377,7 +379,7 @@ class ExpedientesType extends AbstractType
                   'by_reference'  => false,
                   'entry_options' => array(
                       'label' => false,
-                      'attr'=> array('agrupador'=>$agrupador),
+                      'attr'=> array('agrupador'=>$agrupador,'plurianual'=>$plurianual),
                   )
                 )
               );
@@ -392,7 +394,7 @@ class ExpedientesType extends AbstractType
                   'by_reference'  => false,
                   'entry_options' => array(
                       'label' => false,
-                      'attr'=> array('agrupador'=>$agrupador),
+                      'attr'=> array('agrupador'=>$agrupador,'plurianual'=>$plurianual),
                   )
                 )
               );
@@ -429,7 +431,7 @@ class ExpedientesType extends AbstractType
                   'by_reference'  => false,
                   'entry_options' => array(
                       'label' => false,
-                      'attr'=> array('agrupador'=>$agrupador),
+                      'attr'=> array('agrupador'=>$agrupador,'plurianual'=>$plurianual),
                   )
                 )
               );

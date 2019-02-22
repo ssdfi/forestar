@@ -81,11 +81,8 @@
 					{% if edit_form.cronogramaPlantaciones is defined %}
 						<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-cronograma-plantacion" role="tab" aria-controls="v-pills-messages" aria-selected="false">Cronograma Plantaciones</a>
 					{% endif %}
-					{% if edit_form.historialSigs is defined %}
+					{% if edit_form.historialSigs is defined and edit_form.actividadesSig is defined %}
 						<a class="nav-item nav-link border" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-analisis-area-sig" role="tab" aria-controls="v-pills-messages" aria-selected="false">Análisis Área SIG</a>
-					{% endif %}
-					{% if edit_form.actividadesSig is defined %}
-						<a class="nav-item nav-link border" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-sig" role="tab" aria-controls="v-pills-settings" aria-selected="false">Aprobación SIG</a>
 					{% endif %}
 					{% if (is_granted('ROLE_PROMOCION') or is_granted('ROLE_LEGALES') or is_granted('ROLE_CONTABLE') or is_granted('ROLE_LIQUIDACIONES')) %}
 						<a class="nav-item nav-link border" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-estado" role="tab" aria-controls="v-pills-home" aria-selected="true">Estado</a>
@@ -441,16 +438,13 @@
 							} %}{% endembed %}
 						</div>
 					{% endif %}
-					{% if edit_form.historialSigs is defined %}
+					{% if edit_form.historialSigs is defined and edit_form.actividadesSig is defined %}
 						<div class="tab-pane fade" id="v-pills-analisis-area-sig" role="tabpanel" aria-labelledby="v-pills-messages-tab">
 							<h4>Análisis Historial Sig</h4>
 							{% embed "historial_sig/table.html.twig" with {
 								'historialSigs' : edit_form.historialSigs
 							} %}{% endembed %}
-						</div>
-					{% endif %}
-					{% if edit_form.actividadesSig is defined %}
-						<div class="tab-pane fade" id="v-pills-sig" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+							<hr>
 							<h4>Aprobación SIG</h4>
 							{% embed "actividadessig/table.html.twig" with {
 								'actividadesSig' : edit_form.actividadesSig

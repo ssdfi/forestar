@@ -29,6 +29,14 @@
     {{form_widget(form.titular_agrupado_id)}}
   </td>
   {% endif %}
+  {% if expediente.plurianual %}
+  <td>
+      <div class="col-sm-12">
+        {{ form_widget(form.etapa) }}
+        {{ form_errors(form.etapa) }}
+      </div>
+  </td>
+  {% endif %}
   <td>
       <div class="col-sm-12">
         {{ form_widget(form.observacion) }}

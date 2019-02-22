@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use AppBundle\Form\EventListener\AddTitularAgrupadoListener;
+use Doctrine\ORM\EntityRepository;
 
 class ActividadesSigType extends AbstractType
 {
@@ -21,14 +22,30 @@ class ActividadesSigType extends AbstractType
         $builder
           ->add('especie', EntityType::class, array('class'=>'AppBundle\Entity\Especies','required'=>true,'label' => false, 'attr'=>array('class'=>'combobox')))
           ->add('superficieHa', NumberType::class, array('label'=>false,'required'=>false))
-          ->add('departamento',EntityType::class, array('class'=>'AppBundle\Entity\Departamentos','required'=>true,'label' => false))
-          // ->add('historialSigId')
-          // ->add('fechaRegistro')
           ->add('tipoActividad',EntityType::class, array('class'=>'AppBundle\Entity\TiposActividades','required'=>true,'label' => false, 'attr'=>array('class'=>'combobox')))
-          ->add('inspeccion')
           ->add('observaciones',TextareaType::class,array('label' => false,'required'=>false,'attr' => array('class' => 'form-control')));
           if ($builder->getOptions()['attr']['agrupador']) {
             $builder->addEventSubscriber(new AddTitularAgrupadoListener());
+          }
+          if ($builder->getOptions()['attr']['expedienteId']) {
+            $expediente = $builder->getOptions()['attr']['expedienteId'];
+            // $builder->add('inspeccion');
+            $builder->add('inspeccion',EntityType::class, array('label'=>false,'class'=>'AppBundle\Entity\ActividadesInspeccionadas','expanded' => false,'data' => 'id','query_builder' => function (EntityRepository $er) use ($expediente) {
+                                                                        return $er->createQueryBuilder('b')
+                                                                                  ->where('b.expediente = :expediente')
+                                                                                  ->setParameter('expediente',$expediente)
+                                                                                  ->orderBy('b.id','asc');
+                                                                     }));
+          } else{
+            $builder->add('inspeccion',EntityType::class, array('label'=>false,'class'=>'AppBundle\Entity\ActividadesInspeccionadas','expanded' => false,'data' => 'id','query_builder' => function (EntityRepository $er) {
+                                                                        return $er->createQueryBuilder('b')
+                                                                                  ->where('b.expediente = :expediente')
+                                                                                  ->setParameter('expediente',-1)
+                                                                                  ->orderBy('b.id','asc');
+                                                                     }));
+          }
+          if ($builder->getOptions()['attr']['plurianual']) {
+            $builder->add('etapa', NumberType::class, array('label'=>false,'required'=>false));
           }
     }/**
      * {@inheritdoc}

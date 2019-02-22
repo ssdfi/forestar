@@ -6,6 +6,11 @@
         {% if expediente.agrupador  %}
           <th>Titular Agrupador</th>
         {% endif %}
+        {% if expediente.plurianual %}
+        <th>
+          Etapa
+        </th>
+        {% endif %}
         <th>Observacion</th>
         <th></th>
       </tr>
@@ -43,6 +48,14 @@
               </div>
               {{form_widget(tag.titular_agrupado_id)}}
             </td>
+          {% endif %}
+          {% if expediente.plurianual %}
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.etapa) }}
+                {{ form_errors(tag.etapa) }}
+          		</div>
+          </td>
           {% endif %}
           <td>
           		<div class="col-sm-12">

@@ -20,6 +20,10 @@ $(document).ready(function () {
         $('#appbundle_informeslegales_fs1').parent().closest('.form-group').show();
         $('#appbundle_informeslegales_fs2').parent().closest('.form-group').show();
         break;
+      case '8':
+        hiddenFields();
+        $('#appbundle_informeslegales_numeroRenaf').parent().closest('.form-group').show();
+        break;
       case '9':
         hiddenFields();
         $('#appbundle_informeslegales_fs1').parent().closest('.form-group').show();

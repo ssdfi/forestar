@@ -4,7 +4,6 @@
       <th scope="col">ID</th>
       <th scope="col">Tipo Actividad</th>
       <th scope="col">Superficie Ha.</th>
-      <th scope="col">Observaciones</th>
       <th scope="col">Tipo Inspeccion</th>
       {% if expediente.agrupador %}
         <th scope="col">Titular Agrupado</th>
@@ -12,7 +11,7 @@
       {% if expediente.plurianual %}
         <th scope="col">Etapa</th>
       {% endif %}
-      <th scope="col">Fecha Registro</th>
+      <th scope="col">Observaciones</th>
     </tr>
   </thead>
   <tbody>
@@ -22,7 +21,6 @@
         <td>{{item.tipoActividad}}</td>
         <td>{{item.superficieHa}}</td>
         <td>{{item.inspeccion}}</td>
-        <td>{{item.observaciones}}</td>
         {% if expediente.agrupador %}
           <td>{% if item.titularAgrupado %}<a href="{{path('titulares_show', { 'id': item.titularAgrupado.id })}}">{{item.titularAgrupado}}</a>{% endif %}</th>
         {% endif %}
@@ -31,7 +29,7 @@
             {{item.etapa}}
           </td>
         {% endif %}
-        <td>{{item.fechaRegistro|date('d-m-Y')}}</td>
+        <td>{{item.observaciones}}</td>
       </tr>
     {% endfor %}
   </tbody>

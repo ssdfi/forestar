@@ -1160,4 +1160,8 @@ class ActividadesInspeccionadas
     {
         return $this->titularAgrupado;
     }
+
+    public function __toString(){
+      return ((string)$this->id) . ' ' . $this->especie. ' ' . $this->tipoActividad.'-Sup:' . $this->superficieHa;
+    }
 }
