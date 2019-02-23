@@ -30,14 +30,14 @@ class ActividadesSigType extends AbstractType
           if ($builder->getOptions()['attr']['expedienteId']) {
             $expediente = $builder->getOptions()['attr']['expedienteId'];
             // $builder->add('inspeccion');
-            $builder->add('inspeccion',EntityType::class, array('label'=>false,'class'=>'AppBundle\Entity\ActividadesInspeccionadas','expanded' => false,'data' => 'id','query_builder' => function (EntityRepository $er) use ($expediente) {
+            $builder->add('inspeccion',EntityType::class, array('label'=>false,'class'=>'AppBundle\Entity\ActividadesInspeccionadas','query_builder' => function (EntityRepository $er) use ($expediente) {
                                                                         return $er->createQueryBuilder('b')
                                                                                   ->where('b.expediente = :expediente')
                                                                                   ->setParameter('expediente',$expediente)
                                                                                   ->orderBy('b.id','asc');
                                                                      }));
           } else{
-            $builder->add('inspeccion',EntityType::class, array('label'=>false,'class'=>'AppBundle\Entity\ActividadesInspeccionadas','expanded' => false,'data' => 'id','query_builder' => function (EntityRepository $er) {
+            $builder->add('inspeccion',EntityType::class, array('label'=>false,'class'=>'AppBundle\Entity\ActividadesInspeccionadas','query_builder' => function (EntityRepository $er) {
                                                                         return $er->createQueryBuilder('b')
                                                                                   ->where('b.expediente = :expediente')
                                                                                   ->setParameter('expediente',-1)
