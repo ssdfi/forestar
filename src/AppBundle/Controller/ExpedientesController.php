@@ -194,9 +194,8 @@ class ExpedientesController extends Controller
             $expediente->setAnio(substr($arr[2],-2));
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->render('expedientes/show.html.twig', array(
-                'expediente' => $expediente,
-                'delete_form' => $deleteForm->createView(),
+            return $this->redirectToRoute('expedientes_show', array(
+                'id' => $expediente->getId(),
             ));
         }
 
