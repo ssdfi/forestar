@@ -89,6 +89,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				{{ form_start(form) }}
+				{{ form_row(form._token) }} 
 				<div class="tab-content" id="v-pills-tabContent">
 					{% if (is_granted('ROLE_ADMIN') or is_granted('ROLE_DATA_ENTRY')) %}
 					<div class="tab-pane fade show active" id="v-pills-expediente" role="tabpanel" aria-labelledby="v-pills-expediente-tab">
