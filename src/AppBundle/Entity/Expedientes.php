@@ -298,24 +298,28 @@ class Expedientes
     /**
     * One Expediente has Many EstadoSituacion.
     * @ORM\OneToMany(targetEntity="EstadoSituacion", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
+    * @ORM\OrderBy({"id"="ASC"})
     */
     private $estadoSituaciones;
 
     /**
     * One Expediente has Many EstadoSituacion.
     * @ORM\OneToMany(targetEntity="BeneficiosFiscalesAnalizados", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
+    * @ORM\OrderBy({"id"="ASC"})
     */
     private $beneficiosFiscales;
 
     /**
     * One Expediente has Many EstadoSituacion.
     * @ORM\OneToMany(targetEntity="ImpactoAmbiental", mappedBy="expediente", cascade={"persist"}, orphanRemoval=true)
+    * @ORM\OrderBy({"id"="ASC"})
     */
     private $impactosAmbientales;
 
     /**
     * One Expediente has Many HistorialContable.
     * @ORM\OneToMany(targetEntity="HistorialContable", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
+    * @ORM\OrderBy({"id"="ASC"})
     */
     private $historialContables;
 
@@ -381,6 +385,7 @@ class Expedientes
     /**
     * One Expediente has Many Documentacion.
     * @ORM\OneToMany(targetEntity="DocumentosLegales", mappedBy="expediente")
+    * @ORM\OrderBy({"id"="ASC"})
     */
    private $documentosLegales;
 
