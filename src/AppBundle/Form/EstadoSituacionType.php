@@ -9,7 +9,6 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-
 class EstadoSituacionType extends AbstractType
 {
     /**
@@ -31,7 +30,8 @@ class EstadoSituacionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\EstadoSituacion'
+            'data_class' => 'AppBundle\Entity\EstadoSituacion',
+            'roles' => null
         ));
     }
 
@@ -42,6 +42,4 @@ class EstadoSituacionType extends AbstractType
     {
         return 'appbundle_estadosituacion';
     }
-
-
 }

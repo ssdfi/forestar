@@ -1,0 +1,91 @@
+{% block stylesheets %}
+  {% stylesheets "@bootstrap_css" "@fontawesome_css" %}
+  <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
+  <link rel="stylesheet" type="text/css" media="screen" href="/css/application.css"/>
+  <link rel="stylesheet" type="text/css" media="screen" href="/css/body.css"/>
+  <link rel="stylesheet" type="text/css" media="screen" href="/css/bootstrap-switch.css"/>
+  <link rel="stylesheet" type="text/css" media="screen" href="/css/bootstrap-combobox.css"/>
+  {% endstylesheets %}
+  {% stylesheets 'bundles/app/css/*' output = 'css/compiled/main.css' %}
+  <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
+  {% endstylesheets %}
+{% endblock %}
+{% block body %}
+{% embed "titulares/agrupado_modal_search_form.html.twig" %}
+{% endembed %}
+{{ form_start(form, {'attr': {'id': 'form_impactosambientales'}}) }}
+	<div class="form-group">
+		<div class="col-sm-12">
+			<label>Aprobado</label>
+			{{ form_widget(form.aprobado) }}
+			{{ form_errors(form.aprobado) }}
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<label>Resolución Nro.</label>
+			{{ form_widget(form.resolucionNumero) }}
+			{{ form_errors(form.resolucionNumero) }}
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<label>Fecha Entrada</label>
+			{{ form_widget(form.fechaEntrada) }}
+			{{ form_errors(form.fechaEntrada) }}
+		</div>
+	</div>
+	{% if expediente.agrupador == true %}
+  <div class="form-group">
+    <div class="col-sm-12">
+      <div class="form-row">
+        <div class="form-group col-md-10">
+          <label>Titular Agrupado</label>
+          {{form_widget(form.titularAgrupado)}}
+        </div>
+        <div class="form-group col-md-2">
+          <label>.</label>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <button id="add-titular-agrupado" data-name="appbundle_impactoambiental_" class="btn btn-default add-titular-agrupado" type="button" data-toggle="modal" data-target="#titular-agrupado-modal">
+                <span class="fa fa-search" aria-hidden="true"></span>
+              </button>
+            </div>
+            <div class="form-group  col-md-6">
+              <button id="remove-titular-agrupado" data-name="appbundle_impactoambiental_" class="btn btn-default remove-titular-agrupado" type="button">
+                <span class="fa fa-remove" aria-hidden="true"></span>
+              </button>
+            </div>
+          </div>
+          {{form_widget(form.titular_agrupado_id)}}
+        </div>
+      </div>
+    </div>
+  </div>
+	{% endif %}
+	{% if expediente.plurianual %}
+		<div class="form-group">
+			<div class="col-sm-12">
+				<label>Etapa</label>
+				{{ form_widget(form.etapa) }}
+				{{ form_errors(form.etapa) }}
+			</div>
+		</div>
+	{% endif %}
+	<div class="form-group">
+		<div class="col-sm-12">
+			<label>Observaciones</label>
+			{{ form_widget(form.observacion) }}
+			{{ form_errors(form.observacion) }}
+		</div>
+	</div>
+  {{form_end(form)}}
+{% endblock %}
+
+{% javascripts '@jquery' '@bootstrap_js' %}
+<script type="text/javascript" src="/assetic/jquery.validate.min.js"></script>
+<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+<script type="text/javascript" src="{{ asset_url }}"></script>
+<script src="/js/bootstrap-switch.js"></script>
+<script src="/js/bootstrap-combobox.js"></script>
+{% endjavascripts %}

@@ -9,23 +9,13 @@
     $(document).on( "click",'.remove-titular-agrupado',function (e) {
       e.preventDefault();
       name = $(this).closest('button').attr('data-name');
-      index = $(this).closest('button').attr('data-index')
-      $("#"+name+index+"_titular_agrupado_id").val('');
-      $("#"+name+index+"_titularAgrupado").val('');
+      $("#"+name+"titular_agrupado_id").val('');
+      $("#"+name+"titularAgrupado").val('');
       return true;
     });
 
-    function titularAgrupadoRemove(btn) {
-      name = $(this).attr('data-name');
-      index = $(this).parent().data('index');
-      $("#"+name+index+"_titular_agrupado_id").val('');
-      $("#"+name+index+"_titularAgrupado").val();
-      return false;
-    }
-
     $(document).on( "click",'.add-titular-agrupado',function (e) {
       e.preventDefault();
-      $('.titular-agrupado-modal').attr('data-index',$(this).data('index'));
       $('.titular-agrupado-modal').attr('data-name',$(this).data('name'));
       return;
     });
@@ -62,12 +52,11 @@
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         titular = _ref[_i];
         name = $('.titular-agrupado-modal').attr('data-name');
-        index = $('.titular-agrupado-modal').attr('data-index');
-        $("#"+name+index+"_titular_agrupado_id").val(titular.value);
-        $("#"+name+index+"_titularAgrupado").val($($(titular).parent().siblings()[0]).text());
+        $('#'+name+'titular_agrupado_id').val(titular.value);
+        $('#'+name+'titularAgrupado').val($($(titular).parent().siblings()[0]).text());
       }
       $(".modal-backdrop").remove();
-      $('form#agrupado-modal')[0].reset();
+      // $('form#agrupado-modal')[0].reset();
       $("#titulares-agrupados-list tbody").empty();
       return $("#titular-agrupado-modal").modal('hide');
     });

@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">ID</th>
@@ -11,7 +11,6 @@
         <th scope="col">Titular Agrupado</th>
       {% endif %}
       <th scope="col">Fecha Presentacion</th>
-      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
@@ -27,7 +26,16 @@
         <td>{% if item.titularAgrupado %}<a href="{{path('titulares_show', { 'id': item.titularAgrupado.id })}}">{{item.titularAgrupado}}</a>{% endif %}</th>
        {% endif %}
        <td>{{item.fechaPresentacion|date('d-m-Y')}}</td>
-       <td>{% if item.archivo %}<span class="fa fa-download">{% endif %}</td>
+       {% if (expediente.plurianual == true or expediente.agrupador) and ('documentaciones' in roles) %}
+       <td>
+         <a href="#" data-toggle="modal" data-modal="editItem" data-type="documentacion" data-modal-name='documentacionModal' data-id="{{expediente.id}}" data-item='{{item.id}}'>
+           <span class="fa fa-edit" aria-hidden="true"></span>
+         </a>
+         <a href="" class="removeItem" data-type="documentacion" data-item='{{item.id}}' data-message='¿Está seguro que desea eliminar la Documentación?'>
+           <span class="fa fa-remove" aria-hidden="true"></span>
+         </a>
+       </td>
+       {% endif %}
      </tr>
     {% endfor %}
   </tbody>

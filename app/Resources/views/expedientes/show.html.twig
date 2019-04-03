@@ -1,253 +1,460 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{parent()}} - {{expediente.numeroExpediente}}{% endblock %}
+{% block title %}{{parent()}}
+	-
+	{{expediente.numeroExpediente}}
+{% endblock %}
 {% block navbarRight %}
-<li class="nav-item active">
-  <a class="nav-link" href="{{path('expedientes_edit', {'id': expediente.id})}}"><span class="fa fa-edit" aria-hidden="true"></span> Editar Expediente</a>
-</li>
-{{parent()}}
+	<li class="nav-item active">
+		{% if (expediente.plurianual == true or expediente.agrupador == true) %}
+		{% if is_granted('ROLE_DATA_ENTRY') %}
+				{% else %}
+				<a class="nav-link" href="{{path('expedientes_edit', {'id': expediente.id})}}">
+					<span class="fa fa-edit" aria-hidden="true"></span>
+					Editar Expediente</a>
+		{% endif %}
+
+		{% else %}
+		<a class="nav-link" href="{{path('expedientes_edit', {'id': expediente.id})}}">
+			<span class="fa fa-edit" aria-hidden="true"></span>
+			Editar Expediente</a>
+		{% endif %}
+	</li>
 {% endblock %}
 {% block body %}
-    <div class="col-md-12">
-      <div class="row">
-        <div class="col-md-12 text-white">
-          <nav>
-            <div class="nav nav-pills nav-fill text-white bg-light border" id="nav-tab" role="tablist">
-              <a class="nav-item nav-link border active" id="nav-home-tab" data-toggle="tab" href="#nav-presentacion" role="tab" aria-controls="nav-home" aria-selected="true">Presentación ({{expediente.actividadesPresentadas|length}})</a>
-              <a class="nav-item nav-link border" id="nav-profile-tab" data-toggle="tab" href="#nav-certificacion" role="tab" aria-controls="nav-profile" aria-selected="false">Certificación ({{expediente.ActividadesCertificadas|length}})</a>
-              <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-inspeccion" role="tab" aria-controls="nav-contact" aria-selected="false">Inspección ({{expediente.actividadesInspeccionadas|length}})</a>
-              <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-documentacion" role="tab" aria-controls="nav-contact" aria-selected="false">Documentación ({{expediente.documentaciones|length}})</a>
-              <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-cobro-beneficio" role="tab" aria-controls="nav-contact" aria-selected="false">Cobros Beneficios ({{expediente.cobroBeneficios|length}})</a>
-              <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-beneficios-fiscales-solicitados" role="tab" aria-controls="nav-contact" aria-selected="false">Beneficios Fiscales - Carga({{expediente.beneficiosFiscalesSolicitados|length}})</a>
-              <!-- { if expediente.actividadesTitulares|length %}
-                <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-actividades-titulares" role="tab" aria-controls="nav-contact" aria-selected="false">Productores Asociados ({expediente.actividadesTitulares|length}})</a>
-              { endif %} -->
-              <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-predios" role="tab" aria-controls="nav-contact" aria-selected="false">Predios ({{expediente.predios|length}})</a>
-              <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-disposiciones-provinciales" role="tab" aria-controls="nav-contact" aria-selected="false">Disposiciones Prov. ({{expediente.disposicionesProvinciales|length}})</a>
-              <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-impacto-ambiental" role="tab" aria-controls="nav-contact" aria-selected="false">Impacto Ambiental ({{expediente.impactosAmbientales|length}})</a>
-              <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-analisis-area-contable" role="tab" aria-controls="nav-contact" aria-selected="false">Análisis del Área Contable ({{expediente.historialContables|length}})</a>
-              <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-beneficios-fiscales" role="tab" aria-controls="nav-contact" aria-selected="false">Beneficios Fiscales - Análisis({{expediente.beneficiosFiscales|length}})</a>
-              <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-garantias-presentadas" role="tab" aria-controls="nav-contact" aria-selected="false">Garantías Presentadas({{expediente.garantias|length}})</a>
-              <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-estabilidad-fiscal" role="tab" aria-controls="nav-contact" aria-selected="false">Estabilidad Fiscal ({{expediente.estabilidadFiscales|length}})</a>
-              <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-declaracion-iva" role="tab" aria-controls="nav-contact" aria-selected="false">Impuesto al valor agregado ({{expediente.declaracionesIvas|length}})</a>
-              <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-declaracion-iva-resoluciones" role="tab" aria-controls="nav-contact" aria-selected="false">IVA por resolución({{expediente.declaracionIvaResoluciones|length}})</a>
-              <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-analisis-area-legales" role="tab" aria-controls="nav-contact" aria-selected="false">Análisis Área Legales ({{expediente.historialLegales|length}})</a>
-              <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-documentos-legales" role="tab" aria-controls="nav-contact" aria-selected="false">Documentos Legales</a>
-              <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-resoluciones" role="tab" aria-controls="nav-contact" aria-selected="false">Resoluciones ({{expediente.resoluciones|length}})</a>
-              <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-analisis-area-promocion" role="tab" aria-controls="nav-contact" aria-selected="false">Análisis Área Promoción ({{expediente.historialPromociones|length}})</a>
-              <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-actividades-aprobadas" role="tab" aria-controls="nav-contact" aria-selected="false">Aprobación Promoción ({{expediente.actividadesAprobadas|length}})</a>
-              <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-analisis-area-foresto-industrial" role="tab" aria-controls="nav-contact" aria-selected="false">Análisis Área Foresto Industrial ({{expediente.historialForestoIndustriales|length}})</a>
-              <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-producciones-volumetricas" role="tab" aria-controls="nav-contact" aria-selected="false">Producciones Volumétricas ({{expediente.produccionesVolumetricas|length}})</a>
-              <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-abastecimiento-aproximado" role="tab" aria-controls="nav-sig" aria-selected="false">Cronograma de Plantación ({{expediente.cronogramaPlantaciones|length}})</a>
-              <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-analisis-area-sig" role="tab" aria-controls="nav-sig" aria-selected="false">Análisis del Área SIG ({{expediente.historialSigs|length}})</a>
-              <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-sig" role="tab" aria-controls="nav-sig" aria-selected="false">Aprobación SIG ({{expediente.actividadesSig|length}})</a>
-              <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-observaciones" role="tab" aria-controls="nav-contact" aria-selected="false">Observaciones</a>
-              <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-datos-migracion" role="tab" aria-controls="nav-contact" aria-selected="false">Datos Migración</a>
-            </div>
-          </nav>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card border-info">
-            <div class="card-header bg-info text-white">
-              Expediente
-            </div>
-            <div class="card-body">
-              <dl class="row">
-                <dt class="col-6">ID</dt>
-                <dd class="col-6">{{ expediente.id }}</dd>
-                <dt class="col-6">Numero Interno</dt>
-                <dd class="col-6">{{ expediente.numeroInterno }}</dd>
-                <dt class="col-6">Numero Expediente</dt>
-                <dd class="col-6">{{ expediente.numeroExpediente }}</dd>
-                <dt class="col-6">Provincia</dt>
-                <dd class="col-6">{{ expediente.departamento.provincia.nombre }}</dd>
-                <dt class="col-6">Departamento</dt>
-                <dd class="col-6">{{ expediente.departamento }}</dd>
-                <dt class="col-6">Año del expediente</dt>
-                <dd class="col-6">{{ expediente.anio }}</dd>
-                <dt class="col-6">Titulares</dt>
-                <dd class="col-6">
-                  {% for titular in expediente.titulares %}
-                      <a href="{{path('titulares_show', { 'id': titular.id })}}">{{titular}}</a>{% if loop.last == false %} | {% endif %}
-                  {% endfor %}</dd>
-                <dt class="col-6">Entidad Agrupadora</dt>
-                <dd class="col-6"><a href="#">{{ expediente.entidadAgrupadoraId }}</a></dd>
-                <dt class="col-6">Representante Legal</dt>
-                <dd class="col-6">{% if expediente.representanteLegal.id is defined %}<a href="{{path('titulares_show', { 'id': expediente.representanteLegal.id })}}">{{ expediente.representanteLegal }}</a>{% endif %}</dd>
-                <dt class="col-6">Profesional Cargo</dt>
-                <dd class="col-6">{% if expediente.profesionalCargo.id is defined %}<a href="{{path('profesionales_show', { 'id': expediente.profesionalCargo.id })}}">{{ expediente.profesionalCargo }}</a>{% endif %}</dd>
-                <dt class="col-6">Fecha Presentacion</dt>
-                <dd class="col-6">{% if expediente.fechaPresentacion %}{{ expediente.fechaPresentacion|date('d-m-Y') }}{% endif %}</dd>
-                <dt class="col-6">Fecha Ingreso</dt>
-                <dd class="col-6">{% if expediente.fechaIngreso %}{{ expediente.fechaIngreso|date('d-m-Y') }}{% endif %}</dd>
-                <dt class="col-6">Estado</dt>
-                <dd class="col-6">{{ expediente.estado }}</dd>
-                <dt class="col-6">Agrupador</dt>
-                <dd class="col-6">{% if expediente.agrupador %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</dd>
-                <dt class="col-6">Solicita Adelanto</dt>
-                <dd class="col-6">{% if expediente.solicitaAdelanto %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</dd>
-                <dt class="col-6">Plurianual</dt>
-                <dd class="col-6">{% if expediente.plurianual %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</dd>
-                <dt class="col-6">Área donde se encuentra Expediente</dt>
-                <dd class="col-6">{{ expediente.areaEncuentraExpediente }}</dd>
-                <dt class="col-12"><a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Estados por Área</a></dt>
-                <dd class="col-12">
-                  <div class="row">
-                    <div class="col">
-                      <div class="collapse multi-collapse" id="multiCollapseExample1">
-                        <div class="card card-body">
-                          <dl class="row">
-                            <dt class="col-12">Contable</dt>
-                            <dd class="col-12">{{ expediente.estadoAreaContable }}</dd>
-                            <dt class="col-12">Legales</dt>
-                            <dd class="col-12">{{ expediente.estadoAreaLegales }}</dd>
-                            <dt class="col-12">Promocion</dt>
-                            <dd class="col-12">{{ expediente.estadoAreaPromocion }}</dd>
-                            <dt class="col-12">SIG</dt>
-                            <dd class="col-12">{{ expediente.estadoAreaSig }}</dd>
-                            <dt class="col-12">Foresto Industrial</dt>
-                            <dd class="col-12">{{ expediente.estadoForestoIndustriales }}</dd>
-                          </dl>
-                        </div>
-                      </div>
-                    </div>
-                </div>
-              </dd>
-              </dl>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-8">
-          <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="nav-presentacion" role="tabpanel" aria-labelledby="nav-home-tab">
-              {% embed "actividadespresentadas/show_table.html.twig" with { 'actividadesPresentadas': expediente.actividadesPresentadas} %}
-              {% endembed %}
-            </div>
-            <div class="tab-pane fade" id="nav-certificacion" role="tabpanel" aria-labelledby="nav-profile-tab">
-              {% embed "actividadescertificadas/show_table.html.twig" with { 'actividadesCertificadas': expediente.actividadesCertificadas} %}
-              {% endembed %}
-            </div>
-            <div class="tab-pane fade" id="nav-inspeccion" role="tabpanel" aria-labelledby="nav-contact-tab">
-              {% embed "actividadesinspeccionadas/show_table.html.twig" with { 'actividadesInspeccionadas': expediente.actividadesInspeccionadas} %}
-              {% endembed %}
-            </div>
-            <div class="tab-pane fade" id="nav-sig" role="tabpanel" aria-labelledby="nav-sig-tab">
-              {% embed "actividadessig/show_table.html.twig" with { 'actividadesSig': expediente.actividadesSig} %}
-              {% endembed %}
-            </div>
-            <div class="tab-pane fade" id="nav-documentacion" role="tabpanel" aria-labelledby="nav-contact-tab">
-              {% embed "documentacion/show_table.html.twig" with { 'documentacion': expediente.documentaciones} %}
-              {% endembed %}
-            </div>
-            <div class="tab-pane fade" id="nav-cobro-beneficio" role="tabpanel" aria-labelledby="nav-contact-tab">
-              {% embed "cobros_beneficios/show_table.html.twig" with { 'cobroBeneficios': expediente.cobroBeneficios} %}
-              {% endembed %}
-            </div>
-            <div class="tab-pane fade" id="nav-situacion" role="tabpanel" aria-labelledby="nav-contact-tab">
-              {% embed "estado_situacion/show_table.html.twig" with { 'estadoSituacion': expediente.estadoSituaciones} %}
-              {% endembed %}
-            </div>
-            <div class="tab-pane fade" id="nav-beneficios-fiscales-solicitados" role="tabpanel" aria-labelledby="nav-contact-tab">
-              {% embed "beneficios_fiscales_solicitados/show_table.html.twig" with { 'beneficiosFiscalesSolicitados': expediente.BeneficiosFiscalesSolicitados} %}
-              {% endembed %}
-            </div>
-            <!-- { if expediente.actividadesTitulares|length %}
-              <div class="tab-pane fade" id="nav-actividades-titulares" role="tabpanel" aria-labelledby="nav-contact-tab">
-                { embed "actividades_titulares/show_table.html.twig" with { 'actividadesTitulares': expediente.actividadesTitulares} %}
-                { endembed %}
-              </div>
-            { endif %} -->
-            <div class="tab-pane fade" id="nav-beneficios-fiscales" role="tabpanel" aria-labelledby="nav-contact-tab">
-              {% embed "beneficios_fiscales/show_table.html.twig" with { 'beneficiosFiscales': expediente.beneficiosFiscales} %}
-              {% endembed %}
-            </div>
-            <div class="tab-pane fade" id="nav-garantias-presentadas" role="tabpanel" aria-labelledby="nav-contact-tab">
-              {% embed "garantias_presentadas/show_table.html.twig" with { 'garantias': expediente.garantias} %}
-              {% endembed %}
-            </div>
-            <div class="tab-pane fade" id="nav-estabilidad-fiscal" role="tabpanel" aria-labelledby="nav-contact-tab">
-              {% embed "estabilidad_fiscal/show_table.html.twig" with { 'estabilidadFiscal': expediente.estabilidadFiscales} %}
-              {% endembed %}
-            </div>
-            <div class="tab-pane fade" id="nav-predios" role="tabpanel" aria-labelledby="nav-contact-tab">
-              {% embed "predios/index.html.twig" with { 'predios': expediente.predios} %}
-              {% endembed %}
-            </div>
-            <div class="tab-pane fade" id="nav-disposiciones-provinciales" role="tabpanel" aria-labelledby="nav-contact-tab">
-              {% embed "disposiciones_provinciales/show_table.html.twig" with { 'disposicionesProvinciales': expediente.disposicionesProvinciales} %}
-              {% endembed %}
-            </div>
-            <div class="tab-pane fade" id="nav-documentos-legales" role="tabpanel" aria-labelledby="nav-contact-tab">
-              <table>
-                <tr>
-                  {% for item in expediente.documentosLegales %}
-                    <td>{% if item.documento %}Documento {{loop.index}} <span class="fa fa-download">{% endif %}</td>
-                  {% endfor %}
-                </table>
-              </tr>
-            </div>
-            <div class="tab-pane fade" id="nav-actividades-aprobadas" role="tabpanel" aria-labelledby="nav-contact-tab">
-              {% embed "actividadesaprobadas/show_table.html.twig" with { 'actividadesAprobadas': expediente.actividadesAprobadas} %}
-              {% endembed %}
-            </div>
-            <div class="tab-pane fade" id="nav-impacto-ambiental" role="tabpanel" aria-labelledby="nav-contact-tab">
-              {% embed "impactos_ambientales/show_table.html.twig" with { 'impactosAmbientales': expediente.impactosAmbientales} %}
-              {% endembed %}
-            </div>
-            <div class="tab-pane fade" id="nav-analisis-area-contable" role="tabpanel" aria-labelledby="nav-contact-tab">
-              {% embed "historial_contable/show_table.html.twig" with { 'historialContables': expediente.historialContables} %}
-              {% endembed %}
-            </div>
-            <div class="tab-pane fade" id="nav-declaracion-iva" role="tabpanel" aria-labelledby="nav-contact-tab">
-              {% embed "declaracion_iva/show_table.html.twig" with { 'declaracionIva': expediente.declaracionesIvas} %}
-              {% endembed %}
-            </div>
-            <div class="tab-pane fade" id="nav-declaracion-iva-resoluciones" role="tabpanel" aria-labelledby="nav-contact-tab">
-              {% embed "declaracion_iva_resoluciones/show_table.html.twig" with { 'declaracionIvaResoluciones': expediente.declaracionIvaResoluciones} %}
-              {% endembed %}
-            </div>
-            <div class="tab-pane fade" id="nav-analisis-area-legales" role="tabpanel" aria-labelledby="nav-contact-tab">
-              {% embed "historial_legales/show_table.html.twig" with { 'historialLegales': expediente.historialLegales} %}
-              {% endembed %}
-            </div>
-            <div class="tab-pane fade" id="nav-resoluciones" role="tabpanel" aria-labelledby="nav-contact-tab">
-              {% embed "resoluciones/show_table.html.twig" with { 'resoluciones': expediente.resoluciones} %}
-              {% endembed %}
-            </div>
-            <div class="tab-pane fade" id="nav-analisis-area-promocion" role="tabpanel" aria-labelledby="nav-contact-tab">
-              {% embed "historial_promocion/show_table.html.twig" with { 'historialPromociones': expediente.historialPromociones} %}
-              {% endembed %}
-            </div>
-            <div class="tab-pane fade" id="nav-analisis-area-foresto-industrial" role="tabpanel" aria-labelledby="nav-contact-tab">
-              {% embed "historial_foresto_industrial/show_table.html.twig" with { 'historialForestoIndustriales': expediente.historialForestoIndustriales} %}
-              {% endembed %}
-            </div>
-            <div class="tab-pane fade" id="nav-producciones-volumetricas" role="tabpanel" aria-labelledby="nav-contact-tab">
-              {% embed "producciones_volumetricas/show_table.html.twig" with { 'produccionesVolumetricas': expediente.produccionesVolumetricas} %}
-              {% endembed %}
-            </div>
-            <div class="tab-pane fade" id="nav-abastecimiento-aproximado" role="tabpanel" aria-labelledby="nav-contact-tab">
-              {% embed "abastecimiento_aproximado/show_table.html.twig" with { 'abastecimientosAproximado': expediente.cronogramaPlantaciones} %}
-              {% endembed %}
-            </div>
-            <div class="tab-pane fade" id="nav-analisis-area-sig" role="tabpanel" aria-labelledby="nav-contact-tab">
-              {% embed "historial_sig/show_table.html.twig" with { 'historialSigs': expediente.historialSigs} %}
-              {% endembed %}
-            </div>
-            <div class="tab-pane fade" id="nav-observaciones" role="tabpanel" aria-labelledby="nav-contact-tab">
-              {% embed "observaciones/show_cards.html.twig" with { 'expediente': expediente} %}
-              {% endembed %}
-            </div>
-            <div class="tab-pane fade" id="nav-datos-migracion" role="tabpanel" aria-labelledby="nav-contact-tab">
-              <dt class="col-6">Información BUDAF</dt>
-              <dd class="col-6">{{ expediente.informacionBudaf|nl2br }}</dd>
-              <dt class="col-6">ID Budaf</dt>
-              <dd class="col-6">{{ expediente.budafId }}</dd>
-            </div>
-          </div>
-        </div>
-    </div>
-  </div>
-{% endblock %}
+<div class="wait"></div>
+	<div class="col-md-12">
+		<div class="row">
+			<div class="col-md-12 text-white">
+				<nav>
+					<div class="nav nav-pills nav-fill text-white bg-light border" id="nav-tab" role="tablist">
+						<a class="nav-item nav-link border active" id="nav-home-tab" data-toggle="tab" href="#nav-presentacion" role="tab" aria-controls="nav-home" aria-selected="true">Presentación ({{expediente.actividadesPresentadas|length}})</a>
+						<a class="nav-item nav-link border" id="nav-profile-tab" data-toggle="tab" href="#nav-certificacion" role="tab" aria-controls="nav-profile" aria-selected="false">Certificación ({{expediente.ActividadesCertificadas|length}})</a>
+						<a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-inspeccion" role="tab" aria-controls="nav-contact" aria-selected="false">Inspección ({{expediente.actividadesInspeccionadas|length}})</a>
+						<a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-documentacion" role="tab" aria-controls="nav-contact" aria-selected="false">Documentación ({{expediente.documentaciones|length}})</a>
+						<a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-cobro-beneficio" role="tab" aria-controls="nav-contact" aria-selected="false">Cobros Beneficios ({{expediente.cobroBeneficios|length}})</a>
+						<a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-situacion" role="tab" aria-controls="nav-contact" aria-selected="false">Estado Situación ({{expediente.estadoSituaciones|length}})</a>
+						<a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-beneficios-fiscales-solicitados" role="tab" aria-controls="nav-contact" aria-selected="false">Beneficios Fiscales - Carga({{expediente.beneficiosFiscalesSolicitados|length}})</a>
+						<!-- { if expediente.actividadesTitulares|length %} <a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-actividades-titulares" role="tab" aria-controls="nav-contact" aria-selected="false">Productores Asociados
+						({expediente.actividadesTitulares|length}})</a> { endif %} -->
+						<a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-predios" role="tab" aria-controls="nav-contact" aria-selected="false">Predios ({{expediente.predios|length}})</a>
+						<a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-disposiciones-provinciales" role="tab" aria-controls="nav-contact" aria-selected="false">Disposiciones Prov. ({{expediente.disposicionesProvinciales|length}})</a>
+						<a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-evaluacion-provincial" role="tab" aria-controls="nav-contact" aria-selected="false">Evaluación Provincial </a>
+						<a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-analisis-area-contable" role="tab" aria-controls="nav-contact" aria-selected="false">Análisis del Área Contable ({{expediente.historialContables|length}})</a>
+						<a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-beneficios-fiscales" role="tab" aria-controls="nav-contact" aria-selected="false">Beneficios Fiscales - Análisis({{expediente.beneficiosFiscales|length}})</a>
+						<a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-garantias-presentadas" role="tab" aria-controls="nav-contact" aria-selected="false">Garantías Presentadas({{expediente.garantias|length}})</a>
+						<a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-estabilidad-fiscal" role="tab" aria-controls="nav-contact" aria-selected="false">Estabilidad Fiscal ({{expediente.estabilidadFiscales|length}})</a>
+						<a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-declaracion-iva" role="tab" aria-controls="nav-contact" aria-selected="false">Impuesto al valor agregado ({{expediente.declaracionesIvas|length}})</a>
+						<a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-declaracion-iva-resoluciones" role="tab" aria-controls="nav-contact" aria-selected="false">IVA por resolución({{expediente.declaracionIvaResoluciones|length}})</a>
+						<a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-analisis-area-legales" role="tab" aria-controls="nav-contact" aria-selected="false">Análisis Área Legales ({{expediente.historialLegales|length}})</a>
+						<a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-documentos-legales" role="tab" aria-controls="nav-contact" aria-selected="false">Documentos Legales</a>
+						<a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-resoluciones" role="tab" aria-controls="nav-contact" aria-selected="false">Resoluciones ({{expediente.resoluciones|length}})</a>
+						<a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-analisis-area-promocion" role="tab" aria-controls="nav-contact" aria-selected="false">Análisis Área Promoción ({{expediente.historialPromociones|length}})</a>
+						<a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-actividades-aprobadas" role="tab" aria-controls="nav-contact" aria-selected="false">Aprobación Promoción ({{expediente.actividadesAprobadas|length}})</a>
+						<a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-analisis-area-foresto-industrial" role="tab" aria-controls="nav-contact" aria-selected="false">Análisis Área Foresto Industrial ({{expediente.historialForestoIndustriales|length}})</a>
+						<a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-producciones-volumetricas" role="tab" aria-controls="nav-contact" aria-selected="false">Producciones Volumétricas ({{expediente.produccionesVolumetricas|length}})</a>
+						<a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-abastecimiento-aproximado" role="tab" aria-controls="nav-sig" aria-selected="false">Cronograma de Plantación ({{expediente.cronogramaPlantaciones|length}})</a>
+						<a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-analisis-area-sig" role="tab" aria-controls="nav-sig" aria-selected="false">Análisis del Área SIG ({{expediente.historialSigs|length}})</a>
+						<a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-sig" role="tab" aria-controls="nav-sig" aria-selected="false">Aprobación SIG ({{expediente.actividadesSig|length}})</a>
+						<a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-observaciones" role="tab" aria-controls="nav-contact" aria-selected="false">Observaciones</a>
+						<a class="nav-item nav-link border" id="nav-contact-tab" data-toggle="tab" href="#nav-datos-migracion" role="tab" aria-controls="nav-contact" aria-selected="false">Datos Migración</a>
+					</div>
+				</nav>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="card border-info">
+					<div class="card-header bg-info text-white">
+						Expediente
+						{% if 'expediente' in roles and (expediente.plurianual == true or expediente.agrupador == true) %}
+							<a href="{{ path('_expediente_plurianual_edit', {id: expediente.id})}}" class="text-white pull-right">
+								<span class="fa fa-edit" aria-hidden="true"></span>
+								Editar Datos Expediente
+							</a>
+						{% endif %}
+					</div>
+					<div class="card-body">
+						<dl class="row">
+							<dt class="col-6">ID</dt>
+							<dd class="col-6">{{ expediente.id }}</dd>
+							<dt class="col-6">Numero Interno</dt>
+							<dd class="col-6">{{ expediente.numeroInterno }}</dd>
+							<dt class="col-6">Numero Expediente</dt>
+							<dd class="col-6">{{ expediente.numeroExpediente }}</dd>
+							<dt class="col-6">Provincia</dt>
+							<dd class="col-6">{{ expediente.departamento.provincia.nombre }}</dd>
+							<dt class="col-6">Departamento</dt>
+							<dd class="col-6">{{ expediente.departamento }}</dd>
+							<dt class="col-6">Año del expediente</dt>
+							<dd class="col-6">{{ expediente.anio }}</dd>
+							<dt class="col-6">Titulares</dt>
+							<dd class="col-6">
+								{% for titular in expediente.titulares %}
+									<a href="{{path('titulares_show', { 'id': titular.id })}}">{{titular}}</a>
+									{% if loop.last == false %}
+										|
+									{% endif %}
+								{% endfor %}
+							</dd>
+							<dt class="col-6">Entidad Agrupadora</dt>
+							<dd class="col-6">
+								<a href="#">{{ expediente.entidadAgrupadoraId }}</a>
+							</dd>
+							<dt class="col-6">Representante Legal</dt>
+							<dd class="col-6">
+								{% if expediente.representanteLegal.id is defined %}
+									<a href="{{path('titulares_show', { 'id': expediente.representanteLegal.id })}}">{{ expediente.representanteLegal }}</a>
+								{% endif %}
+							</dd>
+							<dt class="col-6">Profesional Cargo</dt>
+							<dd class="col-6">
+								{% if expediente.profesionalCargo.id is defined %}
+									<a href="{{path('profesionales_show', { 'id': expediente.profesionalCargo.id })}}">{{ expediente.profesionalCargo }}</a>
+								{% endif %}
+							</dd>
+							<dt class="col-6">Fecha Presentacion</dt>
+							<dd class="col-6">
+								{% if expediente.fechaPresentacion %}{{ expediente.fechaPresentacion|date('d-m-Y') }}
+								{% endif %}
+							</dd>
+							<dt class="col-6">Fecha Ingreso</dt>
+							<dd class="col-6">
+								{% if expediente.fechaIngreso %}{{ expediente.fechaIngreso|date('d-m-Y') }}
+								{% endif %}
+							</dd>
+							<dt class="col-6">Estado</dt>
+							<dd class="col-6">{{ expediente.estado }}</dd>
+							<dt class="col-6">Agrupador</dt>
+							<dd class="col-6">
+								{% if expediente.agrupador %}
+									<span class="fa fa-check"></span>
+								{% else %}
+									<span class="fa fa-times"></span>{% endif %}
+							</dd>
+							<dt class="col-6">Solicita Adelanto</dt>
+							<dd class="col-6">
+								{% if expediente.solicitaAdelanto %}
+									<span class="fa fa-check"></span>
+								{% else %}
+									<span class="fa fa-times"></span>{% endif %}
+							</dd>
+							<dt class="col-6">Plurianual</dt>
+							<dd class="col-6">
+								{% if expediente.plurianual %}
+									<span class="fa fa-check"></span>
+								{% else %}
+									<span class="fa fa-times"></span>{% endif %}
+							</dd>
+							<dt class="col-6">Área donde se encuentra Expediente</dt>
+							<dd class="col-6">{{ expediente.areaEncuentraExpediente }}</dd>
+							<dt class="col-12">
+								<a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Estados por Área</a>
+							</dt>
+							<dd class="col-12">
+								<div class="row">
+									<div class="col">
+										<div class="collapse multi-collapse" id="multiCollapseExample1">
+											<div class="card card-body">
+												<dl class="row">
+													<dt class="col-12">Contable</dt>
+													<dd class="col-12">{{ expediente.estadoAreaContable }}</dd>
+													<dt class="col-12">Legales</dt>
+													<dd class="col-12">{{ expediente.estadoAreaLegales }}</dd>
+													<dt class="col-12">Promocion</dt>
+													<dd class="col-12">{{ expediente.estadoAreaPromocion }}</dd>
+													<dt class="col-12">SIG</dt>
+													<dd class="col-12">{{ expediente.estadoAreaSig }}</dd>
+													<dt class="col-12">Foresto Industrial</dt>
+													<dd class="col-12">{{ expediente.estadoForestoIndustriales }}</dd>
+												</dl>
+											</div>
+										</div>
+									</div>
+								</div>
+							</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-8">
+				<div class="tab-content" id="nav-tabContent">
+					<div class="tab-pane fade show active" id="nav-presentacion" role="tabpanel" aria-labelledby="nav-home-tab">
+						{% embed "actividadespresentadas/show_table.html.twig" with {
+							'actividadesPresentadas' : expediente.actividadesPresentadas
+						} %}{% endembed %}
+						{% if 'actividadesPresentadas' in roles and (expediente.plurianual == true or expediente.agrupador == true) %}
+							{% embed "actividadespresentadas/modal.html.twig" with {
+								'expediente' : expediente.id
+							} %}{% endembed %}
+
+							<a href="#"
+								class="btn btn-primary pull-right" data-toggle="modal" data-modal="item" data-type="actividadespresentadas" data-modal-name='actividadPresentadaModal' data-id="{{expediente.id}}">
+								<span class="fa fa-plus" aria-hidden="true"></span>
+								Agregar Presentación
+							</a>
+						{% endif %}
+					</div>
+					<div class="tab-pane fade" id="nav-certificacion" role="tabpanel" aria-labelledby="nav-profile-tab">
+						{% embed "actividadescertificadas/show_table.html.twig" with {
+							'actividadesCertificadas' : expediente.actividadesCertificadas
+						} %}{% endembed %}
+						{% if 'actividadesCertificadas' in roles and (expediente.plurianual == true or expediente.agrupador == true) %}
+							{% embed "actividadescertificadas/modal.html.twig" with {
+								'expediente' : expediente.id
+							} %}{% endembed %}
+							<a href="#"
+								class="btn btn-primary pull-right" data-toggle="modal" data-modal="item" data-type="actividadescertificadas" data-modal-name='actividadCertificadaModal' data-id="{{expediente.id}}">
+								<span class="fa fa-plus" aria-hidden="true"></span>
+								Agregar Actividad Certificada
+							</a>
+						{% endif %}
+					</div>
+					<div class="tab-pane fade" id="nav-inspeccion" role="tabpanel" aria-labelledby="nav-contact-tab">
+						{% embed "actividadesinspeccionadas/show_table.html.twig" with {
+							'actividadesInspeccionadas' : expediente.actividadesInspeccionadas
+						} %}{% endembed %}
+						{% if 'actividadesInspeccionadas' in roles and (expediente.plurianual == true or expediente.agrupador == true) %}
+							{% embed "actividadesinspeccionadas/modal.html.twig" with {
+								'expediente' : expediente.id
+							} %}{% endembed %}
+							<a href="#"
+								class="btn btn-primary pull-right" data-toggle="modal" data-modal="item" data-type="actividadesinspeccionadas" data-modal-name='actividadInspeccionadaModal' data-id="{{expediente.id}}">
+								<span class="fa fa-plus" aria-hidden="true"></span>
+								Agregar Actividad Inspeccionada
+							</a>
+						{% endif %}
+					</div>
+					<div class="tab-pane fade" id="nav-sig" role="tabpanel" aria-labelledby="nav-sig-tab">
+						{% embed "actividadessig/show_table.html.twig" with {
+							'actividadesSig' : expediente.actividadesSig
+						} %}{% endembed %}
+					</div>
+					<div class="tab-pane fade" id="nav-documentacion" role="tabpanel" aria-labelledby="nav-contact-tab">
+						{% embed "documentacion/show_table.html.twig" with {
+							'documentacion' : expediente.documentaciones
+						} %}{% endembed %}
+						{% if ('documentaciones' in roles) and (expediente.plurianual == true or expediente.agrupador == true) %}
+							{% embed "documentacion/modal.html.twig" with {
+								'expediente' : expediente.id
+							} %}{% endembed %}
+							<a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-modal="item" data-type="documentacion" data-modal-name='documentacionModal' data-id="{{expediente.id}}">
+								<span class="fa fa-plus" aria-hidden="true"></span>
+								Agregar Documentación
+							</a>
+						{% endif %}
+					</div>
+					<div class="tab-pane fade" id="nav-cobro-beneficio" role="tabpanel" aria-labelledby="nav-contact-tab">
+						{% embed "cobros_beneficios/show_table.html.twig" with {
+							'cobroBeneficios' : expediente.cobroBeneficios
+						} %}{% endembed %}
+					</div>
+					<div class="tab-pane fade" id="nav-situacion" role="tabpanel" aria-labelledby="nav-contact-tab">
+						{% embed "estado_situacion/show_table.html.twig" with {
+							'estadoSituacion' : expediente.estadoSituaciones
+						} %}{% endembed %}
+						{% if 'estadoSituaciones' in roles and (expediente.plurianual == true or expediente.agrupador == true) %}
+							{% embed "estado_situacion/modal.html.twig" with {
+								'expediente' : expediente.id
+							} %}{% endembed %}
+							<a href="#"
+								class="btn btn-primary pull-right" data-toggle="modal" data-modal="item" data-type="estadosituaciones" data-modal-name='estadoSituacionModal' data-id="{{expediente.id}}">
+								<span class="fa fa-plus" aria-hidden="true"></span>
+								Agregar Estado Situación
+							</a>
+						{% endif %}
+					</div>
+					<div class="tab-pane fade" id="nav-beneficios-fiscales-solicitados" role="tabpanel" aria-labelledby="nav-contact-tab">
+						{% embed "beneficios_fiscales_solicitados/show_table.html.twig" with {
+							'beneficiosFiscalesSolicitados' : expediente.BeneficiosFiscalesSolicitados
+						} %}{% endembed %}
+						{% if 'beneficiosFiscalesSolicitados' in roles and (expediente.plurianual == true or expediente.agrupador == true) %}
+							{% embed "beneficios_fiscales_solicitados/modal.html.twig" with {
+								'expediente' : expediente.id
+							} %}{% endembed %}
+							<a href="#"
+								class="btn btn-primary pull-right" data-toggle="modal" data-modal="item" data-type="beneficiosfiscalessolicitados" data-modal-name='beneficioFiscalSolicitadoModal' data-id="{{expediente.id}}">
+								<span class="fa fa-plus" aria-hidden="true"></span>
+								Agregar Beneficio Fiscal
+							</a>
+						{% endif %}
+					</div>
+					<!-- { if expediente.actividadesTitulares|length %} <div class="tab-pane fade" id="nav-actividades-titulares" role="tabpanel" aria-labelledby="nav-contact-tab"> { embed "actividades_titulares/show_table.html.twig" with { 'actividadesTitulares':
+					expediente.actividadesTitulares} %} { endembed %} </div> { endif %} -->
+					<div class="tab-pane fade" id="nav-beneficios-fiscales" role="tabpanel" aria-labelledby="nav-contact-tab">
+						{% embed "beneficios_fiscales/show_table.html.twig" with {
+							'beneficiosFiscales' : expediente.beneficiosFiscales
+						} %}{% endembed %}
+					</div>
+					<div class="tab-pane fade" id="nav-garantias-presentadas" role="tabpanel" aria-labelledby="nav-contact-tab">
+						{% embed "garantias_presentadas/show_table.html.twig" with {
+							'garantias' : expediente.garantias
+						} %}{% endembed %}
+					</div>
+					<div class="tab-pane fade" id="nav-estabilidad-fiscal" role="tabpanel" aria-labelledby="nav-contact-tab">
+						{% embed "estabilidad_fiscal/show_table.html.twig" with {
+							'estabilidadFiscal' : expediente.estabilidadFiscales
+						} %}{% endembed %}
+					</div>
+					<div class="tab-pane fade" id="nav-predios" role="tabpanel" aria-labelledby="nav-contact-tab">
+						{% embed "predios/index.html.twig" with {
+							'predios' : expediente.predios
+						} %}{% endembed %}
+					</div>
+					<div class="tab-pane fade" id="nav-disposiciones-provinciales" role="tabpanel" aria-labelledby="nav-contact-tab">
+						{% embed "disposiciones_provinciales/show_table.html.twig" with {
+							'disposicionesProvinciales' : expediente.disposicionesProvinciales
+						} %}{% endembed %}
+					</div>
+					<div class="tab-pane fade" id="nav-documentos-legales" role="tabpanel" aria-labelledby="nav-contact-tab">
+						<table>
+							<tr>
+								{% for item in expediente.documentosLegales %}
+									<td>
+										{% if item.documento %}Documento
+											{{loop.index}}
+											<span class="fa fa-download">
+											{% endif %}
+										</td>
+									{% endfor %}
+								</table>
+							</tr>
+						</div>
+						<div class="tab-pane fade" id="nav-actividades-aprobadas" role="tabpanel" aria-labelledby="nav-contact-tab">
+							{% embed "actividadesaprobadas/show_table.html.twig" with {
+								'actividadesAprobadas' : expediente.actividadesAprobadas
+							} %}{% endembed %}
+						</div>
+						<div class="tab-pane fade" id="nav-evaluacion-provincial" role="tabpanel" aria-labelledby="nav-contact-tab">
+							<h3>Impacto Ambiental</h3>
+							{% embed "impactos_ambientales/show_table.html.twig" with {
+								'impactosAmbientales' : expediente.impactosAmbientales
+							} %}{% endembed %}
+							{% if 'impactosAmbientales' in roles and (expediente.plurianual == true or expediente.agrupador == true) %}
+								{% embed "impactos_ambientales/modal.html.twig" with {
+									'expediente' : expediente.id
+								} %}{% endembed %}
+								<a href="#"
+									class="btn btn-primary pull-right" data-toggle="modal" data-modal="item" data-type="impactosambientales" data-modal-name='impactosAmbientalesModal' data-id="{{expediente.id}}">
+									<span class="fa fa-plus" aria-hidden="true"></span>
+									Agregar Impacto Ambiental
+								</a>
+								<hr>
+							{% endif %}
+							<h3>Otbns</h3>
+							{% embed "otbns/show_table.html.twig" with {
+								'otbns' : expediente.otbns
+							} %}{% endembed %}
+							{% if 'otbn' in roles and (expediente.plurianual == true or expediente.agrupador == true) %}
+								{% embed "otbns/modal.html.twig" with {
+									'expediente' : expediente.id
+								} %}{% endembed %}
+								<a href="#"
+									class="btn btn-primary pull-right" data-toggle="modal" data-modal="item" data-type="otbns" data-modal-name='otbnsModal' data-id="{{expediente.id}}">
+									<span class="fa fa-plus" aria-hidden="true"></span>
+									Agregar OTBN
+								</a>
+								<hr>
+							{% endif %}
+							<h3>Evaluación Técnicos</h3>
+							{% embed "evaluacion_tecnicos/show_table.html.twig" with {
+								'evaluacionTecnicos' : expediente.evaluacionTecnicos
+							} %}{% endembed %}
+							{% if 'evaluacionTecnico' in roles and (expediente.plurianual == true or expediente.agrupador == true) %}
+								{% embed "evaluacion_tecnicos/modal.html.twig" with {
+									'expediente' : expediente.id
+								} %}{% endembed %}
+								<a href="#"
+									class="btn btn-primary pull-right" data-toggle="modal" data-modal="item" data-type="evaluaciontecnicos" data-modal-name='evaluacionTecnicosModal' data-id="{{expediente.id}}">
+									<span class="fa fa-plus" aria-hidden="true"></span>
+									Agregar Evaluación Técnicos
+								</a>
+								<hr>
+							{% endif %}
+							<h3>Evaluación Legal</h3>
+							{% embed "evaluacion_legales/show_table.html.twig" with {
+								'evaluacionLegales' : expediente.evaluacionLegales
+							} %}{% endembed %}
+							{% if 'evaluacionLegal' in roles and (expediente.plurianual == true or expediente.agrupador == true) %}
+								{% embed "evaluacion_legales/modal.html.twig" with {
+									'expediente' : expediente.id
+								} %}{% endembed %}
+								<a href="#"
+									class="btn btn-primary pull-right" data-toggle="modal" data-modal="item" data-type="evaluacionlegales" data-modal-name='evaluacionLegalesModal' data-id="{{expediente.id}}">
+									<span class="fa fa-plus" aria-hidden="true"></span>
+									Agregar Evaluación Legal
+								</a>
+								<hr>
+							{% endif %}
+						</div>
+						<div class="tab-pane fade" id="nav-analisis-area-contable" role="tabpanel" aria-labelledby="nav-contact-tab">
+							{% embed "historial_contable/show_table.html.twig" with {
+								'historialContables' : expediente.historialContables
+							} %}{% endembed %}
+						</div>
+						<div class="tab-pane fade" id="nav-declaracion-iva" role="tabpanel" aria-labelledby="nav-contact-tab">
+							{% embed "declaracion_iva/show_table.html.twig" with {
+								'declaracionIva' : expediente.declaracionesIvas
+							} %}{% endembed %}
+						</div>
+						<div class="tab-pane fade" id="nav-declaracion-iva-resoluciones" role="tabpanel" aria-labelledby="nav-contact-tab">
+							{% embed "declaracion_iva_resoluciones/show_table.html.twig" with {
+								'declaracionIvaResoluciones' : expediente.declaracionIvaResoluciones
+							} %}{% endembed %}
+						</div>
+						<div class="tab-pane fade" id="nav-analisis-area-legales" role="tabpanel" aria-labelledby="nav-contact-tab">
+							{% embed "historial_legales/show_table.html.twig" with {
+								'historialLegales' : expediente.historialLegales
+							} %}{% endembed %}
+						</div>
+						<div class="tab-pane fade" id="nav-resoluciones" role="tabpanel" aria-labelledby="nav-contact-tab">
+							{% embed "resoluciones/show_table.html.twig" with {
+								'resoluciones' : expediente.resoluciones
+							} %}{% endembed %}
+						</div>
+						<div class="tab-pane fade" id="nav-analisis-area-promocion" role="tabpanel" aria-labelledby="nav-contact-tab">
+							{% embed "historial_promocion/show_table.html.twig" with {
+								'historialPromociones' : expediente.historialPromociones
+							} %}{% endembed %}
+						</div>
+						<div class="tab-pane fade" id="nav-analisis-area-foresto-industrial" role="tabpanel" aria-labelledby="nav-contact-tab">
+							{% embed "historial_foresto_industrial/show_table.html.twig" with {
+								'historialForestoIndustriales' : expediente.historialForestoIndustriales
+							} %}{% endembed %}
+						</div>
+						<div class="tab-pane fade" id="nav-producciones-volumetricas" role="tabpanel" aria-labelledby="nav-contact-tab">
+							{% embed "producciones_volumetricas/show_table.html.twig" with {
+								'produccionesVolumetricas' : expediente.produccionesVolumetricas
+							} %}{% endembed %}
+						</div>
+						<div class="tab-pane fade" id="nav-abastecimiento-aproximado" role="tabpanel" aria-labelledby="nav-contact-tab">
+							{% embed "abastecimiento_aproximado/show_table.html.twig" with {
+								'abastecimientosAproximado' : expediente.cronogramaPlantaciones
+							} %}{% endembed %}
+						</div>
+						<div class="tab-pane fade" id="nav-analisis-area-sig" role="tabpanel" aria-labelledby="nav-contact-tab">
+							{% embed "historial_sig/show_table.html.twig" with {
+								'historialSigs' : expediente.historialSigs
+							} %}{% endembed %}
+						</div>
+						<div class="tab-pane fade" id="nav-observaciones" role="tabpanel" aria-labelledby="nav-contact-tab">
+							{% embed "observaciones/show_cards.html.twig" with {
+								'expediente' : expediente
+							} %}{% endembed %}
+						</div>
+						<div class="tab-pane fade" id="nav-datos-migracion" role="tabpanel" aria-labelledby="nav-contact-tab">
+							<dt class="col-6">Información BUDAF</dt>
+							<dd class="col-6">{{ expediente.informacionBudaf|nl2br }}</dd>
+							<dt class="col-6">ID Budaf</dt>
+							<dd class="col-6">{{ expediente.budafId }}</dd>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endblock %}
+	{% block javascripts %}
+  {{parent()}}
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
+  <script src="{{ asset('js/items_modals.js') }}"></script>
+  {% endblock %}

@@ -1,0 +1,147 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{parent()}}
+	- Editar Expediente{% endblock %}
+{% form_theme edit_form 'bootstrap_4_horizontal_layout.html.twig' %}
+{% block numeroExpediente %}
+	<b>{{ edit_form.vars.value.numeroInterno }}</b>
+{% endblock %}
+{% block body %}
+	{% embed "titulares/modal_search.html.twig" %}
+	{% endembed %}
+	{% embed "representantes_legales/modal_search.html.twig" %}
+	{% endembed %}
+	{% embed "profesionales/modal_search.html.twig" %}
+	{% endembed %}
+	{% embed "titulares/agrupado_modal_search.html.twig" %}
+	{% endembed %}
+	<div class="col-md-12">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="nav nav-pills flex-column flex-sm-row nav-fill bg-light">
+					{% if (is_granted('ROLE_ADMIN') or is_granted('ROLE_DATA_ENTRY')) %}
+						<a class="nav-item nav-link active border" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-expediente" role="tab" aria-controls="v-pills-home" aria-selected="true">Presentación</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				{{ form_start(edit_form) }}
+				{{ form_row(edit_form._token) }}
+				<div class="tab-content" id="v-pills-tabContent">
+					{% if (is_granted('ROLE_ADMIN') or is_granted('ROLE_DATA_ENTRY')) %}
+					<div class="tab-pane fade show active" id="v-pills-expediente" role="tabpanel" aria-labelledby="v-pills-expediente-tab">
+						<div class="col-md-10 mx-auto bg-light">
+							<h4>Editar Expediente</h4>
+							{{form_row(edit_form.numeroExpediente)}}
+							{{form_row(edit_form.numeroInterno)}}
+							<div class="form-group row">
+								{{ form_label(edit_form.titulares, null, {'label_attr': {'class': 'col-sm-2 form-control-label'}}) }}
+								<div class="col-sm-10">
+									{{form_widget(edit_form.titulares)}}
+									<div class="row pull-right">
+										<div class="pull-right">
+											<button type="button" class="btn btn-secondary btn-xs" data-toggle="modal" data-target="#titulares-modal" id="add-titular">
+												<span class="fa fa-plus" aria-hidden="true"></span>
+												Asociar
+											</button>
+											<button type="button" class="btn btn-secondary btn-xs" id="remove-titular">
+												<span class="fa fa-remove" aria-hidden="true"></span>
+												Eliminar
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								{{ form_label(edit_form.profesionalCargo, null, {'label_attr': {'class': 'col-sm-2 form-control-label'}}) }}
+								<div class="col-sm-10">
+									<div class="row">
+										<div class="col-sm-10">
+											{{form_widget(edit_form.profesionalCargo)}}
+										</div>
+										<div class="col-sm-2">
+											<span class="form-group">
+												<button id="add-profesional" class="btn btn-default" type="button" data-toggle="modal" data-target="#profesionales-modal">
+													<span class="fa fa-search" aria-hidden="true"></span>
+												</button>
+												<button id="remove-profesional" class="btn btn-default" type="button">
+													<span class="fa fa-remove" aria-hidden="true"></span>
+												</button>
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								{{ form_label(edit_form.representanteLegal, null, {'label_attr': {'class': 'col-sm-2 form-control-label'}}) }}
+								<div class="col-sm-10">
+									<div class="row">
+										<div class="col-sm-10">
+											{{form_widget(edit_form.representanteLegal)}}
+										</div>
+										<div class="col-sm-2">
+											<span class="form-group">
+												<button id="add-representante-legal" class="btn btn-default" type="button" data-toggle="modal" data-target="#representante-legal-modal">
+													<span class="fa fa-search" aria-hidden="true"></span>
+												</button>
+												<button id="remove-representante-legal" class="btn btn-default" type="button">
+													<span class="fa fa-remove" aria-hidden="true"></span>
+												</button>
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							{% if edit_form.cobroBeneficios is defined %}
+								{% embed "cobros_beneficios/table.html.twig" with {
+									'cobrosBeneficios' : edit_form.cobroBeneficios
+								} %}{% endembed %}
+							{% endif %}
+							{{form_row(edit_form.fechaPresentacion)}}
+							{{form_row(edit_form.fechaIngreso)}}
+							{% if edit_form.estado is defined %}
+								{{form_row(edit_form.estado)}}
+							{% endif %}
+							{% if edit_form.estadoAreaContable is defined %}
+								{{form_row(edit_form.estadoAreaContable)}}
+							{% endif %}
+							{% if edit_form.estadoAreaLegales is defined %}
+								{{form_row(edit_form.estadoAreaLegales)}}
+							{% endif %}
+							{% if edit_form.estadoAreaPromocion is defined %}
+								{{form_row(edit_form.estadoAreaPromocion)}}
+							{% endif %}
+							{% if edit_form.estadoAreaSig is defined %}
+								{{form_row(edit_form.estadoAreaSig)}}
+							{% endif %}
+							{% if edit_form.estadoForestoIndustriales is defined %}
+								{{form_row(edit_form.estadoForestoIndustriales)}}
+							{% endif %}
+							{{form_row(edit_form.areaEncuentraExpediente)}}
+							{{form_row(edit_form.solicitaAdelanto)}}
+							{{form_row(edit_form.plurianual)}}
+							{% if edit_form.actividadesPresentadas is defined %}
+									<h4>Actividades Presentadas</h4>
+									{% embed "actividadespresentadas/table.html.twig" with {
+										'actividadesPresentadas' : edit_form.actividadesPresentadas
+									} %}{% endembed %}
+							{% endif %}
+						</div>
+					</div>
+					{% endif %}
+				</div>
+				<button type="submit" class="btn btn-primary pull-right"><span class="fa fa-save" aria-hidden="true"></span> Guardar</button>
+				{{ form_end(edit_form) }}
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+	{{parent()}}
+	<script src="{{ asset('js/expedientes.js') }}"></script>
+	<script type="text/javascript">
+		  $('.combobox').combobox();
+	</script>
+{% endblock %}

@@ -1,5 +1,5 @@
 {% if estadoSituacion is defined %}
-  <table class="table">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th scope="col">ID</th>
@@ -15,6 +15,16 @@
           <td>{{item.observacion}}</td>
           <td>{{item.especificacionPlantaciones}}</td>
           <td>{{item.fecha|date('d-m-Y')}}</td>
+          {% if (expediente.plurianual == true or expediente.agrupador) and ('estadoSituaciones' in roles) %}
+          <td>
+            <a href="#" data-toggle="modal" data-modal="editItem" data-type="estadosituaciones" data-modal-name='estadoSituacionModal' data-id="{{expediente.id}}" data-item='{{item.id}}'>
+              <span class="fa fa-edit" aria-hidden="true"></span>
+            </a>
+            <a href="" class="removeItem" data-type="estadosituaciones" data-item='{{item.id}}' data-message='¿Está seguro que desea eliminar Estado de Situación?'>
+              <span class="fa fa-remove" aria-hidden="true"></span>
+            </a>
+          </td>
+          {% endif %}
         </tr>
       {% endfor %}
     </tbody>

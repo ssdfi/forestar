@@ -27,10 +27,10 @@ class ImpactoAmbientalType extends AbstractType
           ;
 
         if ($builder->getOptions()['attr']['agrupador']) {
-          $builder->addEventSubscriber(new AddTitularAgrupadoListener());
+            $builder->addEventSubscriber(new AddTitularAgrupadoListener());
         }
         if ($builder->getOptions()['attr']['plurianual']) {
-          $builder->add('etapa', NumberType::class, array('label'=>false,'required'=>false));
+            $builder->add('etapa', NumberType::class, array('label'=>false,'required'=>false));
         }
     }/**
      * {@inheritdoc}
@@ -38,7 +38,8 @@ class ImpactoAmbientalType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\ImpactoAmbiental'
+            'data_class' => 'AppBundle\Entity\ImpactoAmbiental',
+            'roles' => null,
         ));
     }
 
@@ -49,6 +50,4 @@ class ImpactoAmbientalType extends AbstractType
     {
         return 'appbundle_impactoambiental';
     }
-
-
 }

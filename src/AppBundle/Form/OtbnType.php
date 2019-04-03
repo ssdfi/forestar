@@ -23,7 +23,8 @@ class OtbnType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Otbn'
+            'data_class' => 'AppBundle\Entity\Otbn',
+            'roles' => null,
         ));
     }
 
@@ -34,6 +35,4 @@ class OtbnType extends AbstractType
     {
         return 'appbundle_otbn';
     }
-
-
 }

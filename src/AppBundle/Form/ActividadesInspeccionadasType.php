@@ -29,7 +29,15 @@ class ActividadesInspeccionadasType extends AbstractType
         ->add('superficieHa', NumberType::class, array('label'=>false,'required'=>false))
         ->add('densidad', NumberType::class, array('label'=>false,'required'=>false))
         ->add('fechaInspeccion', DateType::class, array('label' => false,'widget'=>'single_text','format' => 'MM-yyyy','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"MM-AAAA")))
-        ->add('tipoActividad',EntityType::class, array('class'=>'AppBundle\Entity\TiposActividades', 'required'=>true,'label' => false, 'attr'=>array('readonly'=>true)))
+        ->add('tipoActividad', EntityType::class, array('class'=>'AppBundle\Entity\TiposActividades', 'required'=>true,'placeholder' => '','label' => false, 'attr'=>array('disabled'=>true),'query_builder' => function (EntityRepository $er) {
+            return $er->createQueryBuilder('b')
+                                                                              ->where('b.id <> 7')
+                                                                              ->andWhere('b.id <> 8')
+                                                                              ->andWhere('b.id <> 16')
+                                                                              ->andWhere('b.id <> 17')
+                                                                              ->andWhere('b.id <> 18')
+                                                                              ->orderBy('b.nombreActividad', 'asc');
+        }))
         ->add('edadPlantacion', NumberType::class, array('label'=>false,'required'=>false))
         ->add('dapPromedio', NumberType::class, array('label'=>false,'required'=>false))
         ->add('densidadPrevia', NumberType::class, array('label'=>false,'required'=>false))
@@ -48,24 +56,25 @@ class ActividadesInspeccionadasType extends AbstractType
         ->add('numeroFilas', NumberType::class, array('label'=>false,'required'=>false))
         ->add('distanciaPlantas', NumberType::class, array('label'=>false,'required'=>false))
         ->add('cantidadArboles', NumberType::class, array('label'=>false,'required'=>false))
-        ->add('tipoInspeccion',EntityType::class, array('class'=>'AppBundle\Entity\TiposInspeccion', 'placeholder'=>'', 'label' => false))
-        ->add('responsable',ChoiceType::class, array('choices'=>array('Provincia'=>'Provincia', 'DNDFI'=>'DNDFI'), 'label'=>false,'required'=>false))
+        ->add('tipoInspeccion', EntityType::class, array('class'=>'AppBundle\Entity\TiposInspeccion', 'placeholder'=>'', 'label' => false,'required'=>false))
+        ->add('responsable', ChoiceType::class, array('choices'=>array('Provincia'=>'Provincia', 'DNDFI'=>'DNDFI'), 'label'=>false,'required'=>false))
         ->add('tecnico', TextType::class, array('label'=>false,'required'=>false))
-        ->add('observacion',TextareaType::class,array('label' => false,'required'=>false,'attr' => array('class' => 'form-control')));
+        ->add('observacion', TextareaType::class, array('label' => false,'required'=>false,'attr' => array('class' => 'form-control')));
 
-      if ($builder->getOptions()['attr']['agrupador']) {
-        $builder->addEventSubscriber(new AddTitularAgrupadoListener());
-      }
-      if ($builder->getOptions()['attr']['plurianual']) {
-        $builder->add('etapa', NumberType::class, array('label'=>false,'required'=>false));
-      }
+        if ($builder->getOptions()['attr']['agrupador']) {
+            $builder->addEventSubscriber(new AddTitularAgrupadoListener());
+        }
+        if ($builder->getOptions()['attr']['plurianual']) {
+            $builder->add('etapa', NumberType::class, array('label'=>false,'required'=>false));
+        }
     }/**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\ActividadesInspeccionadas'
+            'data_class' => 'AppBundle\Entity\ActividadesInspeccionadas',
+            'roles'=>null,
         ));
     }
 
@@ -76,6 +85,4 @@ class ActividadesInspeccionadasType extends AbstractType
     {
         return 'appbundle_actividadesinspeccionadas';
     }
-
-
 }

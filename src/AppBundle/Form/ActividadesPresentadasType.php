@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use AppBundle\Form\EventListener\AddTitularAgrupadoListener;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ActividadesPresentadasType extends AbstractType
 {
@@ -18,20 +19,20 @@ class ActividadesPresentadasType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-      $expediente = $builder->getData() ? $builder->getData()->getId() : '';
-      $builder
+        $expediente = $builder->getData() ? $builder->getData()->getId() : '';
+        $builder
           ->add('especie', EntityType::class, array('class'=>'AppBundle\Entity\Especies','required'=>true,'label' => false, 'attr'=>array('class'=>'combobox')))
-          ->add('superficieHa', NumberType::class, array('label'=>false,'required'=>false))
+          ->add('superficieHa', NumberType::class, array('label'=>false,'required'=>true, 'constraints'=> array(new NotBlank(array('message'=>'Complete este campo')))))
           ->add('densidad', NumberType::class, array('label'=>false,'required'=>false))
           ->add('fechaRealizacion', DateType::class, array('label' => false,'widget'=>'single_text','format' => 'MM-yyyy','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"MM-AAAA")))
-          ->add('tipoActividad',EntityType::class, array('class'=>'AppBundle\Entity\TiposActividades','required'=>true,'label' => false, 'attr'=>array('class'=>'combobox')))
-          ->add('observaciones',TextareaType::class,array('label' => false,'required'=>false,'attr' => array('class' => 'form-control')));
+          ->add('tipoActividad', EntityType::class, array('class'=>'AppBundle\Entity\TiposActividades','required'=>true,'label' => false, 'attr'=>array('class'=>'combobox')))
+          ->add('observaciones', TextareaType::class, array('label' => false,'required'=>false,'attr' => array('class' => 'form-control')));
 
         if ($builder->getOptions()['attr']['agrupador']) {
-          $builder->addEventSubscriber(new AddTitularAgrupadoListener());
+            $builder->addEventSubscriber(new AddTitularAgrupadoListener());
         }
         if ($builder->getOptions()['attr']['plurianual']) {
-          $builder->add('etapa', NumberType::class, array('label'=>false,'required'=>false));
+            $builder->add('etapa', NumberType::class, array('label'=>false,'required'=>false));
         }
     }
 
@@ -41,7 +42,9 @@ class ActividadesPresentadasType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\ActividadesPresentadas'
+            'data_class' => 'AppBundle\Entity\ActividadesPresentadas',
+            'roles' => null,
+            'attr'=>array('agrupador'=>null, 'plurianual'=>null)
         ));
     }
 
@@ -52,6 +55,4 @@ class ActividadesPresentadasType extends AbstractType
     {
         return 'appbundle_actividadespresentadas';
     }
-
-
 }

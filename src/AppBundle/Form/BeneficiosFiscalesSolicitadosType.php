@@ -23,10 +23,10 @@ class BeneficiosFiscalesSolicitadosType extends AbstractType
           ->add('fechaCarga', DateType::class, array('label' => 'Fecha de Carga','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
           ->add('tipoBeneficio', EntityType::class, array('class'=>'AppBundle\Entity\TiposBeneficiosFiscales','required'=>true,'label' => false, 'attr'=>array('class'=>'combobox')));
         if ($builder->getOptions()['attr']['agrupador']) {
-          $builder->addEventSubscriber(new AddTitularAgrupadoListener());
+            $builder->addEventSubscriber(new AddTitularAgrupadoListener());
         }
         if ($builder->getOptions()['attr']['plurianual']) {
-          $builder->add('etapa', NumberType::class, array('label'=>false,'required'=>false));
+            $builder->add('etapa', NumberType::class, array('label'=>false,'required'=>false));
         }
     }/**
      * {@inheritdoc}
@@ -34,7 +34,8 @@ class BeneficiosFiscalesSolicitadosType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\BeneficiosFiscalesSolicitados'
+            'data_class' => 'AppBundle\Entity\BeneficiosFiscalesSolicitados',
+            'roles' => null
         ));
     }
 
@@ -45,6 +46,4 @@ class BeneficiosFiscalesSolicitadosType extends AbstractType
     {
         return 'appbundle_beneficiosfiscalessolicitados';
     }
-
-
 }

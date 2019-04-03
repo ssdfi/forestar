@@ -27,7 +27,15 @@ class ActividadesCertificadasType extends AbstractType
         ->add('superficieHa', NumberType::class, array('label'=>false,'required'=>false))
         ->add('densidad', NumberType::class, array('label'=>false,'required'=>false))
         ->add('fechaInicio', DateType::class, array('label' => false,'widget'=>'single_text','format' => 'MM-yyyy','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"MM-AAAA")))
-        ->add('tipoActividad',EntityType::class, array('class'=>'AppBundle\Entity\TiposActividades', 'required'=>true,'label' => false, 'attr'=>array('disabled'=>true)))
+        ->add('tipoActividad', EntityType::class, array('class'=>'AppBundle\Entity\TiposActividades','placeholder' => '', 'required'=>true,'label' => false, 'attr'=>array('disabled'=>true),'query_builder' => function (EntityRepository $er) {
+            return $er->createQueryBuilder('b')
+                                                                              ->where('b.id <> 7')
+                                                                              ->andWhere('b.id <> 8')
+                                                                              ->andWhere('b.id <> 16')
+                                                                              ->andWhere('b.id <> 17')
+                                                                              ->andWhere('b.id <> 18')
+                                                                              ->orderBy('b.nombreActividad', 'asc');
+        }))
         ->add('edadPlantacion', NumberType::class, array('label'=>false,'required'=>false))
         ->add('dapPromedio', NumberType::class, array('label'=>false,'required'=>false))
         ->add('densidadPrevia', NumberType::class, array('label'=>false,'required'=>false))
@@ -46,13 +54,13 @@ class ActividadesCertificadasType extends AbstractType
         ->add('numeroFilas', NumberType::class, array('label'=>false,'required'=>false))
         ->add('distanciaPlantas', NumberType::class, array('label'=>false,'required'=>false))
         ->add('cantidadArboles', NumberType::class, array('label'=>false,'required'=>false))
-        ->add('observaciones',TextareaType::class,array('label' => false,'required'=>false,'attr' => array('class' => 'form-control')));
+        ->add('observaciones', TextareaType::class, array('label' => false,'required'=>false,'attr' => array('class' => 'form-control')));
 
         if ($builder->getOptions()['attr']['agrupador']) {
-          $builder->addEventSubscriber(new AddTitularAgrupadoListener());
+            $builder->addEventSubscriber(new AddTitularAgrupadoListener());
         }
         if ($builder->getOptions()['attr']['plurianual']) {
-          $builder->add('etapa', NumberType::class, array('label'=>false,'required'=>false));
+            $builder->add('etapa', NumberType::class, array('label'=>false,'required'=>false));
         }
     }
 
@@ -62,7 +70,8 @@ class ActividadesCertificadasType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\ActividadesCertificadas'
+            'data_class' => 'AppBundle\Entity\ActividadesCertificadas',
+            'roles'=>null
         ));
     }
 
@@ -73,6 +82,4 @@ class ActividadesCertificadasType extends AbstractType
     {
         return 'appbundle_actividadescertificadas';
     }
-
-
 }

@@ -1,0 +1,332 @@
+{% block stylesheets %}
+	{% stylesheets "@bootstrap_css" "@fontawesome_css" %}
+	<link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/application.css"/>
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/body.css"/>
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/bootstrap-switch.css"/>
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/bootstrap-combobox.css"/>
+	{% endstylesheets %}
+	{% stylesheets 'bundles/app/css/*' output = 'css/compiled/main.css' %}
+	<link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
+	{% endstylesheets %}
+{% endblock %}
+{% block body %}
+	{% embed "titulares/agrupado_modal_search_form.html.twig" %}{% endembed %}
+	{{ form_start(form, {'attr': {'id': 'form_actividadescertificadas'}}) }}
+	<div class="form-group">
+		<div class="col-sm-12">
+			<tr data-attr='tipoActividad'>
+				<div class="col-sm-12">
+					<label>Tipo Actividad</label>
+					{{ form_widget(form.tipoActividad) }}
+					{{ form_errors(form.tipoActividad) }}
+				</div>
+			</tr>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<tr data-attr='especie'>
+				<div class="col-sm-12">
+					<label>Especie</label>
+					{{ form_widget(form.especie) }}
+					{{ form_errors(form.especie) }}
+				</div>
+			</tr>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<tr data-attr='fechaInicio'>
+				<div class="col-sm-12">
+					<label>Fecha Inicio</label>
+					{{ form_widget(form.fechaInicio) }}
+					{{ form_errors(form.fechaInicio) }}
+				</div>
+			</tr>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<tr data-attr='superficieHa'>
+				<div class="col-sm-12">
+					<label>Superficie</label>
+					{{ form_widget(form.superficieHa) }}
+					{{ form_errors(form.superficieHa) }}
+				</div>
+			</tr>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<tr data-attr='longitudFilas'>
+				<div class="col-sm-12">
+					<label>Longitud Filas</label>
+					{{ form_widget(form.longitudFilas) }}
+					{{ form_errors(form.longitudFilas) }}
+				</div>
+			</tr>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<tr data-attr='numeroFilas'>
+				<div class="col-sm-12">
+					<label>Numero Filas</label>
+					{{ form_widget(form.numeroFilas) }}
+					{{ form_errors(form.numeroFilas) }}
+				</div>
+			</tr>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<tr data-attr='distanciaPlantas'>
+				<div class="col-sm-12">
+					<label>Distancia Plantas</label>
+					{{ form_widget(form.distanciaPlantas) }}
+					{{ form_errors(form.distanciaPlantas) }}
+				</div>
+			</tr>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<tr data-attr='cantidadArboles'>
+				<div class="col-sm-12">
+					<label>Cantidad Arboles</label>
+					{{ form_widget(form.cantidadArboles) }}
+					{{ form_errors(form.cantidadArboles) }}
+				</div>
+			</tr>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<tr data-attr='riego'>
+				<div class="col-sm-12">
+					<label>Riego</label>
+					{{ form_widget(form.riego) }}
+					{{ form_errors(form.riego) }}
+				</div>
+			</tr>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<tr data-attr='turnoCorta'>
+				<div class="col-sm-12">
+					<label>Turno Corta</label>
+					{{ form_widget(form.turnoCorta) }}
+					{{ form_errors(form.turnoCorta) }}
+				</div>
+			</tr>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<tr data-attr='edadPlantacion'>
+				<div class="col-sm-12">
+					<label>Edad Plantación</label>
+					{{ form_widget(form.edadPlantacion) }}
+					{{ form_errors(form.edadPlantacion) }}
+				</div>
+			</tr>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<tr data-attr='numeroPoda'>
+				<div class="col-sm-12">
+					<label>Número Poda</label>
+					{{ form_widget(form.numeroPoda) }}
+					{{ form_errors(form.numeroPoda) }}
+				</div>
+			</tr>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<tr data-attr='cantidadArbolesPodados'>
+				<div class="col-sm-12">
+					<label>Cantidad Árboles Podados</label>
+					{{ form_widget(form.cantidadArbolesPodados) }}
+					{{ form_errors(form.cantidadArbolesPodados) }}
+				</div>
+			</tr>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<tr data-attr='dapPromedio'>
+				<div class="col-sm-12">
+					<label>DAP promedio</label>
+					{{ form_widget(form.dapPromedio) }}
+					{{ form_errors(form.dapPromedio) }}
+				</div>
+			</tr>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<tr data-attr='densidadPrevia'>
+				<div class="col-sm-12">
+					<label>Densidad Previa</label>
+					{{ form_widget(form.densidadPrevia) }}
+					{{ form_errors(form.densidadPrevia) }}
+				</div>
+			</tr>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<tr data-attr='numeroArbolesExtraidos'>
+				<div class="col-sm-12">
+					<label>Números Arboles Extraidos</label>
+					{{ form_widget(form.numeroArbolesExtraidos) }}
+					{{ form_errors(form.numeroArbolesExtraidos) }}
+				</div>
+			</tr>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<tr data-attr='alturaPromedioPlantacion'>
+				<div class="col-sm-12">
+					<label>Altura Promedio Plantacion</label>
+					{{ form_widget(form.alturaPromedioPlantacion) }}
+					{{ form_errors(form.alturaPromedioPlantacion) }}
+				</div>
+			</tr>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<tr data-attr='alturaPoda'>
+				<div class="col-sm-12">
+					<label>Altura Poda</label>
+					{{ form_widget(form.alturaPoda) }}
+					{{ form_errors(form.alturaPoda) }}
+				</div>
+			</tr>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<tr data-attr='porcentajeFallas'>
+				<div class="col-sm-12">
+					<label>Porcentaje Fallas</label>
+					{{ form_widget(form.porcentajeFallas) }}
+					{{ form_errors(form.porcentajeFallas) }}
+				</div>
+			</tr>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<tr data-attr='densidad'>
+				<div class="col-sm-12">
+					<label>Densidad</label>
+					{{ form_widget(form.densidad) }}
+					{{ form_errors(form.densidad) }}
+				</div>
+			</tr>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<tr data-attr='edadCepa'>
+				<div class="col-sm-12">
+					<label>Edad Cepa</label>
+					{{ form_widget(form.edadCepa) }}
+					{{ form_errors(form.edadCepa) }}
+				</div>
+			</tr>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<tr data-attr='edadRebrote'>
+				<div class="col-sm-12">
+					<label>Edad Rebrote</label>
+					{{ form_widget(form.edadRebrote) }}
+					{{ form_errors(form.edadRebrote) }}
+				</div>
+			</tr>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<tr data-attr='numeroBrotesCepas'>
+				<div class="col-sm-12">
+					<label>Número Brotes Cepas</label>
+					{{ form_widget(form.numeroBrotesCepas) }}
+					{{ form_errors(form.numeroBrotesCepas) }}
+				</div>
+			</tr>
+		</div>
+	</div>
+	{% if expediente.agrupador == true %}
+		<div class="form-group">
+			<div class="col-sm-12">
+				<div class="col-sm-12">
+					<div class="form-row">
+						<div class="form-group col-md-10">
+							<label>Titular Agrupado</label>
+							{{form_widget(form.titularAgrupado)}}
+						</div>
+						<div class="form-group col-md-2">
+							<label>.</label>
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<button id="add-titular-agrupado" data-name="appbundle_actividadescertificadas_" class="btn btn-default add-titular-agrupado" type="button" data-toggle="modal" data-target="#titular-agrupado-modal">
+										<span class="fa fa-search" aria-hidden="true"></span>
+									</button>
+								</div>
+								<div class="form-group  col-md-6">
+									<button id="remove-titular-agrupado" data-name="appbundle_actividadescertificadas_" class="btn btn-default remove-titular-agrupado" type="button">
+										<span class="fa fa-remove" aria-hidden="true"></span>
+									</button>
+								</div>
+							</div>
+							{{form_widget(form.titular_agrupado_id)}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+	{% if expediente.plurianual %}
+		<div class="form-group">
+			<div class="col-sm-12">
+				<tr>
+					<div class="col-sm-12">
+						<label>Etapa</label>
+						{{ form_widget(form.etapa) }}
+						{{ form_errors(form.etapa) }}
+					</div>
+				</tr>
+			</div>
+		</div>
+	{% endif %}
+	<div class="form-group">
+		<div class="col-sm-12">
+			<tr data-attr='observaciones'>
+				<div class="col-sm-12">
+					<label>Observaciones</label>
+					{{ form_widget(form.observaciones) }}
+					{{ form_errors(form.observaciones) }}
+				</div>
+			</tr>
+		</div>
+	</div>
+	{{form_end(form)}}
+{% endblock %}
+
+{% javascripts '@jquery' '@bootstrap_js' %}
+<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+<script type="text/javascript" src="{{ asset_url }}"></script>
+<script src="/js/bootstrap-switch.js"></script>
+<script src="/js/bootstrap-combobox.js"></script>
+{% endjavascripts %}
+<script src="/js/actividades_certificadas_modal.js"></script>

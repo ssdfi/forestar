@@ -3,12 +3,24 @@
     <thead>
       <tr>
         <th scope="col">Viable</th>
+        <th scope="col">Fecha</th>
       </tr>
     </thead>
     <tbody>
       {% for item in otbns %}
         <tr>
-          <td>{{item.viable}}</td>
+          <td>{% if item.viable %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</td>
+          <td>{% if item.fecha %}{{item.fecha|date('Y-m')}}{% endif %}</td>
+          {% if (expediente.plurianual == true or expediente.agrupador) and ('impactosAmbientales' in roles) %}
+          <td>
+            <a href="#" data-toggle="modal" data-modal="editItem" data-type="otbns" data-modal-name='otbnsModal' data-id="{{expediente.id}}" data-item='{{item.id}}'>
+              <span class="fa fa-edit" aria-hidden="true"></span>
+            </a>
+            <a href="" class="removeItem" data-type="otbns" data-item='{{item.id}}' data-message='¿Está seguro que desea eliminar el OTBN?'>
+              <span class="fa fa-remove" aria-hidden="true"></span>
+            </a>
+          </td>
+          {% endif %}
         </tr>
       {% endfor %}
     </tbody>

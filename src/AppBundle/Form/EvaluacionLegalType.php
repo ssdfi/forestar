@@ -26,7 +26,8 @@ class EvaluacionLegalType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\EvaluacionLegal'
+            'data_class' => 'AppBundle\Entity\EvaluacionLegal',
+            'roles'=>null
         ));
     }
 
@@ -37,6 +38,4 @@ class EvaluacionLegalType extends AbstractType
     {
         return 'appbundle_evaluacionlegal';
     }
-
-
 }

@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">ID</th>
@@ -30,6 +30,16 @@
         <td>{% if actividadCertificada.titularAgrupado %}<a href="{{path('titulares_show', { 'id': actividadCertificada.titularAgrupado.id })}}">{{actividadCertificada.titularAgrupado}}</a>{% endif %}</th>
       {% endif %}
       <td>{% if actividadCertificada.fechaInicio %}{{ actividadCertificada.fechaInicio|date('m-Y') }}{% endif %}</td>
+      {% if (expediente.plurianual == true or expediente.agrupador) and ('actividadesCertificadas' in roles) %}
+        <td>
+          <a href="#" data-toggle="modal" data-modal="editItem" data-type="actividadescertificadas" data-modal-name='actividadCertificadaModal' data-id="{{expediente.id}}" data-item='{{actividadCertificada.id}}'>
+            <span class="fa fa-edit" aria-hidden="true"></span>
+          </a>
+          <a href="" class="removeItem" data-type="actividadescertificadas" data-item='{{actividadCertificada.id}}' data-message='¿Está seguro que desea eliminar la Actividad Certificada?'>
+            <span class="fa fa-remove" aria-hidden="true"></span>
+          </a>
+        </td>
+      {% endif %}
     </tr>
     {% endfor %}
   </tbody>

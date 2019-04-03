@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use AppBundle\Form\EventListener\AddTitularAgrupadoListener;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class DocumentacionType extends AbstractType
 {
@@ -19,15 +20,15 @@ class DocumentacionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-          ->add('tipoDocumentacion', TextType::class, array('required'=>false))
+          ->add('tipoDocumentacion', TextType::class, array('required'=>true, 'constraints'=> array(new NotBlank(array('message'=>'Complete este campo')))))
           ->add('observacion', TextareaType::class, array('required'=>false))
           ->add('nombreArchivo', TextType::class, array('required'=>false))
           ->add('fechaPresentacion', DateType::class, array('label' => 'Fecha de Presentación','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")));
         if ($builder->getOptions()['attr']['agrupador']) {
-          $builder->addEventSubscriber(new AddTitularAgrupadoListener());
+            $builder->addEventSubscriber(new AddTitularAgrupadoListener());
         }
         if ($builder->getOptions()['attr']['plurianual']) {
-          $builder->add('etapa', NumberType::class, array('label'=>false,'required'=>false));
+            $builder->add('etapa', NumberType::class, array('label'=>false,'required'=>false));
         }
     }/**
      * {@inheritdoc}
@@ -35,7 +36,8 @@ class DocumentacionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Documentacion'
+            'data_class' => 'AppBundle\Entity\Documentacion',
+            'roles' => null
         ));
     }
 
@@ -46,6 +48,4 @@ class DocumentacionType extends AbstractType
     {
         return 'appbundle_documentacion';
     }
-
-
 }

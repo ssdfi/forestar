@@ -1,32 +1,46 @@
 <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Tipo Beneficio</th>
-      {% if expediente.agrupador %}
-      <th scope="col">Titular Agrupado</th>
-        {% endif %}
-      <th scope="col">Fecha de Carga</th>
-      {% if expediente.plurianual %}
-        <th scope="col">Etapa</th>
-      {% endif %}
-      <th scope="col">Observación</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for item in beneficiosFiscalesSolicitados %}
-      <tr>
-        <td>{{item.id}}</td>
-        <td>{{item.tipoBeneficio}}</td>
-        {% if expediente.agrupador %}
-        <td>{% if item.titularAgrupado %}<a href="{{path('titulares_show', { 'id': item.titularAgrupado.id })}}">{{item.titularAgrupado}}</a>{% endif %}</th>
-        {% endif %}
-        <td>{{item.fechaCarga|date('d-m-Y')}}</td>
-        {% if expediente.plurianual %}
-          <td>{{item.etapa}}</td>
-        {% endif %}
-        <td>{{item.observaciones}}</td>
-      </tr>
-    {% endfor %}
-  </tbody>
+	<thead>
+		<tr>
+			<th scope="col">Id</th>
+			<th scope="col">Tipo Beneficio</th>
+			{% if expediente.agrupador %}
+				<th scope="col">Titular Agrupado</th>
+			{% endif %}
+			<th scope="col">Fecha de Carga</th>
+			{% if expediente.plurianual %}
+				<th scope="col">Etapa</th>
+			{% endif %}
+			<th scope="col">Observación</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for item in beneficiosFiscalesSolicitados %}
+			<tr>
+				<td>{{item.id}}</td>
+				<td>{{item.tipoBeneficio}}</td>
+				{% if expediente.agrupador %}
+					<td>
+						{% if item.titularAgrupado %}
+							<a href="{{path('titulares_show', { 'id': item.titularAgrupado.id })}}">{{item.titularAgrupado}}</a>
+						{% endif %}
+					</th>
+				{% endif %}
+				<td>{{item.fechaCarga|date('d-m-Y')}}</td>
+				{% if expediente.plurianual %}
+					<td>{{item.etapa}}</td>
+				{% endif %}
+				<td>{{item.observaciones}}</td>
+				{% if (expediente.plurianual == true or expediente.agrupador) and('beneficiosFiscalesSolicitados' in roles) %}
+					<td>
+						<a href="#" data-toggle="modal" data-modal="editItem" data-type="beneficiosfiscalessolicitados" data-modal-name='beneficiosFiscalesSolicitados' data-id="{{expediente.id}}" data-item='{{item.id}}'>
+							<span class="fa fa-edit" aria-hidden="true"></span>
+						</a>
+						<a href="" class="removeItem" data-type="beneficiosfiscalessolicitados" data-item='{{item.id}}' data-message='¿Está seguro que desea eliminar el Beneficio Fiscal?'>
+							<span class="fa fa-remove" aria-hidden="true"></span>
+						</a>
+					</td>
+				{% endif %}
+			</tr>
+		{% endfor %}
+	</tbody>
 </table>

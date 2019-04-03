@@ -38,40 +38,40 @@ class ExpedientesController extends Controller
         $param=($request->query->get('expedientes_search'))? $request->query->get('expedientes_search'):[];
 
         $dql->select('a')
-             ->from('AppBundle:Expedientes','a');
+             ->from('AppBundle:Expedientes', 'a');
 
-        if(array_key_exists('numeroInterno',$param) && $param['numeroInterno']){
-          $dql->andwhere($dql->expr()->like('UPPER(a.numeroInterno)', $dql->expr()->literal('%'.strtoupper($param['numeroInterno']).'%')));
-        }
-
-        if(array_key_exists('numeroExpediente',$param) && $param['numeroExpediente']){
-          $dql->andwhere($dql->expr()->like('UPPER(a.numeroExpediente)', $dql->expr()->literal('%'.strtoupper($param['numeroExpediente']).'%')));
+        if (array_key_exists('numeroInterno', $param) && $param['numeroInterno']) {
+            $dql->andwhere($dql->expr()->like('UPPER(a.numeroInterno)', $dql->expr()->literal('%'.strtoupper($param['numeroInterno']).'%')));
         }
 
-        if(array_key_exists('provincia',$param) && $param['provincia']){
-          $dql->andwhere($dql->expr()->like($dql->expr()->substring('a.numeroInterno',0,3), $dql->expr()->literal('%'.strtoupper($param['provincia']).'%')));
+        if (array_key_exists('numeroExpediente', $param) && $param['numeroExpediente']) {
+            $dql->andwhere($dql->expr()->like('UPPER(a.numeroExpediente)', $dql->expr()->literal('%'.strtoupper($param['numeroExpediente']).'%')));
         }
 
-        if(array_key_exists('departamento',$param) && $param['departamento']){
-          $dql->andwhere('a.departamento =  :departamento');
-          $dql->setParameter('departamento',$param['departamento']);
+        if (array_key_exists('provincia', $param) && $param['provincia']) {
+            $dql->andwhere($dql->expr()->like($dql->expr()->substring('a.numeroInterno', 0, 3), $dql->expr()->literal('%'.strtoupper($param['provincia']).'%')));
         }
 
-        if(array_key_exists('fechaIngresoDesde',$param) && $param['fechaIngresoDesde']){
-          $dql->andwhere('a.fechaIngreso >=  :fechaIngresoDesde');
-          $dql->setParameter('fechaIngresoDesde',$param['fechaIngresoDesde']);
+        if (array_key_exists('departamento', $param) && $param['departamento']) {
+            $dql->andwhere('a.departamento =  :departamento');
+            $dql->setParameter('departamento', $param['departamento']);
         }
-        if(array_key_exists('fechaIngresoHasta',$param) && $param['fechaIngresoHasta']){
-          $dql->andwhere('a.fechaIngreso <=  :fechaIngresoHasta');
-          $dql->setParameter('fechaIngresoHasta', $param['fechaIngresoHasta']);
+
+        if (array_key_exists('fechaIngresoDesde', $param) && $param['fechaIngresoDesde']) {
+            $dql->andwhere('a.fechaIngreso >=  :fechaIngresoDesde');
+            $dql->setParameter('fechaIngresoDesde', $param['fechaIngresoDesde']);
         }
-        if(array_key_exists('profesional',$param) && $param['profesional']){
-          $dql->andwhere('a.profesionalCargo = :profesional');
-          $dql->setParameter('profesional', $param['profesional']);
+        if (array_key_exists('fechaIngresoHasta', $param) && $param['fechaIngresoHasta']) {
+            $dql->andwhere('a.fechaIngreso <=  :fechaIngresoHasta');
+            $dql->setParameter('fechaIngresoHasta', $param['fechaIngresoHasta']);
         }
-        if(array_key_exists('estado',$param) && $param['estado']){
-          $dql->andwhere('a.estado = :estado');
-          $dql->setParameter('estado', $param['estado']);
+        if (array_key_exists('profesional', $param) && $param['profesional']) {
+            $dql->andwhere('a.profesionalCargo = :profesional');
+            $dql->setParameter('profesional', $param['profesional']);
+        }
+        if (array_key_exists('estado', $param) && $param['estado']) {
+            $dql->andwhere('a.estado = :estado');
+            $dql->setParameter('estado', $param['estado']);
         }
         // filtro para ver el expediente de su area
         // if (!$this->isGranted('ROLE_ADMIN')) {
@@ -79,21 +79,21 @@ class ExpedientesController extends Controller
         //   $dql->leftJoin('AppBundle:Areas','d',\Doctrine\ORM\Query\Expr\Join::WITH,'a.areaEncuentraExpediente = d.id');
         //   $dql->andwhere($dql->expr()->like('UPPER(d.nombre)', $dql->expr()->literal('%'.strtoupper($role).'%')));
         // }
-        if(array_key_exists('areaEncuentraExpediente',$param) && $param['areaEncuentraExpediente']){
-          $dql->andwhere('a.areaEncuentraExpediente = :areaEncuentraExpediente');
-          $dql->setParameter('areaEncuentraExpediente', $param['areaEncuentraExpediente']);
+        if (array_key_exists('areaEncuentraExpediente', $param) && $param['areaEncuentraExpediente']) {
+            $dql->andwhere('a.areaEncuentraExpediente = :areaEncuentraExpediente');
+            $dql->setParameter('areaEncuentraExpediente', $param['areaEncuentraExpediente']);
         }
 
-        if(array_key_exists('solicita_adelanto',$param) && $param['solicita_adelanto']) {
-          $solicitaAdelanto = $param['solicita_adelanto'] == 1 ? 'TRUE' : 'FALSE';
-          $dql->andwhere('a.solicitaAdelanto = :solicitaAdelanto');
-          $dql->setParameter('solicitaAdelanto', $solicitaAdelanto);
+        if (array_key_exists('solicita_adelanto', $param) && $param['solicita_adelanto']) {
+            $solicitaAdelanto = $param['solicita_adelanto'] == 1 ? 'TRUE' : 'FALSE';
+            $dql->andwhere('a.solicitaAdelanto = :solicitaAdelanto');
+            $dql->setParameter('solicitaAdelanto', $solicitaAdelanto);
         }
 
-        if(array_key_exists('plurianual',$param) && $param['plurianual']) {
-          $plurianual = $param['plurianual'] == 1 ? 'TRUE' : 'FALSE';
-          $dql->andwhere('a.plurianual = :plurianual');
-          $dql->setParameter('plurianual', $plurianual);
+        if (array_key_exists('plurianual', $param) && $param['plurianual']) {
+            $plurianual = $param['plurianual'] == 1 ? 'TRUE' : 'FALSE';
+            $dql->andwhere('a.plurianual = :plurianual');
+            $dql->setParameter('plurianual', $plurianual);
         }
 
         $paginator  = $this->get('knp_paginator');
@@ -123,7 +123,7 @@ class ExpedientesController extends Controller
         $expediente = new Expedientes();
         $hierarchy = $this->container->getParameter('security.role_hierarchy.roles');
         $roles = array();
-        array_walk_recursive($hierarchy[$this->getUser()->getRoles()[0]], function($role) use (&$roles) {
+        array_walk_recursive($hierarchy[$this->getUser()->getRoles()[0]], function ($role) use (&$roles) {
             $roles[] = $role;
         });
         $form = $this->createForm('AppBundle\Form\ExpedientesType', $expediente, ['roles' => $roles]);
@@ -133,10 +133,10 @@ class ExpedientesController extends Controller
             $em = $this->getDoctrine()->getManager();
             $arr = explode("-", $expediente->getNumeroInterno());
             $dpto = $em->getRepository('AppBundle:Departamentos')->findOneBy(array('provincia' => $arr[0], 'codigoPostal'=>$arr[1]));
-            if($dpto){
-              $expediente->setDepartamento($dpto);
+            if ($dpto) {
+                $expediente->setDepartamento($dpto);
             }
-            $expediente->setAnio(substr($arr[2],-2));
+            $expediente->setAnio(substr($arr[2], -2));
             $em->persist($expediente);
             $em->flush();
 
@@ -158,12 +158,17 @@ class ExpedientesController extends Controller
     public function showAction(Expedientes $expediente)
     {
         $deleteForm = $this->createDeleteForm($expediente);
-
+        $hierarchy = $this->container->getParameter('security.role_hierarchy.roles');
+        $roles = array();
+        array_walk_recursive($hierarchy[$this->getUser()->getRoles()[0]], function ($role) use (&$roles) {
+            $roles[] = $role;
+        });
         //SI EN OBSERVACIONES TIENE ALGO QUE DICE SEGUNDO TITULAR PONERLO COMO POSIBLE ERROR PARA SOLUCIONAR
 
         return $this->render('expedientes/show.html.twig', array(
             'expediente' => $expediente,
             'delete_form' => $deleteForm->createView(),
+            'roles' => $roles
         ));
     }
 
@@ -178,7 +183,7 @@ class ExpedientesController extends Controller
         $deleteForm = $this->createDeleteForm($expediente);
         $hierarchy = $this->container->getParameter('security.role_hierarchy.roles');
         $roles = array();
-        array_walk_recursive($hierarchy[$this->getUser()->getRoles()[0]], function($role) use (&$roles) {
+        array_walk_recursive($hierarchy[$this->getUser()->getRoles()[0]], function ($role) use (&$roles) {
             $roles[] = $role;
         });
         $editForm = $this->createForm('AppBundle\Form\ExpedientesType', $expediente, ['roles' => $roles]);
@@ -188,10 +193,10 @@ class ExpedientesController extends Controller
             $em = $this->getDoctrine()->getManager();
             $arr = explode("-", $expediente->getNumeroInterno());
             $dpto = $em->getRepository('AppBundle:Departamentos')->findOneBy(array('provincia' => $arr[0], 'codigoPostal'=>$arr[1]));
-            if($dpto){
-              $expediente->setDepartamento($dpto);
+            if ($dpto) {
+                $expediente->setDepartamento($dpto);
             }
-            $expediente->setAnio(substr($arr[2],-2));
+            $expediente->setAnio(substr($arr[2], -2));
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('expedientes_show', array(

@@ -82,14 +82,14 @@ class Expedientes
     */
     private $cobroBeneficios;
 
-     /**
-      * @var \Titulares
-      *
-      * @ORM\ManyToOne(targetEntity="Titulares")
-      * @ORM\JoinColumns({
-      *   @ORM\JoinColumn(name="entidad_agrupadora_id", referencedColumnName="id")
-      * })
-      */
+    /**
+     * @var \Titulares
+     *
+     * @ORM\ManyToOne(targetEntity="Titulares")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="entidad_agrupadora_id", referencedColumnName="id")
+     * })
+     */
     private $entidadAgrupadoraId;
 
     /**
@@ -146,44 +146,44 @@ class Expedientes
      */
     private $estadoAreaContable;
 
-     /**
-      * @var \Legales
-      *
-      * @ORM\ManyToOne(targetEntity="TiposEstadosLegales")
-      * @ORM\JoinColumns({
-      *   @ORM\JoinColumn(name="estado_area_legales_id", referencedColumnName="id")
-      * })
-      */
+    /**
+     * @var \Legales
+     *
+     * @ORM\ManyToOne(targetEntity="TiposEstadosLegales")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="estado_area_legales_id", referencedColumnName="id")
+     * })
+     */
     private $estadoAreaLegales;
 
-     /**
-      * @var \Promocion
-      *
-      * @ORM\ManyToOne(targetEntity="TiposEstadosPromocion")
-      * @ORM\JoinColumns({
-      *   @ORM\JoinColumn(name="estado_area_promocion_id", referencedColumnName="id")
-      * })
-      */
+    /**
+     * @var \Promocion
+     *
+     * @ORM\ManyToOne(targetEntity="TiposEstadosPromocion")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="estado_area_promocion_id", referencedColumnName="id")
+     * })
+     */
     private $estadoAreaPromocion;
 
-     /**
-      * @var \SIG
-      *
-      * @ORM\ManyToOne(targetEntity="TiposEstadosSig")
-      * @ORM\JoinColumns({
-      *   @ORM\JoinColumn(name="estado_area_sig_id", referencedColumnName="id")
-      * })
-      */
+    /**
+     * @var \SIG
+     *
+     * @ORM\ManyToOne(targetEntity="TiposEstadosSig")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="estado_area_sig_id", referencedColumnName="id")
+     * })
+     */
     private $estadoAreaSig;
 
-     /**
-      * @var \SIG
-      *
-      * @ORM\ManyToOne(targetEntity="Areas")
-      * @ORM\JoinColumns({
-      *   @ORM\JoinColumn(name="area_encuentra_expediente_id", referencedColumnName="id")
-      * })
-      */
+    /**
+     * @var \SIG
+     *
+     * @ORM\ManyToOne(targetEntity="Areas")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="area_encuentra_expediente_id", referencedColumnName="id")
+     * })
+     */
     private $areaEncuentraExpediente;
 
     /**
@@ -224,14 +224,14 @@ class Expedientes
      */
     private $createdAt;
 
-     /**
-      * @var \TiposEstadosForestoIndustrial
-      *
-      * @ORM\ManyToOne(targetEntity="TiposEstadosForestoIndustrial")
-      * @ORM\JoinColumns({
-      *   @ORM\JoinColumn(name="estado_foresto_industriales_id", referencedColumnName="id")
-      * })
-      */
+    /**
+     * @var \TiposEstadosForestoIndustrial
+     *
+     * @ORM\ManyToOne(targetEntity="TiposEstadosForestoIndustrial")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="estado_foresto_industriales_id", referencedColumnName="id")
+     * })
+     */
     private $estadoForestoIndustriales;
 
     /**
@@ -248,25 +248,25 @@ class Expedientes
      */
     private $usuarioId;
 
-     /**
-     * One Expediente has Many Actividades.
-     * @ORM\OneToMany(targetEntity="ActividadesPresentadas", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
-     * @ORM\OrderBy({"id" = "ASC"})
-     */
+    /**
+    * One Expediente has Many Actividades.
+    * @ORM\OneToMany(targetEntity="ActividadesPresentadas", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
+    * @ORM\OrderBy({"id" = "ASC"})
+    */
     private $actividadesPresentadas;
 
-      /**
-      * One Expediente has Many Actividades cert.
-      * @ORM\OneToMany(targetEntity="ActividadesCertificadas", cascade={"persist"}, mappedBy="expediente", orphanRemoval=true)
-      * @ORM\OrderBy({"id"="ASC"})
-      */
+    /**
+    * One Expediente has Many Actividades cert.
+    * @ORM\OneToMany(targetEntity="ActividadesCertificadas", cascade={"persist"}, mappedBy="expediente", orphanRemoval=true)
+    * @ORM\OrderBy({"id"="ASC"})
+    */
     private $actividadesCertificadas;
 
-     /**
-     * One Expediente has Many Actividades insp.
-     * @ORM\OneToMany(targetEntity="ActividadesInspeccionadas", mappedBy="expediente", cascade={"persist"}, orphanRemoval=true)
-     * @ORM\OrderBy({"id" = "ASC"})
-     */
+    /**
+    * One Expediente has Many Actividades insp.
+    * @ORM\OneToMany(targetEntity="ActividadesInspeccionadas", mappedBy="expediente", cascade={"persist"}, orphanRemoval=true)
+    * @ORM\OrderBy({"id" = "ASC"})
+    */
     private $actividadesInspeccionadas;
 
     /**
@@ -282,11 +282,11 @@ class Expedientes
     */
     private $actividadesAprobadas;
 
-     /**
-     * One Expediente has Many Documentacion.
-     * @ORM\OneToMany(targetEntity="Documentacion", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
-     * @ORM\OrderBy({"fechaPresentacion" = "ASC"})
-     */
+    /**
+    * One Expediente has Many Documentacion.
+    * @ORM\OneToMany(targetEntity="Documentacion", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
+    * @ORM\OrderBy({"id" = "ASC"})
+    */
     private $documentaciones;
 
     /**
@@ -387,126 +387,127 @@ class Expedientes
     * @ORM\OneToMany(targetEntity="DocumentosLegales", mappedBy="expediente")
     * @ORM\OrderBy({"id"="ASC"})
     */
-   private $documentosLegales;
+    private $documentosLegales;
 
-   /**
-   * One Expediente has Many ActividadesAprobadas.
-   * @ORM\OneToMany(targetEntity="Resoluciones", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
-   */
-   private $resoluciones;
-
-   /**
-   * One Expediente has Many DisposicionesProvinciales.
-   * @ORM\OneToMany(targetEntity="DisposicionesProvinciales", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
-   */
-   private $disposicionesProvinciales;
-
-   /**
-   * One Expediente has Many DisposicionesProvinciales.
-   * @ORM\OneToMany(targetEntity="DeclaracionIvaResolucion", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
-   */
-   private $declaracionIvaResoluciones;
-
-   /**
-   * One Expediente has Many DisposicionesProvinciales.
-   * @ORM\OneToMany(targetEntity="ProduccionVolumetrica", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
-   */
-   private $produccionesVolumetricas;
-
-   /**
-   * One Expediente has Many Garantias.
-   * @ORM\OneToMany(targetEntity="Garantias", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
-   */
-   private $garantias;
-
-   /**
-   * One Expediente has Many DisposicionesProvinciales.
-   * @ORM\OneToMany(targetEntity="DeclaracionIva", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
-   */
-   private $declaracionesIvas;
-
-   /**
-   * One Expediente has Many DisposicionesProvinciales.
-   * @ORM\OneToMany(targetEntity="AbastecimientoAproximado", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
-   */
-   private $cronogramaPlantaciones;
-
-   /**
-   * One Expediente has Many Beneficios Fiscales Solicitados.
-   * @ORM\OneToMany(targetEntity="BeneficiosFiscalesSolicitados", mappedBy="expediente", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
-   */
-   private $beneficiosFiscalesSolicitados;
-
-   /**
-   * One Expediente has Many EF.
-   * @ORM\OneToMany(targetEntity="ConsumoDebitado", mappedBy="expediente", cascade={"persist"}, orphanRemoval=true)
-   */
-   private $estabilidadFiscales;
-
-   /**
-   * One Expediente has Many EF.
-   * @ORM\OneToMany(targetEntity="Otbn", mappedBy="expediente", cascade={"persist"}, orphanRemoval=true)
-   */
-   private $otbns;
-
-   /**
-   * One Expediente has Many EF.
-   * @ORM\OneToMany(targetEntity="EvaluacionLegal", mappedBy="expediente", cascade={"persist"}, orphanRemoval=true)
-   */
-   private $evaluacionLegales;
-
-   /**
-   * One Expediente has Many EF.
-   * @ORM\OneToMany(targetEntity="EvaluacionTecnico", mappedBy="expediente", cascade={"persist"}, orphanRemoval=true)
-   */
-   private $evaluacionTecnicos;
-
-   /**
-    * @var boolean
-    *
-    * @ORM\Column(name="expedientes_agrupados_old", type="json_array", nullable=true)
+    /**
+    * One Expediente has Many ActividadesAprobadas.
+    * @ORM\OneToMany(targetEntity="Resoluciones", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
     */
-   private $expedientesAgrupadosOld;
+    private $resoluciones;
 
-   /**
-    * @var boolean
-    *
-    * @ORM\Column(name="agrupador", type="boolean", nullable=true)
+    /**
+    * One Expediente has Many DisposicionesProvinciales.
+    * @ORM\OneToMany(targetEntity="DisposicionesProvinciales", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
     */
-   private $agrupador;
+    private $disposicionesProvinciales;
 
-    public function __construct(){
-      $this->actividadesPresentadas = new ArrayCollection();
-      $this->actividadesCertificadas = new ArrayCollection();
-      $this->actividadesInspeccionadas = new ArrayCollection();
-      $this->actividadesTitulares = new ArrayCollection();
-      $this->actividadesSig = new ArrayCollection();
-      $this->documentaciones = new ArrayCollection();
-      $this->estadoSituaciones = new ArrayCollection();
-      $this->beneficiosFiscales = new ArrayCollection();
-      $this->impactosAmbientales = new ArrayCollection();
-      $this->historialContable = new ArrayCollection();
-      $this->historialLegales = new ArrayCollection();
-      $this->historialForestoIndustriales = new ArrayCollection();
-      $this->historialPromociones = new ArrayCollection();
-      $this->historialSigs = new ArrayCollection();
-      $this->titulares = new ArrayCollection();
-      $this->cobroBeneficios = new ArrayCollection();
-      $this->predios = new ArrayCollection();
-      $this->actividadesAprobadas = new ArrayCollection();
-      $this->documentosLegales = new ArrayCollection();
-      $this->resoluciones = new ArrayCollection();
-      $this->disposicionesProvinciales = new ArrayCollection();
-      $this->declaracionIvaResoluciones = new ArrayCollection();
-      $this->produccionesVolumetricas = new ArrayCollection();
-      $this->garantias = new ArrayCollection();
-      $this->declaracionesIva = new ArrayCollection();
-      $this->cronogramaPlantaciones = new ArrayCollection();
-      $this->beneficiosFiscalesSolicitados = new ArrayCollection();
-      $this->estabilidadFiscales = new ArrayCollection();
-      $this->otbns = new ArrayCollection();
-      $this->evaluacionTecnicos = new ArrayCollection();
-      $this->evaluacionLegales = new ArrayCollection();
+    /**
+    * One Expediente has Many DisposicionesProvinciales.
+    * @ORM\OneToMany(targetEntity="DeclaracionIvaResolucion", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
+    */
+    private $declaracionIvaResoluciones;
+
+    /**
+    * One Expediente has Many DisposicionesProvinciales.
+    * @ORM\OneToMany(targetEntity="ProduccionVolumetrica", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
+    */
+    private $produccionesVolumetricas;
+
+    /**
+    * One Expediente has Many Garantias.
+    * @ORM\OneToMany(targetEntity="Garantias", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
+    */
+    private $garantias;
+
+    /**
+    * One Expediente has Many DisposicionesProvinciales.
+    * @ORM\OneToMany(targetEntity="DeclaracionIva", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
+    */
+    private $declaracionesIvas;
+
+    /**
+    * One Expediente has Many DisposicionesProvinciales.
+    * @ORM\OneToMany(targetEntity="AbastecimientoAproximado", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
+    */
+    private $cronogramaPlantaciones;
+
+    /**
+    * One Expediente has Many Beneficios Fiscales Solicitados.
+    * @ORM\OneToMany(targetEntity="BeneficiosFiscalesSolicitados", mappedBy="expediente", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
+    */
+    private $beneficiosFiscalesSolicitados;
+
+    /**
+    * One Expediente has Many EF.
+    * @ORM\OneToMany(targetEntity="ConsumoDebitado", mappedBy="expediente", cascade={"persist"}, orphanRemoval=true)
+    */
+    private $estabilidadFiscales;
+
+    /**
+    * One Expediente has Many EF.
+    * @ORM\OneToMany(targetEntity="Otbn", mappedBy="expediente", cascade={"persist"}, orphanRemoval=true)
+    */
+    private $otbns;
+
+    /**
+    * One Expediente has Many EF.
+    * @ORM\OneToMany(targetEntity="EvaluacionLegal", mappedBy="expediente", cascade={"persist"}, orphanRemoval=true)
+    */
+    private $evaluacionLegales;
+
+    /**
+    * One Expediente has Many EF.
+    * @ORM\OneToMany(targetEntity="EvaluacionTecnico", mappedBy="expediente", cascade={"persist"}, orphanRemoval=true)
+    */
+    private $evaluacionTecnicos;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="expedientes_agrupados_old", type="json_array", nullable=true)
+     */
+    private $expedientesAgrupadosOld;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="agrupador", type="boolean", nullable=true)
+     */
+    private $agrupador;
+
+    public function __construct()
+    {
+        $this->actividadesPresentadas = new ArrayCollection();
+        $this->actividadesCertificadas = new ArrayCollection();
+        $this->actividadesInspeccionadas = new ArrayCollection();
+        $this->actividadesTitulares = new ArrayCollection();
+        $this->actividadesSig = new ArrayCollection();
+        $this->documentaciones = new ArrayCollection();
+        $this->estadoSituaciones = new ArrayCollection();
+        $this->beneficiosFiscales = new ArrayCollection();
+        $this->impactosAmbientales = new ArrayCollection();
+        $this->historialContable = new ArrayCollection();
+        $this->historialLegales = new ArrayCollection();
+        $this->historialForestoIndustriales = new ArrayCollection();
+        $this->historialPromociones = new ArrayCollection();
+        $this->historialSigs = new ArrayCollection();
+        $this->titulares = new ArrayCollection();
+        $this->cobroBeneficios = new ArrayCollection();
+        $this->predios = new ArrayCollection();
+        $this->actividadesAprobadas = new ArrayCollection();
+        $this->documentosLegales = new ArrayCollection();
+        $this->resoluciones = new ArrayCollection();
+        $this->disposicionesProvinciales = new ArrayCollection();
+        $this->declaracionIvaResoluciones = new ArrayCollection();
+        $this->produccionesVolumetricas = new ArrayCollection();
+        $this->garantias = new ArrayCollection();
+        $this->declaracionesIva = new ArrayCollection();
+        $this->cronogramaPlantaciones = new ArrayCollection();
+        $this->beneficiosFiscalesSolicitados = new ArrayCollection();
+        $this->estabilidadFiscales = new ArrayCollection();
+        $this->otbns = new ArrayCollection();
+        $this->evaluacionTecnicos = new ArrayCollection();
+        $this->evaluacionLegales = new ArrayCollection();
     }
 
     /**
@@ -642,19 +643,18 @@ class Expedientes
     public function addCobroBeneficio($ap)
     {
         if (true === $this->cobroBeneficios->contains($ap)) {
-           return;
-       }
-       $this->cobroBeneficios[] = $ap;
-       $ap->addExpediente($this);
-
+            return;
+        }
+        $this->cobroBeneficios[] = $ap;
+        $ap->addExpediente($this);
     }
 
     public function removeCobroBeneficio($ap)
     {
-      if (false === $this->cobroBeneficios->contains($ap)) {
-           return;
-       }
-       $this->cobroBeneficios->removeElement($ap);
+        if (false === $this->cobroBeneficios->contains($ap)) {
+            return;
+        }
+        $this->cobroBeneficios->removeElement($ap);
     }
 
     /**
@@ -1126,19 +1126,18 @@ class Expedientes
     public function addActividadesPresentada($ap)
     {
         if (true === $this->actividadesPresentadas->contains($ap)) {
-           return;
-       }
-       $this->actividadesPresentadas[] = $ap;
-       $ap->addExpediente($this);
-
+            return;
+        }
+        $this->actividadesPresentadas[] = $ap;
+        $ap->addExpediente($this);
     }
 
     public function removeActividadesPresentada($ap)
     {
-      if (false === $this->actividadesPresentadas->contains($ap)) {
-           return;
-       }
-       $this->actividadesPresentadas->removeElement($ap);
+        if (false === $this->actividadesPresentadas->contains($ap)) {
+            return;
+        }
+        $this->actividadesPresentadas->removeElement($ap);
     }
 
     /**
@@ -1154,19 +1153,18 @@ class Expedientes
     public function addActividadesSig($ap)
     {
         if (true === $this->actividadesSig->contains($ap)) {
-           return;
-       }
-       $this->actividadesSig[] = $ap;
-       $ap->addExpediente($this);
-
+            return;
+        }
+        $this->actividadesSig[] = $ap;
+        $ap->addExpediente($this);
     }
 
     public function removeActividadesSig($ap)
     {
-      if (false === $this->actividadesSig->contains($ap)) {
-           return;
-       }
-       $this->actividadesSig->removeElement($ap);
+        if (false === $this->actividadesSig->contains($ap)) {
+            return;
+        }
+        $this->actividadesSig->removeElement($ap);
     }
 
     public function getActividadesCertificadas()
@@ -1177,20 +1175,18 @@ class Expedientes
     public function addActividadesCertificada($ac)
     {
         if (true === $this->actividadesCertificadas->contains($ac)) {
-           return;
-       }
-       $this->actividadesCertificadas[] = $ac;
-       $ac->addExpediente($this);
-
+            return;
+        }
+        $this->actividadesCertificadas[] = $ac;
+        $ac->addExpediente($this);
     }
 
     public function removeActividadesCertificada($ac)
     {
-      if (false === $this->actividadesCertificadas->contains($ac)) {
-           return;
-       }
-       $this->actividadesCertificadas->removeElement($ac);
-
+        if (false === $this->actividadesCertificadas->contains($ac)) {
+            return;
+        }
+        $this->actividadesCertificadas->removeElement($ac);
     }
 
     public function getActividadesInspeccionadas()
@@ -1201,19 +1197,18 @@ class Expedientes
     public function addActividadesInspeccionada($ap)
     {
         if (true === $this->actividadesInspeccionadas->contains($ap)) {
-           return;
-       }
-       $this->actividadesInspeccionadas[] = $ap;
-       $ap->addExpediente($this);
-
+            return;
+        }
+        $this->actividadesInspeccionadas[] = $ap;
+        $ap->addExpediente($this);
     }
 
     public function removeActividadesInspeccionada($ap)
     {
-      if (false === $this->actividadesInspeccionadas->contains($ap)) {
-           return;
-       }
-       $this->actividadesInspeccionadas->removeElement($ap);
+        if (false === $this->actividadesInspeccionadas->contains($ap)) {
+            return;
+        }
+        $this->actividadesInspeccionadas->removeElement($ap);
     }
 
     public function getActividadesAprobadas()
@@ -1224,19 +1219,18 @@ class Expedientes
     public function addActividadesAprobada($ap)
     {
         if (true === $this->actividadesAprobadas->contains($ap)) {
-           return;
-       }
-       $this->actividadesAprobadas[] = $ap;
-       $ap->addExpediente($this);
-
+            return;
+        }
+        $this->actividadesAprobadas[] = $ap;
+        $ap->addExpediente($this);
     }
 
     public function removeActividadesAprobada($ap)
     {
-      if (false === $this->actividadesAprobadas->contains($ap)) {
-           return;
-       }
-       $this->actividadesAprobadas->removeElement($ap);
+        if (false === $this->actividadesAprobadas->contains($ap)) {
+            return;
+        }
+        $this->actividadesAprobadas->removeElement($ap);
     }
 
     public function getDocumentaciones()
@@ -1247,19 +1241,18 @@ class Expedientes
     public function addDocumentacion($ap)
     {
         if (true === $this->documentaciones->contains($ap)) {
-           return;
-       }
-       $this->documentaciones[] = $ap;
-       $ap->addExpediente($this);
-
+            return;
+        }
+        $this->documentaciones[] = $ap;
+        $ap->addExpediente($this);
     }
 
     public function removeDocumentacion($ap)
     {
-      if (false === $this->documentaciones->contains($ap)) {
-           return;
-       }
-       $this->documentaciones->removeElement($ap);
+        if (false === $this->documentaciones->contains($ap)) {
+            return;
+        }
+        $this->documentaciones->removeElement($ap);
     }
 
     public function getEstadoSituaciones()
@@ -1270,19 +1263,18 @@ class Expedientes
     public function addEstadoSituacion($ap)
     {
         if (true === $this->estadoSituaciones->contains($ap)) {
-           return;
-       }
-       $this->estadoSituaciones[] = $ap;
-       $ap->addExpediente($this);
-
+            return;
+        }
+        $this->estadoSituaciones[] = $ap;
+        $ap->addExpediente($this);
     }
 
     public function removeEstadoSituacion($ap)
     {
-      if (false === $this->estadoSituaciones->contains($ap)) {
-           return;
-       }
-       $this->estadoSituaciones->removeElement($ap);
+        if (false === $this->estadoSituaciones->contains($ap)) {
+            return;
+        }
+        $this->estadoSituaciones->removeElement($ap);
     }
 
     public function getActividadesTitulares()
@@ -1298,19 +1290,18 @@ class Expedientes
     public function addBeneficiosFiscal($ap)
     {
         if (true === $this->beneficiosFiscales->contains($ap)) {
-           return;
-       }
-       $this->beneficiosFiscales[] = $ap;
-       $ap->addExpediente($this);
-
+            return;
+        }
+        $this->beneficiosFiscales[] = $ap;
+        $ap->addExpediente($this);
     }
 
     public function removeBeneficiosFiscal($ap)
     {
-      if (false === $this->beneficiosFiscales->contains($ap)) {
-           return;
-       }
-       $this->beneficiosFiscales->removeElement($ap);
+        if (false === $this->beneficiosFiscales->contains($ap)) {
+            return;
+        }
+        $this->beneficiosFiscales->removeElement($ap);
     }
 
     public function getImpactosAmbientales()
@@ -1321,130 +1312,129 @@ class Expedientes
     public function addImpactosAmbiental($ap)
     {
         if (true === $this->impactosAmbientales->contains($ap)) {
-           return;
-       }
-       $this->impactosAmbientales[] = $ap;
-       $ap->addExpediente($this);
-
+            return;
+        }
+        $this->impactosAmbientales[] = $ap;
+        $ap->addExpediente($this);
     }
 
     public function removeImpactosAmbiental($ap)
     {
-      if (false === $this->impactosAmbientales->contains($ap)) {
-           return;
-       }
-       $this->impactosAmbientales->removeElement($ap);
+        if (false === $this->impactosAmbientales->contains($ap)) {
+            return;
+        }
+        $this->impactosAmbientales->removeElement($ap);
     }
 
     public function getHistorialContables()
     {
-      return $this->historialContables;
+        return $this->historialContables;
     }
     public function addHistorialContable($ap)
     {
         if (true === $this->historialContables->contains($ap)) {
-           return;
-       }
-       $this->historialContables[] = $ap;
-       $ap->addExpediente($this);
+            return;
+        }
+        $this->historialContables[] = $ap;
+        $ap->addExpediente($this);
     }
 
     public function removeHistorialContable($ap)
     {
-      if (false === $this->historialContables->contains($ap)) {
-           return;
-       }
-       $this->historialContables->removeElement($ap);
+        if (false === $this->historialContables->contains($ap)) {
+            return;
+        }
+        $this->historialContables->removeElement($ap);
     }
 
 
     public function getHistorialLegales()
     {
-      return $this->historialLegales;
+        return $this->historialLegales;
     }
     public function addHistorialLegal($ap)
     {
         if (true === $this->historialLegales->contains($ap)) {
-           return;
-       }
-       $this->historialLegales[] = $ap;
-       $ap->addExpediente($this);
+            return;
+        }
+        $this->historialLegales[] = $ap;
+        $ap->addExpediente($this);
     }
 
     public function removeHistorialLegal($ap)
     {
-      if (false === $this->historialLegales->contains($ap)) {
-           return;
-       }
-       $this->historialLegales->removeElement($ap);
+        if (false === $this->historialLegales->contains($ap)) {
+            return;
+        }
+        $this->historialLegales->removeElement($ap);
     }
 
     public function getHistorialForestoIndustriales()
     {
-      return $this->historialForestoIndustriales;
+        return $this->historialForestoIndustriales;
     }
 
     public function addHistorialForestoIndustrial($ap)
     {
         if (true === $this->historialForestoIndustriales->contains($ap)) {
-           return;
-       }
-       $this->historialForestoIndustriales[] = $ap;
-       $ap->addExpediente($this);
+            return;
+        }
+        $this->historialForestoIndustriales[] = $ap;
+        $ap->addExpediente($this);
     }
 
     public function removeHistorialForestoIndustrial($ap)
     {
-      if (false === $this->historialForestoIndustriales->contains($ap)) {
-           return;
-       }
-       $this->historialForestoIndustriales->removeElement($ap);
+        if (false === $this->historialForestoIndustriales->contains($ap)) {
+            return;
+        }
+        $this->historialForestoIndustriales->removeElement($ap);
     }
 
 
     public function getHistorialPromociones()
     {
-      return $this->historialPromociones;
+        return $this->historialPromociones;
     }
 
     public function addHistorialPromocion($ap)
     {
         if (true === $this->historialPromociones->contains($ap)) {
-           return;
-       }
-       $this->historialPromociones[] = $ap;
-       $ap->addExpediente($this);
+            return;
+        }
+        $this->historialPromociones[] = $ap;
+        $ap->addExpediente($this);
     }
 
     public function removeHistorialPromocion($ap)
     {
-      if (false === $this->historialPromociones->contains($ap)) {
-           return;
-       }
-       $this->historialPromociones->removeElement($ap);
+        if (false === $this->historialPromociones->contains($ap)) {
+            return;
+        }
+        $this->historialPromociones->removeElement($ap);
     }
 
 
     public function getHistorialSigS()
     {
-      return $this->historialSigs;
+        return $this->historialSigs;
     }
 
     public function addHistorialSig($ap)
     {
         if (true === $this->historialSigs->contains($ap)) {
-           return;
-       }
-       $this->historialSigs[] = $ap;
-       $ap->addExpediente($this);
+            return;
+        }
+        $this->historialSigs[] = $ap;
+        $ap->addExpediente($this);
     }
 
     public function removeHistorialSig($ap)
     {
-      if (false === $this->historialSigs->contains($ap)) {
-           return;
-       }
-       $this->historialSigs->removeElement($ap);
+        if (false === $this->historialSigs->contains($ap)) {
+            return;
+        }
+        $this->historialSigs->removeElement($ap);
     }
 
     /**
@@ -1460,18 +1450,18 @@ class Expedientes
     public function addPredio($ap)
     {
         if (true === $this->predios->contains($ap)) {
-           return;
-       }
-       $this->predios[] = $ap;
-       $ap->addExpediente($this);
-     }
+            return;
+        }
+        $this->predios[] = $ap;
+        $ap->addExpediente($this);
+    }
 
     public function removePredio($ap)
     {
-      if (false === $this->predios->contains($ap)) {
-           return;
-       }
-       $this->predios->removeElement($ap);
+        if (false === $this->predios->contains($ap)) {
+            return;
+        }
+        $this->predios->removeElement($ap);
     }
 
     public function setSolicitaAdelanto($solicitaAdelanto)
@@ -1500,7 +1490,7 @@ class Expedientes
 
     public function getTitulares()
     {
-      return $this->titulares;
+        return $this->titulares;
     }
 
     public function getDocumentosLegales()
@@ -1511,19 +1501,18 @@ class Expedientes
     public function addDocumentoLegal($ap)
     {
         if (true === $this->documentosLegales->contains($ap)) {
-           return;
-       }
-       $this->documentosLegales[] = $ap;
-       $ap->addExpediente($this);
-
+            return;
+        }
+        $this->documentosLegales[] = $ap;
+        $ap->addExpediente($this);
     }
 
     public function removeDocumentoLegal($ap)
     {
-      if (false === $this->documentosLegales->contains($ap)) {
-           return;
-       }
-       $this->documentosLegales->removeElement($ap);
+        if (false === $this->documentosLegales->contains($ap)) {
+            return;
+        }
+        $this->documentosLegales->removeElement($ap);
     }
 
     public function getResoluciones()
@@ -1534,19 +1523,18 @@ class Expedientes
     public function addResolucion($ap)
     {
         if (true === $this->resoluciones->contains($ap)) {
-           return;
-       }
-       $this->resoluciones[] = $ap;
-       $ap->addExpediente($this);
-
+            return;
+        }
+        $this->resoluciones[] = $ap;
+        $ap->addExpediente($this);
     }
 
     public function removeResolucion($ap)
     {
-      if (false === $this->resoluciones->contains($ap)) {
-           return;
-       }
-       $this->resoluciones->removeElement($ap);
+        if (false === $this->resoluciones->contains($ap)) {
+            return;
+        }
+        $this->resoluciones->removeElement($ap);
     }
 
     public function getDisposicionesProvinciales()
@@ -1557,19 +1545,18 @@ class Expedientes
     public function addDisposicionesProvincial($ap)
     {
         if (true === $this->disposicionesProvinciales->contains($ap)) {
-           return;
-       }
-       $this->disposicionesProvinciales[] = $ap;
-       $ap->addExpediente($this);
-
+            return;
+        }
+        $this->disposicionesProvinciales[] = $ap;
+        $ap->addExpediente($this);
     }
 
     public function removeDisposicionesProvincial($ap)
     {
-      if (false === $this->disposicionesProvinciales->contains($ap)) {
-           return;
-       }
-       $this->disposicionesProvinciales->removeElement($ap);
+        if (false === $this->disposicionesProvinciales->contains($ap)) {
+            return;
+        }
+        $this->disposicionesProvinciales->removeElement($ap);
     }
 
     public function getDeclaracionIvaResoluciones()
@@ -1580,19 +1567,18 @@ class Expedientes
     public function addDeclaracionIvaResolucion($ap)
     {
         if (true === $this->declaracionIvaResoluciones->contains($ap)) {
-           return;
-       }
-       $this->declaracionIvaResoluciones[] = $ap;
-       $ap->addExpediente($this);
-
+            return;
+        }
+        $this->declaracionIvaResoluciones[] = $ap;
+        $ap->addExpediente($this);
     }
 
     public function removeDeclaracionIvaResolucion($ap)
     {
-      if (false === $this->declaracionIvaResoluciones->contains($ap)) {
-           return;
-       }
-       $this->declaracionIvaResoluciones->removeElement($ap);
+        if (false === $this->declaracionIvaResoluciones->contains($ap)) {
+            return;
+        }
+        $this->declaracionIvaResoluciones->removeElement($ap);
     }
 
     public function getProduccionesVolumetricas()
@@ -1603,203 +1589,197 @@ class Expedientes
     public function addProduccionesVolumetrica($ap)
     {
         if (true === $this->produccionesVolumetricas->contains($ap)) {
-           return;
-       }
-       $this->produccionesVolumetricas[] = $ap;
-       $ap->addExpediente($this);
-
+            return;
+        }
+        $this->produccionesVolumetricas[] = $ap;
+        $ap->addExpediente($this);
     }
 
     public function removeProduccionesVolumetrica($ap)
     {
-      if (false === $this->produccionesVolumetricas->contains($ap)) {
-           return;
-       }
-       $this->produccionesVolumetricas->removeElement($ap);
+        if (false === $this->produccionesVolumetricas->contains($ap)) {
+            return;
+        }
+        $this->produccionesVolumetricas->removeElement($ap);
     }
 
     public function getGarantias()
     {
-      return $this->garantias;
+        return $this->garantias;
     }
 
     public function addGarantia($ap)
     {
         if (true === $this->garantias->contains($ap)) {
-           return;
-       }
-       $this->garantias[] = $ap;
-       $ap->addExpediente($this);
-
+            return;
+        }
+        $this->garantias[] = $ap;
+        $ap->addExpediente($this);
     }
 
     public function removeGarantia($ap)
     {
-      if (false === $this->garantias->contains($ap)) {
-           return;
-       }
-       $this->garantias->removeElement($ap);
+        if (false === $this->garantias->contains($ap)) {
+            return;
+        }
+        $this->garantias->removeElement($ap);
     }
 
-    public function getDeclaracionesIvas(){
-      return $this->declaracionesIvas;
+    public function getDeclaracionesIvas()
+    {
+        return $this->declaracionesIvas;
     }
 
     public function addDeclaracionesIva($ap)
     {
-      if (true === $this->declaracionesIvas->contains($ap)) {
-        return;
-      }
-      $this->declaracionesIvas[] = $ap;
-      $ap->addExpediente($this);
-
+        if (true === $this->declaracionesIvas->contains($ap)) {
+            return;
+        }
+        $this->declaracionesIvas[] = $ap;
+        $ap->addExpediente($this);
     }
 
 
     public function removeDeclaracionesIva($ap)
     {
-      if (false === $this->declaracionesIvas->contains($ap)) {
-           return;
-       }
-       $this->declaracionesIvas->removeElement($ap);
+        if (false === $this->declaracionesIvas->contains($ap)) {
+            return;
+        }
+        $this->declaracionesIvas->removeElement($ap);
     }
 
-    public function getCronogramaPlantaciones(){
-      return $this->cronogramaPlantaciones;
+    public function getCronogramaPlantaciones()
+    {
+        return $this->cronogramaPlantaciones;
     }
 
     public function addCronogramaPlantacion($ap)
     {
-      if (true === $this->cronogramaPlantaciones->contains($ap)) {
-        return;
-      }
-      $this->cronogramaPlantaciones[] = $ap;
-      $ap->addExpediente($this);
-
+        if (true === $this->cronogramaPlantaciones->contains($ap)) {
+            return;
+        }
+        $this->cronogramaPlantaciones[] = $ap;
+        $ap->addExpediente($this);
     }
 
 
     public function removeCronogramaPlantacion($ap)
     {
-      if (false === $this->cronogramaPlantaciones->contains($ap)) {
-           return;
-       }
-       $this->cronogramaPlantaciones->removeElement($ap);
+        if (false === $this->cronogramaPlantaciones->contains($ap)) {
+            return;
+        }
+        $this->cronogramaPlantaciones->removeElement($ap);
     }
 
 
-    public function getBeneficiosFiscalesSolicitados(){
-      return $this->beneficiosFiscalesSolicitados;
+    public function getBeneficiosFiscalesSolicitados()
+    {
+        return $this->beneficiosFiscalesSolicitados;
     }
 
     public function addBeneficiosFiscalesSolicitado($ap)
     {
         if (true === $this->beneficiosFiscalesSolicitados->contains($ap)) {
-           return;
-       }
-       $this->beneficiosFiscalesSolicitados[] = $ap;
-       $ap->addExpediente($this);
-
+            return;
+        }
+        $this->beneficiosFiscalesSolicitados[] = $ap;
+        $ap->addExpediente($this);
     }
 
     public function removeBeneficiosFiscalesSolicitado($ap)
     {
-      if (false === $this->beneficiosFiscalesSolicitados->contains($ap)) {
-           return;
-       }
-       $this->beneficiosFiscalesSolicitados->removeElement($ap);
+        if (false === $this->beneficiosFiscalesSolicitados->contains($ap)) {
+            return;
+        }
+        $this->beneficiosFiscalesSolicitados->removeElement($ap);
     }
 
     public function getEstabilidadFiscales()
     {
-      return $this->estabilidadFiscales;
+        return $this->estabilidadFiscales;
     }
 
     public function addEstabilidadFiscal($ap)
     {
         if (true === $this->estabilidadFiscales->contains($ap)) {
-           return;
-       }
-       $this->estabilidadFiscales[] = $ap;
-       $ap->addExpediente($this);
-
+            return;
+        }
+        $this->estabilidadFiscales[] = $ap;
+        $ap->addExpediente($this);
     }
 
     public function removeEstabilidadFiscal($ap)
     {
-      if (false === $this->estabilidadFiscales->contains($ap)) {
-           return;
-       }
-       $this->estabilidadFiscales->removeElement($ap);
+        if (false === $this->estabilidadFiscales->contains($ap)) {
+            return;
+        }
+        $this->estabilidadFiscales->removeElement($ap);
     }
 
     public function getOtbns()
     {
-      return $this->otbns;
+        return $this->otbns;
     }
 
     public function addOtbn($ap)
     {
         if (true === $this->otbns->contains($ap)) {
-           return;
-       }
-       $this->otbns[] = $ap;
-       $ap->addExpediente($this);
-
+            return;
+        }
+        $this->otbns[] = $ap;
+        $ap->addExpediente($this);
     }
 
     public function removeOtbn($ap)
     {
-      if (false === $this->otbns->contains($ap)) {
-           return;
-       }
-       $this->otbns->removeElement($ap);
+        if (false === $this->otbns->contains($ap)) {
+            return;
+        }
+        $this->otbns->removeElement($ap);
     }
 
     public function getEvaluacionTecnicos()
     {
-      return $this->evaluacionTecnicos;
+        return $this->evaluacionTecnicos;
     }
 
     public function addEvaluacionTecnico($ap)
     {
         if (true === $this->evaluacionTecnicos->contains($ap)) {
-           return;
-       }
-       $this->evaluacionTecnicos[] = $ap;
-       $ap->addExpediente($this);
-
+            return;
+        }
+        $this->evaluacionTecnicos[] = $ap;
+        $ap->addExpediente($this);
     }
 
     public function removeEvaluacionTecnico($ap)
     {
-      if (false === $this->evaluacionTecnicos->contains($ap)) {
-           return;
-       }
-       $this->evaluacionTecnicos->removeElement($ap);
+        if (false === $this->evaluacionTecnicos->contains($ap)) {
+            return;
+        }
+        $this->evaluacionTecnicos->removeElement($ap);
     }
 
     public function getEvaluacionLegales()
     {
-      return $this->evaluacionLegales;
+        return $this->evaluacionLegales;
     }
 
     public function addEvaluacionLegal($ap)
     {
         if (true === $this->evaluacionLegales->contains($ap)) {
-           return;
-       }
-       $this->evaluacionLegales[] = $ap;
-       $ap->addExpediente($this);
-
+            return;
+        }
+        $this->evaluacionLegales[] = $ap;
+        $ap->addExpediente($this);
     }
 
     public function removeEvaluacionLegal($ap)
     {
-      if (false === $this->evaluacionLegales->contains($ap)) {
-           return;
-       }
-       $this->evaluacionLegales->removeElement($ap);
+        if (false === $this->evaluacionLegales->contains($ap)) {
+            return;
+        }
+        $this->evaluacionLegales->removeElement($ap);
     }
 
     /**
@@ -1816,13 +1796,15 @@ class Expedientes
         return $this;
     }
 
-    public function getAgrupador(){
-      return $this->agrupador;
+    public function getAgrupador()
+    {
+        return $this->agrupador;
     }
 
-    public function setAgrupador($agrupador){
-      $this->agrupador = $agrupador;
-      return $this;
+    public function setAgrupador($agrupador)
+    {
+        $this->agrupador = $agrupador;
+        return $this;
     }
     /**
      * Gets triggered only on insert

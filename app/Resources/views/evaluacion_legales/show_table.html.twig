@@ -1,22 +1,30 @@
 <table class="table">
   <thead>
     <tr>
+      <th scope="col">Aprobado</th>
       <th scope="col">Resolución</th>
-      <th scope="col">Fecha Entrada</th>
-      <th scope="col">Fecha Salida</th>
-      <th scope="col">Fecha Carga</th>
+      <th scope="col">Fecha</th>
       <th scope="col">Observación</th>
     </tr>
   </thead>
   <tbody>
-    {% for item in impactosAmbientales %}
-      <tr>
-        <td>{{item.resolucionNumero}}</td>
-        <td>{{item.fechaEntrada|date('d-m-Y')}}</td>
-        <td>{{item.fechaSalida|date('d-m-Y')}}</td>
-        <td>{{item.fechaRealCarga|date('d-m-Y')}}</td>
-        <td>{{item.observacion}}</td>
-      </tr>
+    {% for item in evaluacionLegales %}
+    <tr>
+      <td>{% if item.aprobado %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</td>
+      <td>{{item.resolucion}}</td>
+      <td>{% if item.fecha %}{{item.fecha|date('Y-m')}}{% endif %}</td>
+      <td>{{item.observacion}}</td>
+      {% if (expediente.plurianual == true or expediente.agrupador) and ('impactosAmbientales' in roles) %}
+      <td>
+        <a href="#" data-toggle="modal" data-modal="editItem" data-type="evaluacionlegales" data-modal-name='evaluacionLegalesModal' data-id="{{expediente.id}}" data-item='{{item.id}}'>
+          <span class="fa fa-edit" aria-hidden="true"></span>
+        </a>
+        <a href="" class="removeItem" data-type="evaluacionlegales" data-item='{{item.id}}' data-message='¿Está seguro que desea eliminar la Evaluación?'>
+          <span class="fa fa-remove" aria-hidden="true"></span>
+        </a>
+      </td>
+      {% endif %}
+    </tr>
     {% endfor %}
   </tbody>
 </table>
