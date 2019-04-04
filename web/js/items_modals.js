@@ -41,6 +41,7 @@ $(document).ready(function() {
     var data = $('form[id=form_' + formName + ']').serializeArray();
     $.ajax({
       type: "POST",
+      headers: { 'content-type': 'application/x-www-form-urlencoded' },
       url: id + '/' + formName + '/create',
       data: data,
       dataType: 'json',
@@ -122,6 +123,7 @@ $(document).ready(function() {
     var url = (formName === 'expediente') ? id + '/' + formName + '/edit' : id + '/' + formName + '/' + itemId + '/edit';
     $.ajax({
       type: "POST",
+      headers: { 'content-type': 'application/x-www-form-urlencoded' },
       url: url,
       data: data,
       dataType: 'json',
@@ -154,6 +156,7 @@ $(document).ready(function() {
         var itemId = $(this).data('item');
         $.ajax({
             url: type + '/remove',
+            headers: { 'content-type': 'application/x-www-form-urlencoded' },
             data: {
               'entityId': itemId
             },
