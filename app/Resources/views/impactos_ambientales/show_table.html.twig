@@ -28,7 +28,7 @@
         <td>{{item.etapa}}</td>
         {% endif %}
         <td>{{item.observacion}}</td>
-        {% if (expediente.plurianual == true or expediente.agrupador) and ('impactosAmbientales' in roles) %}
+        {% if (expediente.plurianual == true or expediente.agrupador == true or countItems > 600) and ('impactosAmbientales' in roles) %}
         <td>
           <a href="#" data-toggle="modal" data-modal="editItem" data-type="impactosambientales" data-modal-name='impactosAmbientalesModal' data-id="{{expediente.id}}" data-item='{{item.id}}'>
             <span class="fa fa-edit" aria-hidden="true"></span>

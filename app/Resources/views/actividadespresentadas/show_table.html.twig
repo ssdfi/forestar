@@ -30,7 +30,7 @@
         <td>{% if actividadPresentada.titularAgrupado %}<a href="{{path('titulares_show', { 'id': actividadPresentada.titularAgrupado.id })}}">{{actividadPresentada.titularAgrupado}}</a>{% endif %}</th>
       {% endif %}
       <td>{% if actividadPresentada.fechaRealizacion %}{{ actividadPresentada.fechaRealizacion|date('m/Y') }}{% endif %}</td>
-      {% if (expediente.plurianual == true or expediente.agrupador) and ('actividadesPresentadas' in roles) %}
+      {% if (expediente.plurianual == true or expediente.agrupador == true or countItems > 600) and ('actividadesPresentadas' in roles) %}
         <td>
           <a href="#" data-toggle="modal" data-modal="editItem" data-type="actividadespresentadas" data-modal-name='actividadPresentadaModal' data-id="{{expediente.id}}" data-item='{{actividadPresentada.id}}'>
             <span class="fa fa-edit" aria-hidden="true"></span>

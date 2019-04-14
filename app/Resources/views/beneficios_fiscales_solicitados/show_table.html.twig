@@ -30,7 +30,7 @@
 					<td>{{item.etapa}}</td>
 				{% endif %}
 				<td>{{item.observaciones}}</td>
-				{% if (expediente.plurianual == true or expediente.agrupador) and('beneficiosFiscalesSolicitados' in roles) %}
+				{% if (expediente.plurianual == true or expediente.agrupador == true or countItems > 600) and('beneficiosFiscalesSolicitados' in roles) %}
 					<td>
 						<a href="#" data-toggle="modal" data-modal="editItem" data-type="beneficiosfiscalessolicitados" data-modal-name='beneficiosFiscalesSolicitados' data-id="{{expediente.id}}" data-item='{{item.id}}'>
 							<span class="fa fa-edit" aria-hidden="true"></span>

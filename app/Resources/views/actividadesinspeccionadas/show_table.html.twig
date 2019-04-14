@@ -31,7 +31,7 @@
         <td>{% if actividadInspeccionada.titularAgrupado %}<a href="{{path('titulares_show', { 'id': actividadInspeccionada.titularAgrupado.id })}}">{{actividadInspeccionada.titularAgrupado}}</a>{% endif %}</th>
       {% endif %}
       <td>{% if actividadInspeccionada.fechaInspeccion %}{{ actividadInspeccionada.fechaInspeccion|date('m-Y') }}{% endif %}</td>
-      {% if (expediente.plurianual == true or expediente.agrupador) and ('actividadesInspeccionadas' in roles) %}
+      {% if (expediente.plurianual == true or expediente.agrupador == true or countItems > 600) and ('actividadesInspeccionadas' in roles) %}
         <td>
           <a href="#" data-toggle="modal" data-modal="editItem" data-type="actividadesinspeccionadas" data-modal-name='actividadInspeccionadaModal' data-id="{{expediente.id}}" data-item='{{actividadInspeccionada.id}}'>
             <span class="fa fa-edit" aria-hidden="true"></span>

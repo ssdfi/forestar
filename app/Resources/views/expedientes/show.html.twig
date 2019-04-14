@@ -6,18 +6,21 @@
 {% endblock %}
 {% block navbarRight %}
 	<li class="nav-item active">
-		{% if (expediente.plurianual == true or expediente.agrupador == true) %}
+		{% if (expediente.plurianual == true or expediente.agrupador == true or countItems > 600) %}
 		{% if is_granted('ROLE_DATA_ENTRY') %}
 				{% else %}
 				<a class="nav-link" href="{{path('expedientes_edit', {'id': expediente.id})}}">
 					<span class="fa fa-edit" aria-hidden="true"></span>
 					Editar Expediente</a>
 		{% endif %}
-
 		{% else %}
-		<a class="nav-link" href="{{path('expedientes_edit', {'id': expediente.id})}}">
-			<span class="fa fa-edit" aria-hidden="true"></span>
-			Editar Expediente</a>
+		{% if countItems > 600 and is_granted('ROLE_DATA_ENTRY') %}
+		<!-- DATA ENTRY EDITA DIRECTAMENTE DESDE ESTA VISTA -->
+		{% else %}
+			<a class="nav-link" href="{{path('expedientes_edit', {'id': expediente.id})}}">
+				<span class="fa fa-edit" aria-hidden="true"></span>
+				Editar Expediente</a>
+			{% endif %}
 		{% endif %}
 	</li>
 {% endblock %}
@@ -67,7 +70,7 @@
 				<div class="card border-info">
 					<div class="card-header bg-info text-white">
 						Expediente
-						{% if 'expediente' in roles and (expediente.plurianual == true or expediente.agrupador == true) %}
+						{% if 'expediente' in roles and (expediente.plurianual == true or expediente.agrupador == true or countItems > 600) %}
 							<a href="{{ path('_expediente_plurianual_edit', {id: expediente.id})}}" class="text-white pull-right">
 								<span class="fa fa-edit" aria-hidden="true"></span>
 								Editar Datos Expediente
@@ -183,7 +186,7 @@
 						{% embed "actividadespresentadas/show_table.html.twig" with {
 							'actividadesPresentadas' : expediente.actividadesPresentadas
 						} %}{% endembed %}
-						{% if 'actividadesPresentadas' in roles and (expediente.plurianual == true or expediente.agrupador == true) %}
+						{% if 'actividadesPresentadas' in roles and (expediente.plurianual == true or expediente.agrupador == true or countItems > 600) %}
 							{% embed "actividadespresentadas/modal.html.twig" with {
 								'expediente' : expediente.id
 							} %}{% endembed %}
@@ -199,7 +202,7 @@
 						{% embed "actividadescertificadas/show_table.html.twig" with {
 							'actividadesCertificadas' : expediente.actividadesCertificadas
 						} %}{% endembed %}
-						{% if 'actividadesCertificadas' in roles and (expediente.plurianual == true or expediente.agrupador == true) %}
+						{% if 'actividadesCertificadas' in roles and (expediente.plurianual == true or expediente.agrupador == true or countItems > 600) %}
 							{% embed "actividadescertificadas/modal.html.twig" with {
 								'expediente' : expediente.id
 							} %}{% endembed %}
@@ -214,7 +217,7 @@
 						{% embed "actividadesinspeccionadas/show_table.html.twig" with {
 							'actividadesInspeccionadas' : expediente.actividadesInspeccionadas
 						} %}{% endembed %}
-						{% if 'actividadesInspeccionadas' in roles and (expediente.plurianual == true or expediente.agrupador == true) %}
+						{% if 'actividadesInspeccionadas' in roles and (expediente.plurianual == true or expediente.agrupador == true or countItems > 600) %}
 							{% embed "actividadesinspeccionadas/modal.html.twig" with {
 								'expediente' : expediente.id
 							} %}{% endembed %}
@@ -234,7 +237,7 @@
 						{% embed "documentacion/show_table.html.twig" with {
 							'documentacion' : expediente.documentaciones
 						} %}{% endembed %}
-						{% if ('documentaciones' in roles) and (expediente.plurianual == true or expediente.agrupador == true) %}
+						{% if ('documentaciones' in roles) and (expediente.plurianual == true or expediente.agrupador == true or countItems > 600) %}
 							{% embed "documentacion/modal.html.twig" with {
 								'expediente' : expediente.id
 							} %}{% endembed %}
@@ -253,7 +256,7 @@
 						{% embed "estado_situacion/show_table.html.twig" with {
 							'estadoSituacion' : expediente.estadoSituaciones
 						} %}{% endembed %}
-						{% if 'estadoSituaciones' in roles and (expediente.plurianual == true or expediente.agrupador == true) %}
+						{% if 'estadoSituaciones' in roles and (expediente.plurianual == true or expediente.agrupador == true or countItems > 600) %}
 							{% embed "estado_situacion/modal.html.twig" with {
 								'expediente' : expediente.id
 							} %}{% endembed %}
@@ -268,7 +271,7 @@
 						{% embed "beneficios_fiscales_solicitados/show_table.html.twig" with {
 							'beneficiosFiscalesSolicitados' : expediente.BeneficiosFiscalesSolicitados
 						} %}{% endembed %}
-						{% if 'beneficiosFiscalesSolicitados' in roles and (expediente.plurianual == true or expediente.agrupador == true) %}
+						{% if 'beneficiosFiscalesSolicitados' in roles and (expediente.plurianual == true or expediente.agrupador == true or countItems > 600) %}
 							{% embed "beneficios_fiscales_solicitados/modal.html.twig" with {
 								'expediente' : expediente.id
 							} %}{% endembed %}
@@ -330,7 +333,7 @@
 							{% embed "impactos_ambientales/show_table.html.twig" with {
 								'impactosAmbientales' : expediente.impactosAmbientales
 							} %}{% endembed %}
-							{% if 'impactosAmbientales' in roles and (expediente.plurianual == true or expediente.agrupador == true) %}
+							{% if 'impactosAmbientales' in roles and (expediente.plurianual == true or expediente.agrupador == true or countItems > 600) %}
 								{% embed "impactos_ambientales/modal.html.twig" with {
 									'expediente' : expediente.id
 								} %}{% endembed %}
@@ -345,7 +348,7 @@
 							{% embed "otbns/show_table.html.twig" with {
 								'otbns' : expediente.otbns
 							} %}{% endembed %}
-							{% if 'otbn' in roles and (expediente.plurianual == true or expediente.agrupador == true) %}
+							{% if 'otbn' in roles and (expediente.plurianual == true or expediente.agrupador == true or countItems > 600) %}
 								{% embed "otbns/modal.html.twig" with {
 									'expediente' : expediente.id
 								} %}{% endembed %}
@@ -360,7 +363,7 @@
 							{% embed "evaluacion_tecnicos/show_table.html.twig" with {
 								'evaluacionTecnicos' : expediente.evaluacionTecnicos
 							} %}{% endembed %}
-							{% if 'evaluacionTecnico' in roles and (expediente.plurianual == true or expediente.agrupador == true) %}
+							{% if 'evaluacionTecnico' in roles and (expediente.plurianual == true or expediente.agrupador == true or countItems > 600) %}
 								{% embed "evaluacion_tecnicos/modal.html.twig" with {
 									'expediente' : expediente.id
 								} %}{% endembed %}
@@ -375,7 +378,7 @@
 							{% embed "evaluacion_legales/show_table.html.twig" with {
 								'evaluacionLegales' : expediente.evaluacionLegales
 							} %}{% endembed %}
-							{% if 'evaluacionLegal' in roles and (expediente.plurianual == true or expediente.agrupador == true) %}
+							{% if 'evaluacionLegal' in roles and (expediente.plurianual == true or expediente.agrupador == true or countItems > 600) %}
 								{% embed "evaluacion_legales/modal.html.twig" with {
 									'expediente' : expediente.id
 								} %}{% endembed %}

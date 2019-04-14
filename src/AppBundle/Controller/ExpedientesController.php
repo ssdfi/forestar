@@ -163,13 +163,27 @@ class ExpedientesController extends Controller
         array_walk_recursive($hierarchy[$this->getUser()->getRoles()[0]], function ($role) use (&$roles) {
             $roles[] = $role;
         });
+        $count = $this->getCountItems($expediente);
         //SI EN OBSERVACIONES TIENE ALGO QUE DICE SEGUNDO TITULAR PONERLO COMO POSIBLE ERROR PARA SOLUCIONAR
 
         return $this->render('expedientes/show.html.twig', array(
             'expediente' => $expediente,
             'delete_form' => $deleteForm->createView(),
-            'roles' => $roles
+            'roles' => $roles,
+            'countItems' => $count
         ));
+    }
+
+    private function getCountItems(Expedientes $expediente)
+    {
+        $count = (count($expediente->getActividadesPresentadas()) * 10) + 10;
+        $count += (count($expediente->getActividadesCertificadas()) * 26) + 26;
+        $count += (count($expediente->getActividadesInspeccionadas()) * 14) + 14;
+        $count += (count($expediente->getPredios()) * 25) + 25;
+        $count += (count($expediente->getDocumentaciones()) * 4) + 4;
+        $count += (count($expediente->getBeneficiosFiscalesSolicitados()) * 5) + 5;
+        $count += 16; //propio del expediente
+        return $count;
     }
 
     /**

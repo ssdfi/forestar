@@ -26,7 +26,7 @@
         <td>{% if item.titularAgrupado %}<a href="{{path('titulares_show', { 'id': item.titularAgrupado.id })}}">{{item.titularAgrupado}}</a>{% endif %}</th>
        {% endif %}
        <td>{{item.fechaPresentacion|date('d-m-Y')}}</td>
-       {% if (expediente.plurianual == true or expediente.agrupador) and ('documentaciones' in roles) %}
+       {% if (expediente.plurianual == true or expediente.agrupador == true or countItems > 600) and ('documentaciones' in roles) %}
        <td>
          <a href="#" data-toggle="modal" data-modal="editItem" data-type="documentacion" data-modal-name='documentacionModal' data-id="{{expediente.id}}" data-item='{{item.id}}'>
            <span class="fa fa-edit" aria-hidden="true"></span>

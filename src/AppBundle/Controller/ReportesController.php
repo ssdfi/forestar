@@ -35,101 +35,101 @@ class ReportesController extends Controller
 
         $dql = $em->createQueryBuilder();
         $dql->select('a')
-             ->from('AppBundle:Expedientes','a')
-             ->leftJoin('AppBundle:Departamentos','d',\Doctrine\ORM\Query\Expr\Join::WITH,'a.departamento = d.id')
-             ->leftJoin('AppBundle:Provincias','p',\Doctrine\ORM\Query\Expr\Join::WITH,'d.provincia = p.id');
+             ->from('AppBundle:Expedientes', 'a')
+             ->leftJoin('AppBundle:Departamentos', 'd', \Doctrine\ORM\Query\Expr\Join::WITH, 'a.departamento = d.id')
+             ->leftJoin('AppBundle:Provincias', 'p', \Doctrine\ORM\Query\Expr\Join::WITH, 'd.provincia = p.id');
 
-         $data['actividadPresentada'] = 0;
-         $data['actividadCertificada'] = 0;
-         $data['actividadInspeccionada'] = 0;
-         $data['actividadPagada'] = 0;
-         $data['montoPagado'] = 0;
+        $data['actividadPresentada'] = 0;
+        $data['actividadCertificada'] = 0;
+        $data['actividadInspeccionada'] = 0;
+        $data['actividadPagada'] = 0;
+        $data['montoPagado'] = 0;
 
-         $dqlcountPresentada = $em->createQueryBuilder();
-         $dqlcountCertificada = $em->createQueryBuilder();
-         $dqlcountInspeccionada = $em->createQueryBuilder();
-         $dqlcountPagada = $em->createQueryBuilder();
-         $dqlcountPresentada->select('count(ap.expediente) as actividadPresentada')
-              ->from('AppBundle:Expedientes','e')
-              ->leftJoin('AppBundle:ActividadesPresentadas','ap',\Doctrine\ORM\Query\Expr\Join::WITH,'ap.expediente = e.id')
-              ->leftJoin('AppBundle:Departamentos','d',\Doctrine\ORM\Query\Expr\Join::WITH,'e.departamento = d.id')
-              ->leftJoin('AppBundle:Provincias','p',\Doctrine\ORM\Query\Expr\Join::WITH,'d.provincia = p.id');
+        $dqlcountPresentada = $em->createQueryBuilder();
+        $dqlcountCertificada = $em->createQueryBuilder();
+        $dqlcountInspeccionada = $em->createQueryBuilder();
+        $dqlcountPagada = $em->createQueryBuilder();
+        $dqlcountPresentada->select('count(ap.expediente) as actividadPresentada')
+              ->from('AppBundle:Expedientes', 'e')
+              ->leftJoin('AppBundle:ActividadesPresentadas', 'ap', \Doctrine\ORM\Query\Expr\Join::WITH, 'ap.expediente = e.id')
+              ->leftJoin('AppBundle:Departamentos', 'd', \Doctrine\ORM\Query\Expr\Join::WITH, 'e.departamento = d.id')
+              ->leftJoin('AppBundle:Provincias', 'p', \Doctrine\ORM\Query\Expr\Join::WITH, 'd.provincia = p.id');
         $dqlcountCertificada->select('count(ac.expediente) as actividadCertificada')
-             ->from('AppBundle:Expedientes','e')
-             ->leftJoin('AppBundle:ActividadesCertificadas','ac',\Doctrine\ORM\Query\Expr\Join::WITH,'ac.expediente = e.id')
-             ->leftJoin('AppBundle:Departamentos','d',\Doctrine\ORM\Query\Expr\Join::WITH,'e.departamento = d.id')
-             ->leftJoin('AppBundle:Provincias','p',\Doctrine\ORM\Query\Expr\Join::WITH,'d.provincia = p.id');
-         $dqlcountInspeccionada->select('count(ai.expediente) as actividadInspeccionada')
-              ->from('AppBundle:Expedientes','e')
-              ->leftJoin('AppBundle:ActividadesInspeccionadas','ai',\Doctrine\ORM\Query\Expr\Join::WITH,'ai.expediente = e.id')
-              ->leftJoin('AppBundle:Departamentos','d',\Doctrine\ORM\Query\Expr\Join::WITH,'e.departamento = d.id')
-              ->leftJoin('AppBundle:Provincias','p',\Doctrine\ORM\Query\Expr\Join::WITH,'d.provincia = p.id');
-          $dqlcountPagada->select('count(r.expediente) as actividadPagada, sum(r.montoPago) as montoPagado')
-               ->from('AppBundle:Expedientes','e')
-               ->leftJoin('AppBundle:Resoluciones','r',\Doctrine\ORM\Query\Expr\Join::WITH,'r.expediente = e.id')
-               ->leftJoin('AppBundle:Departamentos','d',\Doctrine\ORM\Query\Expr\Join::WITH,'e.departamento = d.id')
-               ->leftJoin('AppBundle:Provincias','p',\Doctrine\ORM\Query\Expr\Join::WITH,'d.provincia = p.id');
-         $dqlProvincia = $em->createQueryBuilder();
+             ->from('AppBundle:Expedientes', 'e')
+             ->leftJoin('AppBundle:ActividadesCertificadas', 'ac', \Doctrine\ORM\Query\Expr\Join::WITH, 'ac.expediente = e.id')
+             ->leftJoin('AppBundle:Departamentos', 'd', \Doctrine\ORM\Query\Expr\Join::WITH, 'e.departamento = d.id')
+             ->leftJoin('AppBundle:Provincias', 'p', \Doctrine\ORM\Query\Expr\Join::WITH, 'd.provincia = p.id');
+        $dqlcountInspeccionada->select('count(ai.expediente) as actividadInspeccionada')
+              ->from('AppBundle:Expedientes', 'e')
+              ->leftJoin('AppBundle:ActividadesInspeccionadas', 'ai', \Doctrine\ORM\Query\Expr\Join::WITH, 'ai.expediente = e.id')
+              ->leftJoin('AppBundle:Departamentos', 'd', \Doctrine\ORM\Query\Expr\Join::WITH, 'e.departamento = d.id')
+              ->leftJoin('AppBundle:Provincias', 'p', \Doctrine\ORM\Query\Expr\Join::WITH, 'd.provincia = p.id');
+        $dqlcountPagada->select('count(r.expediente) as actividadPagada, sum(r.montoPago) as montoPagado')
+               ->from('AppBundle:Expedientes', 'e')
+               ->leftJoin('AppBundle:Resoluciones', 'r', \Doctrine\ORM\Query\Expr\Join::WITH, 'r.expediente = e.id')
+               ->leftJoin('AppBundle:Departamentos', 'd', \Doctrine\ORM\Query\Expr\Join::WITH, 'e.departamento = d.id')
+               ->leftJoin('AppBundle:Provincias', 'p', \Doctrine\ORM\Query\Expr\Join::WITH, 'd.provincia = p.id');
+        $dqlProvincia = $em->createQueryBuilder();
 
-         if(array_key_exists('provincia',$param) && $param['provincia']){
-           $dqlProvincia->select('d.nombre, count(d.id) as cantidad, \'Departamento\' as tipo')
-                        ->from('AppBundle:Expedientes','a')
-                        ->leftJoin('AppBundle:Departamentos','d',\Doctrine\ORM\Query\Expr\Join::WITH,'a.departamento = d.id')
-                        ->leftJoin('AppBundle:Provincias','p',\Doctrine\ORM\Query\Expr\Join::WITH,'d.provincia = p.id');
+        if (array_key_exists('provincia', $param) && $param['provincia']) {
+            $dqlProvincia->select('d.nombre, count(d.id) as cantidad, \'Departamento\' as tipo')
+                        ->from('AppBundle:Expedientes', 'a')
+                        ->leftJoin('AppBundle:Departamentos', 'd', \Doctrine\ORM\Query\Expr\Join::WITH, 'a.departamento = d.id')
+                        ->leftJoin('AppBundle:Provincias', 'p', \Doctrine\ORM\Query\Expr\Join::WITH, 'd.provincia = p.id');
 
-           $dqlProvincia->orderBy('cantidad','desc');
-           $dqlProvincia->groupBy('d.id');
-         } else {
-           $dqlProvincia->select('p.nombre, count(p.id) as cantidad, \'Provincia\' as tipo')
-                        ->from('AppBundle:Expedientes','a')
-                        ->leftJoin('AppBundle:Departamentos','d',\Doctrine\ORM\Query\Expr\Join::WITH,'a.departamento = d.id')
-                        ->leftJoin('AppBundle:Provincias','p',\Doctrine\ORM\Query\Expr\Join::WITH,'d.provincia = p.id');
-           $dqlProvincia->orderBy('cantidad','desc');
-           $dqlProvincia->groupBy('p.id');
-         }
-        if(array_key_exists('provincia',$param) && $param['provincia']){
-          $dql->andwhere('p.id = :provincia');
-          $dql->setParameter('provincia', $param['provincia']);
-          $dqlcountPresentada->andwhere('p.id = :provincia');
-          $dqlcountPresentada->setParameter('provincia', $param['provincia']);
-          $dqlcountCertificada->andwhere('p.id = :provincia');
-          $dqlcountCertificada->setParameter('provincia', $param['provincia']);
-          $dqlcountInspeccionada->andwhere('p.id = :provincia');
-          $dqlcountInspeccionada->setParameter('provincia', $param['provincia']);
-          $dqlcountPagada->andwhere('p.id = :provincia');
-          $dqlcountPagada->setParameter('provincia', $param['provincia']);
-          $dqlProvincia->andwhere('p.id = :provincia');
-          $dqlProvincia->setParameter('provincia', $param['provincia']);
+            $dqlProvincia->orderBy('cantidad', 'desc');
+            $dqlProvincia->groupBy('d.id');
+        } else {
+            $dqlProvincia->select('p.nombre, count(p.id) as cantidad, \'Provincia\' as tipo')
+                        ->from('AppBundle:Expedientes', 'a')
+                        ->leftJoin('AppBundle:Departamentos', 'd', \Doctrine\ORM\Query\Expr\Join::WITH, 'a.departamento = d.id')
+                        ->leftJoin('AppBundle:Provincias', 'p', \Doctrine\ORM\Query\Expr\Join::WITH, 'd.provincia = p.id');
+            $dqlProvincia->orderBy('cantidad', 'desc');
+            $dqlProvincia->groupBy('p.id');
+        }
+        if (array_key_exists('provincia', $param) && $param['provincia']) {
+            $dql->andwhere('p.id = :provincia');
+            $dql->setParameter('provincia', $param['provincia']);
+            $dqlcountPresentada->andwhere('p.id = :provincia');
+            $dqlcountPresentada->setParameter('provincia', $param['provincia']);
+            $dqlcountCertificada->andwhere('p.id = :provincia');
+            $dqlcountCertificada->setParameter('provincia', $param['provincia']);
+            $dqlcountInspeccionada->andwhere('p.id = :provincia');
+            $dqlcountInspeccionada->setParameter('provincia', $param['provincia']);
+            $dqlcountPagada->andwhere('p.id = :provincia');
+            $dqlcountPagada->setParameter('provincia', $param['provincia']);
+            $dqlProvincia->andwhere('p.id = :provincia');
+            $dqlProvincia->setParameter('provincia', $param['provincia']);
         }
 
-        if(array_key_exists('departamento',$param) && $param['departamento']){
-          $dql->andwhere('a.departamento = :departamento');
-          $dql->setParameter('departamento', $param['departamento']);
-          $dqlcountPresentada->andwhere('e.departamento = :departamento');
-          $dqlcountPresentada->setParameter('departamento', $param['departamento']);
-          $dqlcountCertificada->andwhere('e.departamento = :departamento');
-          $dqlcountCertificada->setParameter('departamento', $param['departamento']);
-          $dqlcountInspeccionada->andwhere('e.departamento = :departamento');
-          $dqlcountInspeccionada->setParameter('departamento', $param['departamento']);
-          $dqlcountPagada->andwhere('e.departamento = :departamento');
-          $dqlcountPagada->setParameter('departamento', $param['departamento']);
-          $dqlProvincia->andwhere('a.departamento = :departamento');
-          $dqlProvincia->setParameter('departamento', $param['departamento']);
+        if (array_key_exists('departamento', $param) && $param['departamento']) {
+            $dql->andwhere('a.departamento = :departamento');
+            $dql->setParameter('departamento', $param['departamento']);
+            $dqlcountPresentada->andwhere('e.departamento = :departamento');
+            $dqlcountPresentada->setParameter('departamento', $param['departamento']);
+            $dqlcountCertificada->andwhere('e.departamento = :departamento');
+            $dqlcountCertificada->setParameter('departamento', $param['departamento']);
+            $dqlcountInspeccionada->andwhere('e.departamento = :departamento');
+            $dqlcountInspeccionada->setParameter('departamento', $param['departamento']);
+            $dqlcountPagada->andwhere('e.departamento = :departamento');
+            $dqlcountPagada->setParameter('departamento', $param['departamento']);
+            $dqlProvincia->andwhere('a.departamento = :departamento');
+            $dqlProvincia->setParameter('departamento', $param['departamento']);
         }
 
-        if(array_key_exists('anio',$param) && $param['anio']){
-          $dql->andwhere('a.anio =  :anio');
-          $dql->setParameter('anio',substr($param['anio'], 2, 4));
-          $dqlcountPresentada->andwhere('e.anio =  :anio');
-          $dqlcountPresentada->setParameter('anio',substr($param['anio'], 2, 4));
-          $dqlcountCertificada->andwhere('e.anio =  :anio');
-          $dqlcountCertificada->setParameter('anio',substr($param['anio'], 2, 4));
-          $dqlcountInspeccionada->andwhere('e.anio =  :anio');
-          $dqlcountInspeccionada->setParameter('anio',substr($param['anio'], 2, 4));
-          $dqlcountPagada->andwhere('e.anio =  :anio');
-          $dqlcountPagada->setParameter('anio',substr($param['anio'], 2, 4));
-          $dqlProvincia->andwhere('a.anio =  :anio');
-          $dqlProvincia->setParameter('anio',substr($param['anio'], 2, 4));
+        if (array_key_exists('anio', $param) && $param['anio']) {
+            $dql->andwhere('a.anio =  :anio');
+            $dql->setParameter('anio', substr($param['anio'], 2, 4));
+            $dqlcountPresentada->andwhere('e.anio =  :anio');
+            $dqlcountPresentada->setParameter('anio', substr($param['anio'], 2, 4));
+            $dqlcountCertificada->andwhere('e.anio =  :anio');
+            $dqlcountCertificada->setParameter('anio', substr($param['anio'], 2, 4));
+            $dqlcountInspeccionada->andwhere('e.anio =  :anio');
+            $dqlcountInspeccionada->setParameter('anio', substr($param['anio'], 2, 4));
+            $dqlcountPagada->andwhere('e.anio =  :anio');
+            $dqlcountPagada->setParameter('anio', substr($param['anio'], 2, 4));
+            $dqlProvincia->andwhere('a.anio =  :anio');
+            $dqlProvincia->setParameter('anio', substr($param['anio'], 2, 4));
         }
 
         $data['actividadPresentada'] = $dqlcountPresentada->getQuery()->getSingleResult()['actividadPresentada'];
@@ -142,10 +142,10 @@ class ReportesController extends Controller
         $search_form->handleRequest($request);
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-              $dql,
-              $request->query->getInt('page',1),
-              15,
-              array('distinct' => true, 'defaultSortDirection' => 'desc')
+            $dql,
+            $request->query->getInt('page', 1),
+            15,
+            array('distinct' => true, 'defaultSortDirection' => 'desc')
           );
         return $this->render('reportes/index.html.twig', array(
             'pagination' => $pagination,
@@ -165,21 +165,21 @@ class ReportesController extends Controller
         $em = $this->getDoctrine()->getManager();
         $dql = $em->createQueryBuilder();
         $dql->select('a.nombre, (count(a.nombre)) AS cantidad')
-             ->from('AppBundle:Expedientes','e')
+             ->from('AppBundle:Expedientes', 'e')
              ->join(
-                      'AppBundle:Areas',
-                      'a',
-                      \Doctrine\ORM\Query\Expr\Join::WITH,
-                      'a.id = e.areaEncuentraExpediente'
+                 'AppBundle:Areas',
+                 'a',
+                 \Doctrine\ORM\Query\Expr\Join::WITH,
+                 'a.id = e.areaEncuentraExpediente'
                     )
               ->groupBy('a.nombre')
              ->where('e.numeroExpediente is not null');
         $areas=$em->createQuery($dql)->getResult();
         $data = [];
         foreach ($areas as $key => $value) {
-          $data['labels'][] = $value['nombre'];
-          $data['datasets'][0]['data'][] = $value['cantidad'];
-          $data['datasets'][0]['backgroundColor'][]= $this->rand_color();
+            $data['labels'][] = $value['nombre'];
+            $data['datasets'][0]['data'][] = $value['cantidad'];
+            $data['datasets'][0]['backgroundColor'][]= $this->rand_color();
         }
         $response = new Response();
         $response->setContent(json_encode($data));
@@ -187,7 +187,8 @@ class ReportesController extends Controller
         return $response;
     }
 
-    public function rand_color() {
+    public function rand_color()
+    {
         return sprintf('#%06X', mt_rand(0, 0xFFFFFF));
     }
     /**
@@ -211,10 +212,10 @@ class ReportesController extends Controller
         $results = $statement->fetchAll();
         $data = [];
         foreach ($results as $key => $value) {
-          $data['labels'][] = $this->getMonth($value['month']);
-          $data['datasets'][0]['label'] = 'Expedientes ingresados';
-          $data['datasets'][0]['data'][] = $value['count'];
-          $data['datasets'][0]['backgroundColor'][]= $this->rand_color();
+            $data['labels'][] = $this->getMonth($value['month']);
+            $data['datasets'][0]['label'] = 'Expedientes ingresados';
+            $data['datasets'][0]['data'][] = $value['count'];
+            $data['datasets'][0]['backgroundColor'][]= $this->rand_color();
         }
         $response = new Response();
         $response->setContent(json_encode($data));
@@ -222,8 +223,9 @@ class ReportesController extends Controller
         return $response;
     }
 
-    public function getMonth($number){
-      switch ($number) {
+    public function getMonth($number)
+    {
+        switch ($number) {
         case '1':
           return 'Enero';
         case '2':
@@ -267,45 +269,45 @@ class ReportesController extends Controller
         $dqlsumInspeccionada = $em->createQueryBuilder();
         $dqlsumPagada = $em->createQueryBuilder();
 
-      $dqlsumPresentada->select('sum(ap.superficieHa) as actividadPresentada')
-             ->from('AppBundle:Expedientes','e')
-             ->leftJoin('AppBundle:ActividadesPresentadas','ap',\Doctrine\ORM\Query\Expr\Join::WITH,'ap.expediente = e.id')
-             ->leftJoin('AppBundle:Departamentos','d',\Doctrine\ORM\Query\Expr\Join::WITH,'e.departamento = d.id')
-             ->leftJoin('AppBundle:Provincias','p',\Doctrine\ORM\Query\Expr\Join::WITH,'d.provincia = p.id');
-      $dqlsumCertificada->select('sum(ac.superficieHa) as actividadCertificada')
-            ->from('AppBundle:Expedientes','e')
-            ->leftJoin('AppBundle:ActividadesCertificadas','ac',\Doctrine\ORM\Query\Expr\Join::WITH,'ac.expediente = e.id')
-            ->leftJoin('AppBundle:Departamentos','d',\Doctrine\ORM\Query\Expr\Join::WITH,'e.departamento = d.id')
-            ->leftJoin('AppBundle:Provincias','p',\Doctrine\ORM\Query\Expr\Join::WITH,'d.provincia = p.id');
-      $dqlsumInspeccionada->select('sum(ai.superficieHa) as actividadInspeccionada')
-            ->from('AppBundle:Expedientes','e')
-            ->leftJoin('AppBundle:ActividadesInspeccionadas','ai',\Doctrine\ORM\Query\Expr\Join::WITH,'ai.expediente = e.id')
-            ->leftJoin('AppBundle:Departamentos','d',\Doctrine\ORM\Query\Expr\Join::WITH,'e.departamento = d.id')
-            ->leftJoin('AppBundle:Provincias','p',\Doctrine\ORM\Query\Expr\Join::WITH,'d.provincia = p.id');
-      $dqlsumPagada->select('sum(r.superficieHa) as actividadPagada')
-            ->from('AppBundle:Expedientes','e')
-            ->leftJoin('AppBundle:Resoluciones','r',\Doctrine\ORM\Query\Expr\Join::WITH,'r.expediente = e.id')
-            ->leftJoin('AppBundle:Departamentos','d',\Doctrine\ORM\Query\Expr\Join::WITH,'e.departamento = d.id')
-            ->leftJoin('AppBundle:Provincias','p',\Doctrine\ORM\Query\Expr\Join::WITH,'d.provincia = p.id');
+        $dqlsumPresentada->select('sum(ap.superficieHa) as actividadPresentada')
+             ->from('AppBundle:Expedientes', 'e')
+             ->leftJoin('AppBundle:ActividadesPresentadas', 'ap', \Doctrine\ORM\Query\Expr\Join::WITH, 'ap.expediente = e.id')
+             ->leftJoin('AppBundle:Departamentos', 'd', \Doctrine\ORM\Query\Expr\Join::WITH, 'e.departamento = d.id')
+             ->leftJoin('AppBundle:Provincias', 'p', \Doctrine\ORM\Query\Expr\Join::WITH, 'd.provincia = p.id');
+        $dqlsumCertificada->select('sum(ac.superficieHa) as actividadCertificada')
+            ->from('AppBundle:Expedientes', 'e')
+            ->leftJoin('AppBundle:ActividadesCertificadas', 'ac', \Doctrine\ORM\Query\Expr\Join::WITH, 'ac.expediente = e.id')
+            ->leftJoin('AppBundle:Departamentos', 'd', \Doctrine\ORM\Query\Expr\Join::WITH, 'e.departamento = d.id')
+            ->leftJoin('AppBundle:Provincias', 'p', \Doctrine\ORM\Query\Expr\Join::WITH, 'd.provincia = p.id');
+        $dqlsumInspeccionada->select('sum(ai.superficieHa) as actividadInspeccionada')
+            ->from('AppBundle:Expedientes', 'e')
+            ->leftJoin('AppBundle:ActividadesInspeccionadas', 'ai', \Doctrine\ORM\Query\Expr\Join::WITH, 'ai.expediente = e.id')
+            ->leftJoin('AppBundle:Departamentos', 'd', \Doctrine\ORM\Query\Expr\Join::WITH, 'e.departamento = d.id')
+            ->leftJoin('AppBundle:Provincias', 'p', \Doctrine\ORM\Query\Expr\Join::WITH, 'd.provincia = p.id');
+        $dqlsumPagada->select('sum(r.superficieHa) as actividadPagada')
+            ->from('AppBundle:Expedientes', 'e')
+            ->leftJoin('AppBundle:Resoluciones', 'r', \Doctrine\ORM\Query\Expr\Join::WITH, 'r.expediente = e.id')
+            ->leftJoin('AppBundle:Departamentos', 'd', \Doctrine\ORM\Query\Expr\Join::WITH, 'e.departamento = d.id')
+            ->leftJoin('AppBundle:Provincias', 'p', \Doctrine\ORM\Query\Expr\Join::WITH, 'd.provincia = p.id');
 
         if ($provincia != 0) {
-          $dqlsumPresentada->andwhere('p.id = '."'$provincia'");
-          $dqlsumCertificada->andwhere('p.id = '."'$provincia'");
-          $dqlsumInspeccionada->andwhere('p.id = '."'$provincia'");
-          $dqlsumPagada->andwhere('p.id = '."'$provincia'");
+            $dqlsumPresentada->andwhere('p.id = '."'$provincia'");
+            $dqlsumCertificada->andwhere('p.id = '."'$provincia'");
+            $dqlsumInspeccionada->andwhere('p.id = '."'$provincia'");
+            $dqlsumPagada->andwhere('p.id = '."'$provincia'");
         }
         if ($departamento != 0) {
-          $dqlsumPresentada->andwhere('d.id = ' . $departamento);
-          $dqlsumCertificada->andwhere('d.id = ' . $departamento);
-          $dqlsumInspeccionada->andwhere('d.id = ' . $departamento);
-          $dqlsumPagada->andwhere('d.id = ' . $departamento);
+            $dqlsumPresentada->andwhere('d.id = ' . $departamento);
+            $dqlsumCertificada->andwhere('d.id = ' . $departamento);
+            $dqlsumInspeccionada->andwhere('d.id = ' . $departamento);
+            $dqlsumPagada->andwhere('d.id = ' . $departamento);
         }
         if ($anio != 0) {
-          $anio = substr($anio, 2, 4);
-          $dqlsumPresentada->andwhere('e.anio = '."'$anio'");
-          $dqlsumCertificada->andwhere('e.anio = '."'$anio'");
-          $dqlsumInspeccionada->andwhere('e.anio = '."'$anio'");
-          $dqlsumPagada->andwhere('e.anio = '."'$anio'");
+            $anio = substr($anio, 2, 4);
+            $dqlsumPresentada->andwhere('e.anio = '."'$anio'");
+            $dqlsumCertificada->andwhere('e.anio = '."'$anio'");
+            $dqlsumInspeccionada->andwhere('e.anio = '."'$anio'");
+            $dqlsumPagada->andwhere('e.anio = '."'$anio'");
         }
         $sumPresentada=$em->createQuery($dqlsumPresentada)->getResult()[0]['actividadPresentada'];
         $sumCertificada=$em->createQuery($dqlsumCertificada)->getResult()[0]['actividadCertificada'];
@@ -349,33 +351,33 @@ class ReportesController extends Controller
         $dqlCountPresentada = $em->createQueryBuilder();
 
         $dqlCountPresentada->select('ta.nombreActividad, count(ta.id) as actividadPresentada')
-             ->from('AppBundle:Expedientes','e')
-             ->leftJoin('AppBundle:ActividadesPresentadas','ap',\Doctrine\ORM\Query\Expr\Join::WITH,'ap.expediente = e.id')
-             ->leftJoin('AppBundle:TiposActividades','ta',\Doctrine\ORM\Query\Expr\Join::WITH,'ap.tipoActividad = ta.id')
-             ->leftJoin('AppBundle:Departamentos','d',\Doctrine\ORM\Query\Expr\Join::WITH,'e.departamento = d.id')
-             ->leftJoin('AppBundle:Provincias','p',\Doctrine\ORM\Query\Expr\Join::WITH,'d.provincia = p.id')
+             ->from('AppBundle:Expedientes', 'e')
+             ->leftJoin('AppBundle:ActividadesPresentadas', 'ap', \Doctrine\ORM\Query\Expr\Join::WITH, 'ap.expediente = e.id')
+             ->leftJoin('AppBundle:TiposActividades', 'ta', \Doctrine\ORM\Query\Expr\Join::WITH, 'ap.tipoActividad = ta.id')
+             ->leftJoin('AppBundle:Departamentos', 'd', \Doctrine\ORM\Query\Expr\Join::WITH, 'e.departamento = d.id')
+             ->leftJoin('AppBundle:Provincias', 'p', \Doctrine\ORM\Query\Expr\Join::WITH, 'd.provincia = p.id')
              ->groupBy('ta.nombreActividad')
-             ->orderBy('ta.nombreActividad','asc');
+             ->orderBy('ta.nombreActividad', 'asc');
 
         if ($provincia != 0) {
-          $dqlCountPresentada->andwhere('p.id = '."'$provincia'");
+            $dqlCountPresentada->andwhere('p.id = '."'$provincia'");
         }
         if ($departamento != 0) {
-          $dqlCountPresentada->andwhere('d.id = ' . $departamento);
+            $dqlCountPresentada->andwhere('d.id = ' . $departamento);
         }
         if ($anio != 0) {
-          $anio = substr($anio, 2, 4);
-          $dqlCountPresentada->andwhere('e.anio = '."'$anio'");
+            $anio = substr($anio, 2, 4);
+            $dqlCountPresentada->andwhere('e.anio = '."'$anio'");
         }
         $results = $em->createQuery($dqlCountPresentada)->getResult();
         $data=[];
         foreach ($results as $key => $value) {
-          if ($value['nombreActividad'] <> null) {
-            $data['labels'][] = $value['nombreActividad'];
-            $data['datasets'][0]['label'] = 'Actividades';
-            $data['datasets'][0]['data'][] = $value['actividadPresentada'];
-            $data['datasets'][0]['backgroundColor'][]= $this->rand_color();
-          }
+            if ($value['nombreActividad'] <> null) {
+                $data['labels'][] = $value['nombreActividad'];
+                $data['datasets'][0]['label'] = 'Actividades';
+                $data['datasets'][0]['data'][] = $value['actividadPresentada'];
+                $data['datasets'][0]['backgroundColor'][]= $this->rand_color();
+            }
         }
 
         $response = new Response();
@@ -383,4 +385,78 @@ class ReportesController extends Controller
         $response->headers->set('Content-Type', 'application/json');
         return $response;
     }
+    // /**
+    //  * @Route("/excel", name="excel_index")
+    //  */
+    // public function prepareExcel()
+    // {
+    //     $rowNo = 1;
+    //     $em = $this->getDoctrine()->getManager();
+    //     if (($fp = fopen("/home/martin/Descargas/planes_misiones.csv", "r")) !== false) {
+    //         $filess = fopen("/home/martin/Descargas/planes_misiones_reloaded.csv", "w");
+    //         fputcsv($filess, array('Numero Interno','Legales','Promocion','SIG'), ',');
+    //         while (($row = fgetcsv($fp, 1000, ",")) !== false) {
+    //             $num = count($row);
+    //             // dump($row[1]);
+    //             // if ($rowNo==256) {
+    //             $expediente = $em->getRepository('AppBundle:Expedientes')->findOneBy(array('numeroInterno'=>$row[1]));
+    //             if ($expediente) {
+    //                 if ($expediente->getPlurianual()) {
+    //                     $list = array();
+    //                     foreach ($expediente->getHistorialLegales() as $key => $value) {
+    //                         $fechardi = $value->getFechaUltimaModificacion() ? $value->getFechaUltimaModificacion()->format('d/m/Y') : $value->getFechaInicio()->format('d/m/Y');
+    //                         $list[1][$value->getEtapa()]=$fechardi .' '. $value->getObservacion();
+    //                     }
+    //                     foreach ($expediente->getHistorialPromociones() as $key => $value) {
+    //                         $fecha = $value->getFechaUltimaModificacion() ? $value->getFechaUltimaModificacion()->format('d/m/Y') : $value->getFechaInicio()->format('d/m/Y');
+    //                         $list[2][$value->getEtapa()]=$fecha .' '. $value->getObservacion();
+    //                     }
+    //                     foreach ($expediente->getHistorialSigs() as $key => $value) {
+    //                         $fechi = $value->getFechaUltimaModificacion() ? $value->getFechaUltimaModificacion()->format('d/m/Y') : $value->getFechaInicio()->format('d/m/Y');
+    //                         $list[3][$value->getEtapa()]=$fechi .' '. $value->getObservacion();
+    //                     }
+    //                     $result = array();
+    //                     foreach ($list as $offset=>$element) {
+    //                         foreach ($element as $key => $value) {
+    //                             $result[$key][0] = $expediente->getNumeroInterno();
+    //                             $result[$key][$offset] = 'ETAPA: '. $key .' - '.$value;
+    //                         }
+    //                     }
+    //                     foreach ($result as $key => $value) {
+    //                         // dump($value);
+    //                         fputcsv($filess, $value, ',');
+    //                     }
+    //                 } else {
+    //                     $list = array();
+    //                     $list[0]=$expediente->getNumeroInterno();
+    //                     if ($expediente->getHistorialLegales()->last()) {
+    //                         $fechardi = $expediente->getHistorialLegales()->last()->getFechaUltimaModificacion() ? $expediente->getHistorialLegales()->last()->getFechaUltimaModificacion()->format('d/m/Y') : $expediente->getHistorialLegales()->last()->getFechaInicio()->format('d/m/Y');
+    //                         $list[1]= $fechardi .' '. $expediente->getHistorialLegales()->last()->getObservacion();
+    //                     }
+    //                     if ($expediente->getHistorialPromociones()->last()) {
+    //                         // dump($expediente->getHistorialPromociones()->last()->getFechaUltimaModificacion());
+    //                         $fecha = $expediente->getHistorialPromociones()->last()->getFechaUltimaModificacion() ? $expediente->getHistorialPromociones()->last()->getFechaUltimaModificacion()->format('d/m/Y'): $expediente->getHistorialPromociones()->last()->getFechaInicio()->format('d/m/Y');
+    //                         $list[2]= $fecha .' '. $expediente->getHistorialPromociones()->last()->getObservacion();
+    //                     }
+    //                     if ($expediente->getHistorialSigs()->last()) {
+    //                         $fechi = $expediente->getHistorialSigs()->last()->getFechaUltimaModificacion() ? $expediente->getHistorialSigs()->last()->getFechaUltimaModificacion()->format('d/m/Y') : $expediente->getHistorialSigs()->last()->getFechaInicio()->format('d/m/Y');
+    //                         $list[3]=$fechi .' '.$expediente->getHistorialSigs()->last()->getObservacion();
+    //                     }
+    //                     fputcsv($filess, $list, ',');
+    //                 }
+    //             }
+    //             // asfdsadf;
+    //             // }
+    //             $rowNo++;
+    //         }
+    //         fclose($filess);
+    //         fclose($fp);
+    //     }
+    //     return $this->render('reportes/index.html.twig', array(
+    //       'pagination' => $pagination,
+    //       'data' => $data,
+    //       'search_form'=>$search_form->createView(),
+    //       'param' => $param
+    //     ));
+    // }
 }
