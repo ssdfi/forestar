@@ -16,7 +16,7 @@ class EvaluacionTecnicoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('viable', CheckboxType::class, array('attr' => array('data-label' => 'Viable'), 'label' => false, 'required'=>false))
-          ->add('fecha', DateType::class, array('label' => 'Fecha','widget'=>'single_text','format' => 'yyyy-MM','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM")));
+          ->add('fecha', DateType::class, array('label' => 'Fecha','widget'=>'single_text','format' => 'yyyy-MM','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM",'pattern'=>'\d{2}-\d{4}', 'title'=>'El formato debe ser MM-AAAA')));
     }/**
      * {@inheritdoc}
      */

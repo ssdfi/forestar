@@ -92,15 +92,16 @@ class Expedientes
      */
     private $entidadAgrupadoraId;
 
+    // *     pattern     = "/EXP-S05:[0-9]{7}\/[0-9]{4}|EXP-S01:[0-9]{7}\/[0-9]{4}|EX-20[0-9]{2}-[0-9]{8}\b/",
     /**
      * @var string
      *
      * @ORM\Column(name="numero_expediente", type="string", nullable=true)
      * @Assert\Regex(
-     *     pattern     = "/EXP-S05:[0-9]{7}\/[0-9]{4}|EXP-S01:[0-9]{7}\/[0-9]{4}|EX-20[0-9]{2}-[0-9]{8}\b/",
-     *     message     = "El formato debe ser EXP-S05:#######/#### o EX-20##-########"
+     *     pattern     = "/EXP-S05:[0-9]{7}\/[0-9]{4}|EXP-S01:[0-9]{7}\/[0-9]{4}|EX-20[0-9]{2}-[0-9]{8}?(- -APN-DDYME#MA|- -APN-DGD#MA|- -APN-DGDMA#MPYT)|EX-20[0-9]{2}-[0-9]{8}\b/",
+     *     message     = "El formato debe ser EXP-S05:#######/#### o EX-20##-######## o EX-2016-02633411- -APN-DDYME#MA o EX-2018-18448039- -APN-DGD#MA o EX-2019-36229281- -APN-DGDMA#MPYT"
      * )
-     * @Assert\Length(min = 16, max=20, exactMessage="El campo debe tener {{ limit }} digitos, EXP-S05:#######/####")
+     * @Assert\Length(min = 16, max=33, exactMessage="El campo debe tener {{ limit }} digitos, EXP-S05:#######/####")
      * @Assert\NotBlank(message="El campo no puede estar vacío")
      */
     private $numeroExpediente;

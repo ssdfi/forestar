@@ -8,7 +8,7 @@
         <div class="card-body">
           <ul>
             {% for item in expediente.historialContables %}
-              <li><b>{{item.fechaUltimaModificacion|date('d-m-Y')}}</b>
+              <li><b>{% if item.fechaUltimaModificacion %}{{item.fechaUltimaModificacion|date('d-m-Y')}}{% endif %}</b>
                 {% if expediente.agrupador %}{% if item.titularAgrupado %}{{item.titularAgrupado}}{% endif %}{% endif %}
                 . {{item.observacion}}</li>
             {% endfor %}
@@ -24,7 +24,7 @@
         <div class="card-body">
           <ul>
             {% for item in expediente.historialLegales %}
-              <li><b>{{item.fechaUltimaModificacion|date('d-m-Y')}}</b>
+              <li><b>{% if item.fechaUltimaModificacion %}{{item.fechaUltimaModificacion|date('d-m-Y')}}{% endif %}</b>
                 {% if expediente.agrupador %}{% if item.titularAgrupado %}{{item.titularAgrupado}}{% endif %}{% endif %}
                 . {{item.observacion}}</li>
             {% endfor %}
@@ -40,7 +40,7 @@
         <div class="card-body">
           <ul>
             {% for item in expediente.historialForestoIndustriales %}
-              <li><b>{{item.fechaUltimaModificacion|date('d-m-Y')}}</b>
+              <li><b>{% if item.fechaUltimaModificacion %}{{item.fechaUltimaModificacion|date('d-m-Y')}}{% endif %}</b>
                 {% if expediente.agrupador %}{% if item.titularAgrupado %}{{item.titularAgrupado}}{% endif %}{% endif %}
                 . {{item.observacion}}</li>
             {% endfor %}
@@ -70,7 +70,7 @@
         <div class="card-body">
           <ul>
             {% for item in expediente.historialPromociones %}
-              <li><b>{{item.fechaUltimaModificacion|date('d-m-Y')}}</b>
+              <li><b>{% if item.fechaUltimaModificacion %}{{item.fechaUltimaModificacion|date('d-m-Y')}}{% endif %}</b>
                 {% if expediente.agrupador %}{% if item.titularAgrupado %}{{item.titularAgrupado}}{% endif %}{% endif %}
                 . {{item.observacion}}</li>
             {% endfor %}
@@ -86,7 +86,7 @@
         <div class="card-body">
           <ul>
             {% for item in expediente.historialSigs %}
-              <li><b>{{item.fechaUltimaModificacion|date('d-m-Y')}}</b>
+              <li><b>{% if item.fechaUltimaModificacion %}{{item.fechaUltimaModificacion|date('d-m-Y')}}{% endif %}</b>
                 {% if expediente.agrupador %}{% if item.titularAgrupado %}{{item.titularAgrupado}}{% endif %}{% endif %}
                 . {{item.observacion}}</li>
             {% endfor %}

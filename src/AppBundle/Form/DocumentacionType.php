@@ -20,10 +20,10 @@ class DocumentacionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-          ->add('tipoDocumentacion', TextType::class, array('required'=>true, 'constraints'=> array(new NotBlank(array('message'=>'Complete este campo')))))
+          ->add('tipoDocumentacion', TextType::class, array('required'=>true,'error_bubbling' => true, 'constraints'=> array(new NotBlank(array('message'=>'Complete este campo')))))
           ->add('observacion', TextareaType::class, array('required'=>false))
           ->add('nombreArchivo', TextType::class, array('required'=>false))
-          ->add('fechaPresentacion', DateType::class, array('label' => 'Fecha de Presentación','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")));
+          ->add('fechaPresentacion', DateType::class, array('label' => 'Fecha de Presentación','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD",'pattern'=>'\d{4}-\d{2}-\d{2}', 'title'=>'El formato debe ser AAAA-MM-DD')));
         if ($builder->getOptions()['attr']['agrupador']) {
             $builder->addEventSubscriber(new AddTitularAgrupadoListener());
         }

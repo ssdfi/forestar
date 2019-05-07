@@ -33,10 +33,10 @@ class ExpedientesType extends AbstractType
 
         if (in_array('expediente', $options['roles'])) {
             $builder
-          ->add('numeroExpediente', TextType::class, array('attr'=>array('pattern' => '.*')))
+          ->add('numeroExpediente', TextType::class, array('attr'=>array('pattern' => 'EXP-S05:[0-9]{7}\/[0-9]{4}|EXP-S01:[0-9]{7}\/[0-9]{4}|EX-20[0-9]{2}-[0-9]{8}?(- -APN-DDYME#MA|- -APN-DGD#MA|- -APN-DGDMA#MPYT)|EX-20[0-9]{2}-[0-9]{8}\b')))
           ->add('numeroInterno', TextType::class, array('attr'=>array('pattern' => '.*')))
-          ->add('fechaPresentacion', DateType::class, array('label' => 'Fecha de Presentación','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
-          ->add('fechaIngreso', DateType::class, array('label' => 'Fecha de Ingreso','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
+          ->add('fechaPresentacion', DateType::class, array('label' => 'Fecha de Presentación','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD",'pattern'=>'\d{4}-\d{2}-\d{2}', 'title'=>'El formato debe ser AAAA-MM-DD')))
+          ->add('fechaIngreso', DateType::class, array('label' => 'Fecha de Ingreso','widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD",'pattern'=>'\d{4}-\d{2}-\d{2}', 'title'=>'El formato debe ser AAAA-MM-DD')))
           ->add('solicitaAdelanto', CheckboxType::class, array('attr' => array('data-label' => 'Solicita Adelanto'), 'label' => false, 'required'=>false))
           ->add('plurianual', CheckboxType::class, array('attr' => array('data-label' => 'Plurianual'), 'label' => false, 'required'=>false));
         }

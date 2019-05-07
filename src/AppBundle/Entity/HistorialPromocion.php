@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Entity;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -9,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="historial_promocion")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  */
 class HistorialPromocion
 {
@@ -172,11 +174,12 @@ class HistorialPromocion
      * One product has many features. This is the inverse side.
      * @ORM\OneToMany(targetEntity="InformesPromocion", mappedBy="actividadPromocion")
      */
-     private $informes;
+    private $informes;
 
-     public function __construct() {
-       $this->informes = new ArrayCollection();
-     }
+    public function __construct()
+    {
+        $this->informes = new ArrayCollection();
+    }
 
     /**
      * Set $etapa
@@ -594,7 +597,17 @@ class HistorialPromocion
         return $this->titularAgrupado;
     }
 
-    public function getInformes(){
-      return $this->informes;
+    public function getInformes()
+    {
+        return $this->informes;
+    }
+    /**
+     * Gets triggered only on update
+
+     * @ORM\PreUpdate
+     */
+    public function onPreUpdate()
+    {
+        $this->fechaUltimaModificacion = new \DateTime("now");
     }
 }

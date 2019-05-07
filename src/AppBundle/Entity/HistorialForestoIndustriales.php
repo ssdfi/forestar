@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="historial_foresto_industriales")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  */
 class HistorialForestoIndustriales
 {
@@ -582,5 +583,15 @@ class HistorialForestoIndustriales
     public function getTitularAgrupado()
     {
         return $this->titularAgrupado;
+    }
+
+    /**
+     * Gets triggered only on update
+
+     * @ORM\PreUpdate
+     */
+    public function onPreUpdate()
+    {
+        $this->fechaUltimaModificacion = new \DateTime("now");
     }
 }

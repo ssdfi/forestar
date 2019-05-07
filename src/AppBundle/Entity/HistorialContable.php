@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="historial_contable")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  */
 class HistorialContable
 {
@@ -552,5 +553,13 @@ class HistorialContable
     {
         return $this->titularAgrupado;
     }
+    /**
+     * Gets triggered only on update
 
+     * @ORM\PreUpdate
+     */
+    public function onPreUpdate()
+    {
+        $this->fechaUltimaModificacion = new \DateTime("now");
+    }
 }

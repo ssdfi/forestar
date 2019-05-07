@@ -193,21 +193,21 @@ class ActividadesCertificadas
     /**
      * @var integer
      *
-     * @ORM\Column(name="altura_promedio_plantacion", type="integer", nullable=true)
+     * @ORM\Column(name="altura_promedio_plantacion", type="float", nullable=true)
      */
     private $alturaPromedioPlantacion;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="altura_poda", type="integer", nullable=true)
+     * @ORM\Column(name="altura_poda", type="float", nullable=true)
      */
     private $alturaPoda;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="densidad_previa", type="integer", nullable=true)
+     * @ORM\Column(name="densidad_previa", type="float", nullable=true)
      */
     private $densidadPrevia;
 

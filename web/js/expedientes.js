@@ -23,5 +23,17 @@
       $("#appbundle_expedientes_representanteLegal").val('');
       return $("#appbundle_expedientes_representante_legal_id").val('');
     });
+    $('button[type=submit]').click(function(){
+      $('.tab-pane input, .tab-pane textarea').on('invalid', function(){
+
+       // Find the tab-pane that this element is inside, and get the id
+       var $closest = $(this).closest('.tab-pane');
+       var id = $closest.attr('id');
+
+       // Find the link that corresponds to the pane and have it show
+       $('.nav a[href="#' + id + '"]').tab('show');
+
+    });
+    });
   });
 }).call(this);

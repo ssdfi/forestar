@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="historial_sig")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  */
 class HistorialSig
 {
@@ -571,7 +572,7 @@ class HistorialSig
 
     public function __toString()
     {
-      return (string)$this->observacion;
+        return (string)$this->observacion;
     }
 
     public function setTitularAgrupado($titular)
@@ -589,5 +590,15 @@ class HistorialSig
     public function getTitularAgrupado()
     {
         return $this->titularAgrupado;
+    }
+
+    /**
+     * Gets triggered only on update
+
+     * @ORM\PreUpdate
+     */
+    public function onPreUpdate()
+    {
+        $this->fechaUltimaModificacion = new \DateTime("now");
     }
 }

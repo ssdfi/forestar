@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Entity;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -9,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="historial_legales")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  */
 class HistorialLegales
 {
@@ -144,10 +146,10 @@ class HistorialLegales
      */
     private $estadoViverosId;
 
-   /**
-    * One product has many features. This is the inverse side.
-    * @ORM\OneToMany(targetEntity="InformesLegales", mappedBy="actividadLegal")
-    */
+    /**
+     * One product has many features. This is the inverse side.
+     * @ORM\OneToMany(targetEntity="InformesLegales", mappedBy="actividadLegal")
+     */
     private $informes;
     /**
      * @var integer
@@ -166,8 +168,9 @@ class HistorialLegales
      */
     private $titularAgrupado;
 
-    public function __construct() {
-      $this->informes = new ArrayCollection();
+    public function __construct()
+    {
+        $this->informes = new ArrayCollection();
     }
 
     /**
@@ -545,8 +548,9 @@ class HistorialLegales
         $this->expediente = $exp;
     }
 
-    public function getInformes(){
-      return $this->informes;
+    public function getInformes()
+    {
+        return $this->informes;
     }
 
     public function setTitularAgrupado($titular)
@@ -564,5 +568,15 @@ class HistorialLegales
     public function getTitularAgrupado()
     {
         return $this->titularAgrupado;
+    }
+
+    /**
+     * Gets triggered only on update
+
+     * @ORM\PreUpdate
+     */
+    public function onPreUpdate()
+    {
+        $this->fechaUltimaModificacion = new \DateTime("now");
     }
 }

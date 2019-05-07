@@ -18,19 +18,19 @@ class ActividadesAprobadasType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-      $builder
+        $builder
                 ->add('especie', EntityType::class, array('class'=>'AppBundle\Entity\Especies','required'=>true,'label' => false, 'attr'=>array('class'=>'combobox')))
-                ->add('superficieHa', NumberType::class, array('label'=>false,'required'=>false))
-                ->add('densidad', NumberType::class, array('label'=>false,'required'=>false))
+                ->add('superficieHa', NumberType::class, array('label'=>false,'required'=>false,'attr' => array('pattern'=>'[+-]?([0-9]*([.|,]))?[0-9]+', 'title'=>'Número entero o decimal')))
+                ->add('densidad', NumberType::class, array('label'=>false,'required'=>false,'attr' => array('pattern'=>'[+-]?([0-9]*([.|,]))?[0-9]+', 'title'=>'Número entero o decimal')))
                 ->add('fechaInicio', DateType::class, array('label' => false,'widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
                 ->add('fechaFinActividad', DateType::class, array('label' => false,'widget'=>'single_text','format' => 'yyyy-MM-dd','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM-DD")))
-                ->add('tipoActividad',EntityType::class, array('class'=>'AppBundle\Entity\TiposActividades','required'=>true,'label' => false, 'attr'=>array('class'=>'combobox')))
-                ->add('observaciones',TextareaType::class,array('label' => false,'required'=>false,'attr' => array('class' => 'form-control')));
+                ->add('tipoActividad', EntityType::class, array('class'=>'AppBundle\Entity\TiposActividades','required'=>true,'label' => false, 'attr'=>array('class'=>'combobox')))
+                ->add('observaciones', TextareaType::class, array('label' => false,'required'=>false,'attr' => array('class' => 'form-control')));
         if ($builder->getOptions()['attr']['agrupador']) {
-          $builder->addEventSubscriber(new AddTitularAgrupadoListener());
+            $builder->addEventSubscriber(new AddTitularAgrupadoListener());
         }
         if ($builder->getOptions()['attr']['plurianual']) {
-          $builder->add('etapa', NumberType::class, array('label'=>false,'required'=>false));
+            $builder->add('etapa', NumberType::class, array('label'=>false,'required'=>false));
         }
     }/**
      * {@inheritdoc}
@@ -49,6 +49,4 @@ class ActividadesAprobadasType extends AbstractType
     {
         return 'appbundle_actividadesaprobadas';
     }
-
-
 }
