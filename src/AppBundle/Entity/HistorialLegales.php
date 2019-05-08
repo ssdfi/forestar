@@ -571,6 +571,16 @@ class HistorialLegales
     }
 
     /**
+     * Gets triggered only on insert
+
+     * @ORM\PrePersist
+     */
+    public function onPrePersist()
+    {
+        $this->fechaUltimaModificacion = new \DateTime("now");
+    }
+
+    /**
      * Gets triggered only on update
 
      * @ORM\PreUpdate
