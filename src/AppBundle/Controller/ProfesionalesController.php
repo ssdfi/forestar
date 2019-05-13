@@ -9,7 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-
 /**
  * Profesionale controller.
  *
@@ -37,17 +36,17 @@ class ProfesionalesController extends Controller
 
         $dql = $em->createQueryBuilder();
         $dql->select('a')
-             ->from('AppBundle:Profesionales','a');
+             ->from('AppBundle:Profesionales', 'a');
         $query = $em->createQuery($dql);
 
-        if(array_key_exists('nombre',$param) && $param['nombre']){
-          $dql->andwhere($dql->expr()->like('UPPER(a.apellidoNombre)', $dql->expr()->literal('%'.strtoupper($param['nombre']).'%')));
+        if (array_key_exists('nombre', $param) && $param['nombre']) {
+            $dql->andwhere($dql->expr()->like('UPPER(a.apellidoNombre)', $dql->expr()->literal('%'.strtoupper($param['nombre']).'%')));
         }
-        if(array_key_exists('documento',$param) && $param['documento']){
-          $dql->andWhere('a.dni = '.$param['documento']);
+        if (array_key_exists('documento', $param) && $param['documento']) {
+            $dql->andWhere('a.dni = '.$param['documento']);
         }
-        if(array_key_exists('cuit',$param) && $param['cuit']){
-          $dql->andWhere('a.cuit = '.$param['cuit']);
+        if (array_key_exists('cuit', $param) && $param['cuit']) {
+            $dql->andWhere('a.cuit = '.$param['cuit']);
         }
 
         $paginator  = $this->get('knp_paginator');
@@ -74,6 +73,9 @@ class ProfesionalesController extends Controller
      */
     public function newAction(Request $request)
     {
+        if ($this->isGranted('ROLE_CONSULTA')) {
+            return $this->redirectToRoute('profesionales_index');
+        }
         $profesionale = new Profesionales();
         $form = $this->createForm('AppBundle\Form\ProfesionalesType', $profesionale);
         $form->handleRequest($request);
@@ -105,8 +107,8 @@ class ProfesionalesController extends Controller
         $wheres=array();
         if ($param['apellido_nombre']) {
             $nombre=$param['apellido_nombre'];
-            foreach (explode(' ',$nombre) as $key => $value) {
-              $wheres[]="lower(a.apellidoNombre) like lower('%$value%')";
+            foreach (explode(' ', $nombre) as $key => $value) {
+                $wheres[]="lower(a.apellidoNombre) like lower('%$value%')";
             }
         }
         if ($param['documento']) {
@@ -162,6 +164,9 @@ class ProfesionalesController extends Controller
      */
     public function editAction(Request $request, Profesionales $profesionale)
     {
+        if ($this->isGranted('ROLE_CONSULTA')) {
+            return $this->redirectToRoute('profesionales_index');
+        }
         $deleteForm = $this->createDeleteForm($profesionale);
         $editForm = $this->createForm('AppBundle\Form\ProfesionalesType', $profesionale);
         $editForm->handleRequest($request);

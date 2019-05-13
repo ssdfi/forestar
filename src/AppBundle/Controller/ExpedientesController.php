@@ -104,7 +104,11 @@ class ExpedientesController extends Controller
             array('distinct' => true, 'defaultSortFieldName' => 'a.id', 'defaultSortDirection' => 'desc')
         );
         $search_form->handleRequest($request);
-
+        if ($param !== null) {
+            if (count($pagination) == 1) {
+                return $this->redirectToRoute('expedientes_show', array('id' => $pagination->getItems()[0]->getId()));
+            }
+        }
         return $this->render('expedientes/index.html.twig', array(
             'expedientes' => $pagination,
             'search_form'=>$search_form->createView(),
@@ -120,6 +124,9 @@ class ExpedientesController extends Controller
      */
     public function newAction(Request $request)
     {
+        if ($this->isGranted('ROLE_CONSULTA')) {
+            return $this->redirectToRoute('expedientes_index');
+        }
         $expediente = new Expedientes();
         $hierarchy = $this->container->getParameter('security.role_hierarchy.roles');
         $roles = array();
@@ -194,6 +201,9 @@ class ExpedientesController extends Controller
      */
     public function editAction(Request $request, Expedientes $expediente)
     {
+        if ($this->isGranted('ROLE_CONSULTA')) {
+            return $this->redirectToRoute('expedientes_index');
+        }
         $deleteForm = $this->createDeleteForm($expediente);
         $hierarchy = $this->container->getParameter('security.role_hierarchy.roles');
         $roles = array();

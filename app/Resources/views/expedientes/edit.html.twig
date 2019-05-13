@@ -473,7 +473,9 @@
 						</div>
 					{% endif %}
 				</div>
-				<button type="submit" class="btn btn-primary pull-right"><span class="fa fa-save" aria-hidden="true"></span> Guardar</button>
+				{% if is_granted('ROLE_CONSULTA') == false %}
+					<button type="submit" class="btn btn-primary pull-right"><span class="fa fa-save" aria-hidden="true"></span> Guardar</button>
+			  {% endif %}
 				{{ form_end(edit_form) }}
 			</div>
 		</div>

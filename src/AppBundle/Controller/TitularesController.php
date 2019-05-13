@@ -24,45 +24,45 @@ class TitularesController extends Controller
      */
     public function indexAction(Request $request)
     {
-          $em = $this->getDoctrine()->getManager();
-          $titular = new Titulares();
-          $user = $this->get('security.token_storage')->getToken()->getUser();
-          $search_form = $this->createForm('AppBundle\Form\TitularesSearchType', $titular, array(
+        $em = $this->getDoctrine()->getManager();
+        $titular = new Titulares();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $search_form = $this->createForm('AppBundle\Form\TitularesSearchType', $titular, array(
             'action' => '/',
             'method' => 'get',
             'user' => $user
           ));
-          $param=($request->query->get('titulares_search'))? $request->query->get('titulares_search'):[];
+        $param=($request->query->get('titulares_search'))? $request->query->get('titulares_search'):[];
 
-          $dql = $em->createQueryBuilder();
-          $dql->select('a')
-               ->from('AppBundle:Titulares','a');
-          $query = $em->createQuery($dql);
+        $dql = $em->createQueryBuilder();
+        $dql->select('a')
+               ->from('AppBundle:Titulares', 'a');
+        $query = $em->createQuery($dql);
 
-          if(array_key_exists('nombre',$param) && $param['nombre']){
+        if (array_key_exists('nombre', $param) && $param['nombre']) {
             $dql->andwhere($dql->expr()->like('UPPER(a.apellidoNombre)', $dql->expr()->literal('%'.strtoupper($param['nombre']).'%')));
-          }
-          if(array_key_exists('documento',$param) && $param['documento']){
+        }
+        if (array_key_exists('documento', $param) && $param['documento']) {
             $dql->andWhere('a.documento = '.$param['documento']);
-          }
-          if(array_key_exists('cuit',$param) && $param['cuit']){
+        }
+        if (array_key_exists('cuit', $param) && $param['cuit']) {
             $dql->andWhere('a.cuit = '.$param['cuit']);
-          }
-          if(array_key_exists('pequenioProductor',$param) && $param['pequenioProductor']){
+        }
+        if (array_key_exists('pequenioProductor', $param) && $param['pequenioProductor']) {
             $var = ($param['pequenioProductor'] == 1) ? 'true' : 'false';
             $dql->andWhere('a.pequenioProductor = ' . $var);
-          }
+        }
 
-          $paginator  = $this->get('knp_paginator');
-          $pagination = $paginator->paginate(
-              $query,
-              $request->query->getInt('page', 1),
-              20,
-              array('distinct' => true, 'defaultSortFieldName' => 'a.id', 'defaultSortDirection' => 'desc')
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            20,
+            array('distinct' => true, 'defaultSortFieldName' => 'a.id', 'defaultSortDirection' => 'desc')
           );
-          $search_form->handleRequest($request);
+        $search_form->handleRequest($request);
 
-          return $this->render('titulares/index.html.twig', array(
+        return $this->render('titulares/index.html.twig', array(
               'titulares' => $pagination,
               'search_form'=>$search_form->createView(),
               'param' => $param
@@ -108,8 +108,8 @@ class TitularesController extends Controller
         $wheres=array();
         if ($param['apellido_nombre']) {
             $nombre=$param['apellido_nombre'];
-            foreach (explode(' ',$nombre) as $key => $value) {
-              $wheres[]="lower(a.apellidoNombre) like lower('%$value%')";
+            foreach (explode(' ', $nombre) as $key => $value) {
+                $wheres[]="lower(a.apellidoNombre) like lower('%$value%')";
             }
         }
         if ($param['documento']) {
@@ -155,8 +155,8 @@ class TitularesController extends Controller
         $em = $this->getDoctrine()->getManager();
         $dql = $em->createQueryBuilder();
         $dql->select('e')
-             ->from('AppBundle:ExpedientesTitulares','et')
-             ->leftJoin('AppBundle:Expedientes','e',\Doctrine\ORM\Query\Expr\Join::WITH,'et.expedienteId = e.id')
+             ->from('AppBundle:ExpedientesTitulares', 'et')
+             ->leftJoin('AppBundle:Expedientes', 'e', \Doctrine\ORM\Query\Expr\Join::WITH, 'et.expedienteId = e.id')
              ->andwhere('et.titularId = :titular')
              ->setParameter('titular', $titulare->getId());
         $pagination = $paginator->paginate(
@@ -180,6 +180,9 @@ class TitularesController extends Controller
      */
     public function editAction(Request $request, Titulares $titulare)
     {
+        if ($this->isGranted('ROLE_CONSULTA')) {
+            return $this->redirectToRoute('titulares_show', array('id' => $titulare->getId()));
+        }
         $deleteForm = $this->createDeleteForm($titulare);
         $editForm = $this->createForm('AppBundle\Form\TitularesType', $titulare);
         $editForm->handleRequest($request);

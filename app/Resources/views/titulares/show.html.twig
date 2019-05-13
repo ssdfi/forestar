@@ -1,9 +1,11 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{parent()}} - Titulares{% endblock %}
 {% block navbarRight %}
-<li class="nav-item active">
-  <a class="nav-link" href="{{path('titulares_edit', {'id': titulare.id})}}"><span class="fa fa-edit" aria-hidden="true"></span> Editar Titular</a>
-</li>
+{% if is_granted('ROLE_CONSULTA') == false %}
+  <li class="nav-item active">
+    <a class="nav-link" href="{{path('titulares_edit', {'id': titulare.id})}}"><span class="fa fa-edit" aria-hidden="true"></span> Editar Titular</a>
+  </li>
+{% endif %}
 {{parent()}}
 {% endblock %}
 {% block body %}

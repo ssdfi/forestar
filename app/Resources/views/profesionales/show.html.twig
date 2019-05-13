@@ -2,7 +2,9 @@
 {% block title %}{{parent()}} - Profesionales{% endblock %}
 {% block navbarRight %}
 <li class="nav-item active">
+  {% if is_granted('ROLE_CONSULTA') == false %}
   <a class="nav-link" href="{{path('profesionales_edit', {'id': profesionale.id})}}"><span class="fa fa-edit" aria-hidden="true"></span> Editar Profesional</a>
+  {% endif %}
 </li>
 {{parent()}}
 {% endblock %}
@@ -24,7 +26,7 @@
               <dd class="col-8">{{ profesionale.cuit }}</dd>
               <dt class="col-4">Numero inscripcion</dt>
               <dd class="col-8">{{ profesionale.numeroInscripcion }}</dd>
-              <dt class="col-4">Apellidonombre</dt>
+              <dt class="col-4">Apellid/Nnombre</dt>
               <dd class="col-8">{{ profesionale.apellidoNombre }}</dd>
               <dt class="col-4">Email</dt>
               <dd class="col-8">{{ profesionale.emailTitular }}</dd>
