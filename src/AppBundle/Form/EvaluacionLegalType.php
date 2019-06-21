@@ -18,7 +18,7 @@ class EvaluacionLegalType extends AbstractType
         $builder
         ->add('aprobado', CheckboxType::class, array('attr' => array('data-label' => 'Aprobado'), 'label' => false, 'required'=>false))
         ->add('resolucion')
-        ->add('fecha', DateType::class, array('label' => 'Fecha','widget'=>'single_text','format' => 'yyyy-MM','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"AAAA-MM",'pattern'=>'\d{2}-\d{4}', 'title'=>'El formato debe ser MM-AAAA')))
+        ->add('fecha', DateType::class, array('label' => 'Fecha','widget'=>'single_text','format' => 'MM-yyyy','required'=>false,'attr' => array('class' => 'form-control','placeholder'=>"MM-AAAA",'pattern'=>'\d{2}-\d{4}', 'title'=>'El formato debe ser MM-AAAA')))
         ->add('observacion');
     }/**
      * {@inheritdoc}
