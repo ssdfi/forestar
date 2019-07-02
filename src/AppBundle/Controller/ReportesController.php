@@ -23,6 +23,9 @@ class ReportesController extends Controller
      */
     public function indexAction(Request $request)
     {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('expedientes_index');
+        }
         $em = $this->getDoctrine()->getManager();
         $expediente = new Expedientes();
         $search_form = $this->createForm('AppBundle\Form\ReportesType', $expediente, array(
@@ -385,78 +388,220 @@ class ReportesController extends Controller
         $response->headers->set('Content-Type', 'application/json');
         return $response;
     }
-    // /**
-    //  * @Route("/excel", name="excel_index")
-    //  */
-    // public function prepareExcel()
-    // {
-    //     $rowNo = 1;
-    //     $em = $this->getDoctrine()->getManager();
-    //     if (($fp = fopen("/home/martin/Descargas/planes_misiones.csv", "r")) !== false) {
-    //         $filess = fopen("/home/martin/Descargas/planes_misiones_reloaded.csv", "w");
-    //         fputcsv($filess, array('Numero Interno','Legales','Promocion','SIG'), ',');
-    //         while (($row = fgetcsv($fp, 1000, ",")) !== false) {
-    //             $num = count($row);
-    //             // dump($row[1]);
-    //             // if ($rowNo==256) {
-    //             $expediente = $em->getRepository('AppBundle:Expedientes')->findOneBy(array('numeroInterno'=>$row[1]));
-    //             if ($expediente) {
-    //                 if ($expediente->getPlurianual()) {
-    //                     $list = array();
-    //                     foreach ($expediente->getHistorialLegales() as $key => $value) {
-    //                         $fechardi = $value->getFechaUltimaModificacion() ? $value->getFechaUltimaModificacion()->format('d/m/Y') : $value->getFechaInicio()->format('d/m/Y');
-    //                         $list[1][$value->getEtapa()]=$fechardi .' '. $value->getObservacion();
-    //                     }
-    //                     foreach ($expediente->getHistorialPromociones() as $key => $value) {
-    //                         $fecha = $value->getFechaUltimaModificacion() ? $value->getFechaUltimaModificacion()->format('d/m/Y') : $value->getFechaInicio()->format('d/m/Y');
-    //                         $list[2][$value->getEtapa()]=$fecha .' '. $value->getObservacion();
-    //                     }
-    //                     foreach ($expediente->getHistorialSigs() as $key => $value) {
-    //                         $fechi = $value->getFechaUltimaModificacion() ? $value->getFechaUltimaModificacion()->format('d/m/Y') : $value->getFechaInicio()->format('d/m/Y');
-    //                         $list[3][$value->getEtapa()]=$fechi .' '. $value->getObservacion();
-    //                     }
-    //                     $result = array();
-    //                     foreach ($list as $offset=>$element) {
-    //                         foreach ($element as $key => $value) {
-    //                             $result[$key][0] = $expediente->getNumeroInterno();
-    //                             $result[$key][$offset] = 'ETAPA: '. $key .' - '.$value;
-    //                         }
-    //                     }
-    //                     foreach ($result as $key => $value) {
-    //                         // dump($value);
-    //                         fputcsv($filess, $value, ',');
-    //                     }
-    //                 } else {
-    //                     $list = array();
-    //                     $list[0]=$expediente->getNumeroInterno();
-    //                     if ($expediente->getHistorialLegales()->last()) {
-    //                         $fechardi = $expediente->getHistorialLegales()->last()->getFechaUltimaModificacion() ? $expediente->getHistorialLegales()->last()->getFechaUltimaModificacion()->format('d/m/Y') : $expediente->getHistorialLegales()->last()->getFechaInicio()->format('d/m/Y');
-    //                         $list[1]= $fechardi .' '. $expediente->getHistorialLegales()->last()->getObservacion();
-    //                     }
-    //                     if ($expediente->getHistorialPromociones()->last()) {
-    //                         // dump($expediente->getHistorialPromociones()->last()->getFechaUltimaModificacion());
-    //                         $fecha = $expediente->getHistorialPromociones()->last()->getFechaUltimaModificacion() ? $expediente->getHistorialPromociones()->last()->getFechaUltimaModificacion()->format('d/m/Y'): $expediente->getHistorialPromociones()->last()->getFechaInicio()->format('d/m/Y');
-    //                         $list[2]= $fecha .' '. $expediente->getHistorialPromociones()->last()->getObservacion();
-    //                     }
-    //                     if ($expediente->getHistorialSigs()->last()) {
-    //                         $fechi = $expediente->getHistorialSigs()->last()->getFechaUltimaModificacion() ? $expediente->getHistorialSigs()->last()->getFechaUltimaModificacion()->format('d/m/Y') : $expediente->getHistorialSigs()->last()->getFechaInicio()->format('d/m/Y');
-    //                         $list[3]=$fechi .' '.$expediente->getHistorialSigs()->last()->getObservacion();
-    //                     }
-    //                     fputcsv($filess, $list, ',');
-    //                 }
-    //             }
-    //             // asfdsadf;
-    //             // }
-    //             $rowNo++;
-    //         }
-    //         fclose($filess);
-    //         fclose($fp);
-    //     }
-    //     return $this->render('reportes/index.html.twig', array(
-    //       'pagination' => $pagination,
-    //       'data' => $data,
-    //       'search_form'=>$search_form->createView(),
-    //       'param' => $param
-    //     ));
-    // }
+
+    /**
+     * @Route("/estadoSituacion", name="estadoSituacion_index")
+     */
+    public function indexEstadoSituacionAction(Request $request)
+    {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('expedientes_index');
+        }
+        $expediente = new Expedientes();
+        $division_form = $this->createForm('AppBundle\Form\DivisionAdministrativaType', $expediente, array(
+          'action' => '/reportes/estadoSituacion/generarcsv',
+          'method' => 'get'
+        ));
+
+        $numerosInternos = $this->createForm('AppBundle\Form\NumerosInternosType', $expediente, array(
+          'action' => '/reportes/estadoSituacion/internos/generarcsv',
+          'method' => 'get'
+        ));
+
+        $numerosExpedientes = $this->createForm('AppBundle\Form\NumerosExpedientesType', $expediente, array(
+          'action' => '/reportes/estadoSituacion/internos/generarcsv',
+          'method' => 'get'
+        ));
+
+        return $this->render('reportes/estado_situacion.html.twig', array(
+            'division_form'=>$division_form->createView(),
+            'numerosInternos'=>$numerosInternos->createView(),
+            'numerosExpedientes'=>$numerosExpedientes->createView()
+        ));
+    }
+
+    /**
+     * @Route("/estadoSituacion/generarcsv", name="generarcsv_index")
+     */
+    public function generarCSVAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $dql = $em->createQueryBuilder();
+        $division_administrativa = ($request->query->get('division_administrativa'))? $request->query->get('division_administrativa'):[];
+        if ($division_administrativa) {
+            $dql->select('a.id')
+                 ->from('AppBundle:Expedientes', 'a');
+            $dql->andwhere($dql->expr()->like($dql->expr()->substring('a.numeroInterno', 0, 3), $dql->expr()->literal(strtoupper($division_administrativa['provincia']))));
+            if (array_key_exists('departamento', $division_administrativa) && $division_administrativa['departamento']) {
+                $dql->andwhere('a.departamento = '.$division_administrativa['departamento']);
+            }
+            if ($division_administrativa['anio']) {
+                $anio = $division_administrativa['anio'];
+                $dql->where($dql->expr()->orX($dql->expr()->like('a.anio', $dql->expr()->literal(substr($division_administrativa['anio'], 2, 3)))));
+            }
+            $result = $em->createQuery($dql)->getScalarResult();
+            $expedientes = array_map('current', $result);
+            $this->prepareExcel($expedientes);
+        }
+    }
+
+    /**
+     * @Route("/estadoSituacion/internos/generarcsv", name="generarcsv_internos_expedientes_index")
+     */
+    public function internosExpedientesCSVAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $dql = $em->createQueryBuilder();
+        $listado = $request->query->get('numeros_internos')['list'];
+        $listadoExpedientes = $request->query->get('numeros_expedientes')['list'];
+        if ($listado) {
+            $listado = array_filter(explode("\r\n", $listado));
+            $dql->select('a.id')
+                     ->from('AppBundle:Expedientes', 'a');
+            $dql->add('where', $dql->expr()->in('a.numeroInterno', $listado));
+            $result = $em->createQuery($dql)->getScalarResult();
+            $expedientes = array_map('current', $result);
+            $this->prepareExcel($expedientes);
+        }
+        if ($listadoExpedientes) {
+            $listadoExpedientes = array_filter(explode("\r\n", $listadoExpedientes));
+            $dql->select('a.id')
+                     ->from('AppBundle:Expedientes', 'a');
+            $dql->add('where', $dql->expr()->in('a.numeroExpediente', $listadoExpedientes));
+            $result = $em->createQuery($dql)->getScalarResult();
+            $expedientes = array_map('current', $result);
+            $this->prepareExcel($expedientes);
+        }
+    }
+
+    public function prepareExcel($expedientesId)
+    {
+        $rowNo = 1;
+        $em = $this->getDoctrine()->getManager();
+        $filename = 'expedientes';
+        $filepath = $_SERVER["DOCUMENT_ROOT"] . $filename.'.csv';
+        $output = fopen($filepath, 'w+');
+        ob_end_clean();
+
+        $fp = fopen('php://output', 'w');
+        fputcsv($output, array('Numero Interno','Legales','Promocion','SIG'));
+        foreach ($expedientesId as $key => $id) {
+            $expediente = $em->getRepository('AppBundle:Expedientes')->findOneBy(array('id'=>$id));
+            if ($expediente) {
+                if ($expediente->getPlurianual()) {
+                    $list = array();
+                    foreach ($expediente->getHistorialLegales() as $key => $value) {
+                        $fechardi = $value->getFechaUltimaModificacion() ? $value->getFechaUltimaModificacion()->format('d/m/Y') : $value->getFechaInicio()->format('d/m/Y');
+                        $list[1][$value->getEtapa()]=$fechardi .' '. $value->getObservacion();
+                    }
+                    foreach ($expediente->getHistorialPromociones() as $key => $value) {
+                        $fecha = $value->getFechaUltimaModificacion() ? $value->getFechaUltimaModificacion()->format('d/m/Y') : $value->getFechaInicio()->format('d/m/Y');
+                        $list[2][$value->getEtapa()]=$fecha .' '. $value->getObservacion();
+                    }
+                    foreach ($expediente->getHistorialSigs() as $key => $value) {
+                        $fechi = $value->getFechaUltimaModificacion() ? $value->getFechaUltimaModificacion()->format('d/m/Y') : $value->getFechaInicio()->format('d/m/Y');
+                        $list[3][$value->getEtapa()]=$fechi .' '. $value->getObservacion();
+                    }
+                    $result = array();
+                    foreach ($list as $offset=>$element) {
+                        foreach ($element as $key => $value) {
+                            $result[$key][0] = $expediente->getNumeroInterno();
+                            $result[$key][$offset] = 'ETAPA: '. $key .' - '.$value;
+                        }
+                    }
+                    foreach ($result as $key => $value) {
+                        fputcsv($output, $value, ',');
+                    }
+                } else {
+                    $list = array();
+                    $list[0]=$expediente->getNumeroInterno();
+                    if ($expediente->getHistorialLegales()->last()) {
+                        $fechardi = $expediente->getHistorialLegales()->last()->getFechaUltimaModificacion() ? $expediente->getHistorialLegales()->last()->getFechaUltimaModificacion()->format('d/m/Y') : $expediente->getHistorialLegales()->last()->getFechaInicio()->format('d/m/Y');
+                        $list[1]= $fechardi .' '. $expediente->getHistorialLegales()->last()->getObservacion();
+                    }
+                    if ($expediente->getHistorialPromociones()->last()) {
+                        $fecha = $expediente->getHistorialPromociones()->last()->getFechaUltimaModificacion() ? $expediente->getHistorialPromociones()->last()->getFechaUltimaModificacion()->format('d/m/Y'): $expediente->getHistorialPromociones()->last()->getFechaInicio()->format('d/m/Y');
+                        $list[2]= $fecha .' '. $expediente->getHistorialPromociones()->last()->getObservacion();
+                    }
+                    if ($expediente->getHistorialSigs()->last()) {
+                        $fechi = $expediente->getHistorialSigs()->last()->getFechaUltimaModificacion() ? $expediente->getHistorialSigs()->last()->getFechaUltimaModificacion()->format('d/m/Y') : $expediente->getHistorialSigs()->last()->getFechaInicio()->format('d/m/Y');
+                        $list[3]=$fechi .' '.$expediente->getHistorialSigs()->last()->getObservacion();
+                    }
+                    fputcsv($output, $list, ',');
+                }
+            }
+        }
+        header('Content-Type: application/xls; charset=utf-8');
+        header('Content-Disposition: attachment; filename=expedientes.xls');
+        // header('Content-Type: text/csv; charset=utf-8');
+        // header('Content-Disposition: attachment; filename=expedientes.csv');
+        readfile($filepath);
+        exit();
+    }
 }
+
+// if (($fp = fopen("/home/martin/Descargas/planes_misiones.csv", "r")) !== false) {
+//     $filess = fopen("/home/martin/Descargas/planes_misiones_reloaded.csv", "w");
+//     fputcsv($filess, array('Numero Interno','Legales','Promocion','SIG'), ',');
+//     while (($row = fgetcsv($fp, 1000, ",")) !== false) {
+//         $num = count($row);
+//         // dump($row[1]);
+//         // if ($rowNo==256) {
+//         $expediente = $em->getRepository('AppBundle:Expedientes')->findOneBy(array('numeroInterno'=>$row[1]));
+//         if ($expediente) {
+//             if ($expediente->getPlurianual()) {
+//                 $list = array();
+//                 foreach ($expediente->getHistorialLegales() as $key => $value) {
+//                     $fechardi = $value->getFechaUltimaModificacion() ? $value->getFechaUltimaModificacion()->format('d/m/Y') : $value->getFechaInicio()->format('d/m/Y');
+//                     $list[1][$value->getEtapa()]=$fechardi .' '. $value->getObservacion();
+//                 }
+//                 foreach ($expediente->getHistorialPromociones() as $key => $value) {
+//                     $fecha = $value->getFechaUltimaModificacion() ? $value->getFechaUltimaModificacion()->format('d/m/Y') : $value->getFechaInicio()->format('d/m/Y');
+//                     $list[2][$value->getEtapa()]=$fecha .' '. $value->getObservacion();
+//                 }
+//                 foreach ($expediente->getHistorialSigs() as $key => $value) {
+//                     $fechi = $value->getFechaUltimaModificacion() ? $value->getFechaUltimaModificacion()->format('d/m/Y') : $value->getFechaInicio()->format('d/m/Y');
+//                     $list[3][$value->getEtapa()]=$fechi .' '. $value->getObservacion();
+//                 }
+//                 $result = array();
+//                 foreach ($list as $offset=>$element) {
+//                     foreach ($element as $key => $value) {
+//                         $result[$key][0] = $expediente->getNumeroInterno();
+//                         $result[$key][$offset] = 'ETAPA: '. $key .' - '.$value;
+//                     }
+//                 }
+//                 foreach ($result as $key => $value) {
+//                     // dump($value);
+//                     fputcsv($filess, $value, ',');
+//                 }
+//             } else {
+//                 $list = array();
+//                 $list[0]=$expediente->getNumeroInterno();
+//                 if ($expediente->getHistorialLegales()->last()) {
+//                     $fechardi = $expediente->getHistorialLegales()->last()->getFechaUltimaModificacion() ? $expediente->getHistorialLegales()->last()->getFechaUltimaModificacion()->format('d/m/Y') : $expediente->getHistorialLegales()->last()->getFechaInicio()->format('d/m/Y');
+//                     $list[1]= $fechardi .' '. $expediente->getHistorialLegales()->last()->getObservacion();
+//                 }
+//                 if ($expediente->getHistorialPromociones()->last()) {
+//                     // dump($expediente->getHistorialPromociones()->last()->getFechaUltimaModificacion());
+//                     $fecha = $expediente->getHistorialPromociones()->last()->getFechaUltimaModificacion() ? $expediente->getHistorialPromociones()->last()->getFechaUltimaModificacion()->format('d/m/Y'): $expediente->getHistorialPromociones()->last()->getFechaInicio()->format('d/m/Y');
+//                     $list[2]= $fecha .' '. $expediente->getHistorialPromociones()->last()->getObservacion();
+//                 }
+//                 if ($expediente->getHistorialSigs()->last()) {
+//                     $fechi = $expediente->getHistorialSigs()->last()->getFechaUltimaModificacion() ? $expediente->getHistorialSigs()->last()->getFechaUltimaModificacion()->format('d/m/Y') : $expediente->getHistorialSigs()->last()->getFechaInicio()->format('d/m/Y');
+//                     $list[3]=$fechi .' '.$expediente->getHistorialSigs()->last()->getObservacion();
+//                 }
+//                 fputcsv($filess, $list, ',');
+//             }
+//         }
+//         $rowNo++;
+//     }
+//     fclose($filess);
+//     fclose($fp);
+// }
+
+// return $this->render('reportes/index.html.twig', array(
+//   'pagination' => $pagination,
+//   'data' => $data,
+//   'search_form'=>$search_form->createView(),
+//   'param' => $param
+// ));

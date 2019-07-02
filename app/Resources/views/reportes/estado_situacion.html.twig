@@ -1,0 +1,123 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}}
+	- Estado Situación{% endblock %}
+
+{% block navbarRight %}
+	{{parent()}}
+{% endblock %}
+
+{% block body %}
+	<div
+		id="data"
+		data-provincia='{% if param.provincia is defined and param.provincia %}{{param.provincia}}{% endif %}'
+		data-departamento='{% if param.departamento is defined and param.departamento %}{{param.departamento}}{% endif %}'
+		data-anio='{% if param.anio is defined and param.anio %}{{param.anio}}{% endif %}'
+		style="display: none;"></div>
+	<div class="row">
+		<div class="col-md-12 bg-light">
+			<h2>Generar Reporte - Estado Situación</h2>
+			<div class="accordion" id="accordionExample">
+				<div class="card">
+					<div class="card-header" id="headingOne">
+						<h2 class="mb-0">
+							<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+								>> Provincia / Departamento
+							</button>
+						</h2>
+					</div>
+
+					<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+						<div class="card-body">
+							{{ form_start(division_form, {'attr':{'class':'form-row'}}) }}
+							<div class="form-group col-md-5">
+								<div class="col-sm-12">
+									{{ form_widget(division_form.provincia, {'attr': {'class': 'form-control'}}) }}
+								</div>
+							</div>
+							<div class="form-group col-md-5">
+								<div class="col-sm-12">
+									{{ form_widget(division_form.departamento, {'attr': {'class': 'form-control'}}) }}
+								</div>
+							</div>
+							<div class="form-group col-md-2">
+								<div class="col-sm-12">
+									{{ form_widget(division_form.anio, {'attr': {'class': 'form-control'}}) }}
+								</div>
+							</div>
+							<div class="from-group col-md-12 row">
+								<div class="col-sm-6"></div>
+								<div class="col-sm-6 pull-right">
+									{{ form_widget(division_form.generarcsv) }}
+								</div>
+								<div class="form-group"></div>
+							</div>
+						</div>
+						<input type="hidden" name="_csrf_token" value="{{ csrf_token('search_form') }}">
+						{{ form_end(division_form) }}
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header" id="headingTwo">
+					<h2 class="mb-0">
+						<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+							>> Nro. Interno
+						</button>
+					</h2>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+					<div class="card-body">
+						{{ form_start(numerosInternos, {'attr':{'class':'form-row'}}) }}
+						<div class="form-group col-md-5">
+							<div class="col-sm-12 text-center">
+								{{ form_widget(numerosInternos.list, {'attr': {'class': 'form-control'}}) }}
+							</div>
+						</div>
+						<div class="from-group col-md-12 row">
+							<div class="col-sm-6"></div>
+							<div class="col-sm-6 pull-right">
+								{{ form_widget(numerosInternos.generarcsv) }}
+							</div>
+							<div class="form-group"></div>
+						</div>
+					</div>
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token('search_form') }}">
+					{{ form_end(numerosInternos) }}
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header" id="headingThree">
+					<h2 class="mb-0">
+						<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+							>> Nro. Expediente
+						</button>
+					</h2>
+				</div>
+				<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+					<div class="card-body">
+						{{ form_start(numerosExpedientes, {'attr':{'class':'form-row'}}) }}
+						<div class="form-group col-md-5">
+							<div class="col-sm-12 text-center">
+								{{ form_widget(numerosExpedientes.list, {'attr': {'class': 'form-control'}}) }}
+							</div>
+						</div>
+						<div class="from-group col-md-12 row">
+							<div class="col-sm-6"></div>
+							<div class="col-sm-6 pull-right">
+								{{ form_widget(numerosExpedientes.generarcsv) }}
+							</div>
+							<div class="form-group"></div>
+						</div>
+					</div>
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token('search_form') }}">
+					{{ form_end(numerosExpedientes) }}
+				</div>
+			</div>
+		</div>
+	{% endblock %}
+
+	{% block javascripts %}
+		{{parent()}}
+		<script src="{{asset('js/reporte_estado_situacion.js')}}"></script>
+	{% endblock %}
