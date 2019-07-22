@@ -484,7 +484,7 @@ class ReportesController extends Controller
         ob_end_clean();
 
         $fp = fopen('php://output', 'w');
-        fputcsv($output, array('Numero Interno','Legales','Promocion','SIG'));
+        fputcsv($output, array('Numero Interno','Área','Legales','Promocion','SIG'));
         foreach ($expedientesId as $key => $id) {
             $expediente = $em->getRepository('AppBundle:Expedientes')->findOneBy(array('id'=>$id));
             if ($expediente) {
@@ -492,116 +492,51 @@ class ReportesController extends Controller
                     $list = array();
                     foreach ($expediente->getHistorialLegales() as $key => $value) {
                         $fechardi = $value->getFechaUltimaModificacion() ? $value->getFechaUltimaModificacion()->format('d/m/Y') : $value->getFechaInicio()->format('d/m/Y');
-                        $list[1][$value->getEtapa()]=$fechardi .' '. $value->getObservacion();
+                        $list[2][$value->getEtapa()]=$fechardi .' '. $value->getObservacion();
                     }
                     foreach ($expediente->getHistorialPromociones() as $key => $value) {
                         $fecha = $value->getFechaUltimaModificacion() ? $value->getFechaUltimaModificacion()->format('d/m/Y') : $value->getFechaInicio()->format('d/m/Y');
-                        $list[2][$value->getEtapa()]=$fecha .' '. $value->getObservacion();
+                        $list[3][$value->getEtapa()]=$fecha .' '. $value->getObservacion();
                     }
                     foreach ($expediente->getHistorialSigs() as $key => $value) {
                         $fechi = $value->getFechaUltimaModificacion() ? $value->getFechaUltimaModificacion()->format('d/m/Y') : $value->getFechaInicio()->format('d/m/Y');
-                        $list[3][$value->getEtapa()]=$fechi .' '. $value->getObservacion();
+                        $list[4][$value->getEtapa()]=$fechi .' '. $value->getObservacion();
                     }
                     $result = array();
                     foreach ($list as $offset=>$element) {
                         foreach ($element as $key => $value) {
                             $result[$key][0] = $expediente->getNumeroInterno();
+                            $result[$key][1] = $expediente->getAreaEncuentraExpediente();
                             $result[$key][$offset] = 'ETAPA: '. $key .' - '.$value;
                         }
                     }
+
                     foreach ($result as $key => $value) {
                         fputcsv($output, $value, ',');
                     }
                 } else {
                     $list = array();
                     $list[0]=$expediente->getNumeroInterno();
+                    $list[1]=$expediente->getAreaEncuentraExpediente();
                     if ($expediente->getHistorialLegales()->last()) {
                         $fechardi = $expediente->getHistorialLegales()->last()->getFechaUltimaModificacion() ? $expediente->getHistorialLegales()->last()->getFechaUltimaModificacion()->format('d/m/Y') : $expediente->getHistorialLegales()->last()->getFechaInicio()->format('d/m/Y');
-                        $list[1]= $fechardi .' '. $expediente->getHistorialLegales()->last()->getObservacion();
+                        $list[2]= $fechardi .' '. $expediente->getHistorialLegales()->last()->getObservacion();
                     }
                     if ($expediente->getHistorialPromociones()->last()) {
                         $fecha = $expediente->getHistorialPromociones()->last()->getFechaUltimaModificacion() ? $expediente->getHistorialPromociones()->last()->getFechaUltimaModificacion()->format('d/m/Y'): $expediente->getHistorialPromociones()->last()->getFechaInicio()->format('d/m/Y');
-                        $list[2]= $fecha .' '. $expediente->getHistorialPromociones()->last()->getObservacion();
+                        $list[3]= $fecha .' '. $expediente->getHistorialPromociones()->last()->getObservacion();
                     }
                     if ($expediente->getHistorialSigs()->last()) {
                         $fechi = $expediente->getHistorialSigs()->last()->getFechaUltimaModificacion() ? $expediente->getHistorialSigs()->last()->getFechaUltimaModificacion()->format('d/m/Y') : $expediente->getHistorialSigs()->last()->getFechaInicio()->format('d/m/Y');
-                        $list[3]=$fechi .' '.$expediente->getHistorialSigs()->last()->getObservacion();
+                        $list[4]=$fechi .' '.$expediente->getHistorialSigs()->last()->getObservacion();
                     }
                     fputcsv($output, $list, ',');
                 }
             }
         }
-        header('Content-Type: application/xls; charset=utf-8');
-        header('Content-Disposition: attachment; filename=expedientes.xls');
-        // header('Content-Type: text/csv; charset=utf-8');
-        // header('Content-Disposition: attachment; filename=expedientes.csv');
+        header('Content-Type: text/csv; charset=utf-8');
+        header('Content-Disposition: attachment; filename=expedientes.csv');
         readfile($filepath);
         exit();
     }
 }
-
-// if (($fp = fopen("/home/martin/Descargas/planes_misiones.csv", "r")) !== false) {
-//     $filess = fopen("/home/martin/Descargas/planes_misiones_reloaded.csv", "w");
-//     fputcsv($filess, array('Numero Interno','Legales','Promocion','SIG'), ',');
-//     while (($row = fgetcsv($fp, 1000, ",")) !== false) {
-//         $num = count($row);
-//         // dump($row[1]);
-//         // if ($rowNo==256) {
-//         $expediente = $em->getRepository('AppBundle:Expedientes')->findOneBy(array('numeroInterno'=>$row[1]));
-//         if ($expediente) {
-//             if ($expediente->getPlurianual()) {
-//                 $list = array();
-//                 foreach ($expediente->getHistorialLegales() as $key => $value) {
-//                     $fechardi = $value->getFechaUltimaModificacion() ? $value->getFechaUltimaModificacion()->format('d/m/Y') : $value->getFechaInicio()->format('d/m/Y');
-//                     $list[1][$value->getEtapa()]=$fechardi .' '. $value->getObservacion();
-//                 }
-//                 foreach ($expediente->getHistorialPromociones() as $key => $value) {
-//                     $fecha = $value->getFechaUltimaModificacion() ? $value->getFechaUltimaModificacion()->format('d/m/Y') : $value->getFechaInicio()->format('d/m/Y');
-//                     $list[2][$value->getEtapa()]=$fecha .' '. $value->getObservacion();
-//                 }
-//                 foreach ($expediente->getHistorialSigs() as $key => $value) {
-//                     $fechi = $value->getFechaUltimaModificacion() ? $value->getFechaUltimaModificacion()->format('d/m/Y') : $value->getFechaInicio()->format('d/m/Y');
-//                     $list[3][$value->getEtapa()]=$fechi .' '. $value->getObservacion();
-//                 }
-//                 $result = array();
-//                 foreach ($list as $offset=>$element) {
-//                     foreach ($element as $key => $value) {
-//                         $result[$key][0] = $expediente->getNumeroInterno();
-//                         $result[$key][$offset] = 'ETAPA: '. $key .' - '.$value;
-//                     }
-//                 }
-//                 foreach ($result as $key => $value) {
-//                     // dump($value);
-//                     fputcsv($filess, $value, ',');
-//                 }
-//             } else {
-//                 $list = array();
-//                 $list[0]=$expediente->getNumeroInterno();
-//                 if ($expediente->getHistorialLegales()->last()) {
-//                     $fechardi = $expediente->getHistorialLegales()->last()->getFechaUltimaModificacion() ? $expediente->getHistorialLegales()->last()->getFechaUltimaModificacion()->format('d/m/Y') : $expediente->getHistorialLegales()->last()->getFechaInicio()->format('d/m/Y');
-//                     $list[1]= $fechardi .' '. $expediente->getHistorialLegales()->last()->getObservacion();
-//                 }
-//                 if ($expediente->getHistorialPromociones()->last()) {
-//                     // dump($expediente->getHistorialPromociones()->last()->getFechaUltimaModificacion());
-//                     $fecha = $expediente->getHistorialPromociones()->last()->getFechaUltimaModificacion() ? $expediente->getHistorialPromociones()->last()->getFechaUltimaModificacion()->format('d/m/Y'): $expediente->getHistorialPromociones()->last()->getFechaInicio()->format('d/m/Y');
-//                     $list[2]= $fecha .' '. $expediente->getHistorialPromociones()->last()->getObservacion();
-//                 }
-//                 if ($expediente->getHistorialSigs()->last()) {
-//                     $fechi = $expediente->getHistorialSigs()->last()->getFechaUltimaModificacion() ? $expediente->getHistorialSigs()->last()->getFechaUltimaModificacion()->format('d/m/Y') : $expediente->getHistorialSigs()->last()->getFechaInicio()->format('d/m/Y');
-//                     $list[3]=$fechi .' '.$expediente->getHistorialSigs()->last()->getObservacion();
-//                 }
-//                 fputcsv($filess, $list, ',');
-//             }
-//         }
-//         $rowNo++;
-//     }
-//     fclose($filess);
-//     fclose($fp);
-// }
-
-// return $this->render('reportes/index.html.twig', array(
-//   'pagination' => $pagination,
-//   'data' => $data,
-//   'search_form'=>$search_form->createView(),
-//   'param' => $param
-// ));
