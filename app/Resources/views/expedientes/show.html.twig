@@ -89,6 +89,10 @@
 							<dd class="col-6">{{ expediente.numeroInterno }}</dd>
 							<dt class="col-6">Numero Expediente</dt>
 							<dd class="col-6">{{ expediente.numeroExpediente }}</dd>
+							{% if is_granted('ROLE_LIQUIDACIONES') %}
+								<dt class="col-6">Nro. Expediente Original</dt>
+								<dd class="col-6">{{ expediente.expedienteOriginal }}</dd>
+							{% endif %}
 							<dt class="col-6">Provincia</dt>
 							<dd class="col-6">{{ expediente.departamento.provincia.nombre }}</dd>
 							<dt class="col-6">Departamento</dt>

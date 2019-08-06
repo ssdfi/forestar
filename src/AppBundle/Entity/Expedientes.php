@@ -92,7 +92,6 @@ class Expedientes
      */
     private $entidadAgrupadoraId;
 
-    // *     pattern     = "/EXP-S05:[0-9]{7}\/[0-9]{4}|EXP-S01:[0-9]{7}\/[0-9]{4}|EX-20[0-9]{2}-[0-9]{8}\b/",
     /**
      * @var string
      *
@@ -280,6 +279,7 @@ class Expedientes
     /**
     * One Expediente has Many ActividadesAprobadas.
     * @ORM\OneToMany(targetEntity="ActividadesAprobadas", mappedBy="expediente",cascade={"persist"}, orphanRemoval=true)
+    * @ORM\OrderBy({"id" = "ASC"})
     */
     private $actividadesAprobadas;
 
@@ -475,6 +475,18 @@ class Expedientes
      * @ORM\Column(name="agrupador", type="boolean", nullable=true)
      */
     private $agrupador;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="expediente_original", type="string", nullable=true)
+     * @Assert\Regex(
+     *     pattern     = "/EXP-S05:[0-9]{7}\/[0-9]{4}|EXP-S01:[0-9]{7}\/[0-9]{4}|EX-20[0-9]{2}-[0-9]{8}?(- -APN-DDYME#MA|- -APN-DGD#MA|- -APN-DGDMA#MPYT)|EX-20[0-9]{2}-[0-9]{8}\b/",
+     *     message     = "El formato debe ser EXP-S05:#######/#### o EX-20##-######## o EX-2016-02633411- -APN-DDYME#MA o EX-2018-18448039- -APN-DGD#MA o EX-2019-36229281- -APN-DGDMA#MPYT"
+     * )
+     * @Assert\Length(min = 16, max=33, exactMessage="El campo debe tener {{ limit }} digitos, EXP-S05:#######/####")
+     */
+    private $expedienteOriginal;
 
     public function __construct()
     {
@@ -1807,6 +1819,31 @@ class Expedientes
         $this->agrupador = $agrupador;
         return $this;
     }
+
+    /**
+     * Set $expedienteOriginal
+     *
+     * @param string $expedienteOriginal
+     *
+     * @return Expedientes
+     */
+    public function setExpedienteOriginal($expedienteOriginal)
+    {
+        $this->expedienteOriginal = $expedienteOriginal;
+
+        return $this;
+    }
+
+    /**
+     * Get $expedienteOriginal
+     *
+     * @return string
+     */
+    public function getExpedienteOriginal()
+    {
+        return $this->expedienteOriginal;
+    }
+
     /**
      * Gets triggered only on insert
 
@@ -1814,6 +1851,8 @@ class Expedientes
      */
     public function onPrePersist()
     {
+        $anio = 2000 + (int)substr(explode("-", $this->getNumeroInterno())[2], -2);
+        $this->setAnio((string)$anio);
         $this->createdAt = new \DateTime("now");
     }
 }

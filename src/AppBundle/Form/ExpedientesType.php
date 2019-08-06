@@ -40,6 +40,11 @@ class ExpedientesType extends AbstractType
           ->add('solicitaAdelanto', CheckboxType::class, array('attr' => array('data-label' => 'Solicita Adelanto'), 'label' => false, 'required'=>false))
           ->add('plurianual', CheckboxType::class, array('attr' => array('data-label' => 'Plurianual'), 'label' => false, 'required'=>false));
         }
+        if (in_array('expedienteOriginal', $options['roles'])) {
+            $builder
+            ->add('expedienteOriginal', TextType::class, array('attr'=>array('required'=>false,'pattern' => 'EXP-S05:[0-9]{7}\/[0-9]{4}|EXP-S01:[0-9]{7}\/[0-9]{4}|EX-20[0-9]{2}-[0-9]{8}?(- -APN-DDYME#MA|- -APN-DGD#MA|- -APN-DGDMA#MPYT)|EX-20[0-9]{2}-[0-9]{8}\b')));
+        }
+
         if (in_array('areaEncuentraExpediente', $options['roles'])) {
             $builder->add('areaEncuentraExpediente', EntityType::class, array('label'=>'Área Destino','class'=>'AppBundle\Entity\Areas','query_builder' => function (EntityRepository $er) {
                 return $er->createQueryBuilder('b')
@@ -442,7 +447,7 @@ class ExpedientesType extends AbstractType
                   'by_reference'  => false,
                   'entry_options' => array(
                       'label' => false,
-                      'attr'=> array('agrupador'=>$agrupador,'plurianual'=>$plurianual),
+                      'attr'=> array('agrupador'=>$agrupador,'plurianual'=>$plurianual,'expedienteId'=>$expediente),
                   )
                 )
               );

@@ -135,7 +135,6 @@ class ExpedientesController extends Controller
         });
         $form = $this->createForm('AppBundle\Form\ExpedientesType', $expediente, ['roles' => $roles]);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $arr = explode("-", $expediente->getNumeroInterno());
@@ -143,7 +142,6 @@ class ExpedientesController extends Controller
             if ($dpto) {
                 $expediente->setDepartamento($dpto);
             }
-            $expediente->setAnio(substr($arr[2], -2));
             $em->persist($expediente);
             $em->flush();
 

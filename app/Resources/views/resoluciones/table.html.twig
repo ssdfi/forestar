@@ -12,7 +12,6 @@
         <th>Densidad</th>
         <th>Monto Pago</th>
         <th>Moneda</th>
-        <th>Aprueba</th>
         {% if expediente.agrupador  %}
           <th>Titular Agrupador</th>
         {% endif %}
@@ -82,12 +81,6 @@
           		<div class="col-sm-12">
           			{{ form_widget(tag.moneda) }}
                 {{ form_errors(tag.moneda) }}
-          		</div>
-          </td>
-          <td>
-          		<div class="col-sm-12">
-          			{{ form_widget(tag.aprueba) }}
-                {{ form_errors(tag.aprueba) }}
           		</div>
           </td>
           {% if expediente.agrupador == true %}

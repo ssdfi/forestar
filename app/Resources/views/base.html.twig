@@ -37,18 +37,18 @@
 					<li class="nav-item active">
 						<a class="nav-link" href="{{path('profesionales_index')}}">Profesionales</a>
 					</li>
-					{% if is_granted('ROLE_ADMIN') %}
 						<li class="nav-item active dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								Reportes
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="{{path('reportes_index')}}">Generales</a>
-								<div class="dropdown-divider"></div>
+								{% if is_granted('ROLE_ADMIN') %}
+									<a class="dropdown-item" href="{{path('reportes_index')}}">Generales</a>
+									<div class="dropdown-divider"></div>
+								{% endif %}
 								<a class="dropdown-item" href="{{path('estadoSituacion_index')}}">Estado de Situación</a>
 							</div>
 						</li>
-					{% endif %}
 				</ul>
 			</div>
 			<ul class="nav navbar-nav navbar-right">

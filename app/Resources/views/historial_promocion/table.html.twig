@@ -3,8 +3,6 @@
     <thead>
       <tr>
         <th>Fecha Realización</th>
-        <!-- <th>Estado Viveros</th> -->
-        <th>10% valiosa</th>
         {% if expediente.agrupador  %}
           <th>Titular Agrupador</th>
         {% endif %}
@@ -26,12 +24,6 @@
           		{{ form_widget(tag.fechaInicio) }}
               {{ form_errors(tag.fechaInicio) }}
           	</div>
-          </td>
-          <td>
-              <div class="col-sm-12">
-                {{ form_widget(tag.valiosas) }}
-                {{ form_errors(tag.valiosas) }}
-              </div>
           </td>
           {% if expediente.agrupador == true %}
             <td>

@@ -40,7 +40,7 @@ class TitularesController extends Controller
         $query = $em->createQuery($dql);
 
         if (array_key_exists('nombre', $param) && $param['nombre']) {
-            $dql->andwhere($dql->expr()->like('UPPER(a.apellidoNombre)', $dql->expr()->literal('%'.strtoupper($param['nombre']).'%')));
+            $dql->andwhere($dql->expr()->like('UNACCENT(UPPER(a.apellidoNombre))', $dql->expr()->literal('%'.strtoupper(iconv('utf-8', 'us-ascii//TRANSLIT', $param['nombre'])).'%')));
         }
         if (array_key_exists('documento', $param) && $param['documento']) {
             $dql->andWhere('a.documento = '.$param['documento']);
@@ -109,7 +109,7 @@ class TitularesController extends Controller
         if ($param['apellido_nombre']) {
             $nombre=$param['apellido_nombre'];
             foreach (explode(' ', $nombre) as $key => $value) {
-                $wheres[]="lower(a.apellidoNombre) like lower('%$value%')";
+                $wheres[]="UNACCENT(lower(a.apellidoNombre)) like UNACCENT(lower('%$value%'))";
             }
         }
         if ($param['documento']) {

@@ -34,10 +34,10 @@ class ResolucionesType extends AbstractType
           ->add('montoPago', NumberType::class, array('required'=>false))
           ->add('moneda')
           ->add('especie')
-          ->add('aprueba', CheckboxType::class, array('attr' => array('data-label' => 'Aprueba'), 'label' => false, 'required'=>false))
+          // ->add('aprueba', CheckboxType::class, array('attr' => array('data-label' => 'Aprueba'), 'label' => false, 'required'=>false))
           ->add('observacion', TextareaType::class, array('required'=>false));
         if ($builder->getOptions()['attr']['agrupador']) {
-          $builder->addEventSubscriber(new AddTitularAgrupadoListener());
+            $builder->addEventSubscriber(new AddTitularAgrupadoListener());
         }
     }/**
      * {@inheritdoc}
@@ -56,6 +56,4 @@ class ResolucionesType extends AbstractType
     {
         return 'appbundle_resoluciones';
     }
-
-
 }

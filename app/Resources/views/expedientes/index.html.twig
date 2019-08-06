@@ -45,6 +45,11 @@
                       {% if expedientes.direction() == 'asc' %}<span class="fa fa-angle-up"></span>{% else %}<span class="fa fa-angle-down"></span>{% endif %}
                     {% endif %}
                   </th>
+                  <th{% if expedientes.isSorted('a.anio') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(expedientes, 'Año', 'a.anio') }}
+                      {% if expedientes.isSorted('a.anio') %}
+                        {% if expedientes.direction() == 'asc' %}<span class="fa fa-angle-up"></span>{% else %}<span class="fa fa-angle-down"></span>{% endif %}
+                      {% endif %}
+                    </th>
                 <th scope="col">Area</th>
               </tr>
             </thead>
@@ -61,6 +66,7 @@
                 </td>
                 <td><abbr title="{{ expediente.profesionalCargo }}" data-length="10">{{ expediente.profesionalCargo }}</abbr></td>
                 <td>{% if expediente.fechaIngreso %}{{ expediente.fechaIngreso|date('Y-m-d') }}{% endif %}</td>
+                <td>{{expediente.anio}}</td>
                 <td>{{expediente.areaEncuentraExpediente}}</td>
               </tr>
               {% endfor %}

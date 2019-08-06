@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
   $('#add-historial-promocion').click(function (e) {
     e.preventDefault();
     historialPromocionAdd();

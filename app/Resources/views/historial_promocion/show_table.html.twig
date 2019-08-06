@@ -3,7 +3,6 @@
     <thead>
       <tr>
         <th scope="col">Fecha Realización</th>
-        <th scope="col">10% valiosas</th>
         {% if expediente.agrupador %}
           <th scope="col">Titular Agrupado</th>
         {% endif %}
@@ -18,7 +17,6 @@
       {% for item in historialPromociones %}
         <tr>
           <td>{{item.fechaInicio|date('m-Y')}}</td>
-          <td>{% if item.valiosas %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</td>
           {% if expediente.agrupador %}
             <td>{% if item.titularAgrupado %}<a href="{{path('titulares_show', { 'id': item.titularAgrupado.id })}}">{{item.titularAgrupado}}</a>{% endif %}</th>
           {% endif %}

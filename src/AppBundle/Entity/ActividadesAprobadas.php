@@ -115,6 +115,41 @@ class ActividadesAprobadas
     private $titularAgrupado;
 
     /**
+     * @var \inspeccion
+     *
+     * @ORM\ManyToOne(targetEntity="ActividadesInspeccionadas")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="inspeccion_id", referencedColumnName="id")
+     * })
+     */
+    private $inspeccion;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="material_certificado", type="boolean", nullable=true)
+     */
+    private $materialCertificado;
+
+    /**
+     * @var \TiposMaterialPlantacion
+     *
+     * @ORM\ManyToOne(targetEntity="TiposMaterialPlantacion")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="material_plantacion_id", referencedColumnName="id")
+     * })
+     */
+    private $materialPlantacion;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="valiosas", type="boolean", nullable=true)
+     */
+    private $valiosas;
+
+
+    /**
      * Get id
      *
      * @return integer
@@ -383,5 +418,100 @@ class ActividadesAprobadas
     public function getTitularAgrupado()
     {
         return $this->titularAgrupado;
+    }
+    /**
+     * Set inspeccion
+     *
+     * @param integer $inspeccion
+     *
+     * @return ActividadesAprobadas
+     */
+    public function setInspeccion($inspeccion)
+    {
+        $this->inspeccion = $inspeccion;
+
+        return $this;
+    }
+
+    /**
+     * Get inspeccion
+     *
+     * @return integer
+     */
+    public function getInspeccion()
+    {
+        return $this->inspeccion;
+    }
+
+    /**
+     * Set materialCertificado
+     *
+     * @param integer materialCertificado
+     *
+     * @return materialCertificado
+     */
+    public function setMaterialCertificado($materialCertificado)
+    {
+        $this->materialCertificado = $materialCertificado;
+
+        return $this;
+    }
+
+    /**
+     * Get inspeccion
+     *
+     * @return integer
+     */
+    public function getMaterialCertificado()
+    {
+        return $this->materialCertificado;
+    }
+
+    /**
+     * Set materialPlantacion
+     *
+     * @param integer materialPlantacion
+     *
+     * @return materialPlantacion
+     */
+    public function setMaterialPlantacion($materialPlantacion)
+    {
+        $this->materialPlantacion = $materialPlantacion;
+
+        return $this;
+    }
+
+    /**
+     * Get inspeccion
+     *
+     * @return integer
+     */
+    public function getMaterialPlantacion()
+    {
+        return $this->materialPlantacion;
+    }
+
+    /**
+     * Set esForestoIndustrial
+     *
+     * @param boolean valiosa
+     *
+     * @return 10% valiosa
+     */
+    public function setValiosas($valiosas)
+    {
+        $this->valiosas = $valiosas;
+
+        return $this;
+    }
+
+    /**
+     * Get esForestoIndustrial
+     *
+     * @return boolean
+     */
+    public function getValiosas()
+    {
+        return $this->valiosas;
     }
 }

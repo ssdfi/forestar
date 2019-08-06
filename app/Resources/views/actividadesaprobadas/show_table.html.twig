@@ -12,8 +12,8 @@
       {% if expediente.agrupador %}
         <th scope="col">Titular Agrupado</th>
       {% endif %}
-      <th scope="col">Fecha de Inicio</th>
-      <th scope="col">Fecha Fin de Actividad</th>
+      <th scope="col">10% Valiosas</th>
+      <th scope="col">Fecha Realización</th>
     </tr>
   </thead>
   <tbody>
@@ -30,8 +30,8 @@
       {% if expediente.agrupador %}
         <td>{% if actividadAprobada.titularAgrupado %}<a href="{{path('titulares_show', { 'id': actividadAprobada.titularAgrupado.id })}}">{{actividadAprobada.titularAgrupado}}</a>{% endif %}</th>
       {% endif %}
-      <td>{% if actividadAprobada.fechaInicio %}{{ actividadAprobada.fechaInicio|date('d-m-Y') }}{% endif %}</td>
-      <td>{% if actividadAprobada.fechaFinActividad %}{{ actividadAprobada.fechaFinActividad|date('d-m-Y') }}{% endif %}</td>
+      <td>{% if actividadAprobada.valiosas %}<span class="fa fa-check"></span>{% else %}<span class="fa fa-times"></span>{% endif %}</td>
+      <td>{% if actividadAprobada.fechaInicio %}{{ actividadAprobada.fechaInicio|date('m-Y') }}{% endif %}</td>
     </tr>
     {% endfor %}
   </tbody>

@@ -1,14 +1,20 @@
 {% block actividadAprobadaPrototype %}
   <td>
-    <div class="col-sm-12">
-      {{ form_widget(form.tipoActividad) }}
-      {{ form_errors(form.tipoActividad) }}
-    </div>
+      <div class="col-sm-12">
+        {{ form_widget(form.inspeccion) }}
+        {{ form_errors(form.inspeccion) }}
+      </div>
   </td>
-  <td>
+  <td class="especies">
     <div class="col-sm-12">
       {{ form_widget(form.especie) }}
       {{ form_errors(form.especie) }}
+    </div>
+  </td>
+  <td class="tipoActividades">
+    <div class="col-sm-12">
+      {{ form_widget(form.tipoActividad) }}
+      {{ form_errors(form.tipoActividad) }}
     </div>
   </td>
   <td>
@@ -24,15 +30,27 @@
     </div>
   </td>
   <td>
-      <div class="col-sm-12">
-        {{ form_widget(form.fechaInicio) }}
-        {{ form_errors(form.fechaInicio) }}
-      </div>
+    <div class="col-sm-3">
+      {{ form_widget(form.valiosas) }}
+      {{ form_errors(form.valiosas) }}
+    </div>
+  </td>
+  <td>
+    <div class="col-sm-3">
+      {{ form_widget(form.materialCertificado) }}
+      {{ form_errors(form.materialCertificado) }}
+    </div>
+  </td>
+  <td>
+    <div class="col-sm-12">
+      {{ form_widget(form.materialPlantacion) }}
+      {{ form_errors(form.materialPlantacion) }}
+    </div>
   </td>
   <td>
       <div class="col-sm-12">
-        {{ form_widget(form.fechaFinActividad) }}
-        {{ form_errors(form.fechaFinActividad) }}
+        {{ form_widget(form.fechaInicio) }}
+        {{ form_errors(form.fechaInicio) }}
       </div>
   </td>
   {% if expediente.agrupador == true %}
@@ -59,6 +77,8 @@
     {{form_widget(form.titular_agrupado_id)}}
   </td>
   {% endif %}
+  {{form_widget(form.especie)}}
+  {{form_widget(form.tipoActividad)}}
   {% if expediente.plurianual %}
   <td>
       <div class="col-sm-12">

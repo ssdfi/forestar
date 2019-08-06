@@ -1163,6 +1163,7 @@ class ActividadesInspeccionadas
 
     public function __toString()
     {
-        return ((string)$this->id) . ' ' . $this->especie. ' ' . $this->tipoActividad.'-Sup:' . $this->superficieHa;
+        $numeroPoda = ($this->numeroPoda)? ' '.(string)$this->numeroPoda.'°': '';
+        return ((string)$this->id) . ' ' . $this->especie. '-' . $this->tipoActividad.$numeroPoda.'-Sup:' . $this->superficieHa;
     }
 }

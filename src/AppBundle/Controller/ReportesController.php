@@ -484,7 +484,7 @@ class ReportesController extends Controller
         ob_end_clean();
 
         $fp = fopen('php://output', 'w');
-        fputcsv($output, array('Numero Interno','Área','Legales','Promocion','SIG'));
+        fputcsv($output, array('Numero Interno','Área','Legales','Promocion','SIG'), ';');
         foreach ($expedientesId as $key => $id) {
             $expediente = $em->getRepository('AppBundle:Expedientes')->findOneBy(array('id'=>$id));
             if ($expediente) {
@@ -512,7 +512,7 @@ class ReportesController extends Controller
                     }
 
                     foreach ($result as $key => $value) {
-                        fputcsv($output, $value, ',');
+                        fputcsv($output, $value, ';');
                     }
                 } else {
                     $list = array();
@@ -530,7 +530,7 @@ class ReportesController extends Controller
                         $fechi = $expediente->getHistorialSigs()->last()->getFechaUltimaModificacion() ? $expediente->getHistorialSigs()->last()->getFechaUltimaModificacion()->format('d/m/Y') : $expediente->getHistorialSigs()->last()->getFechaInicio()->format('d/m/Y');
                         $list[4]=$fechi .' '.$expediente->getHistorialSigs()->last()->getObservacion();
                     }
-                    fputcsv($output, $list, ',');
+                    fputcsv($output, $list, ';');
                 }
             }
         }
