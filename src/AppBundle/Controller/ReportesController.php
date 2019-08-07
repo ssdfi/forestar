@@ -394,9 +394,6 @@ class ReportesController extends Controller
      */
     public function indexEstadoSituacionAction(Request $request)
     {
-        if (!$this->isGranted('ROLE_ADMIN')) {
-            return $this->redirectToRoute('expedientes_index');
-        }
         $expediente = new Expedientes();
         $division_form = $this->createForm('AppBundle\Form\DivisionAdministrativaType', $expediente, array(
           'action' => '/reportes/estadoSituacion/generarcsv',
