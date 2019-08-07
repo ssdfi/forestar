@@ -99,5 +99,8 @@ $(document).ready(function () {
         }, 1000);
      }
 
+     $("form[name='appbundle_expedientes']").on('submit', function() {
+       $('input, select').prop('disabled', false);
+     });
 
 });
