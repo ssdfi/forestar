@@ -40,4 +40,29 @@ class ActividadesController extends Controller
         $response->headers->set('Content-Type', 'application/json');
         return $response;
     }
+
+    /**
+     * Finds and displays a AREAS.
+     *
+     * @Route("/aprobadas/{id}", name="rest_aprobadas")
+     * @Method("GET")
+     */
+    public function actividadAprobadaAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $dql = $em->createQueryBuilder();
+        $data = $em->getRepository('AppBundle:ActividadesAprobadas')->findOneById($id);
+        $resp = array(
+          'tipoActividad'=>$data->getTipoActividad()->getId(),
+          'superficie'=>$data->getSuperficieHa(),
+          'densidad'=>$data->getDensidad(),
+          'etapa'=>$data->getEtapa(),
+          'numeroPoda'=>$data->getNumeroPoda(),
+          'especie'=>$data->getEspecie()->getId(),
+        );
+        $response = new Response();
+        $response->setContent(json_encode($resp));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
 }

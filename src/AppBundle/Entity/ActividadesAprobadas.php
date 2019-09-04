@@ -148,6 +148,20 @@ class ActividadesAprobadas
      */
     private $valiosas;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="numero_poda", type="integer", nullable=true)
+     */
+    private $numeroPoda;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="riego", type="boolean", nullable=true)
+     */
+    private $riego;
+
 
     /**
      * Get id
@@ -513,5 +527,52 @@ class ActividadesAprobadas
     public function getValiosas()
     {
         return $this->valiosas;
+    }
+
+    /**
+     * Set $numeroPoda
+     *
+     * @param integer $numeroPoda
+     *
+     * @return $numeroPoda
+     */
+    public function setNumeroPoda($numeroPoda)
+    {
+        $this->numeroPoda = $numeroPoda;
+
+        return $this;
+    }
+
+    /**
+     * Get superficieHa
+     *
+     * @return integer
+     */
+    public function getNumeroPoda()
+    {
+        return $this->numeroPoda;
+    }
+
+    public function setRiego($riego)
+    {
+        $this->riego = $riego;
+
+        return $this;
+    }
+
+    /**
+     * Get $riego
+     *
+     * @return boolean
+     */
+    public function getRiego()
+    {
+        return $this->riego;
+    }
+
+    public function __toString()
+    {
+        $numeroPoda = ($this->numeroPoda)? ' '.(string)$this->numeroPoda.'°': '';
+        return ((string)$this->id) . ' ' . $this->especie. '-' . $this->tipoActividad.$numeroPoda.'-Sup:' . $this->superficieHa;
     }
 }

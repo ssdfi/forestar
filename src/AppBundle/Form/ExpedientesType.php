@@ -393,7 +393,7 @@ class ExpedientesType extends AbstractType
                   'by_reference'  => false,
                   'entry_options' => array(
                       'label' => false,
-                      'attr'=> array('agrupador'=>$agrupador,'plurianual'=>$plurianual),
+                      'attr'=> array('agrupador'=>$agrupador,'plurianual'=>$plurianual,'expedienteId'=>$expediente),
                   )
                 )
               );

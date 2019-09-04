@@ -1,97 +1,88 @@
 {% block resolucionPrototype %}
-<td>
-    <div class="col-sm-12">
-      {{ form_widget(form.tipoResolucion) }}
-      {{ form_errors(form.tipoResolucion) }}
-    </div>
-</td>
-<td>
-    <div class="col-sm-12">
-      {{ form_widget(form.numeroResolucion) }}
-      {{ form_errors(form.numeroResolucion) }}
-    </div>
-</td>
-<td>
-    <div class="col-sm-12">
-      {{ form_widget(form.fechaResolucion) }}
-      {{ form_errors(form.fechaResolucion) }}
-    </div>
-</td>
-<td>
-    <div class="col-sm-12">
-      {{ form_widget(form.listadoResolucion) }}
-      {{ form_errors(form.listadoResolucion) }}
-    </div>
-</td>
-<td>
-    <div class="col-sm-12">
-      {{ form_widget(form.tipoActividad) }}
-      {{ form_errors(form.tipoActividad) }}
-    </div>
-</td>
-<td>
-    <div class="col-sm-12">
-      {{ form_widget(form.especie) }}
-      {{ form_errors(form.especie) }}
-    </div>
-</td>
-<td>
-    <div class="col-sm-12">
-      {{ form_widget(form.superficieHa) }}
-      {{ form_errors(form.superficieHa) }}
-    </div>
-</td>
-<td>
-    <div class="col-sm-12">
-      {{ form_widget(form.densidad) }}
-      {{ form_errors(form.densidad) }}
-    </div>
-</td>
-<td>
-    <div class="col-sm-12">
-      {{ form_widget(form.montoPago) }}
-      {{ form_errors(form.montoPago) }}
-    </div>
-</td>
-<td>
-    <div class="col-sm-12">
-      {{ form_widget(form.moneda) }}
-      {{ form_errors(form.moneda) }}
-    </div>
-</td>
-{% if expediente.agrupador == true %}
-<td>
-  <div class="form-row">
-    <div class="col-md-8 mb-3">
-      {{form_widget(form.titularAgrupado)}}
-    </div>
-    <div class="col-md-4 mb-3">
-      <div class="form-row">
-        <div class="col-md-6">
-          <button id="add-titular-agrupado" data-index='{{form.vars.name}}' data-name="appbundle_expedientes_resoluciones_" class="btn btn-default add-titular-agrupado" type="button" data-toggle="modal" data-target="#titular-agrupado-modal">
-            <span class="fa fa-search" aria-hidden="true"></span>
-          </button>
-        </div>
-        <div class="col-md-6">
-          <button id="remove-titular-agrupado" data-index='{{form.vars.name}}' data-name="appbundle_expedientes_resoluciones_" class="btn btn-default remove-titular-agrupado" type="button">
-            <span class="fa fa-remove" aria-hidden="true"></span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  {{form_widget(form.titular_agrupado_id)}}
-</td>
-{% endif %}
-<td>
-    <div class="col-sm-12">
-      {{ form_widget(form.observacion) }}
-      {{ form_errors(form.observacion) }}
-    </div>
-</td>
-  <td>
-    <a class="btn btn-danger btn-sm pull-right remove-resolucion remove_nested_fields" data-association="resoluciones">
-      <span class="fa fa-remove text-white" aria-hidden="true"></span>
-    </a>
-  </td>
+	<td>
+		<div class="col-sm-12">
+			{{ form_widget(form.actividadAprobada) }}
+			{{ form_errors(form.actividadAprobada) }}
+		</div>
+	</td>
+	<td>
+		<div class="col-sm-12">
+			{{ form_widget(form.tipoActividad) }}
+			{{ form_errors(form.tipoActividad) }}
+			{{ form_widget(form.especie) }}
+			{{ form_errors(form.especie) }}
+			{{ form_widget(form.superficieHa) }}
+			{{ form_errors(form.superficieHa) }}
+			{{ form_widget(form.densidad) }}
+			{{ form_errors(form.densidad) }}
+		</div>
+	</td>
+	<td>
+		<div class="col-sm-12">
+			{{ form_widget(form.montoPago) }}
+			{{ form_errors(form.montoPago) }}
+		</div>
+	</td>
+	<td>
+		<div class="col-sm-12">
+			{{ form_widget(form.observacion) }}
+			{{ form_errors(form.observacion) }}
+		</div>
+	</td>
+	<td>
+		<div class="col-sm-12">
+			{{ form_widget(form.listadoResolucion) }}
+			{{ form_errors(form.listadoResolucion) }}
+		</div>
+	</td>
+	<td>
+		<div class="col-sm-12">
+			{{ form_widget(form.tipoResolucion) }}
+			{{ form_errors(form.tipoResolucion) }}
+		</div>
+	</td>
+	<td>
+		<div class="col-sm-12">
+			{{ form_widget(form.numeroResolucion) }}
+			{{ form_errors(form.numeroResolucion) }}
+		</div>
+	</td>
+	<td>
+		<div class="col-sm-12">
+			{{ form_widget(form.fechaResolucion) }}
+			{{ form_errors(form.fechaResolucion) }}
+		</div>
+	</td>
+
+
+	{% if expediente.agrupador == true %}
+		<td>
+			<div class="form-row">
+				<div class="col-md-8 mb-3">
+					{{form_widget(form.titularAgrupado)}}
+				</div>
+				<div class="col-md-4 mb-3">
+					<div class="form-row">
+						<div class="col-md-6">
+							<button id="add-titular-agrupado" data-index='{{form.vars.name}}' data-name="appbundle_expedientes_resoluciones_" class="btn btn-default add-titular-agrupado" type="button" data-toggle="modal" data-target="#titular-agrupado-modal">
+								<span class="fa fa-search" aria-hidden="true"></span>
+							</button>
+						</div>
+						<div class="col-md-6">
+							<button id="remove-titular-agrupado" data-index='{{form.vars.name}}' data-name="appbundle_expedientes_resoluciones_" class="btn btn-default remove-titular-agrupado" type="button">
+								<span class="fa fa-remove" aria-hidden="true"></span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			{{form_widget(form.titular_agrupado_id)}}
+		</td>
+	{% endif %}
+
+	<td>
+		<a class="btn btn-danger btn-sm pull-right remove-resolucion remove_nested_fields" data-association="resoluciones">
+			<span class="fa fa-remove text-white" aria-hidden="true"></span>
+		</a>
+	</td>
 {% endblock %}

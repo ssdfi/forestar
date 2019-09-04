@@ -218,7 +218,6 @@ class ExpedientesController extends Controller
             if ($dpto) {
                 $expediente->setDepartamento($dpto);
             }
-            $expediente->setAnio(substr($arr[2], -2));
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('expedientes_show', array(

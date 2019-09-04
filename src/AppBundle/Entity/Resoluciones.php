@@ -173,6 +173,16 @@ class Resoluciones
      */
     private $titularAgrupado;
 
+    /**
+     * @var \ActividadesAprobadas
+     *
+     * @ORM\ManyToOne(targetEntity="ActividadesAprobadas")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="actividad_aprobada_id", referencedColumnName="id")
+     * })
+     */
+    private $actividadAprobada;
+
 
     /**
      * Get id
@@ -638,4 +648,20 @@ class Resoluciones
         return $this->titularAgrupado;
     }
 
+    public function setActividadAprobada($actividadAprobada)
+    {
+        $this->actividadAprobada = $actividadAprobada;
+
+        return $this;
+    }
+
+    /**
+     * Get $actividadAprobada
+     *
+     * @return integer
+     */
+    public function getActividadAprobada()
+    {
+        return $this->actividadAprobada;
+    }
 }

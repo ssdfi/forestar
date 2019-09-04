@@ -7,3 +7,4 @@ ALTER TABLE expedientes ALTER COLUMN anio type character varying(4);
 --UPDATE expedientes SET anio = substr(numero_interno,12,2) where anio is null;
 UPDATE expedientes SET anio = (anio::integer + 1900)::character varying where anio::integer <=99 and anio::integer>=55;
 UPDATE expedientes SET anio = (anio::integer + 2000)::character varying where anio::integer <=54 and anio::integer>=0;
+ALTER TABLE resoluciones ADD COLUMN actividad_aprobada_id integer;

@@ -2,20 +2,17 @@
   <table id="resoluciones" class="table table-striped">
     <thead>
       <tr>
+        <th>Actividad Aprobada</th>
+        <th>Info</th>
+        <th>Monto Pago</th>
+        <th>Observación</th>
+        <th>Listado</th>
         <th>Tipo Resolución</th>
         <th>Número Resolución</th>
         <th>Fecha Resolución</th>
-        <th>Listado</th>
-        <th>Tipo Actividad</th>
-        <th>Especie</th>
-        <th>Superficie</th>
-        <th>Densidad</th>
-        <th>Monto Pago</th>
-        <th>Moneda</th>
         {% if expediente.agrupador  %}
           <th>Titular Agrupador</th>
         {% endif %}
-        <th>Observación</th>
         <th></th>
       </tr>
     </thead>
@@ -23,6 +20,44 @@
       {% if resoluciones %}
         {% for key, tag in resoluciones %}
         <tr class="fields">
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.actividadAprobada) }}
+                {{ form_errors(tag.actividadAprobada) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.tipoActividad) }}
+                {{ form_errors(tag.tipoActividad) }}
+                {{ form_widget(tag.especie) }}
+                {{ form_errors(tag.especie) }}
+                {{ form_widget(tag.superficieHa) }}
+                {{ form_errors(tag.superficieHa) }}
+                {{ form_widget(tag.densidad) }}
+                {{ form_errors(tag.densidad) }}
+          		</div>
+          </td>
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.montoPago) }}
+                {{ form_errors(tag.montoPago) }}
+          		</div>
+          </td>
+
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.observacion) }}
+                {{ form_errors(tag.observacion) }}
+          		</div>
+          </td>
+
+          <td>
+          		<div class="col-sm-12">
+          			{{ form_widget(tag.listadoResolucion) }}
+                {{ form_errors(tag.listadoResolucion) }}
+          		</div>
+          </td>
           <td>
           		<div class="col-sm-12">
           			{{ form_widget(tag.tipoResolucion) }}
@@ -39,48 +74,6 @@
           		<div class="col-sm-12">
           			{{ form_widget(tag.fechaResolucion) }}
                 {{ form_errors(tag.fechaResolucion) }}
-          		</div>
-          </td>
-          <td>
-          		<div class="col-sm-12">
-          			{{ form_widget(tag.listadoResolucion) }}
-                {{ form_errors(tag.listadoResolucion) }}
-          		</div>
-          </td>
-          <td>
-          		<div class="col-sm-12">
-          			{{ form_widget(tag.tipoActividad) }}
-                {{ form_errors(tag.tipoActividad) }}
-          		</div>
-          </td>
-          <td>
-          		<div class="col-sm-12">
-          			{{ form_widget(tag.especie) }}
-                {{ form_errors(tag.especie) }}
-          		</div>
-          </td>
-          <td>
-          		<div class="col-sm-12">
-          			{{ form_widget(tag.superficieHa) }}
-                {{ form_errors(tag.superficieHa) }}
-          		</div>
-          </td>
-          <td>
-          		<div class="col-sm-12">
-          			{{ form_widget(tag.densidad) }}
-                {{ form_errors(tag.densidad) }}
-          		</div>
-          </td>
-          <td>
-          		<div class="col-sm-12">
-          			{{ form_widget(tag.montoPago) }}
-                {{ form_errors(tag.montoPago) }}
-          		</div>
-          </td>
-          <td>
-          		<div class="col-sm-12">
-          			{{ form_widget(tag.moneda) }}
-                {{ form_errors(tag.moneda) }}
           		</div>
           </td>
           {% if expediente.agrupador == true %}
@@ -107,12 +100,6 @@
               {{form_widget(tag.titular_agrupado_id)}}
             </td>
           {% endif %}
-          <td>
-          		<div class="col-sm-12">
-          			{{ form_widget(tag.observacion) }}
-                {{ form_errors(tag.observacion) }}
-          		</div>
-          </td>
           <td>
           	<a class="btn btn-danger btn-sm pull-right remove-resolucion remove_nested_fields" data-association="resoluciones">
               <span class="fa fa-remove text-white" aria-hidden="true"></span>
